@@ -13,6 +13,7 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  // register new user
   const registrationHandler = async () => {
     if (!firstname) {
       setError("firstname is required.");
