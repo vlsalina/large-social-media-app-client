@@ -3,6 +3,7 @@ import "./LoginScreen.css";
 import { networks } from "../../data/data";
 import axios from "axios";
 import LoginForm from "../LoginForm/LoginForm";
+import { Link } from "react-router-dom";
 
 const LoginScreen = () => {
   const clickHandler = () => {
@@ -45,6 +46,14 @@ const LoginScreen = () => {
             </button>
           </li>
         </ul>
+        <div className="loginScreen-toRegister">
+          <p>
+            No account?{" "}
+            <Link className="toRegister-red" to="/register">
+              <bold>Create One</bold>
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

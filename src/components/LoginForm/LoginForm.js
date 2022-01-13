@@ -9,11 +9,8 @@ const LoginForm = () => {
   const { domain } = useContext(Context);
 
   const [error, setError] = useState();
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const loginHandler = async () => {
     if (!email) {
@@ -41,26 +38,6 @@ const LoginForm = () => {
       <div className="loginForm-backdrop" />
       <form className="loginForm-form">
         <div className="loginForm-formdata">
-          <label htmlFor="fname">First name</label>
-          <input
-            type="text"
-            id="fname"
-            name="fname"
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
-          />
-        </div>
-        <div className="loginForm-formdata">
-          <label htmlFor="lname">Last name</label>
-          <input
-            type="text"
-            id="lname"
-            name="lname"
-            value={lastname}
-            onChange={(e) => setLastname(e.target.value)}
-          />
-        </div>
-        <div className="loginForm-formdata">
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -80,22 +57,12 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="loginForm-formdata">
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            type="text"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </div>
         <div className="loginForm-submit-button">
           <button type="button" onClick={loginHandler}>
             Submit
           </button>
         </div>
-        <div>{error ? <p>{error}</p> : <div />}</div>
+        <div>{error ? <div className="info-error">{error}</div> : <div />}</div>
       </form>
     </div>
   );

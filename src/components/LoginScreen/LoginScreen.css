@@ -14,6 +14,7 @@
 .loginScreen-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .loginScreen-media-button {
@@ -28,4 +29,13 @@
 
 .loginScreen-wrapper-header {
   margin-bottom: 5rem;
+}
+
+.loginScreen-toRegister {
+  margin-top: 2rem;
+}
+
+.toRegister-red {
+  color: red;
+  font-weight: bold;
 }
