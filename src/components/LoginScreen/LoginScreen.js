@@ -5,6 +5,19 @@ import axios from "axios";
 import LoginForm from "../LoginForm/LoginForm";
 
 const LoginScreen = () => {
+  const clickHandler = () => {
+    let loginForm = document.getElementsByClassName("loginForm")[0];
+    loginForm.style.display = "flex";
+  };
+
+  window.addEventListener("click", (e) => {
+    let backdrop = document.getElementsByClassName("loginForm-backdrop")[0];
+    let loginForm = document.getElementsByClassName("loginForm")[0];
+    if (e.target === backdrop) {
+      loginForm.style.display = "none";
+    }
+  });
+
   return (
     <div className="loginScreen">
       <LoginForm />
@@ -23,7 +36,11 @@ const LoginScreen = () => {
             </li>
           ))}
           <li key={networks[4].network}>
-            <button type="button" className="loginScreen-media-button">
+            <button
+              type="button"
+              className="loginScreen-media-button"
+              onClick={clickHandler}
+            >
               Sign in with {networks[4].network}
             </button>
           </li>

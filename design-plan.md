@@ -104,6 +104,8 @@ done - (3.2.4) unlike a reply
 (4.2) Auth:
 (4.2.0) login
 
+**\*\*** client side todos **\*\***
+
 **\*\*** fixes **\*\***
 (1) must fix addReply api to: - create a new Reply - add new reply to designated article
 
