@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 // log in user
-const LoginForm = () => {
+const LoginForm = ({ setLoading }) => {
   const { domain } = useContext(Context);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -29,15 +29,21 @@ const LoginForm = () => {
       return;
     }
 
+    setLoading(true);
+
     let promise = dispatch(signin(domain, email, password));
 
     promise
       .then((result) => {
+        setLoading(false);
         setEmail("");
         setPassword("");
         navigate("/");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
   };
 
   return (

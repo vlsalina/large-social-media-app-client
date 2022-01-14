@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./LoginScreen.css";
 import { networks } from "../../data/data";
 import axios from "axios";
@@ -8,8 +8,9 @@ import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
 
 const LoginScreen = () => {
-  const user = useSelector((state) => state.user);
-  const { loading } = user;
+  //const user = useSelector((state) => state.user);
+  //const { loading } = user;
+  const [loading, setLoading] = useState(false);
 
   const clickHandler = () => {
     let loginForm = document.getElementsByClassName("loginForm")[0];
@@ -30,7 +31,7 @@ const LoginScreen = () => {
         <Loader />
       ) : (
         <>
-          <LoginForm />
+          <LoginForm setLoading={setLoading} />
           <div className="loginScreen-wrapper">
             <div className="loginScreen-wrapper-header">
               <h1>Welcome back.</h1>

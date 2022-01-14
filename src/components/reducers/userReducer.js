@@ -7,11 +7,11 @@ import {
 const userReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_SIGNIN_REQUEST:
-      return { loading: true };
+      return {};
     case USER_SIGNIN_SUCCESS:
-      return { loading: false, ...action.payload };
+      return action.payload;
     case USER_SIGNIN_FAIL:
-      return { loading: false, error: action.payload };
+      return { error: action.payload };
     default:
       return state;
   }
