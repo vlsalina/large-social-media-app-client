@@ -105,6 +105,11 @@ done - (3.2.4) unlike a reply
 (4.2.0) login
 
 **\*\*** client side todos **\*\***
+(1) set up React Redux store
+
+**\*\*** redux states **\*\***
+(1) user
+(2) articles
 
 **\*\*** fixes **\*\***
 (1) must fix addReply api to: - create a new Reply - add new reply to designated article
@@ -118,7 +123,9 @@ done - (3.2.4) unlike a reply
 (2) Error: Can't set headers after they are sent to the client.
 
 **\*\*** Resources **\*\***
+(1) https://stackoverflow.com/questions/56694102/how-to-return-a-promise-from-an-action-using-thunk-and-usedispatch-react-redux
 
 **\*\*** Learned **\*\***
 (1) use "req.query" to get values stored in url for backend
 (2) how to set CORS headers to allow access from designated sites
+(3) how to return promise after using dispatch (useDispatch) hook

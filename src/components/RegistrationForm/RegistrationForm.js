@@ -2,8 +2,10 @@ import React, { useState, useContext } from "react";
 import "./RegistrationForm.css";
 import { Context } from "../../App";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ loading, setLoading }) => {
+  const navigate = useNavigate();
   const { domain } = useContext(Context);
 
   const [error, setError] = useState();
@@ -54,10 +56,17 @@ const RegistrationForm = () => {
     };
 
     try {
+      setLoading(true);
       await axios
         .post(`${domain}/api/users/register`, userInfo)
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err));
+        .then(() => {
+          setLoading(false);
+          navigate("/login");
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(err);
+        });
     } catch (err) {
       console.log(err);
     }

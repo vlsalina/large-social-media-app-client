@@ -2,18 +2,23 @@ import React, { useState, useContext } from "react";
 import "./LoginForm.css";
 import { Context } from "../../App";
 import axios from "axios";
-
-const userId = "1f0cd2d4-eabd-467c-9da3-c66ed658c9af";
+import { useDispatch } from "react-redux";
+import { signin } from "../actions/actions";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // log in user
 const LoginForm = () => {
   const { domain } = useContext(Context);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const [error, setError] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginHandler = async () => {
+  const loginHandler = () => {
     if (!email) {
       setError("Email is required.");
       return;
@@ -24,14 +29,15 @@ const LoginForm = () => {
       return;
     }
 
-    try {
-      await axios
-        .post(`${domain}/api/auth/login`, { email: email, password: password })
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err));
-    } catch (err) {
-      console.log(err);
-    }
+    let promise = dispatch(signin(domain, email, password));
+
+    promise
+      .then((result) => {
+        setEmail("");
+        setPassword("");
+        navigate("/");
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

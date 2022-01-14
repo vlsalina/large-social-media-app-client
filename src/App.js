@@ -9,25 +9,14 @@ import LoginScreen from "./components/LoginScreen/LoginScreen";
 import MainFeedScreen from "./components/MainFeedScreen/MainFeedScreen";
 import ProfileScreen from "./components/ProfileScreen/ProfileScreen";
 import RegisterScreen from "./components/RegisterScreen/RegisterScreen";
+import Loader from "./components/Loader/Loader";
 
 //const domain = "https://large-social-media-app.herokuapp.com";
 const domain = "http://localhost:5000";
-const userId = "1f0cd2d4-eabd-467c-9da3-c66ed658c9af";
 
 export const Context = React.createContext();
 
 function App() {
-  const clickHandler = async () => {
-    try {
-      await axios
-        .post(`${domain}/api/auth/login`, { _id: userId })
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -40,6 +29,7 @@ function App() {
             <Route path="/author" element={<AuthorScreen />} />
             <Route path="/article" element={<ArticleScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
+            <Route path="/loader" element={<Loader />} />
           </Routes>
         </Context.Provider>
       </BrowserRouter>
