@@ -7,11 +7,11 @@ import {
 const articlesReducer = (state = [], action) => {
   switch (action.type) {
     case ARTICLES_REQUEST:
-      return { loading: true };
+      return [];
     case ARTICLES_SUCCESS:
-      return { loading: false, articles: action.payload };
+      return action.payload;
     case ARTICLES_FAIL:
-      return { loading: false, error: action.payload };
+      return [{ error: action.payload }];
     default:
       return state;
   }

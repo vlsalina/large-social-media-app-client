@@ -28,7 +28,7 @@ const RegisterScreen = () => {
         <Loader />
       ) : (
         <>
-          <RegistrationForm loading={loading} setLoading={setLoading} />
+          <RegistrationForm setLoading={setLoading} />
           <div className="loginScreen-wrapper">
             <div className="loginScreen-wrapper-header">
               <h1>Join Large.</h1>

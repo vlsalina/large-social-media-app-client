@@ -4,7 +4,7 @@ import { Context } from "../../App";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const RegistrationForm = ({ loading, setLoading }) => {
+const RegistrationForm = ({ setLoading }) => {
   const navigate = useNavigate();
   const { domain } = useContext(Context);
 
