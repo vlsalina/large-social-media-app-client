@@ -38,6 +38,8 @@ Conventional requirements:
 (5) profile screen
 (6) account screen
 (7) author screen
+(8) topic screen
+(9) reading list
 
 **\*\*** Models **\*\***
 (1) User

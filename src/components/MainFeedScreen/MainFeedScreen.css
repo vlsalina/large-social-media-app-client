@@ -1,24 +1,70 @@
 .mainFeedScreen {
-  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
   width: 100%;
 }
 
-.mainfeed {
-  margin: 3rem 0;
+.mainFeedScreen-wrapper {
+  width: 100%;
+  padding: 0 1rem;
+  position: relative;
 }
 
-@media only screen and (min-width: 743px) {
-  .mainFeedScreen {
+.mainFeedScreen-main-wrapper {
+  width: 100%;
+}
+
+.mainFeedScreen-aside-wrapper {
+  display: none;
+}
+
+/* Reading list */
+
+.readingList-favorite-icon {
+  height: 1rem;
+}
+
+.readingList-title h2 {
+  font-size: 1rem;
+}
+
+.readingList-list-empty {
+  display: flex;
+}
+
+.readingList-list-empty p {
+  line-height: 1.5rem;
+}
+
+/* End Reading list */
+
+@media screen and (min-width: 743px) {
+  .mainFeedScreen-wrapper {
     width: 743px;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
   }
 }
 
-@media screen and (min-width: 904px) {
-  .mainfeed {
-    padding-right: 3rem;
-    border-right: 1px solid rgb(165, 149, 149);
+@media screen and (min-width: 1192px) {
+  .mainFeedScreen-wrapper {
+    width: 1192px;
+  }
+
+  .mainFeedScreen-main {
+    width: 70%;
+    padding-right: 2rem;
+    border-right: 1px solid rgb(219, 210, 210);
+  }
+
+  .mainFeedScreen-aside-wrapper {
+    display: block;
+    width: 1192px;
+    position: fixed;
+    top: calc(65px + 3rem);
+  }
+
+  .mainFeedScreen-aside {
+    width: 30%;
+    position: absolute;
+    right: 0;
   }
 }

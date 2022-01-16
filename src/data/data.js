@@ -20,4 +20,14 @@ const networks = [
   },
 ];
 
-export { networks };
+const topics = [
+  "technology",
+  "money",
+  "business",
+  "productivity",
+  "psychology",
+  "mindfulness",
+  "art",
+];
+
+export { networks, topics };
