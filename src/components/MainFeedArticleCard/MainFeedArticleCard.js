@@ -10,7 +10,6 @@ const MainFeedArticleCard = ({ article }) => {
   const user = useSelector((state) => state.user);
 
   const clickHandler = async (e) => {
-    e.preventDefault();
     try {
       const { data } = await axios.patch(
         `${domain}/api/users/favorite`,
@@ -20,6 +19,7 @@ const MainFeedArticleCard = ({ article }) => {
     } catch (error) {
       console.log(error);
     }
+    window.location.reload();
   };
 
   return (
