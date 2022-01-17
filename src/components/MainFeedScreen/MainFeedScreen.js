@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import MainFeedArticleCard from "../MainFeedArticleCard/MainFeedArticleCard";
 import Recommended from "../Recommended/Recommended";
 import ReadingList from "../ReadingList/ReadingList";
+import { Link } from "react-router-dom";
 
 const MainFeedScreen = () => {
   const { domain } = useContext(Context);

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { Context } from "../../App";
 import { formatDate } from "../../utils";
+import { Link } from "react-router-dom";
 
 const Favorites = ({ favs, domain, token }) => {
   const unfavHandler = (articleId) => {
@@ -24,20 +25,22 @@ const Favorites = ({ favs, domain, token }) => {
       <ul>
         {favs.map((fav) => (
           <li key={fav._id}>
-            <div className="favorites-header">
-              <div>
-                <img
-                  className="favorites-avatar"
-                  src={"/assets/icons8-circled-v-100.png"}
-                />
+            <Link to={`/article/${fav._id}`}>
+              <div className="favorites-header">
+                <div>
+                  <img
+                    className="favorites-avatar"
+                    src={"/assets/icons8-circled-v-100.png"}
+                  />
+                </div>
+                <div className="favorites-author">
+                  <h2>{fav.author}</h2>
+                </div>
               </div>
-              <div className="favorites-author">
-                <h2>{fav.author}</h2>
+              <div className="favorites-title">
+                <h2>{fav.title}</h2>
               </div>
-            </div>
-            <div className="favorites-title">
-              <h2>{fav.title}</h2>
-            </div>
+            </Link>
             <div className="favorites-footer">
               <div className="favorites-date">{formatDate(fav.createdAt)}</div>
               <div>

@@ -1,0 +1,40 @@
+.footer {
+  width: 100%;
+  margin-top: calc(65px + 3rem);
+  padding: 2rem 1rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+}
+
+.footer-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-logo img {
+  height: 2rem;
+  object-fit: contain;
+}
+
+.footer-links {
+  width: 200px;
+}
+
+.footer-links ul {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.footer-links ul li a {
+  color: #fff;
+  text-transform: capitalize;
+}
+
+@media screen and (min-width: 743px) {
+  .footer-wrapper {
+    width: 743px;
+  }
+}

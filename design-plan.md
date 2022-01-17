@@ -40,9 +40,11 @@ Conventional requirements:
 (7) author screen
 (8) topic screen
 (9) reading list
+(10) create new article screen
 
-**\*\*** Components **\*\***
-(1) ActionMenu
+**\*\*** Features **\*\***
+(1) Action Menu
+(2) Direct Messanger
 
 **\*\*** Models **\*\***
 (1) User

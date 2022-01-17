@@ -4,6 +4,7 @@ import { formatDate } from "../../utils";
 import { Context } from "../../App";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MainFeedArticleCard = ({ article }) => {
   const { domain } = useContext(Context);
@@ -36,10 +37,12 @@ const MainFeedArticleCard = ({ article }) => {
             <h4>{article.author}</h4>
           </div>
         </div>
-        <div className="card-title">
-          <h2>{article.title}</h2>
-        </div>
-        <div className="card-snippet">{article.snippet}</div>
+        <Link to={`/article/${article._id}`}>
+          <div className="card-title">
+            <h2>{article.title}</h2>
+          </div>
+          <div className="card-snippet">{article.snippet}</div>
+        </Link>
         <div className="card-metadata">
           <div>{formatDate(article.createdAt)}</div>
           <div>
@@ -57,10 +60,12 @@ const MainFeedArticleCard = ({ article }) => {
         </div>
       </div>
       <div className="card-col2">
-        <img
-          className="card-img"
-          src={"/assets/ssfasfsafasffs-e1460147167824.jpg"}
-        />
+        <Link to={`/article/${article._id}`}>
+          <img
+            className="card-img"
+            src={"/assets/ssfasfsafasffs-e1460147167824.jpg"}
+          />
+        </Link>
       </div>
     </article>
   );

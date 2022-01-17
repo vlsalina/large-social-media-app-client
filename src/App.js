@@ -27,7 +27,7 @@ function App() {
             <Route path="/register" element={<RegisterScreen />} />
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/author" element={<AuthorScreen />} />
-            <Route path="/article" element={<ArticleScreen />} />
+            <Route path="/article/:articleId" element={<ArticleScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
             <Route path="/loader" element={<Loader />} />
           </Routes>

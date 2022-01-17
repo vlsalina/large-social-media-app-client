@@ -1,0 +1,57 @@
+.articleScreen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.articleScreen-main {
+  position: relative;
+  top: calc(65px + 3rem);
+  width: 100%;
+}
+
+.articleScreen-title {
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.articleScreen-picture img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.articleScreen-wrapper {
+  padding: 0 1rem;
+  margin: 2rem 0;
+}
+
+.articleScreen-data {
+  display: flex;
+  padding: 1rem;
+}
+
+.articleScreen-avatar {
+  margin-right: 1rem;
+}
+
+.articleScreen-avatar img {
+  height: 2rem;
+  object-fit: contain;
+}
+
+.articleScreen-author {
+  margin-right: 1rem;
+}
+
+@media screen and (min-width: 743px) {
+  .articleScreen-title,
+  .articleScreen-data,
+  .articleScreen-wrapper,
+  .articleScreen-picture {
+    width: 743px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
