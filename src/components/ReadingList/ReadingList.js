@@ -4,31 +4,52 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { Context } from "../../App";
 import { formatDate } from "../../utils";
-import { Link } from "react-router-dom";
 
-const Favorites = ({ favs }) => {
+const Favorites = ({ favs, domain, token }) => {
+  const unfavHandler = (articleId) => {
+    try {
+      const { data } = axios.patch(
+        `${domain}/api/users/unfavorite`,
+        { articleId: articleId },
+        { headers: { authorization: `Bearer ${token}` } }
+      );
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="favorites">
       <ul>
         {favs.map((fav) => (
           <li key={fav._id}>
-            <Link to="#">
-              <div className="favorites-header">
-                <div>
-                  <img
-                    className="favorites-avatar"
-                    src={"/assets/icons8-circled-v-100.png"}
-                  />
-                </div>
-                <div className="favorites-author">
-                  <h2>{fav.author}</h2>
-                </div>
+            <div className="favorites-header">
+              <div>
+                <img
+                  className="favorites-avatar"
+                  src={"/assets/icons8-circled-v-100.png"}
+                />
               </div>
-              <div className="favorites-title">
-                <h2>{fav.title}</h2>
+              <div className="favorites-author">
+                <h2>{fav.author}</h2>
               </div>
+            </div>
+            <div className="favorites-title">
+              <h2>{fav.title}</h2>
+            </div>
+            <div className="favorites-footer">
               <div className="favorites-date">{formatDate(fav.createdAt)}</div>
-            </Link>
+              <div>
+                <button
+                  type="button"
+                  className="favorites-cancel"
+                  onClick={() => unfavHandler(fav._id)}
+                >
+                  <img src={"/assets/icons8-unfavorite-512.png"} />
+                </button>
+              </div>
+            </div>
           </li>
         ))}
       </ul>
@@ -83,7 +104,7 @@ const ReadingList = () => {
           </p>
         </div>
       ) : (
-        <Favorites favs={favorites} />
+        <Favorites favs={favorites} domain={domain} token={user.accessToken} />
       )}
     </div>
   );

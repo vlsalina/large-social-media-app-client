@@ -71,6 +71,7 @@
 .card-favorite-button {
   border: none;
   background-color: #fff;
+  cursor: pointer;
 }
 
 .card-favorite-icon {
