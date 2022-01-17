@@ -9,14 +9,14 @@ const MainFeedArticleCard = ({ article }) => {
   const { domain } = useContext(Context);
   const user = useSelector((state) => state.user);
 
-  const clickHandler = async () => {
+  const clickHandler = async (e) => {
+    e.preventDefault();
     try {
       const { data } = await axios.patch(
         `${domain}/api/users/favorite`,
         { articleId: article._id },
         { headers: { authorization: `Bearer ${user.accessToken}` } }
       );
-      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +46,7 @@ const MainFeedArticleCard = ({ article }) => {
             <button
               className="card-favorite-button"
               type="button"
-              onClick={clickHandler}
+              onClick={(e) => clickHandler(e)}
             >
               <img
                 className="card-favorite-icon"

@@ -6,12 +6,14 @@
 
 .mainFeedScreen-wrapper {
   width: 100%;
-  padding: 0 1rem;
   position: relative;
 }
 
 .mainFeedScreen-main-wrapper {
   width: 100%;
+  position: relative;
+  top: calc(65px + 3rem);
+  padding: 0 1rem;
 }
 
 .mainFeedScreen-aside-wrapper {
@@ -27,6 +29,10 @@
 @media screen and (min-width: 1192px) {
   .mainFeedScreen-wrapper {
     width: 1192px;
+  }
+
+  .mainFeedScreen-main-wrapper {
+    padding: 0;
   }
 
   .mainFeedScreen-main {
@@ -46,5 +52,6 @@
     width: 30%;
     position: absolute;
     right: 0;
+    padding-left: 2rem;
   }
 }

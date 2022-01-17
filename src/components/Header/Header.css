@@ -1,17 +1,19 @@
 .header {
-  height: 65px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: calc(65px + 3rem);
   width: 100%;
   margin-bottom: 3rem;
+  position: fixed;
+  z-index: 1;
+  background-color: #fff;
+  padding: 0 1rem;
 }
 
 .header-wrapper {
-  height: 50%;
+  height: 40px;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-top: 1.5rem;
 }
 
 .logo {
@@ -42,6 +44,26 @@
   align-items: center;
 }
 
+.header-li-left,
+.header-li-right,
+.header-li-right div,
+.header-li-right div ul,
+.header-li-right div ul li {
+  height: 100%;
+}
+
+.header-li-left {
+  width: 20%;
+}
+
+.header-li-right {
+  width: 80%;
+}
+
+.header-li-right div {
+  width: 100%;
+}
+
 .header-menu-icon {
   height: 100%;
   object-fit: contain;
@@ -54,4 +76,30 @@
 .header-avatar {
   height: 100%;
   object-fit: contain;
+}
+
+@media screen and (min-width: 743px) {
+  .header {
+    width: 743px;
+  }
+}
+
+@media screen and (min-width: 1192px) {
+  .header {
+    width: 1192px;
+    padding: 0;
+  }
+
+  .header-wrapper {
+    height: 2rem;
+  }
+
+  .header-li-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .header-li-right div {
+    width: 300px;
+  }
 }
