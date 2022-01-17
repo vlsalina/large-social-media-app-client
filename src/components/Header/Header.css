@@ -28,6 +28,7 @@
 .header-menu {
   height: 100%;
   width: 100%;
+  position: static;
 }
 
 .header-menu ul {
@@ -76,6 +77,11 @@
 .header-avatar {
   height: 100%;
   object-fit: contain;
+}
+
+.header-actionMenu-button {
+  border: none;
+  height: 100%;
 }
 
 @media screen and (min-width: 743px) {

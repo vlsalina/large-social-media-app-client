@@ -41,6 +41,9 @@ Conventional requirements:
 (8) topic screen
 (9) reading list
 
+**\*\*** Components **\*\***
+(1) ActionMenu
+
 **\*\*** Models **\*\***
 (1) User
 (2) Article

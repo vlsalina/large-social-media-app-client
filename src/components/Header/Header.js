@@ -1,5 +1,7 @@
+import React, { useState } from "react";
 import "./Header.css";
 import { useSelector } from "react-redux";
+import ActionMenu from "../ActionMenu/ActionMenu";
 
 const menuItems = [
   {
@@ -16,6 +18,18 @@ const menuItems = [
 
 const Header = () => {
   const user = useSelector((state) => state.user);
+  const [actionMenuToDisplay, setActionMenuToDisplay] = useState(false);
+
+  const clickHandler = () => {
+    const actionMenu = document.getElementsByClassName("actionMenu")[0];
+    if (!actionMenuToDisplay) {
+      actionMenu.style.display = "block";
+      setActionMenuToDisplay(!actionMenuToDisplay);
+    } else {
+      actionMenu.style.display = "none";
+      setActionMenuToDisplay(!actionMenuToDisplay);
+    }
+  };
 
   return (
     <div className="header">
@@ -31,15 +45,28 @@ const Header = () => {
             <li className="header-li-right">
               <div>
                 <ul>
-                  {menuItems.map((item) => (
+                  {menuItems.slice(0, 3).map((item) => (
                     <li key={item.name}>
                       <img className="header-menu-icon" src={item.icon} />
                     </li>
                   ))}
+                  <li key={menuItems[3].name}>
+                    <button
+                      className="header-actionMenu-button"
+                      type="button"
+                      onClick={clickHandler}
+                    >
+                      <img
+                        className="header-menu-icon"
+                        src={menuItems[3].icon}
+                      />
+                    </button>
+                  </li>
                 </ul>
               </div>
             </li>
           </ul>
+          <ActionMenu />
         </div>
       </div>
     </div>
