@@ -1,7 +1,27 @@
+import React, { useContext } from "react";
 import "./MainFeedArticleCard.css";
 import { formatDate } from "../../utils";
+import { Context } from "../../App";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const MainFeedArticleCard = ({ article }) => {
+  const { domain } = useContext(Context);
+  const user = useSelector((state) => state.user);
+
+  const clickHandler = async () => {
+    try {
+      const { data } = await axios.patch(
+        `${domain}/api/users/favorite`,
+        { articleId: article._id },
+        { headers: { authorization: `Bearer ${user.accessToken}` } }
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <article className="card">
       <div className="card-col1">
@@ -23,7 +43,11 @@ const MainFeedArticleCard = ({ article }) => {
         <div className="card-metadata">
           <div>{formatDate(article.createdAt)}</div>
           <div>
-            <button className="card-favorite-button" type="button">
+            <button
+              className="card-favorite-button"
+              type="button"
+              onClick={clickHandler}
+            >
               <img
                 className="card-favorite-icon"
                 src={"/assets/icons8-favorite-512.png"}

@@ -1,0 +1,19 @@
+/* Reading list */
+
+.readingList-favorite-icon {
+  height: 1rem;
+}
+
+.readingList-title h2 {
+  font-size: 1rem;
+}
+
+.readingList-list-empty {
+  display: flex;
+}
+
+.readingList-list-empty p {
+  line-height: 1.5rem;
+}
+
+/* End Reading list */
