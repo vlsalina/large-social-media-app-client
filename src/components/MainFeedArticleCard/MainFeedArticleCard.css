@@ -1,6 +1,6 @@
 .card {
   width: 100%;
-  height: 183px;
+  min-height: 148px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding-right: 1rem;
+  overflow: hidden;
 }
 
 .card-col2 {
@@ -32,15 +33,24 @@
   margin-right: 2rem;
 }
 
+.card-title,
+.card-snippet {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1rem;
+  max-height: 2rem;
+}
+
 .card-title h2 {
   font-size: 1rem;
   margin: 0;
 }
 
 .card-snippet {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: none;
 }
 
 .card-metadata {
@@ -69,8 +79,23 @@
 }
 
 @media screen and (min-width: 550px) {
+  .card {
+    height: 183px;
+  }
+
   .card-img {
     height: 100%;
     width: auto;
+  }
+
+  .card-snippet {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1rem;
+    max-height: 2rem;
   }
 }

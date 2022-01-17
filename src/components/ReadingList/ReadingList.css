@@ -4,6 +4,10 @@
   height: 1rem;
 }
 
+.readingList-title {
+  margin-bottom: 2rem;
+}
+
 .readingList-title h2 {
   font-size: 1rem;
 }
@@ -17,3 +21,37 @@
 }
 
 /* End Reading list */
+
+/* Favorites styling */
+
+.favorites ul li {
+  margin-bottom: 3rem;
+}
+
+.favorites-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.favorites-avatar {
+  height: 2rem;
+  object-fit: contain;
+  margin-right: 2rem;
+}
+
+.favorites-author h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.favorites-title {
+  margin-bottom: 1rem;
+}
+
+.favorites-title h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* End Favorites styling */

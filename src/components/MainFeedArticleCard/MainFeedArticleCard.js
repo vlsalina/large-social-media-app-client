@@ -16,7 +16,7 @@ const MainFeedArticleCard = ({ article }) => {
         { articleId: article._id },
         { headers: { authorization: `Bearer ${user.accessToken}` } }
       );
-      console.log(data);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

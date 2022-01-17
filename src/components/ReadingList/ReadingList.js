@@ -3,13 +3,33 @@ import "./ReadingList.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Context } from "../../App";
+import { formatDate } from "../../utils";
+import { Link } from "react-router-dom";
 
-const Favorites = ({ toShow }) => {
+const Favorites = ({ favs }) => {
   return (
     <div className="favorites">
       <ul>
-        {toShow.map((fav) => (
-          <li key={fav._id}>{fav.title}</li>
+        {favs.map((fav) => (
+          <li key={fav._id}>
+            <Link to="#">
+              <div className="favorites-header">
+                <div>
+                  <img
+                    className="favorites-avatar"
+                    src={"/assets/icons8-circled-v-100.png"}
+                  />
+                </div>
+                <div className="favorites-author">
+                  <h2>{fav.author}</h2>
+                </div>
+              </div>
+              <div className="favorites-title">
+                <h2>{fav.title}</h2>
+              </div>
+              <div className="favorites-date">{formatDate(fav.createdAt)}</div>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>
@@ -36,9 +56,8 @@ const ReadingList = () => {
               );
             })
           )
-            .then((response) => console.log(response))
+            .then((response) => setFavorites(response.map((x) => x.data)))
             .catch((error) => console.log(error));
-          //console.log(result);
         })
         .catch((error) => console.log(error));
     } catch (error) {
@@ -46,7 +65,28 @@ const ReadingList = () => {
     }
   }, []);
 
-  return <div className="readingList">Reading List</div>;
+  return (
+    <div className="readingList">
+      <div className="readingList-title">
+        <h2>Your Favorite Articles</h2>
+      </div>
+      {favorites.length === 0 ? (
+        <div className="readingList-list-empty">
+          <p>
+            Click the{" "}
+            <img
+              className="readingList-favorite-icon"
+              src={"/assets/icons8-favorite-512.png"}
+            />{" "}
+            on any story to easily add it to your reading list or a custom list
+            that you can share.
+          </p>
+        </div>
+      ) : (
+        <Favorites favs={favorites} />
+      )}
+    </div>
+  );
 };
 
 export default ReadingList;

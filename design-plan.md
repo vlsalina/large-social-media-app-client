@@ -126,8 +126,11 @@ done - (3.2.4) unlike a reply
 
 **\*\*** Resources **\*\***
 (1) https://stackoverflow.com/questions/56694102/how-to-return-a-promise-from-an-action-using-thunk-and-usedispatch-react-redux
+(2) https://gomakethings.com/waiting-for-multiple-all-api-responses-to-complete-with-the-vanilla-js-promise.all-method/
 
 **\*\*** Learned **\*\***
 (1) use "req.query" to get values stored in url for backend
 (2) how to set CORS headers to allow access from designated sites
 (3) how to return promise after using dispatch (useDispatch) hook
+(4) how to leverage api chaining
+(5) how to use Promise.all() to make several api calls
