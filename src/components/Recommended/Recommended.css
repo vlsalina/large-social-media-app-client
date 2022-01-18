@@ -1,12 +1,12 @@
-.recommended-topics ul {
+.recommended--box-1 ul {
   display: flex;
   flex-wrap: wrap;
 }
 
-.recommended-topic {
+.recommended__topic {
   padding: 1rem 2rem;
 }
 
-.recommended-title h2 {
+.recommended__title h2 {
   font-size: 1rem;
 }

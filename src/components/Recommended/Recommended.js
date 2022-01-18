@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 const Recommended = () => {
   return (
     <div className="recommended">
-      <div className="recommended-title">
+      <div className="recommended__title">
         <h2>Recommended Topics</h2>
       </div>
-      <div className="recommended-topics">
+      <div className="recommended--box-1">
         <ul>
           {topics.map((topic) => (
             <li key={topic}>
               <Link to={`/topic?topic=${topic}`}>
-                <div className="recommended-topic">{topic}</div>
+                <div className="recommended__topic">{topic}</div>
               </Link>
             </li>
           ))}
