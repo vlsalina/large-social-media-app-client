@@ -1,54 +1,54 @@
-.articleScreen {
+.article {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.articleScreen-main {
+.article__main {
   position: relative;
   top: calc(65px + 3rem);
   width: 100%;
 }
 
-.articleScreen-title {
+.article__title {
   text-align: center;
   padding: 0 1rem;
 }
 
-.articleScreen-picture img {
+.article__picture img {
   width: 100%;
   object-fit: contain;
 }
 
-.articleScreen-wrapper {
+.article--box-b {
   padding: 0 1rem;
   margin: 2rem 0;
 }
 
-.articleScreen-data {
+.article--box-a {
   display: flex;
   padding: 1rem;
 }
 
-.articleScreen-avatar {
+.article__avatar {
   margin-right: 1rem;
 }
 
-.articleScreen-avatar img {
+.article__avatar img {
   height: 2rem;
   object-fit: contain;
 }
 
-.articleScreen-author {
+.article__author {
   margin-right: 1rem;
 }
 
 @media screen and (min-width: 743px) {
-  .articleScreen-title,
-  .articleScreen-data,
-  .articleScreen-wrapper,
-  .articleScreen-picture {
+  .article__title,
+  .article--box-a,
+  .article--box-b,
+  .article__picture {
     width: 743px;
     position: relative;
     left: 50%;

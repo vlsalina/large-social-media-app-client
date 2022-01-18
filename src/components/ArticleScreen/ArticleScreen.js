@@ -23,38 +23,36 @@ const ArticleScreen = () => {
   }, []);
 
   return (
-    <main className="articleScreen">
+    <main className="article">
       <Header />
-      <article className="articleScreen-main">
+      <article className="article__main">
         {article && (
-          <div className="articleScreen-title">
+          <div className="article__title">
             <h1>{article.title}</h1>
           </div>
         )}
         {article && (
-          <div className="articleScreen-data">
-            <div className="articleScreen-avatar">
+          <div className="article--box-a">
+            <div className="article__avatar">
               <img src={`/assets/icons8-circled-v-100.png`} />
             </div>
-            <div className="articleScreen-author">{article.author}</div>
-            <div className="articleScreen-date">
-              {formatDate(article.createdAt)}
-            </div>
+            <div className="article__author">{article.author}</div>
+            <div className="article__date">{formatDate(article.createdAt)}</div>
           </div>
         )}
         {article && (
-          <div className="articleScreen-picture">
+          <div className="article__picture">
             <img src={"/assets/ssfasfsafasffs-e1460147167824.jpg"} />
           </div>
         )}
-        <div className="articleScreen-wrapper">
+        <div className="article--box-b">
           {article && (
-            <div className="articleScreen-description">
+            <div className="article__description">
               <p>{article.description}</p>
             </div>
           )}
           {article && (
-            <div className="articleScreen-content">
+            <div className="article__content">
               <p>{article.content}</p>
             </div>
           )}
