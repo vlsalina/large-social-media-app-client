@@ -26,27 +26,27 @@ const Favorites = ({ favs, domain, token }) => {
         {favs.map((fav) => (
           <li key={fav._id}>
             <Link to={`/article/${fav._id}`}>
-              <div className="favorites-header">
+              <div className="favorites--box-1">
                 <div>
                   <img
-                    className="favorites-avatar"
+                    className="favorites__avatar"
                     src={"/assets/icons8-circled-v-100.png"}
                   />
                 </div>
-                <div className="favorites-author">
+                <div className="favorites__author">
                   <h2>{fav.author}</h2>
                 </div>
               </div>
-              <div className="favorites-title">
+              <div className="favorites__title">
                 <h2>{fav.title}</h2>
               </div>
             </Link>
-            <div className="favorites-footer">
-              <div className="favorites-date">{formatDate(fav.createdAt)}</div>
+            <div className="favorites--box-2">
+              <div className="favorites__date">{formatDate(fav.createdAt)}</div>
               <div>
                 <button
                   type="button"
-                  className="favorites-cancel"
+                  className="cancel"
                   onClick={() => unfavHandler(fav._id)}
                 >
                   <img src={"/assets/icons8-unfavorite-512.png"} />
@@ -91,15 +91,15 @@ const ReadingList = () => {
 
   return (
     <div className="readingList">
-      <div className="readingList-title">
+      <div className="readingList__title">
         <h2>Your Favorite Articles</h2>
       </div>
       {favorites.length === 0 ? (
-        <div className="readingList-list-empty">
+        <div className="readingList--box-1">
           <p>
             Click the{" "}
             <img
-              className="readingList-favorite-icon"
+              className="favoirte__icon"
               src={"/assets/icons8-favorite-512.png"}
             />{" "}
             on any story to easily add it to your reading list or a custom list

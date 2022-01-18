@@ -1,38 +1,23 @@
 /* Reading list */
 
-.readingList-favorite-icon {
+.favoirte__icon {
   height: 1rem;
 }
 
-.readingList-title {
+.readingList__title {
   margin-bottom: 1.5rem;
 }
 
-.readingList-title h2 {
+.readingList__title h2 {
   font-size: 1rem;
 }
 
-.readingList-list-empty {
+.readingList--box-1 {
   display: flex;
 }
 
-.readingList-list-empty p {
+.readingList--box-1 p {
   line-height: 1.5rem;
-}
-
-.favorites-footer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.favorites-cancel {
-  border: none;
-  cursor: pointer;
-}
-
-.favorites-cancel img {
-  height: 1.5rem;
-  object-fit: contain;
 }
 
 /* End Reading list */
@@ -43,30 +28,45 @@
   margin-bottom: 3rem;
 }
 
-.favorites-header {
+.favorites--box-1 {
   display: flex;
   align-items: center;
   margin-bottom: 0.25rem;
 }
 
-.favorites-avatar {
+.favorites__avatar {
   height: 2rem;
   object-fit: contain;
   margin-right: 2rem;
 }
 
-.favorites-author h2 {
+.favorites__author h2 {
   font-size: 1rem;
   margin: 0;
 }
 
-.favorites-title {
+.favorites__title {
   margin-bottom: 1rem;
 }
 
-.favorites-title h2 {
+.favorites__title h2 {
   font-size: 1rem;
   margin: 0;
+}
+
+.favorites--box-2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel {
+  border: none;
+  cursor: pointer;
+}
+
+.cancel img {
+  height: 1.5rem;
+  object-fit: contain;
 }
 
 /* End Favorites styling */
