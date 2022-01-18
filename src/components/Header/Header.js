@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 import { useSelector } from "react-redux";
 import ActionMenu from "../ActionMenu/ActionMenu";
+import { Link } from "react-router-dom";
 
 const menuItems = [
   {
@@ -36,7 +37,9 @@ const Header = () => {
       <div className="header--box-1">
         <ul>
           <li className="header--box-2">
-            <img className="header__icon" src={"/assets/large-logo.png"} />
+            <Link to="/">
+              <img className="header__icon" src={"/assets/large-logo.png"} />
+            </Link>
           </li>
           <li className="header--box-3">
             <div>

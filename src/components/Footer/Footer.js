@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const links = [
@@ -12,7 +13,9 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-wrapper">
         <div className="footer-logo">
-          <img src={"/assets/large-logo.png"} />
+          <Link to="/">
+            <img src={"/assets/large-logo.png"} />
+          </Link>
         </div>
         <div className="footer-links">
           <ul>

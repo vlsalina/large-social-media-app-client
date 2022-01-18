@@ -39,6 +39,10 @@
   width: 20%;
 }
 
+.header--box-2 a {
+  height: 100%;
+}
+
 .header--box-3 {
   width: 80%;
 }

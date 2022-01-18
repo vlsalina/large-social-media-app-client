@@ -14,6 +14,7 @@
 .article__title {
   text-align: center;
   padding: 0 1rem;
+  margin-bottom: 2rem;
 }
 
 .article__picture img {
@@ -21,18 +22,22 @@
   object-fit: contain;
 }
 
-.article--box-b {
+.article--box-2 {
   padding: 0 1rem;
   margin: 2rem 0;
 }
 
-.article--box-a {
+.article--box-1 {
   display: flex;
+  flex-direction: column;
   padding: 1rem;
+  width: 100%;
 }
 
 .article__avatar {
   margin-right: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .article__avatar img {
@@ -40,18 +45,136 @@
   object-fit: contain;
 }
 
-.article__author {
+.article__author,
+.article__date {
   margin-right: 1rem;
+}
+
+.article--box-3 {
+  display: flex;
+  flex-direction: column;
+  height: 3rem;
+  justify-content: space-between;
+}
+
+.article--box-4 {
+  padding-left: 1rem;
+}
+
+.article--box-5 {
+  position: relative;
+  top: calc(65px + 3rem);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.article--box-6 {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.article--box-7 {
+  display: flex;
+}
+
+.article__button--1 {
+  font-size: 1rem;
+  background-color: #000;
+  color: #fff;
+  border-radius: 1rem;
+}
+
+.article__button--2 {
+  border: none;
+  padding: 0;
+}
+
+.article--padding-1 {
+  padding: 1rem;
+}
+
+.article--padding-2 {
+  padding: 0.45rem;
+}
+
+.article--box-8:not(:first-child) {
+  margin-left: 1rem;
+}
+
+.article--box-9 {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.article--box-10 {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+@media screen and (min-width: 443px) {
+  .article--box-5 {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 460px) {
+  .article--box-1 {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .article--box-6 {
+    margin-top: 0;
+  }
 }
 
 @media screen and (min-width: 743px) {
   .article__title,
-  .article--box-a,
-  .article--box-b,
+  .article--box-1,
+  .article--box-2,
   .article__picture {
     width: 743px;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
+  }
+
+  .article__author,
+  .article__date {
+    line-height: 3rem;
+  }
+
+  .article--box-3 {
+    flex-direction: row;
+  }
+  .article--box-4 {
+    width: 743px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding-left: 0;
+  }
+
+  .article--box-5 {
+    width: 743px;
+    padding: 0;
+  }
+
+  .article--box-1,
+  .article--box-2 {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
