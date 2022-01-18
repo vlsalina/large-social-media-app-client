@@ -36,14 +36,14 @@ const MainFeedScreen = () => {
   }, []);
 
   return (
-    <div className="mainFeedScreen">
+    <div className="home">
       {loading ? (
         <Loader />
       ) : (
-        <div className="mainFeedScreen-wrapper">
+        <div className="home--box-1">
           <Header />
-          <div className="mainFeedScreen-main-wrapper">
-            <main className="mainFeedScreen-main">
+          <div className="home--box-2">
+            <main className="home--box-4">
               <ul>
                 {articles &&
                   articles.map((article) => (
@@ -54,12 +54,12 @@ const MainFeedScreen = () => {
               </ul>
             </main>
           </div>
-          <div className="mainFeedScreen-aside-wrapper">
-            <aside className="mainFeedScreen-aside">
-              <div className="mainFeedScreen-aside-spacer">
+          <div className="home--box-3">
+            <aside className="home--box-5">
+              <div>
                 <Recommended />
               </div>
-              <div className="mainFeedScreen-aside-spacer">
+              <div>
                 <ReadingList />
               </div>
             </aside>

@@ -1,54 +1,54 @@
-.mainFeedScreen {
+.home {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-.mainFeedScreen-wrapper {
+.home--box-1 {
   width: 100%;
   position: relative;
 }
 
-.mainFeedScreen-main-wrapper {
+.home--box-2 {
   width: 100%;
   position: relative;
   top: calc(65px + 3rem);
   padding: 0 1rem;
 }
 
-.mainFeedScreen-aside-wrapper {
+.home--box-3 {
   display: none;
 }
 
 @media screen and (min-width: 743px) {
-  .mainFeedScreen-wrapper {
+  .home--box-1 {
     width: 743px;
   }
 }
 
 @media screen and (min-width: 1192px) {
-  .mainFeedScreen-wrapper {
+  .home--box-1 {
     width: 1192px;
   }
 
-  .mainFeedScreen-main-wrapper {
+  .home--box-2 {
     padding: 0;
   }
 
-  .mainFeedScreen-main {
+  .home--box-4 {
     width: 70%;
     padding-right: 2rem;
     border-right: 1px solid rgb(219, 210, 210);
   }
 
-  .mainFeedScreen-aside-wrapper {
+  .home--box-3 {
     display: block;
     width: 1192px;
     position: fixed;
     top: calc(65px + 3rem);
   }
 
-  .mainFeedScreen-aside {
+  .home--box-5 {
     width: 30%;
     position: absolute;
     right: 0;

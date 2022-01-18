@@ -6,7 +6,7 @@
   margin-bottom: 2rem;
 }
 
-.card-col1 {
+.card--box-1 {
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -15,26 +15,26 @@
   overflow: hidden;
 }
 
-.card-col2 {
+.card--box-2 {
   width: 40%;
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
 }
 
-.card-header {
+.card--box-3 {
   display: flex;
   align-items: center;
 }
 
-.card-avatar {
+.card__avatar {
   height: 2rem;
   object-fit: contain;
   margin-right: 2rem;
 }
 
-.card-title,
-.card-snippet {
+.card__title,
+.card__snippet {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -44,37 +44,37 @@
   max-height: 2rem;
 }
 
-.card-title h2 {
+.card__title h2 {
   font-size: 1rem;
   margin: 0;
 }
 
-.card-snippet {
+.card__snippet {
   display: none;
 }
 
-.card-metadata {
+.card--box-4 {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
-.card-img {
+.card__image {
   width: 100%;
   object-fit: contain;
 }
 
-.card-author h4 {
+.card__author h4 {
   margin: 0;
 }
 
-.card-favorite-button {
+.favorite {
   border: none;
   background-color: #fff;
   cursor: pointer;
 }
 
-.card-favorite-icon {
+.favorite__icon {
   height: 1.5rem;
   object-fit: contain;
 }
@@ -84,12 +84,12 @@
     height: 183px;
   }
 
-  .card-img {
+  .card__image {
     height: 100%;
     width: auto;
   }
 
-  .card-snippet {
+  .card__snippet {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;

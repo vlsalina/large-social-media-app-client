@@ -25,44 +25,46 @@ const MainFeedArticleCard = ({ article }) => {
 
   return (
     <article className="card">
-      <div className="card-col1">
-        <div className="card-header">
-          <div className="card-avatar-wrapper">
+      <div className="card--box-1">
+        <div className="card--box-3">
+          <div className="card__avatar-wrapper">
             <img
-              className="card-avatar"
+              className="card__avatar"
               src={"/assets/icons8-circled-v-100.png"}
             />
           </div>
-          <div className="card-author">
+          <div className="card__author">
             <h4>{article.author}</h4>
           </div>
         </div>
         <Link to={`/article/${article._id}`}>
-          <div className="card-title">
+          <div className="card__title">
             <h2>{article.title}</h2>
           </div>
-          <div className="card-snippet">{article.snippet}</div>
         </Link>
-        <div className="card-metadata">
+        <Link to={`/article/${article._id}`}>
+          <div className="card__snippet">{article.snippet}</div>
+        </Link>
+        <div className="card--box-4">
           <div>{formatDate(article.createdAt)}</div>
           <div>
             <button
-              className="card-favorite-button"
+              className="favorite"
               type="button"
               onClick={(e) => clickHandler(e)}
             >
               <img
-                className="card-favorite-icon"
+                className="favorite__icon"
                 src={"/assets/icons8-favorite-512.png"}
               />
             </button>
           </div>
         </div>
       </div>
-      <div className="card-col2">
+      <div className="card--box-2">
         <Link to={`/article/${article._id}`}>
           <img
-            className="card-img"
+            className="card__image"
             src={"/assets/ssfasfsafasffs-e1460147167824.jpg"}
           />
         </Link>
