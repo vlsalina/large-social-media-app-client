@@ -8,8 +8,6 @@ import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
 
 const LoginScreen = () => {
-  //const user = useSelector((state) => state.user);
-  //const { loading } = user;
   const [loading, setLoading] = useState(false);
 
   const clickHandler = () => {

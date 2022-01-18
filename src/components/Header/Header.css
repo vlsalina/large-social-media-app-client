@@ -1,37 +1,19 @@
 .header {
   height: calc(65px + 3rem);
   width: 100%;
-  margin-bottom: 3rem;
   position: fixed;
   z-index: 1;
   background-color: #fff;
   padding: 0 1rem;
 }
 
-.header-wrapper {
-  height: 40px;
+.header--box-1 {
+  height: 2rem;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
   margin-top: 1.5rem;
 }
 
-.logo {
-  height: 100%;
-}
-
-.logo img {
-  height: 100%;
-  object-fit: contain;
-}
-
-.header-menu {
-  height: 100%;
-  width: 100%;
-  position: static;
-}
-
-.header-menu ul {
+.header--box-1 ul {
   display: flex;
   width: 100%;
   height: 100%;
@@ -39,33 +21,33 @@
   align-items: center;
 }
 
-.header-menu ul li {
+.header--box-1 ul li {
   height: 100%;
   display: flex;
   align-items: center;
 }
 
-.header-li-left,
-.header-li-right,
-.header-li-right div,
-.header-li-right div ul,
-.header-li-right div ul li {
+.header--box-2,
+.header--box-3,
+.header--box-3 div,
+.header--box-3 div ul,
+.header--box-3 div ul li {
   height: 100%;
 }
 
-.header-li-left {
+.header--box-2 {
   width: 20%;
 }
 
-.header-li-right {
+.header--box-3 {
   width: 80%;
 }
 
-.header-li-right div {
+.header--box-3 div {
   width: 100%;
 }
 
-.header-menu-icon {
+.header__icon {
   height: 100%;
   object-fit: contain;
 }
@@ -79,7 +61,7 @@
   object-fit: contain;
 }
 
-.header-actionMenu-button {
+.actionmenubutton {
   border: none;
   height: 100%;
 }
@@ -100,12 +82,11 @@
     height: 2rem;
   }
 
-  .header-li-right {
-    display: flex;
+  .header--box-3 {
     justify-content: flex-end;
   }
 
-  .header-li-right div {
+  .header--box-3 div {
     width: 300px;
   }
 }

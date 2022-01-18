@@ -23,22 +23,22 @@ const RegisterScreen = () => {
   });
 
   return (
-    <div className="loginScreen">
+    <div className="login">
       {loading ? (
         <Loader />
       ) : (
         <>
           <RegistrationForm setLoading={setLoading} />
-          <div className="loginScreen-wrapper">
-            <div className="loginScreen-wrapper-header">
+          <div className="login--box-1">
+            <div className="login--box-2">
               <h1>Join Large.</h1>
             </div>
             <ul>
               {networks.slice(0, 4).map((x) => (
                 <li key={x.network}>
                   <a href={x.url} target="_blank">
-                    <button type="button" className="loginScreen-media-button">
-                      Sign in with {x.network}
+                    <button type="button" className="login__button">
+                      Register with {x.network}
                     </button>
                   </a>
                 </li>
@@ -46,18 +46,18 @@ const RegisterScreen = () => {
               <li key={networks[4].network}>
                 <button
                   type="button"
-                  className="loginScreen-media-button"
+                  className="login__button"
                   onClick={clickHandler}
                 >
-                  Sign in with {networks[4].network}
+                  Register with {networks[4].network}
                 </button>
               </li>
             </ul>
-            <div className="loginScreen-toRegister">
+            <div className="login--box-3">
               <p>
                 Already have an account?{" "}
-                <Link className="toRegister-red" to="/login">
-                  <b>Sign in</b>
+                <Link className="create" to="/login">
+                  <b>Sign In</b>
                 </Link>
               </p>
             </div>
