@@ -20,6 +20,7 @@ User requirements:
 (14) users can see the 10 latest articles written to Large
 (15) each article is tagged with ONE of the following topics: (a) technology, (b) money, (c) business, (d) productivity, (e) psychology, (f) mindfulness, (g) art
 (16) users can see a filtered list of articles by topic
+(17) users can direct message an author
 
 Conventional requirements:
 (1) users should be able to view the most optimized layout on any device
@@ -114,6 +115,9 @@ done - (3.2.4) unlike a reply
 **\*\*** client side todos **\*\***
 (1) set up React Redux store
 
+**\*\*** components **\*\***
+(1) Replies modal
+
 **\*\*** redux states **\*\***
 (1) user
 (2) articles
@@ -139,3 +143,4 @@ done - (3.2.4) unlike a reply
 (3) how to return promise after using dispatch (useDispatch) hook
 (4) how to leverage api chaining
 (5) how to use Promise.all() to make several api calls
+(6) to have page reflect changes (like number of likes after liking an article) WITHOUT refreshing page, fetch and store data into useState var, then when change occurs with function api call, simply update the state.

@@ -12,6 +12,7 @@ import { IconContext } from "react-icons";
 import Footer from "../Footer/Footer";
 import SocialMenu from "../SocialMenu/SocialMenu";
 import axios from "axios";
+import Replies from "../Replies/Replies";
 
 const styles = {
   icons: {
@@ -85,6 +86,7 @@ const ArticleScreen = () => {
   return (
     <main className="article">
       <Header />
+      <Replies />
       <article className="article__main">
         {article && (
           <div className="article__title">

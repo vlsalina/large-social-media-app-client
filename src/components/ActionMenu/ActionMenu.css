@@ -2,11 +2,11 @@
   background-color: #fff;
   padding: 1rem;
   position: absolute;
+  top: calc(2rem + 1rem);
   right: 0;
   z-index: 1;
   border-left: 1px solid rgb(202, 185, 185);
   border-bottom: 2px solid rgb(202, 188, 188);
-  margin-top: 1rem;
   display: none;
 }
 
