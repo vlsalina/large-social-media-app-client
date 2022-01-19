@@ -23,6 +23,7 @@ const ArticleScreen = () => {
   const { domain } = useContext(Context);
   const [article, setArticle] = useState();
   const [following, setFollowing] = useState(false);
+  const [likes, setLikes] = useState();
   const user = useSelector((state) => state.user);
   const { articleId } = useParams();
   const articles = useSelector((state) => state.articles);
@@ -36,6 +37,7 @@ const ArticleScreen = () => {
         }
       });
     setArticle(result);
+    setLikes(result.likes);
   }, []);
 
   useEffect(() => {
@@ -61,6 +63,20 @@ const ArticleScreen = () => {
         { headers: { authorization: `Bearer ${user.accessToken}` } }
       );
       setFollowing(!following);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const likeHandler = async () => {
+    let sofar = likes.find((x) => x.userId === user._id);
+    try {
+      let { data } = await axios.patch(
+        `${domain}/api/articles/${sofar ? "unlikeArticle" : "likeArticle"}`,
+        { articleId: article._id },
+        { headers: { authorization: `Bearer ${user.accessToken}` } }
+      );
+      setLikes(data.likes);
     } catch (error) {
       console.log(error);
     }
@@ -144,10 +160,14 @@ const ArticleScreen = () => {
         <div className="article--box-9">
           {article && (
             <div className="article--box-10">
-              <button type="button" className="article__button--2">
+              <button
+                type="button"
+                className="article__button--2"
+                onClick={likeHandler}
+              >
                 <IconContext.Provider value={styles.icons}>
                   <AiOutlineLike />
-                  &nbsp; &nbsp;{article.likes.length}
+                  &nbsp; &nbsp;{likes.length}
                 </IconContext.Provider>
               </button>
             </div>
