@@ -1,24 +1,10 @@
 import React, { useState } from "react";
 import "./ReplyForm.css";
 import { useSelector } from "react-redux";
-
-// Import the Slate editor factory.
-import { createEditor } from "slate";
-
-// Import the Slate components and React plugin.
-import { Slate, Editable, withReact } from "slate-react";
+import TextEditor from "../TextEditor/TextEditor";
 
 const ReplyForm = () => {
   const user = useSelector((state) => state.user);
-
-  const [editor] = useState(() => withReact(createEditor()));
-  // Add the initial value when setting up our state.
-  const [value, setValue] = useState([
-    {
-      type: "paragraph",
-      children: [{ text: "What's on your mind?" }],
-    },
-  ]);
 
   return (
     <div className="replyform">
@@ -35,13 +21,7 @@ const ReplyForm = () => {
           </p>
         </div>
       </div>
-      <Slate
-        editor={editor}
-        value={value}
-        onChange={(newValue) => setValue(newValue)}
-      >
-        <Editable />
-      </Slate>
+      <TextEditor />
     </div>
   );
 };

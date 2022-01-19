@@ -24,6 +24,10 @@
   .home--box-1 {
     width: 743px;
   }
+
+  .home--box-2 {
+    padding: 0;
+  }
 }
 
 @media screen and (min-width: 1192px) {
