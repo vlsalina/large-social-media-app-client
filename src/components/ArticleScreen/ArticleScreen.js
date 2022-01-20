@@ -26,7 +26,7 @@ const ArticleScreen = () => {
   const { domain } = useContext(Context);
   const [article, setArticle] = useState();
   const [following, setFollowing] = useState(false);
-  const [likes, setLikes] = useState();
+  //const [likes, setLikes] = useState();
   const user = useSelector((state) => state.user);
   const { articleId } = useParams();
   const articles = useSelector((state) => state.articles);
@@ -40,7 +40,7 @@ const ArticleScreen = () => {
         }
       });
     setArticle(result);
-    setLikes(result.likes);
+    //setLikes(result.likes);
   }, []);
 
   useEffect(() => {
@@ -71,18 +71,28 @@ const ArticleScreen = () => {
     }
   };
 
-  const likeHandler = async () => {
-    let sofar = likes.find((x) => x.userId === user._id);
-    try {
-      let { data } = await axios.patch(
-        `${domain}/api/articles/${sofar ? "unlikeArticle" : "likeArticle"}`,
-        { articleId: article._id },
-        { headers: { authorization: `Bearer ${user.accessToken}` } }
-      );
-      setLikes(data.likes);
-    } catch (error) {
-      console.log(error);
-    }
+  //const likeHandler = async () => {
+  //  let sofar = likes.find((x) => x.userId === user._id);
+  //  try {
+  //    let { data } = await axios.patch(
+  //      `${domain}/api/articles/${sofar ? "unlikeArticle" : "likeArticle"}`,
+  //      { articleId: article._id },
+  //      { headers: { authorization: `Bearer ${user.accessToken}` } }
+  //    );
+  //    setLikes(data.likes);
+  //  } catch (error) {
+  //    console.log(error);
+  //  }
+  //};
+
+  const openHandler = () => {
+    document
+      .getElementsByClassName("replies")[0]
+      .classList.remove("replies--close");
+
+    document
+      .getElementsByClassName("replies")[0]
+      .classList.add("replies--open");
   };
 
   return (
@@ -117,6 +127,7 @@ const ArticleScreen = () => {
                   <button
                     className="article__button--1 article--padding-1"
                     type="button"
+                    onClick={openHandler}
                   >
                     Reply
                   </button>
@@ -168,11 +179,11 @@ const ArticleScreen = () => {
                 <button
                   type="button"
                   className="article__button--2"
-                  onClick={likeHandler}
+                  onClick={() => console.log("Liked")}
                 >
                   <IconContext.Provider value={styles.icons}>
                     <AiOutlineLike />
-                    &nbsp; &nbsp;{likes.length}
+                    &nbsp; &nbsp;{"0"}
                   </IconContext.Provider>
                 </button>
               </div>

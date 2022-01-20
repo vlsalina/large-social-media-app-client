@@ -2,21 +2,3 @@
   width: 100%;
   background-color: rgb(240, 230, 230);
 }
-
-.replyform--box-1 {
-  display: flex;
-  align-items: center;
-}
-
-.replyform__avatar {
-  height: 2rem;
-  object-fit: contain;
-}
-
-.replyform--box-1 div:first-child {
-  margin-right: 1rem;
-}
-
-.replyform__name p {
-  line-height: 2rem;
-}
