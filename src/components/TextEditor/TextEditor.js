@@ -13,7 +13,7 @@ import { RepliesContext } from "../Replies/Replies";
 
 const TextEditor = () => {
   const { domain } = useContext(Context);
-  const { articleId } = useContext(ArticleContext);
+  const { articleId, numReplies, setNumReplies } = useContext(ArticleContext);
   const { replies, setReplies } = useContext(RepliesContext);
 
   const user = useSelector((state) => state.user);
@@ -56,6 +56,7 @@ const TextEditor = () => {
       );
 
       setEditorState("");
+      setNumReplies(numReplies + 1);
     } catch (error) {
       console.log(error);
     }

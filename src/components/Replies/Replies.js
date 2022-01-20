@@ -21,7 +21,7 @@ const styles = {
 const Replies = () => {
   const user = useSelector((state) => state.user);
   const { domain } = useContext(Context);
-  const { articleId } = useContext(ArticleContext);
+  const { articleId, setNumReplies } = useContext(ArticleContext);
 
   const [replies, setReplies] = useState();
 
@@ -30,7 +30,10 @@ const Replies = () => {
       .get(`${domain}/api/replies/getAllReplies?articleId=${articleId}`, {
         headers: { authorization: `Bearer ${user.accessToken}` },
       })
-      .then((response) => setReplies(response.data))
+      .then((response) => {
+        setReplies(response.data);
+        setNumReplies(response.data.length);
+      })
       .catch((error) => console.log(error));
   }, []);
 
