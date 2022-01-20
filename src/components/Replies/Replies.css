@@ -9,4 +9,39 @@
   box-shadow: 0px 0px 15px 3px #000000;
   z-index: 1;
   background-color: #fff;
+  overflow-y: auto;
+}
+
+.replies--box-1 {
+  width: 100%;
+}
+
+.replies--box-1 img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.replies--box-2 {
+  margin-top: 2rem;
+  width: 100%;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgb(167, 152, 152);
+}
+
+.replies--box-3 {
+  display: flex;
+  align-items: center;
+}
+
+.replies__avatar {
+  margin-right: 1rem;
+}
+
+.replies__avatar img {
+  height: 2rem;
+  object-fit: contain;
+}
+
+.replies__author p {
+  margin: 0;
 }

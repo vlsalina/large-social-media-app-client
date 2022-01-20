@@ -20,6 +20,8 @@ const styles = {
   },
 };
 
+export const ArticleContext = React.createContext();
+
 const ArticleScreen = () => {
   const { domain } = useContext(Context);
   const [article, setArticle] = useState();
@@ -85,109 +87,111 @@ const ArticleScreen = () => {
 
   return (
     <main className="article">
-      <Header />
-      <Replies />
-      <article className="article__main">
-        {article && (
-          <div className="article__title">
-            <h1>{article.title}</h1>
+      <ArticleContext.Provider value={{ articleId }}>
+        <Header />
+        <Replies />
+        <article className="article__main">
+          {article && (
+            <div className="article__title">
+              <h1>{article.title}</h1>
+            </div>
+          )}
+          <div className="article--box-4">
+            <SocialMenu />
           </div>
-        )}
-        <div className="article--box-4">
-          <SocialMenu />
-        </div>
-        {article && (
-          <div className="article--box-1">
-            <div className="article--box-7">
-              <div className="article__avatar">
-                <img src={`/assets/icons8-circled-v-100.png`} />
+          {article && (
+            <div className="article--box-1">
+              <div className="article--box-7">
+                <div className="article__avatar">
+                  <img src={`/assets/icons8-circled-v-100.png`} />
+                </div>
+                <div className="article--box-3">
+                  <div className="article__author">{article.author}</div>
+                  <div className="article__date">
+                    {formatDate(article.createdAt)}
+                  </div>
+                </div>
               </div>
-              <div className="article--box-3">
-                <div className="article__author">{article.author}</div>
-                <div className="article__date">
-                  {formatDate(article.createdAt)}
+              <div className="article--box-6">
+                <div className="article--box-8">
+                  <button
+                    className="article__button--1 article--padding-1"
+                    type="button"
+                  >
+                    Reply
+                  </button>
+                </div>
+                <div className="article--box-8">
+                  <button
+                    className="article__button--1 article--padding-1"
+                    type="button"
+                    onClick={followHandler}
+                  >
+                    {following ? "Unfollow" : "Follow"}
+                  </button>
+                </div>
+                <div className="article--box-8">
+                  <button
+                    className="article__button--1 article--padding-2"
+                    type="button"
+                  >
+                    <IconContext.Provider value={styles.icons}>
+                      <AiOutlineMessage />
+                    </IconContext.Provider>
+                  </button>
                 </div>
               </div>
             </div>
-            <div className="article--box-6">
-              <div className="article--box-8">
-                <button
-                  className="article__button--1 article--padding-1"
-                  type="button"
-                >
-                  Reply
-                </button>
+          )}
+          {article && (
+            <div className="article__picture">
+              <img src={"/assets/ssfasfsafasffs-e1460147167824.jpg"} />
+            </div>
+          )}
+          <div className="article--box-2">
+            {article && (
+              <div className="article__description">
+                <p>{article.description}</p>
               </div>
-              <div className="article--box-8">
-                <button
-                  className="article__button--1 article--padding-1"
-                  type="button"
-                  onClick={followHandler}
-                >
-                  {following ? "Unfollow" : "Follow"}
-                </button>
+            )}
+            {article && (
+              <div className="article__content">
+                <p>{article.content}</p>
               </div>
-              <div className="article--box-8">
+            )}
+          </div>
+        </article>
+        <div className="article--box-5">
+          <div className="article--box-9">
+            {article && (
+              <div className="article--box-10">
                 <button
-                  className="article__button--1 article--padding-2"
                   type="button"
+                  className="article__button--2"
+                  onClick={likeHandler}
                 >
                   <IconContext.Provider value={styles.icons}>
-                    <AiOutlineMessage />
+                    <AiOutlineLike />
+                    &nbsp; &nbsp;{likes.length}
                   </IconContext.Provider>
                 </button>
               </div>
-            </div>
+            )}
+            {article && (
+              <div className="article--box-10">
+                <button type="button" className="article__button--2">
+                  <IconContext.Provider value={styles.icons}>
+                    <TiMessages />
+                    &nbsp; &nbsp;{"0"}
+                  </IconContext.Provider>
+                </button>
+              </div>
+            )}
           </div>
-        )}
-        {article && (
-          <div className="article__picture">
-            <img src={"/assets/ssfasfsafasffs-e1460147167824.jpg"} />
-          </div>
-        )}
-        <div className="article--box-2">
-          {article && (
-            <div className="article__description">
-              <p>{article.description}</p>
-            </div>
-          )}
-          {article && (
-            <div className="article__content">
-              <p>{article.content}</p>
-            </div>
-          )}
+          <SocialMenu />
         </div>
-      </article>
-      <div className="article--box-5">
-        <div className="article--box-9">
-          {article && (
-            <div className="article--box-10">
-              <button
-                type="button"
-                className="article__button--2"
-                onClick={likeHandler}
-              >
-                <IconContext.Provider value={styles.icons}>
-                  <AiOutlineLike />
-                  &nbsp; &nbsp;{likes.length}
-                </IconContext.Provider>
-              </button>
-            </div>
-          )}
-          {article && (
-            <div className="article--box-10">
-              <button type="button" className="article__button--2">
-                <IconContext.Provider value={styles.icons}>
-                  <TiMessages />
-                  &nbsp; &nbsp;{article.replies.length}
-                </IconContext.Provider>
-              </button>
-            </div>
-          )}
-        </div>
-        <SocialMenu />
-      </div>
-      <Footer />
+        <Footer />
+      </ArticleContext.Provider>
     </main>
   );
 };
