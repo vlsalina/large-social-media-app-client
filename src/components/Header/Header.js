@@ -3,6 +3,8 @@ import "./Header.css";
 import { useSelector } from "react-redux";
 import ActionMenu from "../ActionMenu/ActionMenu";
 import { Link } from "react-router-dom";
+import { BsPlusCircleFill } from "react-icons/bs";
+import { IconContext } from "react-icons";
 
 const menuItems = [
   {
@@ -16,6 +18,12 @@ const menuItems = [
     icon: "/assets/icons8-circled-v-100.png",
   },
 ];
+
+const styles = {
+  icon: {
+    size: "2rem",
+  },
+};
 
 const Header = () => {
   const user = useSelector((state) => state.user);
@@ -44,6 +52,13 @@ const Header = () => {
           <li className="header--box-3">
             <div>
               <ul>
+                <li key={"create article"}>
+                  <Link to="/create">
+                    <IconContext.Provider value={styles.icon}>
+                      <BsPlusCircleFill />
+                    </IconContext.Provider>
+                  </Link>
+                </li>
                 {menuItems.slice(0, 3).map((item) => (
                   <li key={item.name}>
                     <img className="header__icon" src={item.icon} />

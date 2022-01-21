@@ -16,3 +16,7 @@ ul {
 #root {
   font-size: 16px;
 }
+
+button {
+  cursor: pointer;
+}

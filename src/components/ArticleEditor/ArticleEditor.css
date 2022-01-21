@@ -1,0 +1,46 @@
+.articleeditor__title input {
+  padding: 1rem;
+  width: 100%;
+  color: #b3b3b1;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: 0;
+  font-size: 2rem;
+  border: none;
+}
+
+.articleeditor__description input {
+  padding: 1rem;
+  width: 100%;
+  color: #b3b3b1;
+  border: none;
+  font-size: 1rem;
+}
+
+.articleeditor__title input:focus,
+.articleeditor__description input:focus {
+  outline: none;
+}
+
+.articleeditor--box-1 {
+  margin: 1rem 0;
+}
+
+.articleEditorClassName {
+  margin-top: 1rem;
+  padding: 0 1rem;
+  color: #b3b3b1;
+}
+
+.articleeditor--box-2 {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.articleeditor__publish button {
+  background-color: #000;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 1rem;
+}

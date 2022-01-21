@@ -73,6 +73,10 @@
   height: 100%;
 }
 
+.header__create {
+  border: none;
+}
+
 @media screen and (min-width: 743px) {
   .header--box-1 {
     width: 743px;

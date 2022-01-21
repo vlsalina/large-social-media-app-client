@@ -67,8 +67,8 @@ const Replies = () => {
         <ReplyForm />
         <div className="replies--box-1">
           {replies &&
-            replies.map((x) => (
-              <div className="replies--box-2">
+            replies.map((x, index) => (
+              <div key={index} className="replies--box-2">
                 <div className="replies--box-3">
                   <div className="replies__avatar">
                     <img src={"/assets/icons8-circled-v-100.png"} />
