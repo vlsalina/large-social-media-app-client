@@ -34,6 +34,11 @@
   width: 100%;
 }
 
+.article__content img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
 .article__avatar {
   margin-right: 1rem;
   display: flex;

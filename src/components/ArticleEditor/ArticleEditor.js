@@ -9,11 +9,28 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { topics } from "../../data/data";
+import MessageBox from "../MessageBox/MessageBox";
+import { useNavigate } from "react-router-dom";
+import { MdAddCircleOutline } from "react-icons/md";
+import { MdRemoveCircleOutline } from "react-icons/md";
+import { IconContext } from "react-icons";
+import parse from "html-react-parser";
+
+const styles = {
+  icon: {
+    size: "2rem",
+  },
+};
 
 const ArticleEditor = () => {
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const { domain } = useContext(Context);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [category, setCategory] = useState("");
+  const [imgaddress, setImgAddress] = useState("");
+  const [imgsubmit, setImgSubmit] = useState(false);
+  const [error, setError] = useState();
   const title = useRef();
   const description = useRef();
 
@@ -21,13 +38,55 @@ const ArticleEditor = () => {
     setEditorState(value);
   };
 
-  const publish = () => {
-    console.log(title.current.value);
-    console.log(description.current.value);
+  const publish = async () => {
+    if (!category) {
+      setError("Please choose a topic.");
+      return;
+    }
+
+    if (!title.current.value) {
+      setError("Please provide a title.");
+      return;
+    }
+
+    if (!description.current.value) {
+      setError("Please provide a description.");
+      return;
+    }
+
+    let html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    if (html.length < 100) {
+      setError("Please provide content body with at least 100 characters.");
+      return;
+    }
+
+    let newArticle = {
+      category: category,
+      title: title.current.value,
+      author: `${user.firstname} ${user.lastname}`,
+      authorId: user._id,
+      avatar: user.avatar ? user.avatar : "",
+      image: imgaddress,
+      snippet: description.current.value,
+      description: description.current.value,
+      content: html,
+    };
+
+    try {
+      let { data } = await axios.post(
+        `${domain}/api/articles/createArticle`,
+        newArticle,
+        { headers: { authorization: `Bearer ${user.accessToken}` } }
+      );
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const categoryHandler = (x, index) => {
     setCategory(x);
+    setError();
 
     let categories = document.getElementsByClassName("articleeditor__topic");
 
@@ -42,6 +101,16 @@ const ArticleEditor = () => {
     categories[index].classList.add("articleeditor__topic--active");
   };
 
+  const submitImg = (e) => {
+    setImgSubmit(false);
+    setImgAddress(e.target.value);
+  };
+
+  const cancelImgSubmit = () => {
+    setImgSubmit(false);
+    setImgAddress("");
+  };
+
   return (
     <div className="articleeditor">
       <div className="articleeditor--box-2">
@@ -51,6 +120,7 @@ const ArticleEditor = () => {
           </button>
         </div>
       </div>
+      {error && <MessageBox message={error} />}
       <div className="articleeditor--box-3">
         <ul>
           {topics.map((x, index) => (
@@ -72,7 +142,36 @@ const ArticleEditor = () => {
       <div className="articleeditor__description">
         <input type="text" placeholder="Description..." ref={description} />
       </div>
+      <div className="articleeditor--box-4">
+        <div className="articleeditor__imginput">
+          <input
+            type="text"
+            placeholder="Please enter main image address here..."
+            value={imgaddress}
+            onChange={(e) => submitImg(e)}
+          />
+        </div>
+        <div>
+          <button type="button" onClick={() => setImgSubmit(true)}>
+            <IconContext.Provider value={styles.icon}>
+              <MdAddCircleOutline />
+            </IconContext.Provider>
+          </button>
+        </div>
+        <div>
+          <button type="button" onClick={() => cancelImgSubmit(true)}>
+            <IconContext.Provider value={styles.icon}>
+              <MdRemoveCircleOutline />
+            </IconContext.Provider>
+          </button>
+        </div>
+      </div>
       <div className="articleeditor--box-1">
+        {imgsubmit && (
+          <div className="articleeditor__image">
+            <img src={imgaddress} />
+          </div>
+        )}
         <Editor
           editorState={editorState}
           toolbarClassName="articleToolbarClassName"

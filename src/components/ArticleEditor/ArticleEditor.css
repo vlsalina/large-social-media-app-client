@@ -1,3 +1,8 @@
+.articleeditor {
+  width: 100%;
+  padding-bottom: 10rem;
+}
+
 .articleeditor__title input {
   padding: 1rem;
   width: 100%;
@@ -9,7 +14,8 @@
   border: none;
 }
 
-.articleeditor__description input {
+.articleeditor__description input,
+.articleeditor__imginput input {
   padding: 1rem;
   width: 100%;
   color: #b3b3b1;
@@ -18,7 +24,8 @@
 }
 
 .articleeditor__title input:focus,
-.articleeditor__description input:focus {
+.articleeditor__description input:focus,
+.articleeditor__imginput input:focus {
   outline: none;
 }
 
@@ -38,8 +45,13 @@
   justify-content: flex-end;
 }
 
+.articleeditor__publish {
+  width: 100%;
+}
+
 .articleeditor__publish button {
   background-color: #000;
+  width: 100%;
   color: #fff;
   padding: 1rem;
   border-radius: 1rem;
@@ -74,4 +86,30 @@
   background-color: #000;
   color: #fff;
   opacity: 0.5;
+}
+
+.articleeditor--box-4 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.articleeditor__image img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.articleeditor__imginput {
+  width: 100%;
+}
+
+.articleeditor--box-4 div button {
+  border: none;
+}
+
+@media screen and (min-width: 500px) {
+  .articleeditor__publish,
+  .articleeditor__publish button {
+    width: auto;
+  }
 }

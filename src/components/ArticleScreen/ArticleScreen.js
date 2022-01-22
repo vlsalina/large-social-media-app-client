@@ -13,6 +13,7 @@ import Footer from "../Footer/Footer";
 import SocialMenu from "../SocialMenu/SocialMenu";
 import axios from "axios";
 import Replies from "../Replies/Replies";
+import parse from "html-react-parser";
 
 const styles = {
   icons: {
@@ -161,7 +162,7 @@ const ArticleScreen = () => {
           )}
           {article && (
             <div className="article__picture">
-              <img src={"/assets/ssfasfsafasffs-e1460147167824.jpg"} />
+              <img src={article.image} />
             </div>
           )}
           <div className="article--box-2">
@@ -171,9 +172,7 @@ const ArticleScreen = () => {
               </div>
             )}
             {article && (
-              <div className="article__content">
-                <p>{article.content}</p>
-              </div>
+              <div className="article__content">{parse(article.content)}</div>
             )}
           </div>
         </article>

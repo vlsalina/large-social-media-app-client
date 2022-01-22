@@ -17,6 +17,7 @@ const MainFeedArticleCard = ({ article }) => {
         { articleId: article._id },
         { headers: { authorization: `Bearer ${user.accessToken}` } }
       );
+      console.log(article);
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +66,7 @@ const MainFeedArticleCard = ({ article }) => {
         <Link to={`/article/${article._id}`}>
           <img
             className="card__image"
-            src={"/assets/ssfasfsafasffs-e1460147167824.jpg"}
+            src={article.image ? article.image : "/assets/large-logo.png"}
           />
         </Link>
       </div>
