@@ -3,27 +3,29 @@ import "./ReadingList.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Context } from "../../App";
+import { MainFeedContext } from "../MainFeedScreen/MainFeedScreen";
 import { formatDate } from "../../utils";
 import { Link } from "react-router-dom";
 
-const Favorites = ({ favs, domain, token }) => {
-  const unfavHandler = (articleId) => {
+const Favorites = ({ favorites, setFavorites, domain, token }) => {
+  const unfavHandler = async (articleId) => {
     try {
-      const { data } = axios.patch(
+      const { data } = await axios.patch(
         `${domain}/api/users/unfavorite`,
         { articleId: articleId },
         { headers: { authorization: `Bearer ${token}` } }
       );
-      window.location.reload();
+      setFavorites(favorites.filter((x) => x.articleId !== articleId));
     } catch (error) {
       console.log(error);
     }
+    window.location.reload();
   };
 
   return (
     <div className="favorites">
       <ul>
-        {favs.map((fav) => (
+        {favorites.map((fav) => (
           <li key={fav._id}>
             <Link to={`/article/${fav._id}`}>
               <div className="favorites--box-1">
@@ -62,12 +64,12 @@ const Favorites = ({ favs, domain, token }) => {
 
 const ReadingList = () => {
   const { domain } = useContext(Context);
+  const { favorites, setFavorites } = useContext(MainFeedContext);
   const user = useSelector((state) => state.user);
-  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    try {
-      axios
+    const asyncCall = async () => {
+      await axios
         .get(`${domain}/api/users/getUser?id=${user._id}`, {
           headers: { authorization: `Bearer ${user.accessToken}` },
         })
@@ -84,9 +86,8 @@ const ReadingList = () => {
             .catch((error) => console.log(error));
         })
         .catch((error) => console.log(error));
-    } catch (error) {
-      console.log(error);
-    }
+    };
+    asyncCall();
   }, []);
 
   return (
@@ -107,7 +108,12 @@ const ReadingList = () => {
           </p>
         </div>
       ) : (
-        <Favorites favs={favorites} domain={domain} token={user.accessToken} />
+        <Favorites
+          favorites={favorites}
+          setFavorites={setFavorites}
+          domain={domain}
+          token={user.accessToken}
+        />
       )}
     </div>
   );

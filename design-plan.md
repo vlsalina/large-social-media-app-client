@@ -32,16 +32,16 @@ Conventional requirements:
 (3) there should be a replies collection
 
 **\*\*** Screens **\*\***
-(1) login screen
-(2) register screen
-(3) main feed screen
-(4) article screen
+done (1) login screen
+done (2) register screen
+95% (3) main feed screen
+95% (4) article screen
 (5) profile screen
 (6) account screen
 (7) author screen
 (8) topic screen
-(9) reading list
-(10) create new article screen
+done (9) reading list
+done (10) create new article screen
 
 **\*\*** Features **\*\***
 (1) Action Menu

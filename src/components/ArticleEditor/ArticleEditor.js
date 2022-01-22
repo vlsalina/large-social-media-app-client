@@ -56,7 +56,7 @@ const ArticleEditor = () => {
 
     let html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
     if (html.length < 100) {
-      setError("Please provide content body with at least 100 characters.");
+      setError("Please provide a content body (100 chars min.)");
       return;
     }
 

@@ -12,6 +12,8 @@ import Recommended from "../Recommended/Recommended";
 import ReadingList from "../ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 
+export const MainFeedContext = React.createContext();
+
 const MainFeedScreen = () => {
   const { domain } = useContext(Context);
   const dispatch = useDispatch();
@@ -37,35 +39,37 @@ const MainFeedScreen = () => {
 
   return (
     <div className="home">
-      {loading ? (
-        <Loader />
-      ) : (
-        <div className="home--box-1">
-          <Header />
-          <div className="home--box-2">
-            <main className="home--box-4">
-              <ul>
-                {articles &&
-                  articles.map((article) => (
-                    <li key={article._id}>
-                      <MainFeedArticleCard article={article} />
-                    </li>
-                  ))}
-              </ul>
-            </main>
+      <MainFeedContext.Provider value={{ favorites, setFavorites }}>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="home--box-1">
+            <Header />
+            <div className="home--box-2">
+              <main className="home--box-4">
+                <ul>
+                  {articles &&
+                    articles.map((article) => (
+                      <li key={article._id}>
+                        <MainFeedArticleCard article={article} />
+                      </li>
+                    ))}
+                </ul>
+              </main>
+            </div>
+            <div className="home--box-3">
+              <aside className="home--box-5">
+                <div>
+                  <Recommended />
+                </div>
+                <div>
+                  <ReadingList />
+                </div>
+              </aside>
+            </div>
           </div>
-          <div className="home--box-3">
-            <aside className="home--box-5">
-              <div>
-                <Recommended />
-              </div>
-              <div>
-                <ReadingList />
-              </div>
-            </aside>
-          </div>
-        </div>
-      )}
+        )}
+      </MainFeedContext.Provider>
     </div>
   );
 };

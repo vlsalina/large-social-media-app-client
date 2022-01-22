@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import "./MainFeedArticleCard.css";
 import { formatDate } from "../../utils";
 import { Context } from "../../App";
+import { MainFeedContext } from "../MainFeedScreen/MainFeedScreen";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 const MainFeedArticleCard = ({ article }) => {
   const { domain } = useContext(Context);
+  const { favorites, setFavorites } = useContext(MainFeedContext);
   const user = useSelector((state) => state.user);
 
   const clickHandler = async (e) => {
@@ -17,11 +19,10 @@ const MainFeedArticleCard = ({ article }) => {
         { articleId: article._id },
         { headers: { authorization: `Bearer ${user.accessToken}` } }
       );
-      console.log(article);
+      setFavorites([...favorites, article]);
     } catch (error) {
       console.log(error);
     }
-    window.location.reload();
   };
 
   return (
