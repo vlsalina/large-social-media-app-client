@@ -113,7 +113,10 @@ done - (3.2.4) unlike a reply
 (4.2.0) login
 
 **\*\*** client side todos **\*\***
-(1) set up React Redux store
+done (1) set up React Redux store
+(2) add likes and replies indicator for main feed articles
+(3) main feed should be sectioned into Latest articles and subscribed articles
+(4) personal avatars
 
 **\*\*** components **\*\***
 (1) Replies modal

@@ -1,0 +1,47 @@
+.topiccard {
+  width: 100%;
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.topiccard--box-1 {
+  width: 15%;
+}
+
+.topiccard--box-2 {
+  width: 85%;
+}
+
+.topiccard--box-3 {
+  display: flex;
+  align-items: center;
+}
+
+.topiccard__avatar img {
+  height: 2rem;
+  object-fit: contain;
+}
+
+.topiccard--box-4 {
+  display: flex;
+}
+
+.topiccard--box-6 {
+  width: 70%;
+}
+
+.topiccard__image {
+  width: 30%;
+  overflow: hidden;
+}
+
+.topiccard__image img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.topiccard--box-5 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

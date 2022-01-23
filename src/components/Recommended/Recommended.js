@@ -12,7 +12,7 @@ const Recommended = () => {
         <ul>
           {topics.map((topic) => (
             <li key={topic}>
-              <Link to={`/topic?topic=${topic}`}>
+              <Link to={`/topic/${topic}`}>
                 <div className="recommended__topic">{topic}</div>
               </Link>
             </li>

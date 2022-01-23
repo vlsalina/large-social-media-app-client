@@ -12,6 +12,7 @@ import RegisterScreen from "./components/RegisterScreen/RegisterScreen";
 import Loader from "./components/Loader/Loader";
 import TextEditor from "./components/TextEditor/TextEditor";
 import CreateArticleScreen from "./components/CreateArticleScreen/CreateArticleScreen";
+import TopicScreen from "./components/TopicScreen/TopicScreen";
 
 //const domain = "https://large-social-media-app.herokuapp.com";
 const domain = "http://localhost:5000";
@@ -31,6 +32,7 @@ function App() {
             <Route path="/author" element={<AuthorScreen />} />
             <Route path="/article/:articleId" element={<ArticleScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
+            <Route path="/topic/:topic" element={<TopicScreen />} />
             <Route path="/create" element={<CreateArticleScreen />} />
           </Routes>
         </Context.Provider>
