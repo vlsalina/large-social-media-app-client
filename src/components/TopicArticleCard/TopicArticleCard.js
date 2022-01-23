@@ -27,9 +27,6 @@ const TopicArticleCard = ({ article }) => {
               {formatDate(article.createdAt)}
             </div>
           </div>
-          <div className="topiccard__image">
-            {article && <img src={article.image} />}
-          </div>
         </div>
         <div className="topiccard--box-5">
           <div>Replies</div>
