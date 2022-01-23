@@ -10,9 +10,8 @@ import Recommended from "../Recommended/Recommended";
 import ReadingList from "../ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import TopicArticleCard from "../TopicArticleCard/TopicArticleCard";
 
-export const MainFeedContext = React.createContext();
+export const TopicContext = React.createContext();
 
 const TopicScreen = () => {
   const { domain } = useContext(Context);
@@ -23,24 +22,26 @@ const TopicScreen = () => {
   const [articles, setArticles] = useState();
 
   useEffect(() => {
+    setLoading(true);
+
     const asyncCall = async () => {
       try {
         const { data } = await axios.get(
           `${domain}/api/articles/getArticlesByCategory?category=${topic}`,
           { headers: { authorization: `Bearer ${user.accessToken}` } }
         );
+        setLoading(false);
         setArticles(data);
       } catch (error) {
         console.log(error);
       }
     };
-
     asyncCall();
   }, []);
 
   return (
     <div className="home">
-      <MainFeedContext.Provider value={{ favorites, setFavorites }}>
+      <TopicContext.Provider value={{ favorites, setFavorites }}>
         {loading ? (
           <Loader />
         ) : (
@@ -52,7 +53,7 @@ const TopicScreen = () => {
                   {articles &&
                     articles.map((article) => (
                       <li key={article._id}>
-                        <TopicArticleCard article={article} />
+                        <MainFeedArticleCard article={article} type={false} />
                       </li>
                     ))}
                 </ul>
@@ -68,7 +69,7 @@ const TopicScreen = () => {
             </div>
           </div>
         )}
-      </MainFeedContext.Provider>
+      </TopicContext.Provider>
     </div>
   );
 };

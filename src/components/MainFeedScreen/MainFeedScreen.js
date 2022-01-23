@@ -51,7 +51,7 @@ const MainFeedScreen = () => {
                   {articles &&
                     articles.map((article) => (
                       <li key={article._id}>
-                        <MainFeedArticleCard article={article} />
+                        <MainFeedArticleCard article={article} type={true} />
                       </li>
                     ))}
                 </ul>

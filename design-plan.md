@@ -135,6 +135,7 @@ done (1) set up React Redux store
 **\*\*** Problems **\*\***
 (1) Must remember NOT to "close" connection to MongoDB when running app.
 (2) Error: Can't set headers after they are sent to the client.
+(3) Dependency errors when trying to use same code for Topic screen from Main Feed screen. Simple fix by adding some logic depending on which screen user is currently in. A 'type' paramter was added to MainFeedArticleCard to help determine which: type={true} --> Main Feed, type={false} --> Topic
 
 **\*\*** Resources **\*\***
 (1) https://stackoverflow.com/questions/56694102/how-to-return-a-promise-from-an-action-using-thunk-and-usedispatch-react-redux

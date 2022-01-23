@@ -3,13 +3,16 @@ import "./MainFeedArticleCard.css";
 import { formatDate } from "../../utils";
 import { Context } from "../../App";
 import { MainFeedContext } from "../MainFeedScreen/MainFeedScreen";
+import { TopicContext } from "../TopicScreen/TopicScreen";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const MainFeedArticleCard = ({ article }) => {
+const MainFeedArticleCard = ({ article, type }) => {
   const { domain } = useContext(Context);
-  const { favorites, setFavorites } = useContext(MainFeedContext);
+  const { favorites, setFavorites } = useContext(
+    type ? MainFeedContext : TopicContext
+  );
   const user = useSelector((state) => state.user);
 
   const clickHandler = async (e) => {
