@@ -9,6 +9,7 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { TiMessages } from "react-icons/ti";
 import { IconContext } from "react-icons";
+import { useLocation } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import SocialMenu from "../SocialMenu/SocialMenu";
 import axios from "axios";
@@ -32,6 +33,8 @@ const ArticleScreen = () => {
   const user = useSelector((state) => state.user);
   const { articleId } = useParams();
   const articles = useSelector((state) => state.articles);
+  const search = useLocation().search;
+  const open = new URLSearchParams(search).get("open");
 
   useEffect(() => {
     let result =
@@ -100,6 +103,12 @@ const ArticleScreen = () => {
       .getElementsByClassName("replies")[0]
       .classList.add("replies--open");
   };
+
+  useEffect(() => {
+    if (open) {
+      openHandler();
+    }
+  }, []);
 
   return (
     <main className="article">
@@ -180,16 +189,18 @@ const ArticleScreen = () => {
           <div className="article--box-9">
             {article && (
               <div className="article--box-10">
-                <button
-                  type="button"
-                  className="article__button--2"
-                  onClick={likeHandler}
-                >
-                  <IconContext.Provider value={styles.icons}>
-                    <AiOutlineLike />
-                    &nbsp; &nbsp;{likes.length}
-                  </IconContext.Provider>
-                </button>
+                {likes && (
+                  <button
+                    type="button"
+                    className="article__button--2"
+                    onClick={likeHandler}
+                  >
+                    <IconContext.Provider value={styles.icons}>
+                      <AiOutlineLike />
+                      &nbsp; &nbsp;{likes.length}
+                    </IconContext.Provider>
+                  </button>
+                )}
               </div>
             )}
             {article && (

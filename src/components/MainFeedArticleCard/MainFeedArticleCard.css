@@ -57,6 +57,7 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 }
 
 .card__image {
@@ -77,6 +78,22 @@
 .favorite__icon {
   height: 1.5rem;
   object-fit: contain;
+}
+
+.card--box-5 {
+  display: flex;
+  align-items: center;
+}
+
+.card--spacer {
+  margin-right: 1rem;
+}
+
+.card--spacer button,
+.card--spacer a {
+  display: flex;
+  align-items: center;
+  border: none;
 }
 
 @media screen and (min-width: 550px) {

@@ -9,7 +9,7 @@ const articlesReducer = (state = [], action) => {
     case ARTICLES_REQUEST:
       return [];
     case ARTICLES_SUCCESS:
-      return action.payload;
+      return action.payload.reverse();
     case ARTICLES_FAIL:
       return [{ error: action.payload }];
     default:

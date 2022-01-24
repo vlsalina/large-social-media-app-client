@@ -16,6 +16,7 @@ export const MainFeedContext = React.createContext();
 
 const MainFeedScreen = () => {
   const { domain } = useContext(Context);
+  const type = true;
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useState([]);
@@ -51,7 +52,7 @@ const MainFeedScreen = () => {
                   {articles &&
                     articles.map((article) => (
                       <li key={article._id}>
-                        <MainFeedArticleCard article={article} type={true} />
+                        <MainFeedArticleCard article={article} type={type} />
                       </li>
                     ))}
                 </ul>
@@ -63,7 +64,7 @@ const MainFeedScreen = () => {
                   <Recommended />
                 </div>
                 <div>
-                  <ReadingList />
+                  <ReadingList type={type} />
                 </div>
               </aside>
             </div>

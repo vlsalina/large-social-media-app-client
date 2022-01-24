@@ -15,11 +15,20 @@ export const TopicContext = React.createContext();
 
 const TopicScreen = () => {
   const { domain } = useContext(Context);
+  const type = false;
   const { topic } = useParams();
+  const [save, setSave] = useState(topic);
   const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const user = useSelector((state) => state.user);
   const [articles, setArticles] = useState();
+
+  useEffect(() => {
+    if (topic !== save) {
+      setSave(topic);
+      window.location.reload();
+    }
+  }, [topic]);
 
   useEffect(() => {
     setLoading(true);
@@ -31,7 +40,7 @@ const TopicScreen = () => {
           { headers: { authorization: `Bearer ${user.accessToken}` } }
         );
         setLoading(false);
-        setArticles(data);
+        setArticles(data.reverse());
       } catch (error) {
         console.log(error);
       }
@@ -48,23 +57,43 @@ const TopicScreen = () => {
           <div className="home--box-1">
             <Header />
             <div className="home--box-2">
+              <div className="topicscreen--box-6">
+                <h1 class="text">
+                  {topic}
+                  &nbsp; &nbsp;
+                  {articles && (
+                    <span class="link">{articles.length} articles</span>
+                  )}
+                </h1>
+              </div>
               <main className="home--box-4">
                 <ul>
                   {articles &&
                     articles.map((article) => (
                       <li key={article._id}>
-                        <MainFeedArticleCard article={article} type={false} />
+                        <MainFeedArticleCard article={article} type={type} />
                       </li>
                     ))}
                 </ul>
               </main>
             </div>
             <div className="home--box-3">
+              <div className="topicscreen--box-6">
+                <h1 class="text">
+                  {topic}
+                  &nbsp; &nbsp;
+                  {articles && (
+                    <span class="link">{articles.length} articles</span>
+                  )}
+                </h1>
+              </div>
               <aside className="home--box-5">
                 <div>
                   <Recommended />
                 </div>
-                <div></div>
+                <div>
+                  <ReadingList type={type} />
+                </div>
               </aside>
             </div>
           </div>

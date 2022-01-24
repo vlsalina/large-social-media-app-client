@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./MainFeedArticleCard.css";
 import { formatDate } from "../../utils";
 import { Context } from "../../App";
@@ -7,6 +7,11 @@ import { TopicContext } from "../TopicScreen/TopicScreen";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { TiMessages } from "react-icons/ti";
+import { AiOutlineLike } from "react-icons/ai";
+import { IconContext } from "react-icons";
+import { styles } from "../../styles/styles";
+import { RepliesContext } from "../Replies/Replies";
 
 const MainFeedArticleCard = ({ article, type }) => {
   const { domain } = useContext(Context);
@@ -14,6 +19,39 @@ const MainFeedArticleCard = ({ article, type }) => {
     type ? MainFeedContext : TopicContext
   );
   const user = useSelector((state) => state.user);
+  const [replies, setReplies] = useState([]);
+  const [likes, setLikes] = useState();
+
+  useEffect(() => {
+    setLikes(article.likes);
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${domain}/api/replies/getAllReplies?articleId=${article._id}`, {
+        headers: { authorization: `Bearer ${user.accessToken}` },
+      })
+      .then((response) => setReplies(response.data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  const likeHandler = async () => {
+    let sofar = likes.find((x) => x.userId === user._id);
+    try {
+      let { data } = await axios.patch(
+        `${domain}/api/articles/${sofar ? "unlikeArticle" : "likeArticle"}`,
+        { articleId: article._id },
+        { headers: { authorization: `Bearer ${user.accessToken}` } }
+      );
+      if (sofar) {
+        setLikes(likes.filter((x) => x.userId !== user._id));
+      } else {
+        setLikes([...likes, { userId: user._id }]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const clickHandler = async (e) => {
     try {
@@ -51,7 +89,29 @@ const MainFeedArticleCard = ({ article, type }) => {
           <div className="card__snippet">{article.snippet}</div>
         </Link>
         <div className="card--box-4">
-          <div>{formatDate(article.createdAt)}</div>
+          <div className="card--box-5">
+            <div className="card__date card--spacer">
+              {formatDate(article.createdAt)}
+            </div>
+            <div className="card__likes card--spacer">
+              <button type="button" onClick={likeHandler}>
+                <IconContext.Provider value={styles.icons}>
+                  <AiOutlineLike />
+                </IconContext.Provider>
+                &nbsp;
+                {likes && <div>{likes.length}</div>}
+              </button>
+            </div>
+            <div className="card__replies card--spacer">
+              <Link to={`/article/${article._id}?open=${true}`}>
+                <IconContext.Provider value={styles.icons}>
+                  <TiMessages />
+                </IconContext.Provider>
+                &nbsp;
+                {replies && <div>{replies.length}</div>}
+              </Link>
+            </div>
+          </div>
           <div>
             <button
               className="favorite"

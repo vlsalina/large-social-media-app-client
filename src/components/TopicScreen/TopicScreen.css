@@ -1,20 +1,27 @@
-.topicscreen {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.topicscreen__title h1 {
+  text-transform: capitalize;
 }
 
-.topicscreen--box-1 {
-  position: relative;
-  top: calc(65px + 3rem);
-  width: 100%;
-  padding: 0 1rem;
+.topicscreen--box-6 {
+  margin-bottom: 2rem;
+  padding: 1rem 1rem 0.5rem 1rem;
+  /* background: linear-gradient(rgb(67, 26, 179), #fff); */
+  background: linear-gradient(rgb(132, 130, 139), #fff);
 }
 
-@media screen and (min-width: 743px) {
-  .topicscreen--box-1 {
-    width: 743px;
-    padding: 0;
+.text {
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+
+.link {
+  font-size: 1rem;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 1192px) {
+  .home--box-6 {
+    margin-bottom: 4rem;
   }
 }

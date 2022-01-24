@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { Context } from "../../App";
 import { MainFeedContext } from "../MainFeedScreen/MainFeedScreen";
+import { TopicContext } from "../TopicScreen/TopicScreen";
 import { formatDate } from "../../utils";
 import { Link } from "react-router-dom";
 
@@ -62,9 +63,11 @@ const Favorites = ({ favorites, setFavorites, domain, token }) => {
   );
 };
 
-const ReadingList = () => {
+const ReadingList = ({ type }) => {
   const { domain } = useContext(Context);
-  const { favorites, setFavorites } = useContext(MainFeedContext);
+  const { favorites, setFavorites } = useContext(
+    type ? MainFeedContext : TopicContext
+  );
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
