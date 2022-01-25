@@ -39,9 +39,9 @@ const Favorites = ({ favorites, setFavorites, domain, token }) => {
                 <div className="favorites__author card--spacer">
                   <h2>{fav.author}</h2>
                 </div>
-                <div className="card__topic">
-                  <Link to={`/topic/${fav.category}`}>{fav.category}</Link>
-                </div>
+                <Link to={`/topic/${fav.category}`}>
+                  <div className="card__topic">{fav.category}</div>
+                </Link>
               </div>
               <div className="favorites__title">
                 <h2>{fav.title}</h2>
