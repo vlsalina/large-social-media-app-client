@@ -64,7 +64,7 @@
   object-fit: contain;
 }
 
-.card__author h4 {
+.card__author a h4 {
   margin: 0;
 }
 

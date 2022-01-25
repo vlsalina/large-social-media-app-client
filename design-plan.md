@@ -39,7 +39,7 @@ done (2) register screen
 (5) profile screen
 (6) account screen
 (7) author screen
-(8) topic screen
+done (8) topic screen
 done (9) reading list
 done (10) create new article screen
 
@@ -137,10 +137,6 @@ done (1) set up React Redux store
 (2) Error: Can't set headers after they are sent to the client.
 (3) Dependency errors when trying to use same code for Topic screen from Main Feed screen. Simple fix by adding some logic depending on which screen user is currently in. A 'type' paramter was added to MainFeedArticleCard to help determine which: type={true} --> Main Feed, type={false} --> Topic
 
-**\*\*** Resources **\*\***
-(1) https://stackoverflow.com/questions/56694102/how-to-return-a-promise-from-an-action-using-thunk-and-usedispatch-react-redux
-(2) https://gomakethings.com/waiting-for-multiple-all-api-responses-to-complete-with-the-vanilla-js-promise.all-method/
-
 **\*\*** Learned **\*\***
 (1) use "req.query" to get values stored in url for backend
 (2) how to set CORS headers to allow access from designated sites
@@ -148,3 +144,9 @@ done (1) set up React Redux store
 (4) how to leverage api chaining
 (5) how to use Promise.all() to make several api calls
 (6) to have page reflect changes (like number of likes after liking an article) WITHOUT refreshing page, fetch and store data into useState var, then when change occurs with function api call, simply update the state.
+(7) how to maintain aspect ratio
+
+**\*\*** Resources **\*\***
+(3) https://stackoverflow.com/questions/56694102/how-to-return-a-promise-from-an-action-using-thunk-and-usedispatch-react-redux
+(5) https://gomakethings.com/waiting-for-multiple-all-api-responses-to-complete-with-the-vanilla-js-promise.all-method/
+(7)

@@ -31,7 +31,7 @@ function App() {
             <Route path="/account" element={<AccountScreen />} />
             <Route path="/author" element={<AuthorScreen />} />
             <Route path="/article/:articleId" element={<ArticleScreen />} />
-            <Route path="/profile" element={<ProfileScreen />} />
+            <Route path="/profile/:userId" element={<ProfileScreen />} />
             <Route path="/topic/:topic" element={<TopicScreen />} />
             <Route path="/create" element={<CreateArticleScreen />} />
           </Routes>

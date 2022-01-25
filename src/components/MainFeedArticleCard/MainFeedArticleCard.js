@@ -77,7 +77,9 @@ const MainFeedArticleCard = ({ article, type }) => {
             />
           </div>
           <div className="card__author card--spacer">
-            <h4>{article.author}</h4>
+            <Link to={`/profile/${article.authorId}`}>
+              <h4>{article.author}</h4>
+            </Link>
           </div>
           <Link to={`/topic/${article.category}`}>
             <div className="card__topic">{article.category}</div>
