@@ -30,7 +30,6 @@
 .card__avatar {
   height: 2rem;
   object-fit: contain;
-  margin-right: 2rem;
 }
 
 .card__title,
@@ -89,11 +88,23 @@
   margin-right: 1rem;
 }
 
-.card--spacer button,
+.card--spacer .buttonA,
 .card--spacer a {
   display: flex;
   align-items: center;
   border: none;
+}
+
+.card__topic {
+  padding: 0;
+  border-radius: 1rem;
+  width: 8rem;
+  text-align: center;
+  background-color: #000;
+}
+
+.card__topic a {
+  color: #fff;
 }
 
 @media screen and (min-width: 550px) {

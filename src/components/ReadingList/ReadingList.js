@@ -32,12 +32,15 @@ const Favorites = ({ favorites, setFavorites, domain, token }) => {
               <div className="favorites--box-1">
                 <div>
                   <img
-                    className="favorites__avatar"
+                    className="favorites__avatar card--spacer"
                     src={"/assets/icons8-circled-v-100.png"}
                   />
                 </div>
-                <div className="favorites__author">
+                <div className="favorites__author card--spacer">
                   <h2>{fav.author}</h2>
+                </div>
+                <div className="card__topic">
+                  <Link to={`/topic/${fav.category}`}>{fav.category}</Link>
                 </div>
               </div>
               <div className="favorites__title">

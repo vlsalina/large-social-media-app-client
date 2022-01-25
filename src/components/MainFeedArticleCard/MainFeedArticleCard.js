@@ -70,14 +70,17 @@ const MainFeedArticleCard = ({ article, type }) => {
     <article className="card">
       <div className="card--box-1">
         <div className="card--box-3">
-          <div className="card__avatar-wrapper">
+          <div className="card__avatar-wrapper card--spacer">
             <img
               className="card__avatar"
               src={"/assets/icons8-circled-v-100.png"}
             />
           </div>
-          <div className="card__author">
+          <div className="card__author card--spacer">
             <h4>{article.author}</h4>
+          </div>
+          <div className="card__topic">
+            <Link to={`/topic/${article.category}`}>{article.category}</Link>
           </div>
         </div>
         <Link to={`/article/${article._id}`}>
@@ -94,7 +97,7 @@ const MainFeedArticleCard = ({ article, type }) => {
               {formatDate(article.createdAt)}
             </div>
             <div className="card__likes card--spacer">
-              <button type="button" onClick={likeHandler}>
+              <button type="button" className="buttonA" onClick={likeHandler}>
                 <IconContext.Provider value={styles.icons}>
                   <AiOutlineLike />
                 </IconContext.Provider>
