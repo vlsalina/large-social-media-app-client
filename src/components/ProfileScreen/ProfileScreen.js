@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import ProfileArticleCard from "../ProfileArticleCard.js/ProfileArticleCard";
 import Loader from "../Loader/Loader";
+import FadeInSection from "../FadeInSection/FadeInSection";
 
 const AuthorProfile = ({ author }) => {
   return (
@@ -85,7 +86,11 @@ const ProfileScreen = () => {
             )}
           </div>
           <main className="profilescreen--box-1">
-            {author && <AuthorProfile author={author} />}
+            {author && (
+              <FadeInSection>
+                <AuthorProfile author={author} />
+              </FadeInSection>
+            )}
             {articles && !(articles.length > 0) && (
               <>
                 <div className="profilescreen__heading">
