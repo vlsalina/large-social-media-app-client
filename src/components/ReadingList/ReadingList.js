@@ -28,21 +28,23 @@ const Favorites = ({ favorites, setFavorites, domain, token }) => {
       <ul>
         {favorites.map((fav) => (
           <li key={fav._id}>
-            <Link to={`/article/${fav._id}`}>
-              <div className="favorites--box-1">
-                <div>
-                  <img
-                    className="favorites__avatar card--spacer"
-                    src={"/assets/icons8-circled-v-100.png"}
-                  />
-                </div>
+            <div className="favorites--box-1">
+              <div>
+                <img
+                  className="favorites__avatar card--spacer"
+                  src={"/assets/icons8-circled-v-100.png"}
+                />
+              </div>
+              <Link to={`/profile/${fav.authorId}`}>
                 <div className="favorites__author card--spacer">
                   <h2>{fav.author}</h2>
                 </div>
-                <Link to={`/topic/${fav.category}`}>
-                  <div className="card__topic">{fav.category}</div>
-                </Link>
-              </div>
+              </Link>
+              <Link to={`/topic/${fav.category}`}>
+                <div className="card__topic">{fav.category}</div>
+              </Link>
+            </div>
+            <Link to={`/article/${fav._id}`}>
               <div className="favorites__title">
                 <h2>{fav.title}</h2>
               </div>

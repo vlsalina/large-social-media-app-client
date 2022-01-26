@@ -9,6 +9,18 @@ import ProfileArticleCard from "../ProfileArticleCard.js/ProfileArticleCard";
 import Loader from "../Loader/Loader";
 import FadeInSection from "../FadeInSection/FadeInSection";
 
+const FadeIn = ({ children }) => {
+  const [isVisib, setIsVisib] = React.useState(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsVisib(true);
+    }, 100);
+  }, []);
+
+  return <div className={`fadein ${isVisib ? "isVisib" : ""}`}>{children}</div>;
+};
+
 const AuthorProfile = ({ author }) => {
   return (
     <aside className="authorprofile">
@@ -87,9 +99,11 @@ const ProfileScreen = () => {
           </div>
           <main className="profilescreen--box-1">
             {author && (
-              <FadeInSection>
-                <AuthorProfile author={author} />
-              </FadeInSection>
+              <div className="profilescreen--box-3">
+                <FadeIn>
+                  <AuthorProfile author={author} />
+                </FadeIn>
+              </div>
             )}
             {articles && !(articles.length > 0) && (
               <>

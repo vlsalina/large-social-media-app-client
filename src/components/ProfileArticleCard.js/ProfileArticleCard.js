@@ -68,10 +68,14 @@ const ProfileArticleCard = ({ article }) => {
           {article.category}
         </div>
       </Link>
-      <div className="profilecard__title">
-        <h2> {article.title} </h2>
-      </div>
-      <div className="profilecard__snippet">{article.snippet}</div>
+      <Link to={`/article/${article._id}`}>
+        <div className="profilecard__title">
+          <h2> {article.title} </h2>
+        </div>
+      </Link>
+      <Link to={`/article/${article._id}`}>
+        <div className="profilecard__snippet">{article.snippet}</div>
+      </Link>
       {article.image && (
         <Link to={`/article/${article._id}`}>
           <div className="profilecard__image">
@@ -80,7 +84,9 @@ const ProfileArticleCard = ({ article }) => {
         </Link>
       )}
       {!article.image && <div className="profilecard__placeholder" />}
-      <div className="profilecard__description">{article.description}</div>
+      <Link to={`/article/${article._id}`}>
+        <div className="profilecard__description">{article.description}</div>
+      </Link>
       <div className="card--box-4 profilecard__spacer">
         <div className="card--box-5">
           <div className="card__date card--spacer">

@@ -145,8 +145,10 @@ done (1) set up React Redux store
 (5) how to use Promise.all() to make several api calls
 (6) to have page reflect changes (like number of likes after liking an article) WITHOUT refreshing page, fetch and store data into useState var, then when change occurs with function api call, simply update the state.
 (7) how to maintain aspect ratio
+(8) implementing fade-in and fade-out functionality using IntersectionObserver
 
 **\*\*** Resources **\*\***
 (3) https://stackoverflow.com/questions/56694102/how-to-return-a-promise-from-an-action-using-thunk-and-usedispatch-react-redux
 (5) https://gomakethings.com/waiting-for-multiple-all-api-responses-to-complete-with-the-vanilla-js-promise.all-method/
-(7)
+(7) https://www.w3schools.com/howto/howto_css_aspect_ratio.asp
+(8) https://dev.to/selbekk/how-to-fade-in-content-as-it-scrolls-into-view-10j4

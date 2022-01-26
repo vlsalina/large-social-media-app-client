@@ -5,7 +5,11 @@ const FadeInSection = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const callback = (entries) => {
-    entries.forEach((entry) => setIsVisible(entry.isIntersecting));
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+      }
+    });
   };
 
   const domRef = useRef();

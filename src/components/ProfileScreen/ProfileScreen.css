@@ -34,13 +34,16 @@
   justify-content: center;
 }
 
-/* Author Profile component */
-.authorprofile {
-  width: 197px;
+.profilescreen--box-3 {
   position: fixed;
   top: calc(65px + 3rem + 10rem);
   left: 50%;
   transform: translate(calc(-50% - 300%), 0);
+}
+
+/* Author Profile component */
+.authorprofile {
+  width: 197px;
 }
 
 .authorprofile__avatar {
@@ -66,6 +69,25 @@
 }
 
 /* End Author Profile component */
+
+/* Fade-in component */
+
+.fadein {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20vh);
+  transition: opacity 1200ms ease-out, visibility 1200ms ease-out,
+    transform 600ms ease-out;
+  will-change: transform;
+}
+
+.fadein.isVisib {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* End Fade-in component */
 
 @media screen and (min-width: 743px) {
   .profilescreen--box-1 {

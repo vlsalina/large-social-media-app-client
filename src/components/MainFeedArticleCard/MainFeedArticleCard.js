@@ -24,6 +24,8 @@ const MainFeedArticleCard = ({ article, type }) => {
 
   useEffect(() => {
     setLikes(article.likes);
+
+    return () => setLikes([]);
   }, []);
 
   useEffect(() => {
@@ -33,6 +35,8 @@ const MainFeedArticleCard = ({ article, type }) => {
       })
       .then((response) => setReplies(response.data))
       .catch((error) => console.log(error));
+
+    return () => setReplies([]);
   }, []);
 
   const likeHandler = async () => {
