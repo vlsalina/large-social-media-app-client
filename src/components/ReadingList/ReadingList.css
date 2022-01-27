@@ -24,7 +24,7 @@
 
 /* Favorites styling */
 
-.favorites ul li {
+.favorites ul li:not(:last-child) {
   margin-bottom: 3rem;
 }
 
@@ -46,6 +46,11 @@
 
 .favorites__title {
   margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
 .favorites__title h2 {

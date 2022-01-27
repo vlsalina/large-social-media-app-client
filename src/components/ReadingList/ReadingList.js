@@ -26,7 +26,7 @@ const Favorites = ({ favorites, setFavorites, domain, token }) => {
   return (
     <div className="favorites">
       <ul>
-        {favorites.map((fav) => (
+        {favorites.slice(0, 3).map((fav) => (
           <li key={fav._id}>
             <div className="favorites--box-1">
               <div>

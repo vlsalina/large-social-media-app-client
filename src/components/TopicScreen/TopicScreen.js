@@ -58,7 +58,7 @@ const TopicScreen = () => {
             <Header />
             <div className="home--box-2">
               <div className="topicscreen--box-6">
-                <h1 class="text">
+                <h1 className="text">
                   {topic}
                   &nbsp; &nbsp;
                   {articles && (
@@ -79,7 +79,7 @@ const TopicScreen = () => {
             </div>
             <div className="home--box-3">
               <div className="topicscreen--box-6">
-                <h1 class="text">
+                <h1 className="text">
                   {topic}
                   &nbsp; &nbsp;
                   {articles && (

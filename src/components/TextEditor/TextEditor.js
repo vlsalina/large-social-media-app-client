@@ -13,7 +13,8 @@ import { RepliesContext } from "../Replies/Replies";
 
 const TextEditor = () => {
   const { domain } = useContext(Context);
-  const { articleId, numReplies, setNumReplies } = useContext(ArticleContext);
+  const { articleId, numReplies, setNumReplies, article } =
+    useContext(ArticleContext);
   const { replies, setReplies } = useContext(RepliesContext);
 
   const user = useSelector((state) => state.user);
@@ -36,6 +37,7 @@ const TextEditor = () => {
         `${domain}/api/replies/addReply`,
         {
           articleId: articleId,
+          articleAuthorId: article.authorId,
           content: draftToHtml(convertToRaw(editorState.getCurrentContent())),
         },
         { headers: { authorization: `Bearer ${user.accessToken}` } }
@@ -46,6 +48,7 @@ const TextEditor = () => {
       setReplies(
         replies.concat({
           articleId: articleId,
+          articleAuthorId: article.authorId,
           author: `${user.firstname} ${user.lastname}`,
           userId: user._id,
           avatar: user.avatar ? user.avatar : "",

@@ -64,6 +64,10 @@
   object-fit: contain;
 }
 
+.card--placeholder {
+  height: 100% !important;
+}
+
 .card__author a h4 {
   margin: 0;
 }
@@ -102,6 +106,7 @@
   text-align: center;
   background-color: #000;
   color: #fff;
+  text-transform: capitalize;
 }
 
 @media screen and (min-width: 550px) {

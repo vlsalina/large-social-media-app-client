@@ -21,6 +21,7 @@ User requirements:
 (15) each article is tagged with ONE of the following topics: (a) technology, (b) money, (c) business, (d) productivity, (e) psychology, (f) mindfulness, (g) art
 (16) users can see a filtered list of articles by topic
 (17) users can direct message an author
+(18) user should not be able to favorite their own articles
 
 Conventional requirements:
 (1) users should be able to view the most optimized layout on any device
@@ -36,9 +37,9 @@ done (1) login screen
 done (2) register screen
 95% (3) main feed screen
 95% (4) article screen
-(5) profile screen
-(6) account screen
-(7) author screen
+85% (5) profile screen
+cncl (6) account screen
+cncl (7) author screen
 done (8) topic screen
 done (9) reading list
 done (10) create new article screen
@@ -117,6 +118,14 @@ done (1) set up React Redux store
 (2) add likes and replies indicator for main feed articles
 (3) main feed should be sectioned into Latest articles and subscribed articles
 (4) personal avatars
+(5) add hero section for Main Feed screen
+(6) bottom replies indicator should open Replies side bar
+(7) Reading List should only show 5 articles. If user has favorited more than 5, provide link to Bookmarks screen.
+(8) Optimization - Remember to DRY. All reusable functions should be stored in a seperate js file to be exported when needed.
+(9) Fix Article image on Main Feed screen.
+done (10) Added new properties to user Model in backend: (a) user story, (b) user followers list
+(11) Update the /api/users/follow api to also added user's own \_id to author's "followers" list
+(12) Too much sphagetti code in Profile screen. Need to do optimization.
 
 **\*\*** components **\*\***
 (1) Replies modal

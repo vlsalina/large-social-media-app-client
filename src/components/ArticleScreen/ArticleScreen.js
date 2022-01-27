@@ -112,7 +112,9 @@ const ArticleScreen = () => {
 
   return (
     <main className="article">
-      <ArticleContext.Provider value={{ articleId, numReplies, setNumReplies }}>
+      <ArticleContext.Provider
+        value={{ articleId, numReplies, setNumReplies, article }}
+      >
         <Header />
         <Replies />
         <article className="article__main">
@@ -189,23 +191,27 @@ const ArticleScreen = () => {
           <div className="article--box-9">
             {article && (
               <div className="article--box-10">
-                {likes && (
-                  <button
-                    type="button"
-                    className="article__button--2"
-                    onClick={likeHandler}
-                  >
+                <button
+                  type="button"
+                  className="article__button--2"
+                  onClick={likeHandler}
+                >
+                  {likes && (
                     <IconContext.Provider value={styles.icons}>
                       <AiOutlineLike />
                       &nbsp; &nbsp;{likes.length}
                     </IconContext.Provider>
-                  </button>
-                )}
+                  )}
+                </button>
               </div>
             )}
             {article && (
               <div className="article--box-10">
-                <button type="button" className="article__button--2">
+                <button
+                  type="button"
+                  className="article__button--2"
+                  onClick={openHandler}
+                >
                   <IconContext.Provider value={styles.icons}>
                     <TiMessages />
                     &nbsp; &nbsp;{numReplies}

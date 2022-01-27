@@ -58,6 +58,10 @@ const MainFeedArticleCard = ({ article, type }) => {
   };
 
   const clickHandler = async (e) => {
+    if (user._id === article.authorId) {
+      return;
+    }
+
     try {
       const { data } = await axios.patch(
         `${domain}/api/users/favorite`,
@@ -138,7 +142,9 @@ const MainFeedArticleCard = ({ article, type }) => {
       <div className="card--box-2">
         <Link to={`/article/${article._id}`}>
           <img
-            className="card__image"
+            className={`card__image ${
+              !article.image ? "card--placeholder" : ""
+            }`}
             src={article.image ? article.image : "/assets/large-logo.png"}
           />
         </Link>

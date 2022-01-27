@@ -6,19 +6,6 @@ import { Link } from "react-router-dom";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 
-const menuItems = [
-  {
-    name: "search",
-    icon: "/assets/icons8-search-500.png",
-  },
-  { name: "bookmarks", icon: "/assets/icons8-bookmark-512.png" },
-  { name: "notifications", icon: "/assets/icons8-notification-96.png" },
-  {
-    name: "avatar",
-    icon: "/assets/icons8-circled-v-100.png",
-  },
-];
-
 const styles = {
   icon: {
     size: "2rem",
@@ -39,6 +26,28 @@ const Header = () => {
       setActionMenuToDisplay(!actionMenuToDisplay);
     }
   };
+
+  const menuItems = [
+    {
+      name: "search",
+      icon: "/assets/icons8-search-500.png",
+      url: "/",
+    },
+    {
+      name: "userArticles",
+      icon: "/assets/icons8-bookmark-512.png",
+      url: `/profile/${user._id}?breadcrumb=articles`,
+    },
+    {
+      name: "notifications",
+      icon: "/assets/icons8-notification-96.png",
+      url: `/profile/${user._id}?breadcrumb=notifications`,
+    },
+    {
+      name: "avatar",
+      icon: "/assets/icons8-circled-v-100.png",
+    },
+  ];
 
   return (
     <div className="header">
@@ -61,7 +70,9 @@ const Header = () => {
                 </li>
                 {menuItems.slice(0, 3).map((item) => (
                   <li key={item.name}>
-                    <img className="header__icon" src={item.icon} />
+                    <Link to={item.url}>
+                      <img className="header__icon" src={item.icon} />
+                    </Link>
                   </li>
                 ))}
                 <li key={menuItems[3].name}>

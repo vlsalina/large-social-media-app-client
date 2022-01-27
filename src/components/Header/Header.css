@@ -55,7 +55,7 @@
 }
 
 .header__icon {
-  height: 100%;
+  height: 2rem;
   object-fit: contain;
 }
 

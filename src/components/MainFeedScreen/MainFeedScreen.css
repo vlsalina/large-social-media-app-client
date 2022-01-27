@@ -23,6 +23,17 @@
 .home--box-5 {
   height: 100vh;
   overflow-y: auto;
+  padding-bottom: 10rem;
+}
+
+.home__toprofile {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.home__toprofile a {
+  color: rgb(163, 74, 74);
+  font-weight: bold;
 }
 
 @media screen and (min-width: 743px) {

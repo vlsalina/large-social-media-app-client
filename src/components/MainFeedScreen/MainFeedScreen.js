@@ -66,6 +66,13 @@ const MainFeedScreen = () => {
                 <div>
                   <ReadingList type={type} />
                 </div>
+                <div className="home__toprofile">
+                  {favorites && favorites.length > 3 && (
+                    <Link to={`/profile/${user._id}?breadcrumb=favorites`}>
+                      (See all {favorites.length})
+                    </Link>
+                  )}
+                </div>
               </aside>
             </div>
           </div>
