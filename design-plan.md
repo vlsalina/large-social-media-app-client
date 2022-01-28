@@ -37,7 +37,7 @@ done (1) login screen
 done (2) register screen
 95% (3) main feed screen
 95% (4) article screen
-85% (5) profile screen
+done (5) profile screen
 cncl (6) account screen
 cncl (7) author screen
 done (8) topic screen

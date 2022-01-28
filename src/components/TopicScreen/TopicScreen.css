@@ -9,6 +9,17 @@
   background: linear-gradient(rgb(132, 130, 139), #fff);
 }
 
+.topicscreen--box-7 {
+  width: 100vw;
+  position: fixed;
+  top: calc(65px + 3rem);
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem 1rem 0.5rem 1rem;
+  /* background: linear-gradient(rgb(67, 26, 179), #fff); */
+  background: linear-gradient(rgb(132, 130, 139), #fff);
+}
+
 .text {
   font-size: 2rem;
   text-transform: capitalize;
@@ -18,6 +29,11 @@
   font-size: 1rem;
   font-weight: normal;
   vertical-align: middle;
+}
+
+.home--overflow {
+  overflow-y: auto;
+  padding-bottom: 20rem;
 }
 
 @media screen and (min-width: 1192px) {
