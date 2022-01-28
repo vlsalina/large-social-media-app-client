@@ -11,6 +11,7 @@ import MainFeedArticleCard from "../MainFeedArticleCard/MainFeedArticleCard";
 import Recommended from "../Recommended/Recommended";
 import ReadingList from "../ReadingList/ReadingList";
 import { Link } from "react-router-dom";
+import { banner } from "../../styles/styles";
 
 export const MainFeedContext = React.createContext();
 
@@ -22,6 +23,15 @@ const MainFeedScreen = () => {
   const [favorites, setFavorites] = useState([]);
   const user = useSelector((state) => state.user);
   const articles = useSelector((state) => state.articles);
+
+  window.addEventListener("scroll", () => {
+    let aside = document.getElementsByClassName("home--box-8")[0];
+    if (window.scrollY > 400) {
+      aside.classList.add("home--fixed");
+    } else {
+      aside.classList.remove("home--fixed");
+    }
+  });
 
   useEffect(() => {
     setLoading(true);

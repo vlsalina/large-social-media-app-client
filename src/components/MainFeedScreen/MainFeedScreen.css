@@ -66,17 +66,26 @@
 .home--box-7 {
   width: 70%;
   padding-right: 2rem;
+  border-right: 1px solid rgb(214, 199, 199);
 }
 
 .home--box-8 {
   width: 30%;
   padding-left: 2rem;
-  border-left: 1px solid rgb(214, 199, 199);
+  position: relative;
 }
 
 @media screen and (min-width: 1192px) {
   .home--box-6 {
     width: 1192px;
+  }
+
+  .home--fixed {
+    width: calc(1192px * 0.3);
+    position: fixed;
+    top: var(--header);
+    left: 50%;
+    transform: translate(66.5%, 0);
   }
 }
 
