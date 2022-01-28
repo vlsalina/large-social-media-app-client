@@ -41,3 +41,25 @@
     margin-bottom: 4rem;
   }
 }
+
+/* topic__banner */
+.topic__banner {
+  height: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topic--background {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.topic__name h1 {
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 4rem;
+}
+
+/* end topic__banner */

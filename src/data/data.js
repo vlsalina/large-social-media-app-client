@@ -21,13 +21,34 @@ const networks = [
 ];
 
 const topics = [
-  "technology",
-  "money",
-  "business",
-  "productivity",
-  "psychology",
-  "mindfulness",
-  "art",
+  {
+    name: "technology",
+    url: "/assets/banners/technology.jpg",
+  },
+  {
+    name: "money",
+    url: "/assets/banners/money.jpg",
+  },
+  {
+    name: "business",
+    url: "/assets/banners/business.jpg",
+  },
+  {
+    name: "productivity",
+    url: "/assets/banners/productivity.jpg",
+  },
+  {
+    name: "psychology",
+    url: "/assets/banners/psychology.jpg",
+  },
+  {
+    name: "mindfulness",
+    url: "/assets/banners/mindfulness.jpg",
+  },
+  {
+    name: "art",
+    url: "/assets/banners/art.jpg",
+  },
 ];
 
 export { networks, topics };

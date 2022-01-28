@@ -106,11 +106,11 @@ const ReadingList = ({ type }) => {
       {favorites.length === 0 ? (
         <div className="readingList--box-1">
           <p>
-            Click the{" "}
+            Click the
             <img
               className="favoirte__icon"
               src={"/assets/icons8-favorite-512.png"}
-            />{" "}
+            />
             on any story to easily add it to your reading list or a custom list
             that you can share.
           </p>

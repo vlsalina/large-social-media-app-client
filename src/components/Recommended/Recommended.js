@@ -11,9 +11,9 @@ const Recommended = () => {
       <div className="recommended--box-1">
         <ul>
           {topics.map((topic) => (
-            <li key={topic}>
-              <Link to={`/topic/${topic}`}>
-                <div className="recommended__topic">{topic}</div>
+            <li key={topic.name}>
+              <Link to={`/topic/${topic.name}`}>
+                <div className="recommended__topic">{topic.name}</div>
               </Link>
             </li>
           ))}

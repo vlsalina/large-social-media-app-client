@@ -11,8 +11,28 @@ import ReadingList from "../ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { topics } from "../../data/data";
 
 export const TopicContext = React.createContext();
+
+const getbanner = (topic) => {
+  switch (topic) {
+    case "technology":
+      return topics[0].url;
+    case "money":
+      return topics[1].url;
+    case "business":
+      return topics[2].url;
+    case "productivity":
+      return topics[3].url;
+    case "psychology":
+      return topics[4].url;
+    case "mindfulness":
+      return topics[5].url;
+    case "art":
+      return topics[6].url;
+  }
+};
 
 const TopicScreen = () => {
   const { domain } = useContext(Context);
@@ -25,7 +45,6 @@ const TopicScreen = () => {
   const [articles, setArticles] = useState();
   const location = useLocation();
   const base = location.pathname.split("/")[1];
-  console.log(base);
 
   useEffect(() => {
     if (topic !== save) {
@@ -58,71 +77,46 @@ const TopicScreen = () => {
         {loading ? (
           <Loader />
         ) : (
-          <>
-            <div className="topicscreen--box-7">
-              <h1 className="text">
-                {topic}
-                &nbsp; &nbsp;
-                {articles && (
-                  <span class="link">{articles.length} articles</span>
-                )}
-              </h1>
-            </div>
-            <div className="home--box-1">
-              <Header />
-              <div className="home--box-2">
-                <div className="topicscreen--box-6">
-                  <h1 className="text">
-                    {topic}
-                    &nbsp; &nbsp;
-                    {articles && (
-                      <span class="link">{articles.length} articles</span>
-                    )}
-                  </h1>
-                </div>
-                <main className="home--box-4">
-                  <ul>
-                    {articles &&
-                      articles.map((article) => (
-                        <li key={article._id}>
-                          <MainFeedArticleCard article={article} type={type} />
-                        </li>
-                      ))}
-                  </ul>
-                </main>
-              </div>
-              <div className="home--box-3">
-                <div className="topicscreen--box-6">
-                  <h1 className="text">
-                    {topic}
-                    &nbsp; &nbsp;
-                    {articles && (
-                      <span class="link">{articles.length} articles</span>
-                    )}
-                  </h1>
-                </div>
-                <aside
-                  className={`home--box-5 ${
-                    base === "topic" ? "home--overflow" : ""
-                  }`}
+          <main className="home--box-1">
+            <Header />
+            <div className="home--box-2">
+              {topic && (
+                <div
+                  className="topic__banner topic--background"
+                  style={{ backgroundImage: `url(${getbanner(topic)}` }}
                 >
-                  <div>
-                    <Recommended />
+                  <div className={`topic__name`}>
+                    <h1>{topic}</h1>
                   </div>
-                  <div>
-                    <ReadingList type={type} />
+                </div>
+              )}
+              <div className="home__content">
+                <div className="home--box-6">
+                  <div className="home--box-7">
+                    <ul>
+                      {articles &&
+                        articles.map((article) => (
+                          <li key={article._id}>
+                            <MainFeedArticleCard
+                              article={article}
+                              type={false}
+                            />
+                          </li>
+                        ))}
+                    </ul>
                   </div>
-                  <div className="home__toprofile">
-                    {favorites && favorites.length > 3 && (
-                      <Link to={`/profile/${user._id}?breadcrumb=favorites`}>
-                        (See all {favorites.length})
-                      </Link>
-                    )}
+                  <div className="home--box-8">
+                    <div className="home__recommended">
+                      <Recommended />
+                    </div>
+                    <div className="home__readinglist">
+                      <ReadingList type={false} />
+                    </div>
                   </div>
-                </aside>
+                </div>
               </div>
             </div>
-          </>
+          </main>
         )}
       </TopicContext.Provider>
     </div>
