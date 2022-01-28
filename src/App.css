@@ -1,3 +1,11 @@
+:root {
+  /* variables */
+  --banner: 400px;
+  --header: calc(65px + 3rem);
+
+  /* end variables */
+}
+
 * {
   box-sizing: border-box;
 }

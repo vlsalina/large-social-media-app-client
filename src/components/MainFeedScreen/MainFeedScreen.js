@@ -33,7 +33,6 @@ const MainFeedScreen = () => {
         setLoading(false);
       })
       .catch((error) => {
-        setLoading(false);
         console.log(error);
       });
   }, []);
@@ -44,38 +43,57 @@ const MainFeedScreen = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div className="home--box-1">
+          <main className="home--box-1">
             <Header />
             <div className="home--box-2">
-              <main className="home--box-4">
-                <ul>
-                  {articles &&
-                    articles.map((article) => (
-                      <li key={article._id}>
-                        <MainFeedArticleCard article={article} type={type} />
-                      </li>
-                    ))}
-                </ul>
-              </main>
+              <div className="home__banner">
+                <div className="home--box-3">
+                  <div className="home--box-4">
+                    <div className="home__title">
+                      <h1> Medium is a place to write, read, and connect </h1>
+                    </div>
+                    <div className="home__description">
+                      <p>
+                        It's easy and free to post your thinking on any topic
+                        and connect with millions of readers.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="home--box-5">
+                    <img
+                      className="home__hero"
+                      src={`/assets/large-logo.png`}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="home__content">
+                <div className="home--box-6">
+                  <div className="home--box-7">
+                    <ul>
+                      {articles &&
+                        articles.map((article) => (
+                          <li key={article._id}>
+                            <MainFeedArticleCard
+                              article={article}
+                              type={true}
+                            />
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                  <div className="home--box-8">
+                    <div className="home__recommended">
+                      <Recommended />
+                    </div>
+                    <div className="home__readinglist">
+                      <ReadingList type={true} />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="home--box-3">
-              <aside className="home--box-5">
-                <div>
-                  <Recommended />
-                </div>
-                <div>
-                  <ReadingList type={type} />
-                </div>
-                <div className="home__toprofile">
-                  {favorites && favorites.length > 3 && (
-                    <Link to={`/profile/${user._id}?breadcrumb=favorites`}>
-                      (See all {favorites.length})
-                    </Link>
-                  )}
-                </div>
-              </aside>
-            </div>
-          </div>
+          </main>
         )}
       </MainFeedContext.Provider>
     </div>

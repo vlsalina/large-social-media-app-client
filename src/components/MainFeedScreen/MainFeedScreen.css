@@ -1,77 +1,83 @@
-.home {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
+/* home--box-1 */
 .home--box-1 {
   width: 100%;
-  position: relative;
 }
+/* end home--box-1 */
 
+/* home--box-2 */
 .home--box-2 {
   width: 100%;
   position: relative;
-  top: calc(65px + 3rem);
-  padding: 0 1rem;
+  top: var(--header);
+}
+
+/* end home--box-2 */
+
+/* home banner */
+.home__banner {
+  height: var(--banner);
+  background-color: rgb(150, 140, 207);
+  display: flex;
+  justify-content: center;
 }
 
 .home--box-3 {
-  display: none;
+  display: flex;
+  width: 100%;
+}
+
+.home--box-4,
+.home--box-5 {
+  width: 50%;
+  padding: 1rem;
 }
 
 .home--box-5 {
-  height: 100vh;
-  overflow-y: auto;
-  padding-bottom: 10rem;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.home__toprofile {
-  width: 100%;
-  margin-top: 2rem;
-}
-
-.home__toprofile a {
-  color: rgb(163, 74, 74);
-  font-weight: bold;
-}
-
-@media screen and (min-width: 743px) {
-  .home--box-1 {
-    width: 743px;
-  }
-
-  .home--box-2 {
-    padding: 0;
-  }
+.home__hero {
+  height: 100%;
+  object-fit: contain;
 }
 
 @media screen and (min-width: 1192px) {
-  .home--box-1 {
-    width: 1192px;
-  }
-
-  .home--box-2 {
-    padding: 0;
-  }
-
-  .home--box-4 {
-    width: 70%;
-    padding-right: 2rem;
-    border-right: 1px solid rgb(219, 210, 210);
-  }
-
   .home--box-3 {
-    display: block;
     width: 1192px;
-    position: fixed;
-    top: calc(65px + 3rem);
-  }
-
-  .home--box-5 {
-    width: 30%;
-    position: absolute;
-    right: 0;
-    padding-left: 2rem;
   }
 }
+
+/* end home banner */
+
+/* home__content */
+.home__content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.home--box-6 {
+  width: 100%;
+  display: flex;
+}
+
+.home--box-7 {
+  width: 70%;
+  padding-right: 2rem;
+}
+
+.home--box-8 {
+  width: 30%;
+  padding-left: 2rem;
+  border-left: 1px solid rgb(214, 199, 199);
+}
+
+@media screen and (min-width: 1192px) {
+  .home--box-6 {
+    width: 1192px;
+  }
+}
+
+/* end home__feed */
