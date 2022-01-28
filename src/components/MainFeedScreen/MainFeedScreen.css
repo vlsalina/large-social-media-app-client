@@ -16,9 +16,10 @@
 /* home banner */
 .home__banner {
   height: var(--banner);
-  background-color: rgb(150, 140, 207);
+  background-image: url(../../../public/assets/banners/thumb-1920-936378.jpg);
   display: flex;
   justify-content: center;
+  color: #fff;
 }
 
 .home--box-3 {
@@ -29,7 +30,19 @@
 .home--box-4,
 .home--box-5 {
   width: 50%;
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.home--box-4 {
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home--box-5 {
+  padding-left: 1rem;
 }
 
 .home--box-5 {
@@ -40,6 +53,17 @@
 .home__hero {
   height: 100%;
   object-fit: contain;
+}
+
+.home__title h2 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+@media screen and (min-width: 743px) {
+  .home--box-3 {
+    width: 743px;
+  }
 }
 
 @media screen and (min-width: 1192px) {
@@ -61,23 +85,40 @@
 .home--box-6 {
   width: 100%;
   display: flex;
+  padding: 0 1rem;
 }
 
 .home--box-7 {
-  width: 70%;
-  padding-right: 2rem;
-  border-right: 1px solid rgb(214, 199, 199);
+  width: 100%;
 }
 
 .home--box-8 {
-  width: 30%;
-  padding-left: 2rem;
-  position: relative;
+  display: none;
+}
+
+@media screen and (min-width: 743px) {
+  .home--box-6 {
+    width: 743px;
+    padding: 0;
+  }
 }
 
 @media screen and (min-width: 1192px) {
   .home--box-6 {
     width: 1192px;
+  }
+
+  .home--box-7 {
+    width: 70%;
+    padding-right: 2rem;
+    border-right: 1px solid rgb(211, 193, 193);
+  }
+
+  .home--box-8 {
+    display: block;
+    width: 30%;
+    padding-left: 2rem;
+    position: relative;
   }
 
   .home--fixed {

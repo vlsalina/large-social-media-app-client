@@ -31,7 +31,7 @@ const topics = [
   },
   {
     name: "business",
-    url: "/assets/banners/business.jpg",
+    url: "/assets/banners/business.jpeg",
   },
   {
     name: "productivity",

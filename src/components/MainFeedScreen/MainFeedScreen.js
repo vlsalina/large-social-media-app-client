@@ -60,7 +60,7 @@ const MainFeedScreen = () => {
                 <div className="home--box-3">
                   <div className="home--box-4">
                     <div className="home__title">
-                      <h1> Medium is a place to write, read, and connect </h1>
+                      <h2> Medium is a place to write, read, and connect </h2>
                     </div>
                     <div className="home__description">
                       <p>
