@@ -12,6 +12,7 @@ import { AiOutlineLike } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
 import { RepliesContext } from "../Replies/Replies";
+import Avatar from "../Avatar/Avatar";
 
 const MainFeedArticleCard = ({ article, type }) => {
   const { domain } = useContext(Context);
@@ -79,10 +80,7 @@ const MainFeedArticleCard = ({ article, type }) => {
       <div className="card--box-1">
         <div className="card--box-3">
           <div className="card__avatar-wrapper card--spacer">
-            <img
-              className="card__avatar"
-              src={"/assets/icons8-circled-v-100.png"}
-            />
+            <Avatar article={article} />
           </div>
           <div className="card__author card--spacer">
             <Link to={`/profile/${article.authorId}`}>

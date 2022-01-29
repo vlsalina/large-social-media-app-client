@@ -37,6 +37,10 @@
   margin-top: 1rem;
 }
 
+.profilecard--spacer {
+  margin-top: 1rem;
+}
+
 /* maintain number of lines */
 .profilecard__title,
 .profilecard__snippet,

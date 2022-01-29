@@ -7,6 +7,7 @@ import { MainFeedContext } from "../MainFeedScreen/MainFeedScreen";
 import { TopicContext } from "../TopicScreen/TopicScreen";
 import { formatDate } from "../../utils";
 import { Link } from "react-router-dom";
+import Avatar from "../Avatar/Avatar";
 
 const Favorites = ({ favorites, setFavorites, domain, token }) => {
   const unfavHandler = async (articleId) => {
@@ -29,11 +30,8 @@ const Favorites = ({ favorites, setFavorites, domain, token }) => {
         {favorites.slice(0, 3).map((fav) => (
           <li key={fav._id}>
             <div className="favorites--box-1">
-              <div>
-                <img
-                  className="favorites__avatar card--spacer"
-                  src={"/assets/icons8-circled-v-100.png"}
-                />
+              <div className="favorites__avatar">
+                <Avatar article={fav} />
               </div>
               <Link to={`/profile/${fav.authorId}`}>
                 <div className="favorites__author card--spacer">

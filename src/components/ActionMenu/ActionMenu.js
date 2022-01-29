@@ -1,10 +1,12 @@
 import "./ActionMenu.css";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { GrClose } from "react-icons/gr";
+import { IconContext } from "react-icons";
+import { styles } from "../../styles/styles";
+import { topics } from "../../data/data";
+import Recommended from "../Recommended/Recommended";
 import { useNavigate } from "react-router-dom";
 
 const ActionMenu = () => {
-  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const signOutHandler = () => {
@@ -13,30 +15,38 @@ const ActionMenu = () => {
     navigate("/login");
   };
 
+  const closeHandler = () => {
+    let backdrop = document.getElementsByClassName("actionmenu")[0];
+    let drawer = document.getElementsByClassName("actionmenu__drawer")[0];
+
+    drawer.classList.remove("actionmenu__drawer--open");
+    drawer.classList.add("actionmenu__drawer--close");
+    backdrop.classList.remove("actionmenu--open");
+    backdrop.classList.add("actionmenu--close");
+  };
+
   return (
-    <div className="actionMenu">
-      <div className="actionMenu-header">
-        <div className="actionMenu-avatar">
-          <img src={"/assets/icons8-circled-v-100.png"} />
+    <div className="actionmenu">
+      <div className="actionmenu__drawer">
+        <div className="actionmenu--box-1">
+          <button type="button" onClick={closeHandler}>
+            <IconContext.Provider value={styles.icons}>
+              <GrClose />
+            </IconContext.Provider>
+          </button>
         </div>
-        <div className="actionMenu-user-data">
-          <div>
-            {user.firstname} {user.lastname}
-          </div>
-          <div>{user.email}</div>
+        <Recommended />
+        <hr />
+        <div className="settings">Settings</div>
+        <div className="actionmenu--box-2">
+          <button
+            className="actionmenu__signout"
+            type="button"
+            onClick={signOutHandler}
+          >
+            Sign Out
+          </button>
         </div>
-      </div>
-      <div className="actionMenu-items">
-        <ul>
-          <li>
-            <Link to="/account">Settings</Link>
-          </li>
-          <li>
-            <button type="button" onClick={signOutHandler}>
-              Sign Out
-            </button>
-          </li>
-        </ul>
       </div>
     </div>
   );

@@ -65,7 +65,7 @@ const ArticleEditor = () => {
       title: title.current.value,
       author: `${user.firstname} ${user.lastname}`,
       authorId: user._id,
-      avatar: user.avatar ? user.avatar : "",
+      avatar: user.avatar,
       image: imgaddress,
       snippet: description.current.value,
       description: description.current.value,
@@ -124,13 +124,13 @@ const ArticleEditor = () => {
       <div className="articleeditor--box-3">
         <ul>
           {topics.map((x, index) => (
-            <li key={x}>
+            <li key={x.name}>
               <button
                 className="articleeditor__topic articleeditor__topic--normal"
                 type="button"
-                onClick={() => categoryHandler(x, index)}
+                onClick={() => categoryHandler(x.name, index)}
               >
-                {x}
+                {x.name}
               </button>
             </li>
           ))}

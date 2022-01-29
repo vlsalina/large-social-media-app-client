@@ -12,6 +12,7 @@ import { formatDate } from "../../utils";
 import FadeInSection from "../FadeInSection/FadeInSection";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Avatar from "../Avatar/Avatar";
 
 const FadeIn = ({ children }) => {
   const [isVisib, setIsVisib] = React.useState(false);
@@ -257,7 +258,12 @@ const ProfileScreen = () => {
                         <div className="profilescreen--box-4">
                           <div className="profilescreen--box-5">
                             <div className="profilescreen__avatar">
-                              <img src={"/assets/icons8-circled-v-100.png"} />
+                              <Avatar
+                                article={{
+                                  avatar: article.avatar,
+                                  author: article.author,
+                                }}
+                              />
                             </div>
                             {article && (
                               <Link to={`/profile/${article.userId}`}>

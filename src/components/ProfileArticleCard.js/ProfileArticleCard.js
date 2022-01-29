@@ -8,6 +8,7 @@ import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
 import { formatDate } from "../../utils";
 import { useSelector } from "react-redux";
+import Avatar from "../Avatar/Avatar";
 import axios from "axios";
 
 const ProfileArticleCard = ({ article }) => {
@@ -68,6 +69,16 @@ const ProfileArticleCard = ({ article }) => {
           {article.category}
         </div>
       </Link>
+      <div className="card--box-3 profilecard--spacer">
+        <div className="card__avatar-wrapper card--spacer">
+          <Avatar article={article} />
+        </div>
+        <div className="card__author card--spacer">
+          <Link to={`/profile/${article.authorId}`}>
+            <h4>{article.author}</h4>
+          </Link>
+        </div>
+      </div>
       <Link to={`/article/${article._id}`}>
         <div className="profilecard__title">
           <h2> {article.title} </h2>

@@ -12,6 +12,7 @@ import Recommended from "../Recommended/Recommended";
 import ReadingList from "../ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 import { banner } from "../../styles/styles";
+import ActionMenu from "../ActionMenu/ActionMenu";
 
 export const MainFeedContext = React.createContext();
 
@@ -26,10 +27,23 @@ const MainFeedScreen = () => {
 
   window.addEventListener("scroll", () => {
     let aside = document.getElementsByClassName("home--box-8")[0];
-    if (window.scrollY > 400) {
-      aside.classList.add("home--fixed");
-    } else {
-      aside.classList.remove("home--fixed");
+    if (aside) {
+      if (window.scrollY > 400) {
+        aside.classList.add("home--fixed");
+      } else {
+        aside.classList.remove("home--fixed");
+      }
+    }
+  });
+
+  window.addEventListener("click", (e) => {
+    let backdrop = document.getElementsByClassName("actionmenu")[0];
+    let drawer = document.getElementsByClassName("actionmenu")[0];
+    if (e.target === backdrop) {
+      drawer.classList.remove("actionmenu--open");
+      drawer.classList.add("actionmenu--close");
+      backdrop.classList.remove("actionmenu--open");
+      backdrop.classList.add("actionmenu--close");
     }
   });
 
@@ -60,7 +74,7 @@ const MainFeedScreen = () => {
                 <div className="home--box-3">
                   <div className="home--box-4">
                     <div className="home__title">
-                      <h2> Medium is a place to write, read, and connect </h2>
+                      <h2> Large is a place to write, read, and connect </h2>
                     </div>
                     <div className="home__description">
                       <p>
@@ -68,12 +82,6 @@ const MainFeedScreen = () => {
                         and connect with millions of readers.
                       </p>
                     </div>
-                  </div>
-                  <div className="home--box-5">
-                    <img
-                      className="home__hero"
-                      src={`/assets/large-logo.png`}
-                    />
                   </div>
                 </div>
               </div>
@@ -99,6 +107,15 @@ const MainFeedScreen = () => {
                     <div className="home__readinglist">
                       <ReadingList type={true} />
                     </div>
+                    {favorites && favorites.length > 3 && (
+                      <div>
+                        <Link to={`/profile/${user._id}`}>
+                          <div className="home__seemore">
+                            See all {favorites.length}
+                          </div>
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

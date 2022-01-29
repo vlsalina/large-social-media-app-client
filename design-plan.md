@@ -115,17 +115,19 @@ done - (3.2.4) unlike a reply
 
 **\*\*** client side todos **\*\***
 done (1) set up React Redux store
-(2) add likes and replies indicator for main feed articles
+done (2) add likes and replies indicator for main feed articles
 (3) main feed should be sectioned into Latest articles and subscribed articles
-(4) personal avatars
-(5) add hero section for Main Feed screen
-(6) bottom replies indicator should open Replies side bar
-(7) Reading List should only show 5 articles. If user has favorited more than 5, provide link to Bookmarks screen.
+done (4) personal avatars
+done (5) add hero section for Main Feed screen
+done (6) bottom replies indicator should open Replies side bar
+done (7) Reading List should only show 3 articles. If user has favorited more than 3, provide link to Bookmarks screen.
 (8) Optimization - Remember to DRY. All reusable functions should be stored in a seperate js file to be exported when needed.
-(9) Fix Article image on Main Feed screen.
+done (9) Fix Article image on Main Feed screen.
 done (10) Added new properties to user Model in backend: (a) user story, (b) user followers list
-(11) Update the /api/users/follow api to also added user's own \_id to author's "followers" list
+done (11) Update the /api/users/follow api to also added user's own \_id to author's "followers" list
 (12) Too much sphagetti code in Profile screen. Need to do optimization.
+(13) drop down menu (for mobile devices) to allow users to pick a topic or go to favorites
+(14) fix cancel button in reply's editor
 
 **\*\*** components **\*\***
 (1) Replies modal

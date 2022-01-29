@@ -85,7 +85,11 @@ const TopicScreen = () => {
                   className="topic__banner topic--background"
                   style={{ backgroundImage: `url(${getbanner(topic)}` }}
                 >
-                  <div className={`topic__name`}>
+                  <div
+                    className={`topic__name ${
+                      topic === "technology" ? "topic--black" : ""
+                    }`}
+                  >
                     <h1>{topic}</h1>
                   </div>
                 </div>
@@ -112,6 +116,15 @@ const TopicScreen = () => {
                     <div className="home__readinglist">
                       <ReadingList type={false} />
                     </div>
+                    {favorites && favorites.length > 3 && (
+                      <div>
+                        <Link to={`/profile/${user._id}`}>
+                          <div className="home__seemore">
+                            See all {favorites.length}
+                          </div>
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

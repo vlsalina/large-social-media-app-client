@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./Header.css";
 import { useSelector } from "react-redux";
-import ActionMenu from "../ActionMenu/ActionMenu";
 import { Link } from "react-router-dom";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import Avatar from "../Avatar/Avatar";
+import ActionMenu from "../ActionMenu/ActionMenu";
 
 const styles = {
   icon: {
@@ -14,25 +15,8 @@ const styles = {
 
 const Header = () => {
   const user = useSelector((state) => state.user);
-  const [actionMenuToDisplay, setActionMenuToDisplay] = useState(false);
-
-  const clickHandler = () => {
-    const actionMenu = document.getElementsByClassName("actionMenu")[0];
-    if (!actionMenuToDisplay) {
-      actionMenu.style.display = "block";
-      setActionMenuToDisplay(!actionMenuToDisplay);
-    } else {
-      actionMenu.style.display = "none";
-      setActionMenuToDisplay(!actionMenuToDisplay);
-    }
-  };
 
   const menuItems = [
-    {
-      name: "search",
-      icon: "/assets/icons8-search-500.png",
-      url: "/",
-    },
     {
       name: "userArticles",
       icon: "/assets/icons8-bookmark-512.png",
@@ -49,8 +33,19 @@ const Header = () => {
     },
   ];
 
+  const drawerHandler = () => {
+    let backdrop = document.getElementsByClassName("actionmenu")[0];
+    let drawer = document.getElementsByClassName("actionmenu__drawer")[0];
+
+    backdrop.classList.remove("actionmenu--close");
+    backdrop.classList.add("actionmenu--open");
+    drawer.classList.remove("actionmenu__drawer--close");
+    drawer.classList.add("actionmenu__drawer--open");
+  };
+
   return (
     <div className="header">
+      <ActionMenu />
       <div className="header--box-1">
         <ul>
           <li className="header--box-2">
@@ -59,7 +54,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="header--box-3">
-            <div>
+            <div className="header--box-4">
               <ul>
                 <li key={"create article"}>
                   <Link to="/create">
@@ -68,26 +63,38 @@ const Header = () => {
                     </IconContext.Provider>
                   </Link>
                 </li>
-                {menuItems.slice(0, 3).map((item) => (
+                <li key={"search"}>
+                  <button
+                    type="button"
+                    className="header__drawer header--noborder"
+                  >
+                    <img
+                      className="header__icon"
+                      src={`/assets/icons8-search-500.png`}
+                    />
+                  </button>
+                </li>
+                {menuItems.slice(0, 2).map((item) => (
                   <li key={item.name}>
                     <Link to={item.url}>
                       <img className="header__icon" src={item.icon} />
                     </Link>
                   </li>
                 ))}
-                <li key={menuItems[3].name}>
+                <li key={"action menu"}>
                   <button
                     className="actionmenubutton"
                     type="button"
-                    onClick={clickHandler}
+                    onClick={drawerHandler}
                   >
-                    <img className="header__icon" src={menuItems[3].icon} />
+                    <Avatar
+                      article={{ avatar: user.avatar, author: user.firstname }}
+                    />
                   </button>
                 </li>
               </ul>
             </div>
           </li>
-          <ActionMenu />
         </ul>
       </div>
     </div>

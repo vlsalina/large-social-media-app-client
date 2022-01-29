@@ -23,7 +23,7 @@ const networks = [
 const topics = [
   {
     name: "technology",
-    url: "/assets/banners/technology.jpg",
+    url: "/assets/banners/15-Social-Media-Trends.png",
   },
   {
     name: "money",
@@ -51,4 +51,19 @@ const topics = [
   },
 ];
 
-export { networks, topics };
+const colors = [
+  "#800000",
+  "#FF0000",
+  "#800080",
+  "#FF00FF",
+  "#008000",
+  "#00FF00",
+  "#808000",
+  "#000080",
+  "#0000FF",
+  "#008080",
+  "#00FFFF",
+  "#000000",
+];
+
+export { networks, topics, colors };

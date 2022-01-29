@@ -9,6 +9,7 @@ import parse from "html-react-parser";
 import { formatDate } from "../../utils";
 import { GrClose } from "react-icons/gr";
 import { IconContext } from "react-icons";
+import Avatar from "../Avatar/Avatar";
 
 export const RepliesContext = React.createContext();
 
@@ -71,7 +72,7 @@ const Replies = () => {
               <div key={index} className="replies--box-2">
                 <div className="replies--box-3">
                   <div className="replies__avatar">
-                    <img src={"/assets/icons8-circled-v-100.png"} />
+                    <Avatar article={{ avatar: x.avatar, author: x.author }} />
                   </div>
                   <div className="replies__author">
                     <p>{x.author}</p>

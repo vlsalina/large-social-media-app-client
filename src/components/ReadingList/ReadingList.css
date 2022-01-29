@@ -35,8 +35,7 @@
 }
 
 .favorites__avatar {
-  height: 2rem;
-  object-fit: contain;
+  margin-right: 1rem;
 }
 
 .favorites__author h2 {

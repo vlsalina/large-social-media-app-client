@@ -32,7 +32,7 @@
 
 .header--box-2,
 .header--box-3,
-.header--box-3 div,
+.header--box-4,
 .header--box-3 div ul,
 .header--box-3 div ul li {
   height: 100%;
@@ -50,7 +50,7 @@
   width: 80%;
 }
 
-.header--box-3 div {
+.header--box-4 {
   width: 100%;
 }
 
@@ -73,7 +73,7 @@
   height: 100%;
 }
 
-.header__create {
+.header--noborder {
   border: none;
 }
 
@@ -97,7 +97,7 @@
     justify-content: flex-end;
   }
 
-  .header--box-3 div {
+  .header--box-4 {
     width: 300px;
   }
 }
