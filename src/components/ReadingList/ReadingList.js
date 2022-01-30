@@ -15,7 +15,7 @@ const Favorites = ({ favorites, setFavorites, dispatch }) => {
   const unfavHandler = (articleId) => {
     try {
       dispatch(unfavorite(articleId));
-      setFavorites(favorites.filter((x) => x.articleId !== articleId));
+      setFavorites(favorites.filter((x) => x._id !== articleId));
     } catch (error) {
       console.log(error);
     }
