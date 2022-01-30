@@ -99,16 +99,14 @@ const ProfileScreen = () => {
   // base articles
   const [articles, setArticles] = useState();
 
-  // user's articles, favorites, and replies states
+  // user's articles, favorites, replies, and following states
   const [usersArticles, setUsersArticles] = useState();
   const [favorites, setFavorites] = useState();
   const [replies, setReplies] = useState();
+  const [following, setFollowing] = useState();
 
   // set which state to use (articles, favorites, replies, following)
   const [flag, setFlag] = useState("");
-
-  // if 'following' state is chosen, store following array of authors in users
-  const [users, setUsers] = useState([]);
 
   const search = useLocation().search;
   const breadcrumb = new URLSearchParams(search).get("breadcrumb");
@@ -175,6 +173,18 @@ const ProfileScreen = () => {
             setReplies(response.data.reverse());
           })
           .catch((error) => console.log(error));
+        // get following data of all following users
+        Promise.all(
+          user.following.map((x) => {
+            return axios.get(`${domain}/api/users/getUser?id=${x.userId}`, {
+              headers: { authorization: `Bearer ${user.accessToken}` },
+            });
+          })
+        )
+          .then((response) => {
+            setFollowing(response.map((x) => x.data));
+          })
+          .catch((error) => console.log(error));
       }
       setLoading(false);
     };
@@ -195,18 +205,7 @@ const ProfileScreen = () => {
       setFlag("notifications");
     }
     if (crumb === "following") {
-      Promise.all(
-        user.following.map((x) => {
-          return axios.get(`${domain}/api/users/getUser?id=${x.userId}`, {
-            headers: { authorization: `Bearer ${user.accessToken}` },
-          });
-        })
-      )
-        .then((response) => {
-          setArticles(response.map((x) => x.data));
-          console.log(response);
-        })
-        .catch((error) => console.log(error));
+      setArticles(following);
       setFlag("following");
     }
   };
@@ -350,7 +349,7 @@ const ProfileScreen = () => {
                               <Avatar
                                 article={{
                                   avatar: article.avatar,
-                                  author: "l",
+                                  author: article.firstname,
                                 }}
                               />
                             </div>
