@@ -10,16 +10,30 @@ import { formatDate } from "../../utils";
 import { useSelector } from "react-redux";
 import Avatar from "../Avatar/Avatar";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { favorite, unfavorite } from "../actions/actions";
 
 const ProfileArticleCard = ({ article }) => {
   const [likes, setLikes] = useState();
   const [replies, setReplies] = useState();
-  const [favorites, setFavorites] = useState();
+  const [favd, setFavd] = useState(false);
   const { domain } = useContext(Context);
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
     setLikes(article.likes);
+  }, []);
+
+  useEffect(() => {
+    // check if article already exists in user's favorites
+    let exists =
+      article && user.favorites.find((x) => x.articleId === article._id);
+    if (exists) {
+      setFavd(true);
+    } else {
+      setFavd(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -49,14 +63,14 @@ const ProfileArticleCard = ({ article }) => {
     }
   };
 
-  const clickHandler = async (e) => {
+  const favoriteHandler = async (e) => {
     try {
-      const { data } = await axios.patch(
-        `${domain}/api/users/favorite`,
-        { articleId: article._id },
-        { headers: { authorization: `Bearer ${user.accessToken}` } }
-      );
-      setFavorites([...favorites, article]);
+      if (favd) {
+        dispatch(unfavorite(article._id));
+      } else {
+        dispatch(favorite(article._id));
+      }
+      setFavd(!favd);
     } catch (error) {
       console.log(error);
     }
@@ -128,12 +142,19 @@ const ProfileArticleCard = ({ article }) => {
           <button
             className="favorite"
             type="button"
-            onClick={(e) => clickHandler(e)}
+            onClick={(e) => favoriteHandler(e)}
           >
-            <img
-              className="favorite__icon"
-              src={"/assets/icons8-favorite-512.png"}
-            />
+            {favd ? (
+              <img
+                className="favorite__icon"
+                src={"/assets/icons8-unfavorite-512.png"}
+              />
+            ) : (
+              <img
+                className="favorite__icon"
+                src={"/assets/icons8-favorite-512.png"}
+              />
+            )}
           </button>
         </div>
       </div>

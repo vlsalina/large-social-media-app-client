@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Context } from "../../App";
 import Header from "../Header/Header";
 import { useSelector } from "react-redux";
@@ -31,6 +31,7 @@ const ArticleScreen = () => {
   const [article, setArticle] = useState();
   const [following, setFollowing] = useState(false);
   const [likes, setLikes] = useState([]);
+  const [favd, setFavd] = useState(false);
   const [numReplies, setNumReplies] = useState(0);
   const user = useSelector((state) => state.user);
   const { articleId } = useParams();
@@ -58,7 +59,7 @@ const ArticleScreen = () => {
     }
   }, []);
 
-  const followHandler = async () => {
+  const followHandler = () => {
     try {
       if (!follow) {
         dispatch(follow(article.authorId));
@@ -119,7 +120,9 @@ const ArticleScreen = () => {
             </div>
           )}
           <div className="article--box-4">
-            <SocialMenu />
+            {article && (
+              <SocialMenu article={article} favd={favd} setFavd={setFavd} />
+            )}
           </div>
           {article && (
             <div className="article--box-1">
@@ -128,7 +131,9 @@ const ArticleScreen = () => {
                   <img src={`/assets/icons8-circled-v-100.png`} />
                 </div>
                 <div className="article--box-3">
-                  <div className="article__author">{article.author}</div>
+                  <Link to={`/profile/${article.authorId}`}>
+                    <div className="article__author">{article.author}</div>
+                  </Link>
                   <div className="article__date">
                     {formatDate(article.createdAt)}
                   </div>
@@ -216,7 +221,9 @@ const ArticleScreen = () => {
               </div>
             )}
           </div>
-          <SocialMenu />
+          {article && (
+            <SocialMenu article={article} favd={favd} setFavd={setFavd} />
+          )}
         </div>
         <Footer />
       </ArticleContext.Provider>

@@ -61,7 +61,7 @@ const MainFeedArticleCard = ({ article, type }) => {
     }
   };
 
-  const clickHandler = async (e) => {
+  const clickHandler = (e) => {
     if (user._id === article.authorId) {
       return;
     }
