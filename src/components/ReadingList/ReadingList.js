@@ -8,20 +8,17 @@ import { TopicContext } from "../TopicScreen/TopicScreen";
 import { formatDate } from "../../utils";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
+import { useDispatch } from "react-redux";
+import { unfavorite } from "../actions/actions";
 
-const Favorites = ({ favorites, setFavorites, domain, token }) => {
-  const unfavHandler = async (articleId) => {
+const Favorites = ({ favorites, setFavorites, dispatch }) => {
+  const unfavHandler = (articleId) => {
     try {
-      const { data } = await axios.patch(
-        `${domain}/api/users/unfavorite`,
-        { articleId: articleId },
-        { headers: { authorization: `Bearer ${token}` } }
-      );
+      dispatch(unfavorite(articleId));
       setFavorites(favorites.filter((x) => x.articleId !== articleId));
     } catch (error) {
       console.log(error);
     }
-    window.location.reload();
   };
 
   return (
@@ -72,6 +69,7 @@ const ReadingList = ({ type }) => {
     type ? MainFeedContext : TopicContext
   );
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const asyncCall = async () => {
@@ -117,8 +115,7 @@ const ReadingList = ({ type }) => {
         <Favorites
           favorites={favorites}
           setFavorites={setFavorites}
-          domain={domain}
-          token={user.accessToken}
+          dispatch={dispatch}
         />
       )}
     </div>

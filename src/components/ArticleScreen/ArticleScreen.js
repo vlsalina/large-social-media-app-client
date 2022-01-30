@@ -60,11 +60,6 @@ const ArticleScreen = () => {
 
   const followHandler = async () => {
     try {
-      //let { data } = await axios.patch(
-      //  `${domain}/api/users/${following ? "unfollow" : "follow"}`,
-      //  { userId: article.authorId },
-      //  { headers: { authorization: `Bearer ${user.accessToken}` } }
-      //);
       if (!follow) {
         dispatch(follow(article.authorId));
       } else {
@@ -154,6 +149,7 @@ const ArticleScreen = () => {
                     className="article__button--1 article--padding-1"
                     type="button"
                     onClick={followHandler}
+                    disabled={article.authorId === user._id ? true : false}
                   >
                     {following ? "Unfollow" : "Follow"}
                   </button>

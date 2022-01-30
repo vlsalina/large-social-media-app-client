@@ -9,6 +9,12 @@ import {
   USER_UNFOLLOWING_REQUEST,
   USER_UNFOLLOWING_SUCCESS,
   USER_UNFOLLOWING_FAIL,
+  USER_FAVORITE_REQUEST,
+  USER_FAVORITE_SUCCESS,
+  USER_FAVORITE_FAIL,
+  USER_UNFAVORITE_REQUEST,
+  USER_UNFAVORITE_SUCCESS,
+  USER_UNFAVORITE_FAIL,
 } from "../actionTypes/actionTypes";
 import {
   ARTICLES_REQUEST,
@@ -121,8 +127,10 @@ export const unfollow = (authorId) => {
       );
 
       let user = getState().user;
-      let updatedUser = user.following.filter((x) => x.userId !== authorId);
-      user.following = updatedUser;
+      let updatedFollowing = user.following.filter(
+        (x) => x.userId !== authorId
+      );
+      user.following = updatedFollowing;
 
       result = user;
 
@@ -131,6 +139,81 @@ export const unfollow = (authorId) => {
     } catch (error) {
       dispatch({
         type: USER_UNFOLLOWING_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+    return result;
+  };
+};
+
+// favorite action
+export const favorite = (articleId) => {
+  return async (dispatch, getState) => {
+    let result;
+    dispatch({ type: USER_FAVORITE_REQUEST });
+    try {
+      const { data } = await axios.patch(
+        `${domain}/api/users/favorite`,
+        { articleId: articleId },
+        { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
+      );
+
+      let user = getState().user;
+
+      // check if article is already in user's favorites
+      let exists = user.favorites.find((x) => x.articleId === articleId);
+      if (!exists) {
+        user.favorites.push({ articleId: articleId });
+      } else {
+        return;
+      }
+
+      result = user;
+
+      dispatch({ type: USER_FAVORITE_SUCCESS, payload: user });
+      localStorage.setItem("user", JSON.stringify(getState().user));
+    } catch (error) {
+      dispatch({
+        type: USER_FAVORITE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+    return result;
+  };
+};
+
+// unfavorite action
+export const unfavorite = (articleId) => {
+  return async (dispatch, getState) => {
+    let result;
+    dispatch({ type: USER_UNFAVORITE_REQUEST });
+    try {
+      const { data } = await axios.patch(
+        `${domain}/api/users/unfavorite`,
+        { articleId: articleId },
+        { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
+      );
+
+      let user = getState().user;
+
+      let updatedFavorites = user.favorites.filter(
+        (x) => x.articleId !== articleId
+      );
+      user.favorites = updatedFavorites;
+
+      result = user;
+
+      dispatch({ type: USER_UNFAVORITE_SUCCESS, payload: user });
+      localStorage.setItem("user", JSON.stringify(getState().user));
+    } catch (error) {
+      dispatch({
+        type: USER_UNFAVORITE_FAIL,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message

@@ -13,6 +13,8 @@ import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
 import { RepliesContext } from "../Replies/Replies";
 import Avatar from "../Avatar/Avatar";
+import { useDispatch } from "react-redux";
+import { favorite } from "../actions/actions";
 
 const MainFeedArticleCard = ({ article, type }) => {
   const { domain } = useContext(Context);
@@ -22,6 +24,7 @@ const MainFeedArticleCard = ({ article, type }) => {
   const user = useSelector((state) => state.user);
   const [replies, setReplies] = useState([]);
   const [likes, setLikes] = useState();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setLikes(article.likes);
@@ -64,11 +67,7 @@ const MainFeedArticleCard = ({ article, type }) => {
     }
 
     try {
-      const { data } = await axios.patch(
-        `${domain}/api/users/favorite`,
-        { articleId: article._id },
-        { headers: { authorization: `Bearer ${user.accessToken}` } }
-      );
+      dispatch(favorite(article._id));
       setFavorites([...favorites, article]);
     } catch (error) {
       console.log(error);
