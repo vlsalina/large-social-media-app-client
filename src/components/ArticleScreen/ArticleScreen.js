@@ -15,6 +15,8 @@ import SocialMenu from "../SocialMenu/SocialMenu";
 import axios from "axios";
 import Replies from "../Replies/Replies";
 import parse from "html-react-parser";
+import { useDispatch } from "react-redux";
+import { follow, unfollow } from "../actions/actions";
 
 const styles = {
   icons: {
@@ -35,6 +37,7 @@ const ArticleScreen = () => {
   const articles = useSelector((state) => state.articles);
   const search = useLocation().search;
   const open = new URLSearchParams(search).get("open");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let result =
@@ -46,30 +49,27 @@ const ArticleScreen = () => {
       });
     setArticle(result);
     setLikes(result.likes);
-  }, []);
 
-  useEffect(() => {
-    axios
-      .get(`${domain}/api/users/getUser?id=${user._id}`, {
-        headers: { authorization: `Bearer ${user.accessToken}` },
-      })
-      .then((response) => {
-        if (response.data.following.includes(article.authorId)) {
-          setFollowing(true);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    let alreadyFollowing = user.following.find(
+      (x) => x.userId === result.authorId
+    );
+    if (alreadyFollowing) {
+      setFollowing(true);
+    }
   }, []);
 
   const followHandler = async () => {
     try {
-      let { data } = await axios.patch(
-        `${domain}/api/users/${following ? "unfollow" : "follow"}`,
-        { userId: article.authorId },
-        { headers: { authorization: `Bearer ${user.accessToken}` } }
-      );
+      //let { data } = await axios.patch(
+      //  `${domain}/api/users/${following ? "unfollow" : "follow"}`,
+      //  { userId: article.authorId },
+      //  { headers: { authorization: `Bearer ${user.accessToken}` } }
+      //);
+      if (!follow) {
+        dispatch(follow(article.authorId));
+      } else {
+        dispatch(unfollow(article.authorId));
+      }
       setFollowing(!following);
     } catch (error) {
       console.log(error);
