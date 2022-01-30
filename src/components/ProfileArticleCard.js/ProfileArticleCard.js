@@ -100,9 +100,11 @@ const ProfileArticleCard = ({ article }) => {
       </Link>
       <div className="card--box-4 profilecard__spacer">
         <div className="card--box-5">
-          <div className="card__date card--spacer">
-            {formatDate(article.createdAt)}
-          </div>
+          {article && (
+            <div className="card__date card--spacer">
+              {formatDate(article.createdAt)}
+            </div>
+          )}
           <div className="card__likes card--spacer">
             <button type="button" className="buttonA" onClick={likeHandler}>
               <IconContext.Provider value={styles.icons}>

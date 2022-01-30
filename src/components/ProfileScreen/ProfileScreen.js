@@ -13,6 +13,7 @@ import FadeInSection from "../FadeInSection/FadeInSection";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
+import { breadcrumbs } from "../../data/data";
 
 const FadeIn = ({ children }) => {
   const [isVisib, setIsVisib] = React.useState(false);
@@ -26,16 +27,16 @@ const FadeIn = ({ children }) => {
   return <div className={`fadein ${isVisib ? "isVisib" : ""}`}>{children}</div>;
 };
 
-const Breadcrumbs = ({ breadcrumbs, getData }) => {
+const Breadcrumbs = ({ getData }) => {
   return (
     <div className="breadcrumbs">
       <ul>
-        {breadcrumbs.map((crumb, index) => (
+        {breadcrumbs.map((crumb) => (
           <li key={crumb}>
             <button
               className={`breadcrumbs__crumb`}
               type="button"
-              onClick={() => getData(crumb, index)}
+              onClick={() => getData(crumb)}
             >
               {crumb}
             </button>
@@ -72,27 +73,50 @@ const AuthorProfile = ({ author }) => {
   );
 };
 
+const Wrapper = ({ children, author, userId, user, getData }) => {
+  return (
+    <>
+      <div className="profilescreen__heading">
+        {author && (
+          <h1>
+            Welcome to {author.firstname} {author.lastname}'s Page
+          </h1>
+        )}
+      </div>
+      {userId === user._id && <Breadcrumbs getData={getData} />}
+      {children}
+    </>
+  );
+};
+
 const ProfileScreen = () => {
   const { userId } = useParams();
   const { domain } = useContext(Context);
   const user = useSelector((state) => state.user);
   const [author, setAuthor] = useState();
+  const [loading, setLoading] = useState(false);
+
+  // base articles
   const [articles, setArticles] = useState();
+
+  // user's articles, favorites, and replies states
   const [usersArticles, setUsersArticles] = useState();
   const [favorites, setFavorites] = useState();
   const [replies, setReplies] = useState();
-  const [loading, setLoading] = useState(false);
-  const [flag, setFlag] = useState(true);
+
+  // set which state to use (articles, favorites, replies, following)
+  const [flag, setFlag] = useState("");
+
+  // if 'following' state is chosen, store following array of authors in users
+  const [users, setUsers] = useState([]);
 
   const search = useLocation().search;
   const breadcrumb = new URLSearchParams(search).get("breadcrumb");
 
-  const breadcrumbs = ["articles", "favorites", "notifications"];
-
   useEffect(() => {
     const asyncCall = async () => {
       setLoading(true);
-      setFlag(true);
+      setFlag("articles");
       // get articles written by author
       await axios
         .get(
@@ -142,7 +166,7 @@ const ProfileScreen = () => {
           })
           .catch((error) => console.log(error));
 
-        // get replies from articles written by user
+        // get other users replies from articles written by user
         await axios
           .get(`${domain}/api/replies/getRepliesByAuthor`, {
             headers: { authorization: `Bearer ${user.accessToken}` },
@@ -157,20 +181,33 @@ const ProfileScreen = () => {
     asyncCall();
   }, [userId]);
 
-  const getData = (crumb, index) => {
-    //let crumbs = document.getElementsByClassName("breadcrumbs__crumb");
-
+  const getData = (crumb) => {
     if (crumb === "articles") {
       setArticles(usersArticles);
-      setFlag(true);
+      setFlag("articles");
     }
     if (crumb === "favorites") {
       setArticles(favorites);
-      setFlag(true);
+      setFlag("favorites");
     }
     if (crumb === "notifications") {
       setArticles(replies);
-      setFlag(false);
+      setFlag("notifications");
+    }
+    if (crumb === "following") {
+      Promise.all(
+        user.following.map((x) => {
+          return axios.get(`${domain}/api/users/getUser?id=${x.userId}`, {
+            headers: { authorization: `Bearer ${user.accessToken}` },
+          });
+        })
+      )
+        .then((response) => {
+          setArticles(response.map((x) => x.data));
+          console.log(response);
+        })
+        .catch((error) => console.log(error));
+      setFlag("following");
     }
   };
 
@@ -197,60 +234,63 @@ const ProfileScreen = () => {
               </div>
             )}
             {articles && !(articles.length > 0) && (
-              <>
-                <div className="profilescreen__heading">
-                  {author && (
-                    <h1>
-                      Welcome to {author.firstname} {author.lastname}'s Page
-                    </h1>
-                  )}
-                </div>
-                {userId === user._id && (
-                  <Breadcrumbs breadcrumbs={breadcrumbs} getData={getData} />
-                )}
+              <Wrapper
+                author={author}
+                userId={userId}
+                user={user}
+                getData={getData}
+              >
                 <div className="profilescreen--box-2">
-                  {flag ? (
-                    <div>
-                      <h2>No articles written by this author. </h2>
-                    </div>
-                  ) : (
-                    <div>
-                      <h2>Your inbox is empty.</h2>
-                    </div>
-                  )}
+                  <div>
+                    <h2>No articles written by this author. </h2>
+                  </div>
                 </div>
-              </>
+              </Wrapper>
             )}
-            {flag && articles && articles.length > 0 && (
-              <>
-                <div className="profilescreen__heading">
-                  {author && (
-                    <h1>
-                      Welcome to {author.firstname} {author.lastname}'s Page
-                    </h1>
-                  )}
-                </div>
-                {userId === user._id && (
-                  <Breadcrumbs breadcrumbs={breadcrumbs} getData={getData} />
-                )}
-                {articles &&
-                  articles.map((article) => (
-                    <ProfileArticleCard article={article} key={article._id} />
-                  ))}
-              </>
+            {flag === "articles" && articles && articles.length > 0 && (
+              <Wrapper
+                author={author}
+                userId={userId}
+                user={user}
+                getData={getData}
+              >
+                <ul>
+                  {articles &&
+                    articles.map((article, index) => (
+                      <li key={index} className="profilescreen__item">
+                        <ProfileArticleCard
+                          article={article}
+                          key={article._id}
+                        />
+                      </li>
+                    ))}
+                </ul>
+              </Wrapper>
             )}
-            {!flag && articles && articles.length > 0 && (
-              <>
-                <div className="profilescreen__heading">
-                  {author && (
-                    <h1>
-                      Welcome to {author.firstname} {author.lastname}'s Page
-                    </h1>
-                  )}
-                </div>
-                {userId === user._id && (
-                  <Breadcrumbs breadcrumbs={breadcrumbs} getData={getData} />
-                )}
+            {flag === "favorites" && articles && articles.length > 0 && (
+              <Wrapper
+                author={author}
+                userId={userId}
+                user={user}
+                getData={getData}
+              >
+                <ul>
+                  {articles &&
+                    articles.map((article, index) => (
+                      <li key={index} className="profilescreen__item">
+                        <ProfileArticleCard article={article} />
+                      </li>
+                    ))}
+                </ul>
+              </Wrapper>
+            )}
+            {flag === "notifications" && articles && articles.length > 0 && (
+              <Wrapper
+                author={author}
+                userId={userId}
+                user={user}
+                getData={getData}
+              >
                 <ul className="profilescreen--list-1">
                   {articles &&
                     articles.map((article, index) => (
@@ -291,7 +331,38 @@ const ProfileScreen = () => {
                       </li>
                     ))}
                 </ul>
-              </>
+              </Wrapper>
+            )}
+            {flag === "following" && articles && articles.length > 0 && (
+              <Wrapper
+                author={author}
+                userId={userId}
+                user={user}
+                getData={getData}
+              >
+                <ul>
+                  {articles &&
+                    articles.map((article) => (
+                      <li className="profilescreen--box-7" key={article._id}>
+                        <Link to={`/profile/${article._id}`}>
+                          <div className="profilescreen--box-6">
+                            <div className="profilescreen--spacer">
+                              <Avatar
+                                article={{
+                                  avatar: article.avatar,
+                                  author: "l",
+                                }}
+                              />
+                            </div>
+                            <div className="profilscreen--spacer">
+                              {article.firstname}&nbsp;{article.lastname}
+                            </div>
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </Wrapper>
             )}
           </main>
         </>

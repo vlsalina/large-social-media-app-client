@@ -66,4 +66,6 @@ const colors = [
   "#000000",
 ];
 
-export { networks, topics, colors };
+const breadcrumbs = ["articles", "favorites", "notifications", "following"];
+
+export { networks, topics, colors, breadcrumbs };
