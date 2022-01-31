@@ -15,6 +15,9 @@ import { useLocation } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
 import { breadcrumbs } from "../../data/data";
 import AuthorProfile from "../AuthorProfile/AuthorProfile";
+import { useDispatch } from "react-redux";
+import { follow, unfollow } from "../actions/actions";
+import FollowingCard from "../FollowingCard/FollowingCard";
 
 const FadeIn = ({ children }) => {
   const [isVisib, setIsVisib] = React.useState(false);
@@ -70,6 +73,8 @@ const ProfileScreen = () => {
   const user = useSelector((state) => state.user);
   const [author, setAuthor] = useState();
   const [loading, setLoading] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(true);
+  const dispatch = useDispatch();
 
   // base articles
   const [articles, setArticles] = useState();
@@ -182,6 +187,23 @@ const ProfileScreen = () => {
     if (crumb === "following") {
       setArticles(following);
       setFlag("following");
+    }
+  };
+
+  const followHandler = (userId) => {
+    if (userId === user._id) {
+      return;
+    }
+
+    try {
+      if (isFollowing) {
+        dispatch(unfollow(userId));
+      } else {
+        dispatch(follow(userId));
+      }
+      setIsFollowing(!isFollowing);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -318,21 +340,11 @@ const ProfileScreen = () => {
                   {articles &&
                     articles.map((article) => (
                       <li className="profilescreen--box-7" key={article._id}>
-                        <Link to={`/profile/${article._id}`}>
-                          <div className="profilescreen--box-6">
-                            <div className="profilescreen--spacer">
-                              <Avatar
-                                article={{
-                                  avatar: article.avatar,
-                                  author: article.firstname,
-                                }}
-                              />
-                            </div>
-                            <div className="profilscreen--spacer">
-                              {article.firstname}&nbsp;{article.lastname}
-                            </div>
-                          </div>
-                        </Link>
+                        <FollowingCard
+                          article={article}
+                          isFollowing={isFollowing}
+                          followHandler={followHandler}
+                        />
                       </li>
                     ))}
                 </ul>

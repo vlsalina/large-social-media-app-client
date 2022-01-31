@@ -42,17 +42,8 @@
 }
 
 /* following */
-.profilescreen--box-6 {
-  display: flex;
-  align-items: center;
-}
-
 .profilescreen--box-7 {
   margin-bottom: 2rem;
-}
-
-.profilescreen--spacer {
-  margin-right: 1rem;
 }
 
 /* end following */
@@ -132,6 +123,7 @@
 
 .breadcrumbs ul {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .breadcrumbs ul li {

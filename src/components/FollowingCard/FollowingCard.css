@@ -1,0 +1,47 @@
+/* following */
+.followingcard--box-6 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.followingcard--box-7 {
+  margin-bottom: 2rem;
+}
+
+.followingcard--spacer {
+  margin-right: 1rem;
+}
+
+.followingcard__unfollow {
+  border: none;
+}
+
+.followingcard--box-8 {
+  display: flex;
+}
+
+.followingcard--mobile {
+  display: block;
+}
+.followingcard--desktop {
+  display: none;
+}
+
+@media screen and (min-width: 475px) {
+  .followingcard--mobile {
+    display: none;
+  }
+  .followingcard--desktop {
+    display: block;
+  }
+
+  .followingcard__unfollow {
+    border: 1px solid #000;
+    background-color: #fff;
+    border-radius: 1rem;
+    width: 8rem;
+  }
+}
+
+/* end following */

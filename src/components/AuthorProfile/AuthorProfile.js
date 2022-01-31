@@ -57,15 +57,17 @@ const AuthorProfile = ({ author }) => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </div>
-      <div className="authorprofile--box-1">
-        <button
-          className="authorprofile__follow"
-          type="button"
-          onClick={followHandler}
-        >
-          {isFollowing ? "Unfollow" : "Follow"}
-        </button>
-      </div>
+      {user._id !== author._id && (
+        <div className="authorprofile--box-1">
+          <button
+            className="authorprofile__follow"
+            type="button"
+            onClick={followHandler}
+          >
+            {isFollowing ? "Unfollow" : "Follow"}
+          </button>
+        </div>
+      )}
     </aside>
   );
 };
