@@ -254,10 +254,7 @@ const ProfileScreen = () => {
                   {articles &&
                     articles.map((article, index) => (
                       <li key={index} className="profilescreen__item">
-                        <ProfileArticleCard
-                          article={article}
-                          key={article._id}
-                        />
+                        <ProfileArticleCard article={article} />
                       </li>
                     ))}
                 </ul>
