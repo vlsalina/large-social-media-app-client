@@ -9,12 +9,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { TiMessages } from "react-icons/ti";
 import { AiOutlineLike } from "react-icons/ai";
+import { AiFillLike } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
 import { RepliesContext } from "../Replies/Replies";
 import Avatar from "../Avatar/Avatar";
 import { useDispatch } from "react-redux";
-import { favorite } from "../actions/actions";
+import { favorite, like, dislike } from "../actions/actions";
 
 const MainFeedArticleCard = ({ article, type }) => {
   const { domain } = useContext(Context);
@@ -24,12 +25,22 @@ const MainFeedArticleCard = ({ article, type }) => {
   const user = useSelector((state) => state.user);
   const [replies, setReplies] = useState([]);
   const [likes, setLikes] = useState();
+  const [liked, setLiked] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setLikes(article.likes);
 
     return () => setLikes([]);
+  }, []);
+
+  useEffect(() => {
+    let exists = article.likes.find((x) => x.userId === user._id);
+    if (exists) {
+      setLiked(true);
+    } else {
+      setLiked(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -43,22 +54,16 @@ const MainFeedArticleCard = ({ article, type }) => {
     return () => setReplies([]);
   }, []);
 
-  const likeHandler = async () => {
-    let sofar = likes.find((x) => x.userId === user._id);
-    try {
-      let { data } = await axios.patch(
-        `${domain}/api/articles/${sofar ? "unlikeArticle" : "likeArticle"}`,
-        { articleId: article._id },
-        { headers: { authorization: `Bearer ${user.accessToken}` } }
-      );
-      if (sofar) {
-        setLikes(likes.filter((x) => x.userId !== user._id));
-      } else {
-        setLikes([...likes, { userId: user._id }]);
-      }
-    } catch (error) {
-      console.log(error);
+  const likeHandler = () => {
+    let exists = article.likes.find((x) => x.userId === user._id);
+    if (!exists) {
+      dispatch(like(article._id));
+      setLikes([...likes, { userId: user._id }]);
+    } else {
+      dispatch(dislike(article._id));
+      setLikes(likes.filter((x) => x.userId !== user._id));
     }
+    setLiked(!liked);
   };
 
   const clickHandler = (e) => {
@@ -106,7 +111,7 @@ const MainFeedArticleCard = ({ article, type }) => {
             <div className="card__likes card--spacer">
               <button type="button" className="buttonA" onClick={likeHandler}>
                 <IconContext.Provider value={styles.icons}>
-                  <AiOutlineLike />
+                  {liked ? <AiFillLike /> : <AiOutlineLike />}
                 </IconContext.Provider>
                 &nbsp;
                 {likes && <div>{likes.length}</div>}

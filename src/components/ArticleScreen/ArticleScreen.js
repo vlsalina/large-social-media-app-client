@@ -7,6 +7,7 @@ import "./ArticleScreen.css";
 import { formatDate } from "../../utils";
 import { AiOutlineMessage } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
+import { AiFillLike } from "react-icons/ai";
 import { TiMessages } from "react-icons/ti";
 import { IconContext } from "react-icons";
 import { useLocation } from "react-router-dom";
@@ -16,7 +17,7 @@ import axios from "axios";
 import Replies from "../Replies/Replies";
 import parse from "html-react-parser";
 import { useDispatch } from "react-redux";
-import { follow, unfollow } from "../actions/actions";
+import { follow, unfollow, like, dislike } from "../actions/actions";
 
 const styles = {
   icons: {
@@ -31,6 +32,7 @@ const ArticleScreen = () => {
   const [article, setArticle] = useState();
   const [following, setFollowing] = useState(false);
   const [likes, setLikes] = useState([]);
+  const [liked, setLiked] = useState(false);
   const [favd, setFavd] = useState(false);
   const [numReplies, setNumReplies] = useState(0);
   const user = useSelector((state) => state.user);
@@ -51,11 +53,18 @@ const ArticleScreen = () => {
     setArticle(result);
     setLikes(result.likes);
 
+    // if user is already following author, set following state to true. False otherwise.
     let alreadyFollowing = user.following.find(
       (x) => x.userId === result.authorId
     );
     if (alreadyFollowing) {
       setFollowing(true);
+    }
+
+    // if user has already liked article, set liked state to true. False otherwise.
+    let alreadyLiked = result.likes.find((x) => x.userId === user._id);
+    if (alreadyLiked) {
+      setLiked(true);
     }
   }, []);
 
@@ -73,21 +82,15 @@ const ArticleScreen = () => {
   };
 
   const likeHandler = async () => {
-    let sofar = likes.find((x) => x.userId === user._id);
-    try {
-      let { data } = await axios.patch(
-        `${domain}/api/articles/${sofar ? "unlikeArticle" : "likeArticle"}`,
-        { articleId: article._id },
-        { headers: { authorization: `Bearer ${user.accessToken}` } }
-      );
-      if (sofar) {
-        setLikes(likes.filter((x) => x.userId !== user._id));
-      } else {
-        setLikes([...likes, { userId: user._id }]);
-      }
-    } catch (error) {
-      console.log(error);
+    let exists = article.likes.find((x) => x.userId === user._id);
+    if (!exists) {
+      dispatch(like(article._id));
+      setLikes([...likes, { userId: user._id }]);
+    } else {
+      dispatch(dislike(article._id));
+      setLikes(likes.filter((x) => x.userId !== user._id));
     }
+    setLiked(!liked);
   };
 
   const openHandler = () => {
@@ -198,10 +201,12 @@ const ArticleScreen = () => {
                   onClick={likeHandler}
                 >
                   {likes && (
-                    <IconContext.Provider value={styles.icons}>
-                      <AiOutlineLike />
+                    <>
+                      <IconContext.Provider value={styles.icons}>
+                        {liked ? <AiFillLike /> : <AiOutlineLike />}
+                      </IconContext.Provider>
                       &nbsp; &nbsp;{likes.length}
-                    </IconContext.Provider>
+                    </>
                   )}
                 </button>
               </div>

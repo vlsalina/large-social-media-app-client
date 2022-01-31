@@ -15,6 +15,12 @@ import {
   USER_UNFAVORITE_REQUEST,
   USER_UNFAVORITE_SUCCESS,
   USER_UNFAVORITE_FAIL,
+  ARTICLES_LIKE_REQUEST,
+  ARTICLES_LIKE_SUCCESS,
+  ARTICLES_LIKE_FAIL,
+  ARTICLES_DISLIKE_REQUEST,
+  ARTICLES_DISLIKE_SUCCESS,
+  ARTICLES_DISLIKE_FAIL,
 } from "../actionTypes/actionTypes";
 import {
   ARTICLES_REQUEST,
@@ -214,6 +220,91 @@ export const unfavorite = (articleId) => {
     } catch (error) {
       dispatch({
         type: USER_UNFAVORITE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+    return result;
+  };
+};
+
+// like action
+export const like = (articleId) => {
+  return async (dispatch, getState) => {
+    let result;
+    dispatch({ type: ARTICLES_LIKE_REQUEST });
+    try {
+      const { data } = await axios.patch(
+        `${domain}/api/articles/likeArticle`,
+        { articleId: articleId },
+        { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
+      );
+
+      let articles = getState().articles;
+      let user = getState().user;
+
+      // get index of liked article
+      let index = articles.findIndex((x) => x._id === articleId);
+
+      // check if user has already liked article
+      let exists = articles[index].likes.find((x) => x.userId === user._id);
+      if (exists) {
+        return;
+      }
+
+      // add user to likes array of article
+      articles[index].likes.push({ userId: user._id });
+
+      result = articles;
+
+      dispatch({ type: ARTICLES_LIKE_SUCCESS, payload: articles });
+      localStorage.setItem("articles", JSON.stringify(getState().articles));
+    } catch (error) {
+      dispatch({
+        type: ARTICLES_LIKE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+    return result;
+  };
+};
+
+// dislike action
+export const dislike = (articleId) => {
+  return async (dispatch, getState) => {
+    let result;
+    dispatch({ type: ARTICLES_DISLIKE_REQUEST });
+    try {
+      const { data } = await axios.patch(
+        `${domain}/api/articles/dislikeArticle`,
+        { articleId: articleId },
+        { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
+      );
+
+      let articles = getState().articles;
+      let user = getState().user;
+
+      // get index of liked article
+      let index = articles.findIndex((x) => x._id === articleId);
+
+      // remove user from article's likes array
+      let updatedLikes = articles[index].likes.filter(
+        (x) => x.userId !== user._id
+      );
+      articles[index].likes = updatedLikes;
+
+      result = articles;
+
+      dispatch({ type: ARTICLES_DISLIKE_SUCCESS, payload: articles });
+      localStorage.setItem("articles", JSON.stringify(getState().articles));
+    } catch (error) {
+      dispatch({
+        type: ARTICLES_DISLIKE_FAIL,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message
