@@ -18,6 +18,7 @@ import AuthorProfile from "../AuthorProfile/AuthorProfile";
 import { useDispatch } from "react-redux";
 import { follow, unfollow } from "../actions/actions";
 import FollowingCard from "../FollowingCard/FollowingCard";
+import NotificationsCard from "../NotificationsCard/NotificationsCard";
 
 const FadeIn = ({ children }) => {
   const [isVisib, setIsVisib] = React.useState(false);
@@ -288,39 +289,7 @@ const ProfileScreen = () => {
                   {articles &&
                     articles.map((article, index) => (
                       <li key={index}>
-                        <div className="profilescreen--box-4">
-                          <div className="profilescreen--box-5">
-                            <div className="profilescreen__avatar">
-                              <Avatar
-                                article={{
-                                  avatar: article.avatar,
-                                  author: article.author,
-                                }}
-                              />
-                            </div>
-                            {article && (
-                              <Link to={`/profile/${article.userId}`}>
-                                <div className="profilescreen__author">
-                                  <p>{article.author}</p>
-                                </div>
-                              </Link>
-                            )}
-                          </div>
-                          {article && (
-                            <Link
-                              to={`/article/${article.articleId}?open=true`}
-                            >
-                              <div className="profilescreen__content">
-                                {parse(article.content)}
-                              </div>
-                            </Link>
-                          )}
-                          {article && (
-                            <div className="profilescreen__date">
-                              {formatDate(article.createdAt)}
-                            </div>
-                          )}
-                        </div>
+                        <NotificationsCard article={article} />
                       </li>
                     ))}
                 </ul>

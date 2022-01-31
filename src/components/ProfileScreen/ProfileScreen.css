@@ -178,41 +178,7 @@
   overflow: hidden;
 }
 
-.profilescreen--list-1 li {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgb(155, 138, 138);
-}
-
-.profilescreen--box-4 {
-  width: 414px;
-}
-
-.profilescreen__avatar {
-  margin-right: 1rem;
-}
-
-.profilescreen__avatar img {
-  height: 2rem;
-  object-fit: contain;
-}
-
-.profilescreen--box-5 {
-  display: flex;
-  align-items: center;
-}
-
-.profilescreen__content {
-  width: 100%;
-  overflow: hidden;
-}
-
-.profilescreen__content img {
-  width: 100% !important;
-  object-fit: contain;
-}
-
-/* End replies container */
+/* end replies container */
 
 @media screen and (min-width: 743px) {
   .profilescreen--box-1 {

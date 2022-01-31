@@ -1,0 +1,36 @@
+/* notifications card */
+.notificationscard--list-1 li {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgb(155, 138, 138);
+}
+
+.notificationscard--box-4 {
+  width: 414px;
+}
+
+.notificationscard__avatar {
+  margin-right: 1rem;
+}
+
+.notificationscard__avatar img {
+  height: 2rem;
+  object-fit: contain;
+}
+
+.notificationscard--box-5 {
+  display: flex;
+  align-items: center;
+}
+
+.notificationscard__content {
+  width: 100%;
+  overflow: hidden;
+}
+
+.notificationscard__content img {
+  width: 100% !important;
+  object-fit: contain;
+}
+
+/* End notifications card */

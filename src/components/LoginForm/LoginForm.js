@@ -63,7 +63,7 @@ const LoginForm = ({ setLoading }) => {
         <div className="loginForm-formdata">
           <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             value={password}

@@ -109,7 +109,7 @@ const RegistrationForm = ({ setLoading }) => {
         <div className="loginForm-formdata">
           <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             value={password}
@@ -119,7 +119,7 @@ const RegistrationForm = ({ setLoading }) => {
         <div className="loginForm-formdata">
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input
-            type="text"
+            type="password"
             id="confirmPassword"
             name="confirmPassword"
             value={confirmPassword}
