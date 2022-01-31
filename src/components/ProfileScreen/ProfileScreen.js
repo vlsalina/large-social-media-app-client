@@ -95,7 +95,7 @@ const ProfileScreen = () => {
   useEffect(() => {
     const asyncCall = async () => {
       setLoading(true);
-      setFlag("articles");
+      setFlag(breadcrumb);
       // get articles written by author
       await axios
         .get(
@@ -108,7 +108,9 @@ const ProfileScreen = () => {
         )
         .then((response) => {
           setUsersArticles(response.data.reverse());
-          setArticles(response.data);
+          if (breadcrumb === "articles") {
+            setArticles(response.data);
+          }
         })
         .catch((error) => console.log(error));
       // get author info
@@ -140,6 +142,9 @@ const ProfileScreen = () => {
             )
               .then((response) => {
                 setFavorites(response.reverse().map((x) => x.data));
+                if (breadcrumb === "favorites") {
+                  setArticles(response.map((x) => x.data));
+                }
               })
               .catch((error) => console.log(error));
           })
@@ -152,6 +157,9 @@ const ProfileScreen = () => {
           })
           .then((response) => {
             setReplies(response.data.reverse());
+            if (breadcrumb === "notifications") {
+              setArticles(response.data);
+            }
           })
           .catch((error) => console.log(error));
         // get following data of all following users

@@ -17,9 +17,9 @@ const NotificationsCard = ({ article }) => {
           />
         </div>
         {article && (
-          <Link to={`/profile/${article.userId}`}>
+          <Link to={`/profile/${article.userId}?breadcrumb=articles`}>
             <div className="notificationscard__author">
-              <p>{article.author}</p>
+              <h4>{article.author}</h4>
             </div>
           </Link>
         )}

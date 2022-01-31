@@ -30,7 +30,7 @@ const Favorites = ({ favorites, setFavorites, dispatch }) => {
               <div className="favorites__avatar">
                 <Avatar article={fav} />
               </div>
-              <Link to={`/profile/${fav.authorId}`}>
+              <Link to={`/profile/${fav.authorId}?breadcrumb=articles`}>
                 <div className="favorites__author card--spacer">
                   <h2>{fav.author}</h2>
                 </div>

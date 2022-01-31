@@ -20,7 +20,7 @@ const Header = () => {
     {
       name: "userArticles",
       icon: "/assets/icons8-bookmark-512.png",
-      url: `/profile/${user._id}?breadcrumb=articles`,
+      url: `/profile/${user._id}?breadcrumb=favorites`,
     },
     {
       name: "notifications",

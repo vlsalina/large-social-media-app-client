@@ -87,7 +87,7 @@ const MainFeedArticleCard = ({ article, type }) => {
             <Avatar article={article} />
           </div>
           <div className="card__author card--spacer">
-            <Link to={`/profile/${article.authorId}`}>
+            <Link to={`/profile/${article.authorId}?breadcrumb=articles`}>
               <h4>{article.author}</h4>
             </Link>
           </div>

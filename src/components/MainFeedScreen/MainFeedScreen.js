@@ -109,7 +109,7 @@ const MainFeedScreen = () => {
                     </div>
                     {favorites && favorites.length > 3 && (
                       <div>
-                        <Link to={`/profile/${user._id}`}>
+                        <Link to={`/profile/${user._id}?breadcrumb=favorites`}>
                           <div className="home__seemore">
                             See all {favorites.length}
                           </div>

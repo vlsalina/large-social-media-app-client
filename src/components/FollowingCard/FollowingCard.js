@@ -35,7 +35,7 @@ const FollowingCard = ({ article }) => {
 
   return (
     <div className="followingcard--box-6">
-      <Link to={`/profile/${article._id}`}>
+      <Link to={`/profile/${article._id}?breadcrumb=articles`}>
         <div className="followingcard--box-8">
           <div className="followingcard--spacer">
             <Avatar
@@ -46,7 +46,9 @@ const FollowingCard = ({ article }) => {
             />
           </div>
           <div className="profilscreen--spacer">
-            {article.firstname}&nbsp;{article.lastname}
+            <h4 className="followingcard__author">
+              {article.firstname}&nbsp;{article.lastname}
+            </h4>
           </div>
         </div>
       </Link>
