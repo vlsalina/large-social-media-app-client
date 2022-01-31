@@ -239,7 +239,14 @@ const ProfileScreen = () => {
               >
                 <div className="profilescreen--box-2">
                   <div>
-                    <h2>No articles written by this author. </h2>
+                    {flag === "articles" && <h2>No articles written.</h2>}
+                    {flag === "favorites" && <h2>No articles bookmarked.</h2>}
+                    {flag === "notifications" && (
+                      <h2>No replies to any of your articles (yet).</h2>
+                    )}
+                    {flag === "following" && (
+                      <h2>No authors being followed.</h2>
+                    )}
                   </div>
                 </div>
               </Wrapper>
