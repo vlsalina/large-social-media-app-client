@@ -1,0 +1,42 @@
+/* Author Profile component */
+.authorprofile {
+  width: 197px;
+}
+
+.authorprofile__avatar {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
+.authorprofile__avatar img {
+  width: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.authorprofile__story {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+}
+
+.authorprofile--box-1 {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.authorprofile__follow {
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: #000;
+  color: #fff;
+  border-radius: 2rem;
+}
+
+/* End Author Profile component */

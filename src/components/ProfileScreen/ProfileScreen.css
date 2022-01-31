@@ -88,6 +88,20 @@
   -webkit-line-clamp: 10;
 }
 
+.authorprofile--box-1 {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.authorprofile__follow {
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: #000;
+  color: #fff;
+  border-radius: 2rem;
+}
+
 /* End Author Profile component */
 
 /* Fade-in component */
