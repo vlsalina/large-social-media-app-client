@@ -44,7 +44,6 @@ const TopicScreen = () => {
   const [favorites, setFavorites] = useState([]);
   const user = useSelector((state) => state.user);
   const [articles, setArticles] = useState();
-  const location = useLocation();
 
   useEffect(() => {
     if (topic !== save) {
