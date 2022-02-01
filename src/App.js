@@ -11,8 +11,8 @@ import CreateArticleScreen from "./components/CreateArticleScreen/CreateArticleS
 import TopicScreen from "./components/TopicScreen/TopicScreen";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
-//const domain = "https://large-social-media-app.herokuapp.com";
-const domain = "http://localhost:5000";
+const domain = "https://large-social-media-app.herokuapp.com";
+//const domain = "http://localhost:5000";
 
 export const Context = React.createContext();
 
