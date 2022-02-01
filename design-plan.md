@@ -157,9 +157,12 @@ done (11) Update the /api/users/follow api to also added user's own \_id to auth
 (6) to have page reflect changes (like number of likes after liking an article) WITHOUT refreshing page, fetch and store data into useState var, then when change occurs with function api call, simply update the state.
 (7) how to maintain aspect ratio
 (8) implementing fade-in and fade-out functionality using IntersectionObserver
+(9) react-router-dom now uses Navigate hook instead of Redirect
 
 **\*\*** Resources **\*\***
 (3) https://stackoverflow.com/questions/56694102/how-to-return-a-promise-from-an-action-using-thunk-and-usedispatch-react-redux
 (5) https://gomakethings.com/waiting-for-multiple-all-api-responses-to-complete-with-the-vanilla-js-promise.all-method/
 (7) https://www.w3schools.com/howto/howto_css_aspect_ratio.asp
 (8) https://dev.to/selbekk/how-to-fade-in-content-as-it-scrolls-into-view-10j4
+(9) https://stackoverflow.com/questions/69864165/error-privateroute-is-not-a-route-component-all-component-children-of-rou
+(9) https://stackoverflow.com/questions/63690695/react-redirect-is-not-exported-from-react-router-dom
