@@ -20,7 +20,7 @@ const LoginScreen = () => {
 
   return (
     <div className="login">
-      <LoginForm setLoading={setLoading} />
+      <LoginForm />
       <div className="login--box-1">
         <div className="login--box-2">
           <h1>Welcome back.</h1>

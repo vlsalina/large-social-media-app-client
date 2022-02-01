@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import "./RegistrationForm.css";
 import { Context } from "../../App";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const RegistrationForm = ({ setLoading }) => {
   const navigate = useNavigate();
