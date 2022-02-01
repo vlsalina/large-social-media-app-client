@@ -28,7 +28,7 @@ const LoginScreen = () => {
         <ul>
           {networks.slice(0, 4).map((x) => (
             <li key={x.network}>
-              <a href={x.url} target="_blank">
+              <a href={x.url} target="_blank" rel="noreferrer">
                 <button type="button" className="login__button">
                   Sign in with {x.network}
                 </button>

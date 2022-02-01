@@ -71,11 +71,9 @@ const ArticleEditor = () => {
     };
 
     try {
-      let { data } = await axios.post(
-        `${domain}/api/articles/createArticle`,
-        newArticle,
-        { headers: { authorization: `Bearer ${user.accessToken}` } }
-      );
+      await axios.post(`${domain}/api/articles/createArticle`, newArticle, {
+        headers: { authorization: `Bearer ${user.accessToken}` },
+      });
       navigate("/");
     } catch (error) {
       console.log(error);

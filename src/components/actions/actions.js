@@ -85,7 +85,7 @@ export const follow = (authorId) => {
     let result;
     dispatch({ type: USER_FOLLOWING_REQUEST });
     try {
-      const { data } = await axios.patch(
+      await axios.patch(
         `${domain}/api/users/follow`,
         { userId: authorId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
@@ -124,7 +124,7 @@ export const unfollow = (authorId) => {
     let result;
     dispatch({ type: USER_UNFOLLOWING_REQUEST });
     try {
-      const { data } = await axios.patch(
+      await axios.patch(
         `${domain}/api/users/unfollow`,
         { userId: authorId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
@@ -159,7 +159,7 @@ export const favorite = (articleId) => {
     let result;
     dispatch({ type: USER_FAVORITE_REQUEST });
     try {
-      const { data } = await axios.patch(
+      await axios.patch(
         `${domain}/api/users/favorite`,
         { articleId: articleId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
@@ -198,7 +198,7 @@ export const unfavorite = (articleId) => {
     let result;
     dispatch({ type: USER_UNFAVORITE_REQUEST });
     try {
-      const { data } = await axios.patch(
+      await axios.patch(
         `${domain}/api/users/unfavorite`,
         { articleId: articleId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
@@ -234,7 +234,7 @@ export const like = (articleId) => {
     let result;
     dispatch({ type: ARTICLES_LIKE_REQUEST });
     try {
-      const { data } = await axios.patch(
+      await axios.patch(
         `${domain}/api/articles/likeArticle`,
         { articleId: articleId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
@@ -278,7 +278,7 @@ export const dislike = (articleId) => {
     let result;
     dispatch({ type: ARTICLES_DISLIKE_REQUEST });
     try {
-      const { data } = await axios.patch(
+      await axios.patch(
         `${domain}/api/articles/dislikeArticle`,
         { articleId: articleId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }

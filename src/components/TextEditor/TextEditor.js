@@ -32,7 +32,7 @@ const TextEditor = () => {
 
   const submitHandler = async () => {
     try {
-      let { data } = await axios.post(
+      await axios.post(
         `${domain}/api/replies/addReply`,
         {
           articleId: articleId,

@@ -10,7 +10,6 @@ import Recommended from "../Recommended/Recommended";
 import ReadingList from "../ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import { topics } from "../../data/data";
 
 export const TopicContext = React.createContext();
