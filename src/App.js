@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
 import ArticleScreen from "./components/ArticleScreen/ArticleScreen";
 import LoginScreen from "./components/LoginScreen/LoginScreen";
 import MainFeedScreen from "./components/MainFeedScreen/MainFeedScreen";

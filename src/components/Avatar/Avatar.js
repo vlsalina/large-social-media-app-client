@@ -1,6 +1,4 @@
 import "./Avatar.css";
-import { colors } from "../../data/data";
-import { getColor } from "../../utils";
 
 const Avatar = ({ article }) => {
   return (

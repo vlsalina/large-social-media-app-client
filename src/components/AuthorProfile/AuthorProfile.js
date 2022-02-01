@@ -17,7 +17,7 @@ const AuthorProfile = ({ author }) => {
     } else {
       setIsFollowing(false);
     }
-  }, []);
+  }, [author._id, user.following]);
 
   const followHandler = () => {
     if (user._id === author._id) {
@@ -39,7 +39,7 @@ const AuthorProfile = ({ author }) => {
   return (
     <aside className="authorprofile">
       <div className="authorprofile__avatar">
-        <img src={`/assets/large-logo.png`} />
+        <img src={`/assets/large-logo.png`} alt="avatar" />
       </div>
       <div className="authorprofile__author">
         <p>

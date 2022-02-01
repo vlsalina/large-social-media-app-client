@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Header from "../Header/Header";
 import "./MainFeedScreen.css";
-import axios from "axios";
 import { Context } from "../../App";
 import { getAllArticles } from "../actions/actions";
 import Loader from "../Loader/Loader";
@@ -11,14 +10,11 @@ import MainFeedArticleCard from "../MainFeedArticleCard/MainFeedArticleCard";
 import Recommended from "../Recommended/Recommended";
 import ReadingList from "../ReadingList/ReadingList";
 import { Link } from "react-router-dom";
-import { banner } from "../../styles/styles";
-import ActionMenu from "../ActionMenu/ActionMenu";
 
 export const MainFeedContext = React.createContext();
 
 const MainFeedScreen = () => {
   const { domain } = useContext(Context);
-  const type = true;
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useState([]);
@@ -59,7 +55,7 @@ const MainFeedScreen = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [dispatch, domain]);
 
   return (
     <div className="home">

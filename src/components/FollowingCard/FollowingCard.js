@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./FollowingCard.css";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { follow, unfollow } from "../actions/actions";
-import { FcCancel } from "react-icons/fc";
 import { MdAddCircleOutline } from "react-icons/md";
 import { MdRemoveCircleOutline } from "react-icons/md";
 import { IconContext } from "react-icons";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -50,7 +50,11 @@ const Header = () => {
         <ul>
           <li className="header--box-2">
             <Link to="/">
-              <img className="header__icon" src={"/assets/large-logo.png"} />
+              <img
+                className="header__icon"
+                src={"/assets/large-logo.png"}
+                alt="logo"
+              />
             </Link>
           </li>
           <li className="header--box-3">
@@ -71,13 +75,18 @@ const Header = () => {
                     <img
                       className="header__icon"
                       src={`/assets/icons8-search-500.png`}
+                      alt="search"
                     />
                   </button>
                 </li>
                 {menuItems.slice(0, 2).map((item) => (
                   <li key={item.name}>
                     <Link to={item.url}>
-                      <img className="header__icon" src={item.icon} />
+                      <img
+                        className="header__icon"
+                        src={item.icon}
+                        alt={item.name}
+                      />
                     </Link>
                   </li>
                 ))}

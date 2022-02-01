@@ -31,12 +31,13 @@ const getbanner = (topic) => {
       return topics[5].url;
     case "art":
       return topics[6].url;
+    default:
+      return "technology";
   }
 };
 
 const TopicScreen = () => {
   const { domain } = useContext(Context);
-  const type = false;
   const { topic } = useParams();
   const [save, setSave] = useState(topic);
   const [loading, setLoading] = useState(false);
@@ -44,14 +45,13 @@ const TopicScreen = () => {
   const user = useSelector((state) => state.user);
   const [articles, setArticles] = useState();
   const location = useLocation();
-  const base = location.pathname.split("/")[1];
 
   useEffect(() => {
     if (topic !== save) {
       setSave(topic);
       window.location.reload();
     }
-  }, [topic]);
+  }, [topic, save]);
 
   useEffect(() => {
     setLoading(true);
@@ -69,7 +69,7 @@ const TopicScreen = () => {
       }
     };
     asyncCall();
-  }, []);
+  }, [domain, topic, user.accessToken]);
 
   return (
     <div className="home">

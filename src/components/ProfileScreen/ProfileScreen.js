@@ -7,12 +7,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import ProfileArticleCard from "../ProfileArticleCard.js/ProfileArticleCard";
 import Loader from "../Loader/Loader";
-import parse from "html-react-parser";
-import { formatDate } from "../../utils";
-import FadeInSection from "../FadeInSection/FadeInSection";
-import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import Avatar from "../Avatar/Avatar";
 import { breadcrumbs } from "../../data/data";
 import AuthorProfile from "../AuthorProfile/AuthorProfile";
 import { useDispatch } from "react-redux";
@@ -178,7 +173,7 @@ const ProfileScreen = () => {
       setLoading(false);
     };
     asyncCall();
-  }, [userId]);
+  }, [userId, breadcrumb, domain, user._id, user.accessToken, user.following]);
 
   const getData = (crumb) => {
     if (crumb === "articles") {

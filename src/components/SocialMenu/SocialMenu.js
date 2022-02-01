@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./SocialMenu.css";
 import { FaTwitterSquare } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
@@ -46,7 +46,7 @@ const SocialMenu = ({ article, favd, setFavd }) => {
     } else {
       setFavd(false);
     }
-  }, []);
+  }, [article, setFavd, user.favorites]);
 
   const favoriteHandler = (e) => {
     if (user._id === article.authorId) {
@@ -84,9 +84,9 @@ const SocialMenu = ({ article, favd, setFavd }) => {
             onClick={favoriteHandler}
           >
             {favd ? (
-              <img src={"/assets/icons8-unfavorite-512.png"} />
+              <img src={"/assets/icons8-unfavorite-512.png"} alt="unfavorite" />
             ) : (
-              <img src={"/assets/icons8-favorite-512.png"} />
+              <img src={"/assets/icons8-favorite-512.png"} alt="favorite" />
             )}
           </button>
         </li>

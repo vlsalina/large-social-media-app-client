@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import "./ReadingList.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -52,7 +52,10 @@ const Favorites = ({ favorites, setFavorites, dispatch }) => {
                   className="cancel"
                   onClick={() => unfavHandler(fav._id)}
                 >
-                  <img src={"/assets/icons8-unfavorite-512.png"} />
+                  <img
+                    src={"/assets/icons8-unfavorite-512.png"}
+                    alt="unfavorite"
+                  />
                 </button>
               </div>
             </div>
@@ -92,7 +95,7 @@ const ReadingList = ({ type }) => {
         .catch((error) => console.log(error));
     };
     asyncCall();
-  }, []);
+  }, [domain, setFavorites, user._id, user.accessToken]);
 
   return (
     <div className="readingList">
@@ -104,8 +107,9 @@ const ReadingList = ({ type }) => {
           <p>
             Click the
             <img
-              className="favoirte__icon"
+              className="favorite__icon"
               src={"/assets/icons8-favorite-512.png"}
+              alt="favorite"
             />
             on any story to easily add it to your reading list or a custom list
             that you can share.

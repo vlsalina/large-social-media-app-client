@@ -1,18 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./LoginForm.css";
-import { Context } from "../../App";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { signin } from "../actions/actions";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MiniLoader from "../MiniLoader/MiniLoader";
 
 // log in user
 const LoginForm = () => {
-  const { domain } = useContext(Context);
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);

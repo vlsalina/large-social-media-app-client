@@ -2,7 +2,6 @@ import "./ActionMenu.css";
 import { GrClose } from "react-icons/gr";
 import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
-import { topics } from "../../data/data";
 import Recommended from "../Recommended/Recommended";
 import { useNavigate } from "react-router-dom";
 

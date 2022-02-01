@@ -12,7 +12,6 @@ import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
-import { RepliesContext } from "../Replies/Replies";
 import Avatar from "../Avatar/Avatar";
 import { useDispatch } from "react-redux";
 import { favorite, like, dislike } from "../actions/actions";
@@ -32,7 +31,7 @@ const MainFeedArticleCard = ({ article, type }) => {
     setLikes(article.likes);
 
     return () => setLikes([]);
-  }, []);
+  }, [article.likes]);
 
   useEffect(() => {
     let exists = article.likes.find((x) => x.userId === user._id);
@@ -41,7 +40,7 @@ const MainFeedArticleCard = ({ article, type }) => {
     } else {
       setLiked(false);
     }
-  }, []);
+  }, [article.likes, user._id]);
 
   useEffect(() => {
     axios
@@ -52,7 +51,7 @@ const MainFeedArticleCard = ({ article, type }) => {
       .catch((error) => console.log(error));
 
     return () => setReplies([]);
-  }, []);
+  }, [article._id]);
 
   const likeHandler = () => {
     let exists = article.likes.find((x) => x.userId === user._id);
@@ -136,6 +135,7 @@ const MainFeedArticleCard = ({ article, type }) => {
               <img
                 className="favorite__icon"
                 src={"/assets/icons8-favorite-512.png"}
+                alt="favorite"
               />
             </button>
           </div>
@@ -148,6 +148,7 @@ const MainFeedArticleCard = ({ article, type }) => {
               !article.image ? "card--placeholder" : ""
             }`}
             src={article.image ? article.image : "/assets/large-logo.png"}
+            alt="article"
           />
         </Link>
       </div>

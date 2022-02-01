@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
-import { EditorState, convertToRaw, ContentState } from "draft-js";
+import React, { useState, useContext } from "react";
+import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { Context } from "../../App";
 import draftToHtml from "draftjs-to-html";
-import htmlToDraft from "html-to-draftjs";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./TextEditor.css";
 import axios from "axios";

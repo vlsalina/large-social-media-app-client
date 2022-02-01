@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import "./LoginScreen.css";
 import { networks } from "../../data/data";
-import axios from "axios";
 import LoginForm from "../LoginForm/LoginForm";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const LoginScreen = () => {
-  const [loading, setLoading] = useState(false);
-
   const clickHandler = () => {
     let loginForm = document.getElementsByClassName("loginForm")[0];
     loginForm.style.display = "flex";

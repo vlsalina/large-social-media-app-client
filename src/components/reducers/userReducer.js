@@ -46,7 +46,7 @@ const userReducer = (state = {}, action) => {
       return state;
     case USER_UNFAVORITE_SUCCESS:
       return action.payload;
-    case USER_UNFOLLOWING_FAIL:
+    case USER_UNFAVORITE_FAIL:
       return { error: action.payload };
     default:
       return state;

@@ -1,10 +1,9 @@
 import React, { useState, useContext, useRef } from "react";
-import { EditorState, convertToRaw, ContentState } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { Context } from "../../App";
 import draftToHtml from "draftjs-to-html";
 import "./ArticleEditor.css";
-import htmlToDraft from "html-to-draftjs";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -14,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { MdAddCircleOutline } from "react-icons/md";
 import { MdRemoveCircleOutline } from "react-icons/md";
 import { IconContext } from "react-icons";
-import parse from "html-react-parser";
 
 const styles = {
   icon: {
@@ -169,7 +167,7 @@ const ArticleEditor = () => {
       <div className="articleeditor--box-1">
         {imgsubmit && (
           <div className="articleeditor__image">
-            <img src={imgaddress} />
+            <img src={imgaddress} alt="main article" />
           </div>
         )}
         <Editor

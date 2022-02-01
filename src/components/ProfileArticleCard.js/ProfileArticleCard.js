@@ -30,7 +30,7 @@ const ProfileArticleCard = ({ article }) => {
     if (exists) {
       setLiked(true);
     }
-  }, []);
+  }, [article.likes, user._id]);
 
   useEffect(() => {
     // check if article already exists in user's favorites
@@ -41,7 +41,7 @@ const ProfileArticleCard = ({ article }) => {
     } else {
       setFavd(false);
     }
-  }, []);
+  }, [article, user.favorites]);
 
   useEffect(() => {
     axios
@@ -50,7 +50,7 @@ const ProfileArticleCard = ({ article }) => {
       })
       .then((response) => setReplies(response.data))
       .catch((error) => console.log(error));
-  }, []);
+  }, [article._id, domain, user.accessToken]);
 
   const likeHandler = () => {
     let exists = likes.find((x) => x.userId === user._id);
@@ -105,7 +105,7 @@ const ProfileArticleCard = ({ article }) => {
       {article.image && (
         <Link to={`/article/${article._id}`}>
           <div className="profilecard__image">
-            <img src={article.image} />
+            <img src={article.image} alt="article" />
           </div>
         </Link>
       )}
@@ -149,11 +149,13 @@ const ProfileArticleCard = ({ article }) => {
               <img
                 className="favorite__icon"
                 src={"/assets/icons8-unfavorite-512.png"}
+                alt="unfavorite"
               />
             ) : (
               <img
                 className="favorite__icon"
                 src={"/assets/icons8-favorite-512.png"}
+                alt="favorite"
               />
             )}
           </button>

@@ -13,7 +13,6 @@ import { IconContext } from "react-icons";
 import { useLocation } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import SocialMenu from "../SocialMenu/SocialMenu";
-import axios from "axios";
 import Replies from "../Replies/Replies";
 import parse from "html-react-parser";
 import { useDispatch } from "react-redux";
@@ -28,7 +27,6 @@ const styles = {
 export const ArticleContext = React.createContext();
 
 const ArticleScreen = () => {
-  const { domain } = useContext(Context);
   const [article, setArticle] = useState();
   const [following, setFollowing] = useState(false);
   const [likes, setLikes] = useState([]);
@@ -43,13 +41,7 @@ const ArticleScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let result =
-      articles &&
-      articles.find((x) => {
-        if (x._id === articleId) {
-          return x;
-        }
-      });
+    let result = articles && articles.find((x) => x._id === articleId);
     setArticle(result);
     setLikes(result.likes);
 
@@ -66,7 +58,7 @@ const ArticleScreen = () => {
     if (alreadyLiked) {
       setLiked(true);
     }
-  }, []);
+  }, [articleId, articles, user._id, user.following]);
 
   const followHandler = () => {
     try {
@@ -107,7 +99,7 @@ const ArticleScreen = () => {
     if (open) {
       openHandler();
     }
-  }, []);
+  }, [open]);
 
   return (
     <main className="article">
@@ -131,7 +123,7 @@ const ArticleScreen = () => {
             <div className="article--box-1">
               <div className="article--box-7">
                 <div className="article__avatar">
-                  <img src={`/assets/icons8-circled-v-100.png`} />
+                  <img src={`/assets/icons8-circled-v-100.png`} alt="avatar" />
                 </div>
                 <div className="article--box-3">
                   <Link to={`/profile/${article.authorId}`}>
@@ -177,7 +169,7 @@ const ArticleScreen = () => {
           )}
           {article && (
             <div className="article__picture">
-              <img src={article.image} />
+              <img src={article.image} alt="article" />
             </div>
           )}
           <div className="article--box-2">

@@ -36,7 +36,7 @@ const Replies = () => {
         setNumReplies(response.data.length);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [articleId, domain, setNumReplies, user.accessToken]);
 
   const closeHandler = () => {
     document
