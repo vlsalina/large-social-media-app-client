@@ -9,6 +9,7 @@ import RegisterScreen from "./components/RegisterScreen/RegisterScreen";
 import CreateArticleScreen from "./components/CreateArticleScreen/CreateArticleScreen";
 import TopicScreen from "./components/TopicScreen/TopicScreen";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import NotFoundScreen from "./components/NotFoundScreen/NotFoundScreen";
 
 const domain = "https://large-social-media-app.herokuapp.com";
 //const domain = "http://localhost:5000";
@@ -38,6 +39,7 @@ function App() {
             </Route>
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
+            <Route path="*" element={<NotFoundScreen />} />
           </Routes>
         </Context.Provider>
       </BrowserRouter>
