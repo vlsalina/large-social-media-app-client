@@ -88,7 +88,10 @@ const Header = () => {
                     onClick={drawerHandler}
                   >
                     <Avatar
-                      article={{ avatar: user.avatar, author: user.firstname }}
+                      article={{
+                        avatar: user.avatar,
+                        author: user.firstname,
+                      }}
                     />
                   </button>
                 </li>
