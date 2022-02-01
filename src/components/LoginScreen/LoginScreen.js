@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./LoginScreen.css";
 import { networks } from "../../data/data";
 import LoginForm from "../LoginForm/LoginForm";

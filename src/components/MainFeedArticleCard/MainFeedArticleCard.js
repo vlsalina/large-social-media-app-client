@@ -51,7 +51,7 @@ const MainFeedArticleCard = ({ article, type }) => {
       .catch((error) => console.log(error));
 
     return () => setReplies([]);
-  }, [article._id]);
+  }, [article._id, domain, user.accessToken]);
 
   const likeHandler = () => {
     let exists = article.likes.find((x) => x.userId === user._id);

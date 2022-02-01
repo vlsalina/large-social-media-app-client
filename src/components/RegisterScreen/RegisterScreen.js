@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./RegisterScreen.css";
 import { networks } from "../../data/data";
-import axios from "axios";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
