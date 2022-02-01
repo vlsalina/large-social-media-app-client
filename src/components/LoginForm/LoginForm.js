@@ -6,14 +6,16 @@ import { useDispatch } from "react-redux";
 import { signin } from "../actions/actions";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import MiniLoader from "../MiniLoader/MiniLoader";
 
 // log in user
-const LoginForm = ({ setLoading }) => {
+const LoginForm = () => {
   const { domain } = useContext(Context);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,17 +33,22 @@ const LoginForm = ({ setLoading }) => {
 
     setLoading(true);
 
-    let promise = dispatch(signin(domain, email, password));
-
-    promise
+    dispatch(signin(email, password))
       .then((result) => {
-        setLoading(false);
-        setEmail("");
-        setPassword("");
-        navigate("/");
+        if (result) {
+          setLoading(false);
+          setError("");
+          setEmail("");
+          setPassword("");
+          navigate("/");
+        } else {
+          setLoading(false);
+          setError("Incorrect email or password. Please try again.");
+          setEmail("");
+          setPassword("");
+        }
       })
       .catch((error) => {
-        setLoading(false);
         console.log(error);
       });
   };
@@ -72,7 +79,7 @@ const LoginForm = ({ setLoading }) => {
         </div>
         <div className="loginForm-submit-button">
           <button type="button" onClick={loginHandler}>
-            Submit
+            {loading ? <MiniLoader /> : "Submit"}
           </button>
         </div>
         <div>{error ? <div className="info-error">{error}</div> : <div />}</div>

@@ -30,7 +30,7 @@ import {
 const domain = "http://localhost:5000";
 
 // user sign in action
-export const signin = (domain, email, password) => {
+export const signin = (email, password) => {
   return async (dispatch, getState) => {
     let result;
     dispatch({ type: USER_SIGNIN_REQUEST });
@@ -39,16 +39,14 @@ export const signin = (domain, email, password) => {
         email: email,
         password: password,
       });
-      result = data;
+      result = true;
       dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
       localStorage.setItem("user", JSON.stringify(getState().user));
     } catch (error) {
+      result = false;
       dispatch({
         type: USER_SIGNIN_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+        payload: error,
       });
     }
     return result;

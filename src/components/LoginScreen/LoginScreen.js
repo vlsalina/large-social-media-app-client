@@ -25,46 +25,42 @@ const LoginScreen = () => {
 
   return (
     <div className="login">
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <LoginForm setLoading={setLoading} />
-          <div className="login--box-1">
-            <div className="login--box-2">
-              <h1>Welcome back.</h1>
-            </div>
-            <ul>
-              {networks.slice(0, 4).map((x) => (
-                <li key={x.network}>
-                  <a href={x.url} target="_blank">
-                    <button type="button" className="login__button">
-                      Sign in with {x.network}
-                    </button>
-                  </a>
-                </li>
-              ))}
-              <li key={networks[4].network}>
-                <button
-                  type="button"
-                  className="login__button"
-                  onClick={clickHandler}
-                >
-                  Sign in with {networks[4].network}
-                </button>
-              </li>
-            </ul>
-            <div className="login--box-3">
-              <p>
-                No account?{" "}
-                <Link className="create" to="/register">
-                  <b>Create One</b>
-                </Link>
-              </p>
-            </div>
+      <>
+        <LoginForm setLoading={setLoading} />
+        <div className="login--box-1">
+          <div className="login--box-2">
+            <h1>Welcome back.</h1>
           </div>
-        </>
-      )}
+          <ul>
+            {networks.slice(0, 4).map((x) => (
+              <li key={x.network}>
+                <a href={x.url} target="_blank">
+                  <button type="button" className="login__button">
+                    Sign in with {x.network}
+                  </button>
+                </a>
+              </li>
+            ))}
+            <li key={networks[4].network}>
+              <button
+                type="button"
+                className="login__button"
+                onClick={clickHandler}
+              >
+                Sign in with {networks[4].network}
+              </button>
+            </li>
+          </ul>
+          <div className="login--box-3">
+            <p>
+              No account?{" "}
+              <Link className="create" to="/register">
+                <b>Create One</b>
+              </Link>
+            </p>
+          </div>
+        </div>
+      </>
     </div>
   );
 };
