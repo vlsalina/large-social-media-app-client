@@ -4,33 +4,33 @@ author: vincent salinas
 
 **\*\*** Requirements **\*\***
 User requirements:
-(1) users should be able to register for an account
-(2) users can log into account
-(3) users can open and read articles
-(4) users can like articles
-(5) users can leave comments or replies to an article
-(6) users can save articles to a reading list
-(7) users can change their username
-(8) users can change their password
-(9) users can change their email
-(10) users can create an article
-(11) users can upload and attach an image to an article they authored
-(12) users can subscribe to an author they like
-(13) when subscribed to an author(s), user should be able to see the latest 10 articles by an author(s) in their main feed
-(14) users can see the 10 latest articles written to Large
-(15) each article is tagged with ONE of the following topics: (a) technology, (b) money, (c) business, (d) productivity, (e) psychology, (f) mindfulness, (g) art
-(16) users can see a filtered list of articles by topic
-(17) users can direct message an author
-(18) user should not be able to favorite their own articles
+done (1) users should be able to register for an account
+done (2) users can log into account
+done (3) users can open and read articles
+done (4) users can like articles
+done (5) users can leave comments or replies to an article
+done (6) users can save articles to a reading list
+wip (7) users can change their username
+wip (8) users can change their password
+wip (9) users can change their email
+done (10) users can create an article
+cncl (11) users can upload and attach an image to an article they authored
+done (12) users can subscribe to an author they like
+done (13) when subscribed to an author(s), user should be able to see the latest 10 articles by an author(s) in their main feed
+cncl(14) users can see the 10 latest articles written to Large
+done (15) each article is tagged with ONE of the following topics: (a) technology, (b) money, (c) business, (d) productivity, (e) psychology, (f) mindfulness, (g) art
+done (16) users can see a filtered list of articles by topic
+cncl (17) users can direct message an author
+done (18) user should not be able to favorite their own articles
 
 Conventional requirements:
-(1) users should be able to view the most optimized layout on any device
-(2) buttons should be interactive, having a static and a hover state
+done (1) users should be able to view the most optimized layout on any device
+cncl (2) buttons should be interactive, having a static and a hover state
 
 **\*\*** Implementation **\*\***
-(1) There should be a user collection
-(2) there should be an articles collection
-(3) there should be a replies collection
+done (1) There should be a user collection
+done (2) there should be an articles collection
+done (3) there should be a replies collection
 
 **\*\*** Screens **\*\***
 done (1) login screen
@@ -45,8 +45,8 @@ done (9) reading list
 done (10) create new article screen
 
 **\*\*** Features **\*\***
-(1) Action Menu
-(2) Direct Messanger
+done (1) Action Menu
+cncl (2) Direct Messanger
 
 **\*\*** Models **\*\***
 (1) User

@@ -1,7 +1,6 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import { Context } from "../../App";
 import draftToHtml from "draftjs-to-html";
 import "./ArticleEditor.css";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -23,7 +22,6 @@ const styles = {
 const ArticleEditor = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const { domain } = useContext(Context);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [category, setCategory] = useState("");
   const [imgaddress, setImgAddress] = useState("");
@@ -71,9 +69,13 @@ const ArticleEditor = () => {
     };
 
     try {
-      await axios.post(`${domain}/api/articles/createArticle`, newArticle, {
-        headers: { authorization: `Bearer ${user.accessToken}` },
-      });
+      await axios.post(
+        `${process.env.REACT_APP_DOMAIN}/api/articles/createArticle`,
+        newArticle,
+        {
+          headers: { authorization: `Bearer ${user.accessToken}` },
+        }
+      );
       navigate("/");
     } catch (error) {
       console.log(error);

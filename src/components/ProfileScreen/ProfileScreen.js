@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProfileScreen.css";
 import { useParams } from "react-router-dom";
-import { Context } from "../../App";
 import Header from "../Header/Header";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -65,7 +64,6 @@ const Wrapper = ({ children, author, userId, user, getData }) => {
 
 const ProfileScreen = () => {
   const { userId } = useParams();
-  const { domain } = useContext(Context);
   const user = useSelector((state) => state.user);
   const [author, setAuthor] = useState();
   const [loading, setLoading] = useState(false);
@@ -94,7 +92,9 @@ const ProfileScreen = () => {
       // get articles written by author
       await axios
         .get(
-          `${domain}/api/articles/getArticlesByAuthor?authorId=${
+          `${
+            process.env.REACT_APP_DOMAIN
+          }/api/articles/getArticlesByAuthor?authorId=${
             userId === user._id ? user._id : userId
           }`,
           {
@@ -111,7 +111,7 @@ const ProfileScreen = () => {
       // get author info
       await axios
         .get(
-          `${domain}/api/users/getUser?id=${
+          `${process.env.REACT_APP_DOMAIN}/api/users/getUser?id=${
             userId === user._id ? user._id : userId
           }`,
           {
@@ -123,14 +123,17 @@ const ProfileScreen = () => {
       if (userId === user._id) {
         // get users favorite articles
         await axios
-          .get(`${domain}/api/users/getUser?id=${user._id}`, {
-            headers: { authorization: `Bearer ${user.accessToken}` },
-          })
+          .get(
+            `${process.env.REACT_APP_DOMAIN}/api/users/getUser?id=${user._id}`,
+            {
+              headers: { authorization: `Bearer ${user.accessToken}` },
+            }
+          )
           .then((result) => {
             Promise.all(
               result.data.favorites.map((x) => {
                 return axios.get(
-                  `${domain}/api/articles/getArticle?articleId=${x}`,
+                  `${process.env.REACT_APP_DOMAIN}/api/articles/getArticle?articleId=${x}`,
                   { headers: { authorization: `Bearer ${user.accessToken}` } }
                 );
               })
@@ -147,9 +150,12 @@ const ProfileScreen = () => {
 
         // get other users replies from articles written by user
         await axios
-          .get(`${domain}/api/replies/getRepliesByAuthor`, {
-            headers: { authorization: `Bearer ${user.accessToken}` },
-          })
+          .get(
+            `${process.env.REACT_APP_DOMAIN}/api/replies/getRepliesByAuthor`,
+            {
+              headers: { authorization: `Bearer ${user.accessToken}` },
+            }
+          )
           .then((response) => {
             setReplies(response.data.reverse());
             if (breadcrumb === "notifications") {
@@ -160,9 +166,12 @@ const ProfileScreen = () => {
         // get following data of all following users
         Promise.all(
           user.following.map((x) => {
-            return axios.get(`${domain}/api/users/getUser?id=${x.userId}`, {
-              headers: { authorization: `Bearer ${user.accessToken}` },
-            });
+            return axios.get(
+              `${process.env.REACT_APP_DOMAIN}/api/users/getUser?id=${x.userId}`,
+              {
+                headers: { authorization: `Bearer ${user.accessToken}` },
+              }
+            );
           })
         )
           .then((response) => {
@@ -173,7 +182,14 @@ const ProfileScreen = () => {
       setLoading(false);
     };
     asyncCall();
-  }, [userId, breadcrumb, domain, user._id, user.accessToken, user.following]);
+  }, [
+    userId,
+    breadcrumb,
+    process.env.REACT_APP_DOMAIN,
+    user._id,
+    user.accessToken,
+    user.following,
+  ]);
 
   const getData = (crumb) => {
     if (crumb === "articles") {

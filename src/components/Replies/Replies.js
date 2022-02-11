@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import ReplyForm from "../ReplyForm/ReplyForm";
 import "./Replies.css";
 import axios from "axios";
-import { Context } from "../../App";
 import { ArticleContext } from "../ArticleScreen/ArticleScreen";
 import { useSelector } from "react-redux";
 import parse from "html-react-parser";
@@ -21,22 +20,29 @@ const styles = {
 
 const Replies = () => {
   const user = useSelector((state) => state.user);
-  const { domain } = useContext(Context);
   const { articleId, setNumReplies } = useContext(ArticleContext);
 
   const [replies, setReplies] = useState();
 
   useEffect(() => {
     axios
-      .get(`${domain}/api/replies/getAllReplies?articleId=${articleId}`, {
-        headers: { authorization: `Bearer ${user.accessToken}` },
-      })
+      .get(
+        `${process.env.REACT_APP_DOMAIN}/api/replies/getAllReplies?articleId=${articleId}`,
+        {
+          headers: { authorization: `Bearer ${user.accessToken}` },
+        }
+      )
       .then((response) => {
         setReplies(response.data);
         setNumReplies(response.data.length);
       })
       .catch((error) => console.log(error));
-  }, [articleId, domain, setNumReplies, user.accessToken]);
+  }, [
+    articleId,
+    process.env.REACT_APP_DOMAIN,
+    setNumReplies,
+    user.accessToken,
+  ]);
 
   const closeHandler = () => {
     document

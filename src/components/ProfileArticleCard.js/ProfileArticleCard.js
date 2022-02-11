@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Context } from "../../App";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ProfileArticleCard.css";
 import { TiMessages } from "react-icons/ti";
@@ -18,7 +17,6 @@ const ProfileArticleCard = ({ article }) => {
   const [liked, setLiked] = useState(false);
   const [replies, setReplies] = useState();
   const [favd, setFavd] = useState(false);
-  const { domain } = useContext(Context);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
@@ -45,12 +43,15 @@ const ProfileArticleCard = ({ article }) => {
 
   useEffect(() => {
     axios
-      .get(`${domain}/api/replies/getAllReplies?articleId=${article._id}`, {
-        headers: { authorization: `Bearer ${user.accessToken}` },
-      })
+      .get(
+        `${process.env.REACT_APP_DOMAIN}/api/replies/getAllReplies?articleId=${article._id}`,
+        {
+          headers: { authorization: `Bearer ${user.accessToken}` },
+        }
+      )
       .then((response) => setReplies(response.data))
       .catch((error) => console.log(error));
-  }, [article._id, domain, user.accessToken]);
+  }, [article._id, process.env.REACT_APP_DOMAIN, user.accessToken]);
 
   const likeHandler = () => {
     let exists = likes.find((x) => x.userId === user._id);

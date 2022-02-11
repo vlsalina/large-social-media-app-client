@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./RegistrationForm.css";
 import { Context } from "../../App";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,6 @@ import axios from "axios";
 
 const RegistrationForm = ({ setLoading }) => {
   const navigate = useNavigate();
-  const { domain } = useContext(Context);
 
   const [error, setError] = useState();
   const [firstname, setFirstname] = useState("");
@@ -58,7 +57,7 @@ const RegistrationForm = ({ setLoading }) => {
     try {
       setLoading(true);
       await axios
-        .post(`${domain}/api/users/register`, userInfo)
+        .post(`${process.env.REACT_APP_DOMAIN}/api/users/register`, userInfo)
         .then(() => {
           setLoading(false);
           navigate("/login");

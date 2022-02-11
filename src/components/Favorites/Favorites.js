@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "./Favorites.css";
-import { Context } from "../../App";
 import { MainFeedContext } from "../MainFeedScreen/MainFeedScreen";
 import { TopicContext } from "../TopicScreen/TopicScreen";
 import { useDispatch } from "react-redux";
@@ -12,7 +11,6 @@ import { Link } from "react-router-dom";
 import { formatDate } from "../../utils";
 
 const Favorites = ({ type }) => {
-  const { domain } = useContext(Context);
   const { favorites, setFavorites } = useContext(
     type ? MainFeedContext : TopicContext
   );
@@ -24,7 +22,7 @@ const Favorites = ({ type }) => {
       Promise.all(
         user.favorites.map((x) => {
           return axios.get(
-            `${domain}/api/articles/getArticle?articleId=${x.articleId}`,
+            `${process.env.REACT_APP_DOMAIN}/api/articles/getArticle?articleId=${x.articleId}`,
             {
               headers: { authorization: `Bearer ${user.accessToken}` },
             }

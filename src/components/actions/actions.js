@@ -27,7 +27,6 @@ import {
   ARTICLES_SUCCESS,
   ARTICLES_FAIL,
 } from "../actionTypes/actionTypes";
-const domain = "http://localhost:5000";
 
 // user sign in action
 export const signin = (email, password) => {
@@ -35,10 +34,13 @@ export const signin = (email, password) => {
     let result;
     dispatch({ type: USER_SIGNIN_REQUEST });
     try {
-      const { data } = await axios.post(`${domain}/api/auth/login`, {
-        email: email,
-        password: password,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_DOMAIN}/api/auth/login`,
+        {
+          email: email,
+          password: password,
+        }
+      );
       result = true;
       dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
       localStorage.setItem("user", JSON.stringify(getState().user));
@@ -54,13 +56,13 @@ export const signin = (email, password) => {
 };
 
 // retrieve all articles action
-export const getAllArticles = (domain, accessToken) => {
+export const getAllArticles = () => {
   return async (dispatch, getState) => {
     let result;
     dispatch({ type: ARTICLES_REQUEST });
     try {
       const { data } = await axios.get(
-        `${domain}/api/articles/getAllArticles`,
+        `${process.env.REACT_APP_DOMAIN}/api/articles/getAllArticles`,
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
       );
       result = data;
@@ -86,7 +88,7 @@ export const follow = (authorId) => {
     dispatch({ type: USER_FOLLOWING_REQUEST });
     try {
       await axios.patch(
-        `${domain}/api/users/follow`,
+        `${process.env.REACT_APP_DOMAIN}/api/users/follow`,
         { userId: authorId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
       );
@@ -125,7 +127,7 @@ export const unfollow = (authorId) => {
     dispatch({ type: USER_UNFOLLOWING_REQUEST });
     try {
       await axios.patch(
-        `${domain}/api/users/unfollow`,
+        `${process.env.REACT_APP_DOMAIN}/api/users/unfollow`,
         { userId: authorId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
       );
@@ -160,7 +162,7 @@ export const favorite = (articleId) => {
     dispatch({ type: USER_FAVORITE_REQUEST });
     try {
       await axios.patch(
-        `${domain}/api/users/favorite`,
+        `${process.env.REACT_APP_DOMAIN}/api/users/favorite`,
         { articleId: articleId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
       );
@@ -199,7 +201,7 @@ export const unfavorite = (articleId) => {
     dispatch({ type: USER_UNFAVORITE_REQUEST });
     try {
       await axios.patch(
-        `${domain}/api/users/unfavorite`,
+        `${process.env.REACT_APP_DOMAIN}/api/users/unfavorite`,
         { articleId: articleId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
       );
@@ -235,7 +237,7 @@ export const like = (articleId) => {
     dispatch({ type: ARTICLES_LIKE_REQUEST });
     try {
       await axios.patch(
-        `${domain}/api/articles/likeArticle`,
+        `${process.env.REACT_APP_DOMAIN}/api/articles/likeArticle`,
         { articleId: articleId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
       );
@@ -279,7 +281,7 @@ export const dislike = (articleId) => {
     dispatch({ type: ARTICLES_DISLIKE_REQUEST });
     try {
       await axios.patch(
-        `${domain}/api/articles/dislikeArticle`,
+        `${process.env.REACT_APP_DOMAIN}/api/articles/dislikeArticle`,
         { articleId: articleId },
         { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
       );

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./MainFeedArticleCard.css";
 import { formatDate } from "../../utils";
-import { Context } from "../../App";
 import { MainFeedContext } from "../MainFeedScreen/MainFeedScreen";
 import { TopicContext } from "../TopicScreen/TopicScreen";
 import { useSelector } from "react-redux";
@@ -17,7 +16,6 @@ import { useDispatch } from "react-redux";
 import { favorite, like, dislike } from "../actions/actions";
 
 const MainFeedArticleCard = ({ article, type }) => {
-  const { domain } = useContext(Context);
   const { favorites, setFavorites } = useContext(
     type ? MainFeedContext : TopicContext
   );
@@ -44,14 +42,17 @@ const MainFeedArticleCard = ({ article, type }) => {
 
   useEffect(() => {
     axios
-      .get(`${domain}/api/replies/getAllReplies?articleId=${article._id}`, {
-        headers: { authorization: `Bearer ${user.accessToken}` },
-      })
+      .get(
+        `${process.env.REACT_APP_DOMAIN}/api/replies/getAllReplies?articleId=${article._id}`,
+        {
+          headers: { authorization: `Bearer ${user.accessToken}` },
+        }
+      )
       .then((response) => setReplies(response.data))
       .catch((error) => console.log(error));
 
     return () => setReplies([]);
-  }, [article._id, domain, user.accessToken]);
+  }, [article._id, process.env.REACT_APP_DOMAIN, user.accessToken]);
 
   const likeHandler = () => {
     let exists = article.likes.find((x) => x.userId === user._id);

@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./MainFeedScreen.css";
-import { Context } from "../../App";
 import { getAllArticles } from "../actions/actions";
 import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
@@ -14,7 +13,6 @@ import { Link } from "react-router-dom";
 export const MainFeedContext = React.createContext();
 
 const MainFeedScreen = () => {
-  const { domain } = useContext(Context);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useState([]);
@@ -46,7 +44,7 @@ const MainFeedScreen = () => {
   useEffect(() => {
     setLoading(true);
 
-    let promise = dispatch(getAllArticles(domain));
+    let promise = dispatch(getAllArticles());
 
     promise
       .then((result) => {
@@ -55,7 +53,7 @@ const MainFeedScreen = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [dispatch, domain]);
+  }, [dispatch]);
 
   return (
     <div className="home">

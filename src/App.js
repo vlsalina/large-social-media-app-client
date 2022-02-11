@@ -11,37 +11,30 @@ import TopicScreen from "./components/TopicScreen/TopicScreen";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import NotFoundScreen from "./components/NotFoundScreen/NotFoundScreen";
 
-const domain = "https://large-social-media-app.herokuapp.com";
-//const domain = "http://localhost:5000";
-
-export const Context = React.createContext();
-
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Context.Provider value={{ domain }}>
-          <Routes>
-            <Route exact path="/" element={<PrivateRoute />}>
-              <Route exact path="/" element={<MainFeedScreen />} />
-            </Route>
-            <Route path="/article/:articleId" element={<PrivateRoute />}>
-              <Route path="/article/:articleId" element={<ArticleScreen />} />
-            </Route>
-            <Route path="/profile/:userId" element={<PrivateRoute />}>
-              <Route path="/profile/:userId" element={<ProfileScreen />} />
-            </Route>
-            <Route path="/topic/:topic" element={<PrivateRoute />}>
-              <Route path="/topic/:topic" element={<TopicScreen />} />
-            </Route>
-            <Route path="/create" element={<PrivateRoute />}>
-              <Route path="/create" element={<CreateArticleScreen />} />
-            </Route>
-            <Route path="/login" element={<LoginScreen />} />
-            <Route path="/register" element={<RegisterScreen />} />
-            <Route path="*" element={<NotFoundScreen />} />
-          </Routes>
-        </Context.Provider>
+        <Routes>
+          <Route exact path="/" element={<PrivateRoute />}>
+            <Route exact path="/" element={<MainFeedScreen />} />
+          </Route>
+          <Route path="/article/:articleId" element={<PrivateRoute />}>
+            <Route path="/article/:articleId" element={<ArticleScreen />} />
+          </Route>
+          <Route path="/profile/:userId" element={<PrivateRoute />}>
+            <Route path="/profile/:userId" element={<ProfileScreen />} />
+          </Route>
+          <Route path="/topic/:topic" element={<PrivateRoute />}>
+            <Route path="/topic/:topic" element={<TopicScreen />} />
+          </Route>
+          <Route path="/create" element={<PrivateRoute />}>
+            <Route path="/create" element={<CreateArticleScreen />} />
+          </Route>
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/register" element={<RegisterScreen />} />
+          <Route path="*" element={<NotFoundScreen />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );

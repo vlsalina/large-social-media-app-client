@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./TopicScreen.css";
 import axios from "axios";
-import { Context } from "../../App";
 import Loader from "../Loader/Loader";
 import { useSelector } from "react-redux";
 import MainFeedArticleCard from "../MainFeedArticleCard/MainFeedArticleCard";
@@ -36,7 +35,6 @@ const getbanner = (topic) => {
 };
 
 const TopicScreen = () => {
-  const { domain } = useContext(Context);
   const { topic } = useParams();
   const [save, setSave] = useState(topic);
   const [loading, setLoading] = useState(false);
@@ -57,7 +55,7 @@ const TopicScreen = () => {
     const asyncCall = async () => {
       try {
         const { data } = await axios.get(
-          `${domain}/api/articles/getArticlesByCategory?category=${topic}`,
+          `${process.env.REACT_APP_DOMAIN}/api/articles/getArticlesByCategory?category=${topic}`,
           { headers: { authorization: `Bearer ${user.accessToken}` } }
         );
         setLoading(false);
@@ -67,7 +65,7 @@ const TopicScreen = () => {
       }
     };
     asyncCall();
-  }, [domain, topic, user.accessToken]);
+  }, [process.env.REACT_APP_DOMAIN, topic, user.accessToken]);
 
   return (
     <div className="home">

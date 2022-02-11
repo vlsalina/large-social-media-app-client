@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import { Context } from "../../App";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./TextEditor.css";
@@ -11,7 +10,6 @@ import { ArticleContext } from "../ArticleScreen/ArticleScreen";
 import { RepliesContext } from "../Replies/Replies";
 
 const TextEditor = () => {
-  const { domain } = useContext(Context);
   const { articleId, numReplies, setNumReplies, article } =
     useContext(ArticleContext);
   const { replies, setReplies } = useContext(RepliesContext);
@@ -33,7 +31,7 @@ const TextEditor = () => {
   const submitHandler = async () => {
     try {
       await axios.post(
-        `${domain}/api/replies/addReply`,
+        `${process.env.REACT_APP_DOMAIN}/api/replies/addReply`,
         {
           articleId: articleId,
           articleAuthorId: article.authorId,

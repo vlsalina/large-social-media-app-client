@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from "react";
 import "./ReadingList.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { Context } from "../../App";
 import { MainFeedContext } from "../MainFeedScreen/MainFeedScreen";
 import { TopicContext } from "../TopicScreen/TopicScreen";
 import { formatDate } from "../../utils";
@@ -67,7 +66,6 @@ const Favorites = ({ favorites, setFavorites, dispatch }) => {
 };
 
 const ReadingList = ({ type }) => {
-  const { domain } = useContext(Context);
   const { favorites, setFavorites } = useContext(
     type ? MainFeedContext : TopicContext
   );
@@ -77,14 +75,17 @@ const ReadingList = ({ type }) => {
   useEffect(() => {
     const asyncCall = async () => {
       await axios
-        .get(`${domain}/api/users/getUser?id=${user._id}`, {
-          headers: { authorization: `Bearer ${user.accessToken}` },
-        })
+        .get(
+          `${process.env.REACT_APP_DOMAIN}/api/users/getUser?id=${user._id}`,
+          {
+            headers: { authorization: `Bearer ${user.accessToken}` },
+          }
+        )
         .then((result) => {
           Promise.all(
             result.data.favorites.map((x) => {
               return axios.get(
-                `${domain}/api/articles/getArticle?articleId=${x}`,
+                `${process.env.REACT_APP_DOMAIN}/api/articles/getArticle?articleId=${x}`,
                 { headers: { authorization: `Bearer ${user.accessToken}` } }
               );
             })
@@ -95,7 +96,7 @@ const ReadingList = ({ type }) => {
         .catch((error) => console.log(error));
     };
     asyncCall();
-  }, [domain, setFavorites, user._id, user.accessToken]);
+  }, [process.env.REACT_APP_DOMAIN, setFavorites, user._id, user.accessToken]);
 
   return (
     <div className="readingList">
