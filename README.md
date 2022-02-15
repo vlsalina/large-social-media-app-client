@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+//Why did you choose to build this project?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+My choice in wanting to buiild a social media platform came from other popular ones such Facebook or Reddit. This particular project was actually
+based on a personal favorite, called Medium.
 
-## Available Scripts
+I felt constructing an entire social media platform would provide me an incredible
+amount of experience with the backend layer, database layer, and how everything would subsequently connect to the frontend. The entire "web development pie", if you will.
 
-In the project directory, you can run:
+// What challenged you when making this project?
 
-### `npm start`
+I was introduced to many new concepts for this project that provided new challenges. The following list is a short summary:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+(1) CORS policy (a big one)
+(2) Promises
+(3) Maintaining aspect ratio for images
+(4) Adding "fade in" functionality to certain components
+(5) accessing data passed from the url
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+// What did you learn from making this project?
 
-### `npm test`
+I learned quite a bit in stride with everything from the challenges above.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The CORS (Cross-Origin Resource Sharing) error was probably the biggest hurdle. As a new
+developer, getting my head wrapped around the idea of what 3rd party URLs (origins) are in the context of resource sharing, what types of requests can be allowed, and how the server must be configured in order to allow such requests.
 
-### `npm run build`
+Being able to implement multiple promises was also difficult. Knowing
+tools like Promise.all()
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+//What learnings have you taken with you into other projects?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+//What would you do differently next time?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+//Did you get stuck at any point? How did you get unstuck?
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+//What was your process for completing this project? Did you do wireframes, make a Trello board, or did you just get stuck into it?
