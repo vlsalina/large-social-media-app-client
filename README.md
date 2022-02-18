@@ -8,6 +8,7 @@ _Large_ is an open platform where readers and writers can find engaging thoughts
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
   - [Links](#links)
+- [Setup](#setup)
 - [How to use](#how-to-use)
 - [My process](#my-process)
   - [Built with](#built-with)
