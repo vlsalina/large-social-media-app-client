@@ -17,7 +17,7 @@ done (10) users can create an article
 cncl (11) users can upload and attach an image to an article they authored
 done (12) users can subscribe to an author they like
 done (13) when subscribed to an author(s), user should be able to see the latest 10 articles by an author(s) in their main feed
-cncl(14) users can see the 10 latest articles written to Large
+cncl (14) users can see the 10 latest articles written to Large
 done (15) each article is tagged with ONE of the following topics: (a) technology, (b) money, (c) business, (d) productivity, (e) psychology, (f) mindfulness, (g) art
 done (16) users can see a filtered list of articles by topic
 cncl (17) users can direct message an author
