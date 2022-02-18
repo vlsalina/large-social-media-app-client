@@ -1,0 +1,148 @@
+/* home--box-1 */
+.home--box-1 {
+  width: 100%;
+}
+/* end home--box-1 */
+
+/* home--box-2 */
+.home--box-2 {
+  width: 100%;
+  position: relative;
+  top: var(--header);
+}
+
+/* end home--box-2 */
+
+/* home banner */
+.home__banner {
+  height: var(--banner);
+  background-image: url(../../../public/assets/banners/thumb-1920-936378.jpg);
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  background-position: center;
+}
+
+.home--box-3 {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.home--box-4 {
+  width: 75%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.home__hero {
+  height: 100%;
+  object-fit: contain;
+}
+
+.home__title h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.home--box-9 {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 500px) {
+  .home__seemore {
+    text-align: center;
+    background-color: #fff;
+    padding: 0.5rem;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 2rem;
+    margin: 2rem 0;
+  }
+}
+
+@media screen and (min-width: 743px) {
+  .home--box-3 {
+    width: 743px;
+    justify-content: flex-start;
+  }
+
+  .home--box-4 {
+    text-align: left;
+  }
+
+  .home__title h2 {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: 1192px) {
+  .home--box-3 {
+    width: 1192px;
+  }
+}
+
+/* end home banner */
+
+/* home__content */
+.home__content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.home--box-6 {
+  width: 100%;
+  display: flex;
+  padding: 0 1rem;
+}
+
+.home--box-7 {
+  width: 100%;
+}
+
+.home--box-8 {
+  display: none;
+}
+
+@media screen and (min-width: 743px) {
+  .home--box-6 {
+    width: 743px;
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 1192px) {
+  .home--box-6 {
+    width: 1192px;
+  }
+
+  .home--box-7 {
+    width: 70%;
+    padding-right: 2rem;
+    border-right: 1px solid rgb(211, 193, 193);
+  }
+
+  .home--box-8 {
+    display: block;
+    width: 30%;
+    padding-left: 2rem;
+    position: relative;
+  }
+
+  .home--fixed {
+    width: calc(1192px * 0.3);
+    position: fixed;
+    top: var(--header);
+    left: 50%;
+    transform: translate(66.5%, 0);
+  }
+}
+
+/* end home__feed */

@@ -1,4 +1,4 @@
-.loginScreen {
+.login {
   position: static;
   width: 100%;
   height: 100vh;
@@ -7,16 +7,17 @@
   align-items: center;
 }
 
-.loginScreen-wrapper ul {
+.login--box-1 ul {
   list-style-type: none;
 }
 
-.loginScreen-wrapper {
+.login--box-1 {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.loginScreen-media-button {
+.login__button {
   border: 1px solid #000;
   border-radius: 2rem;
   padding: 1rem 2rem;
@@ -26,6 +27,15 @@
   width: 100%;
 }
 
-.loginScreen-wrapper-header {
+.login--box-2 {
   margin-bottom: 5rem;
+}
+
+.login--box-3 {
+  margin-top: 2rem;
+}
+
+.create {
+  color: red;
+  font-weight: bold;
 }

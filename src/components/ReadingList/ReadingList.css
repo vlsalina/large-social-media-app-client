@@ -1,0 +1,75 @@
+/* Reading list */
+
+.favorite__icon {
+  height: 1rem;
+}
+
+.readingList__title {
+  margin-bottom: 1.5rem;
+}
+
+.readingList__title h2 {
+  font-size: 1rem;
+}
+
+.readingList--box-1 {
+  display: flex;
+}
+
+.readingList--box-1 p {
+  line-height: 1.5rem;
+}
+
+/* End Reading list */
+
+/* Favorites styling */
+
+.favorites ul li:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.favorites--box-1 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.favorites__avatar {
+  margin-right: 1rem;
+}
+
+.favorites__author h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.favorites__title {
+  margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.favorites__title h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.favorites--box-2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel {
+  border: none;
+  cursor: pointer;
+}
+
+.cancel img {
+  height: 1.5rem;
+  object-fit: contain;
+}
+
+/* End Favorites styling */

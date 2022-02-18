@@ -1,0 +1,103 @@
+.header {
+  height: calc(65px + 3rem);
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: #fff;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  left: 0;
+}
+
+.header--box-1 {
+  height: 2rem;
+  width: 100%;
+  margin-top: 1.5rem;
+  position: relative;
+}
+
+.header--box-1 ul {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.header--box-1 ul li {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header--box-2,
+.header--box-3,
+.header--box-4,
+.header--box-3 div ul,
+.header--box-3 div ul li {
+  height: 100%;
+}
+
+.header--box-2 {
+  width: 20%;
+}
+
+.header--box-2 a {
+  height: 100%;
+}
+
+.header--box-3 {
+  width: 80%;
+}
+
+.header--box-4 {
+  width: 100%;
+}
+
+.header__icon {
+  height: 2rem;
+  object-fit: contain;
+}
+
+.header-avatar-wrapper {
+  height: 100%;
+}
+
+.header-avatar {
+  height: 100%;
+  object-fit: contain;
+}
+
+.actionmenubutton {
+  border: none;
+  height: 100%;
+}
+
+.header--noborder {
+  border: none;
+}
+
+@media screen and (min-width: 743px) {
+  .header--box-1 {
+    width: 743px;
+  }
+}
+
+@media screen and (min-width: 1192px) {
+  .header--box-1 {
+    width: 1192px;
+    padding: 0;
+  }
+
+  .header-wrapper {
+    height: 2rem;
+  }
+
+  .header--box-3 {
+    justify-content: flex-end;
+  }
+
+  .header--box-4 {
+    width: 300px;
+  }
+}

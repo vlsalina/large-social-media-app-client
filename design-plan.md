@@ -4,40 +4,49 @@ author: vincent salinas
 
 **\*\*** Requirements **\*\***
 User requirements:
-(1) users should be able to register for an account
-(2) users can log into account
-(3) users can open and read articles
-(4) users can like articles
-(5) users can leave comments or replies to an article
-(6) users can save articles to a reading list
-(7) users can change their username
-(8) users can change their password
-(9) users can change their email
-(10) users can create an article
-(11) users can upload and attach an image to an article they authored
-(12) users can subscribe to an author they like
-(13) when subscribed to an author(s), user should be able to see the latest 10 articles by an author(s) in their main feed
-(14) users can see the 10 latest articles written to Large
-(15) each article is tagged with ONE of the following topics: (a) technology, (b) money, (c) business, (d) productivity, (e) psychology, (f) mindfulness, (g) art
-(16) users can see a filtered list of articles by topic
+done (1) users should be able to register for an account
+done (2) users can log into account
+done (3) users can open and read articles
+done (4) users can like articles
+done (5) users can leave comments or replies to an article
+done (6) users can save articles to a reading list
+wip (7) users can change their username
+wip (8) users can change their password
+wip (9) users can change their email
+done (10) users can create an article
+cncl (11) users can upload and attach an image to an article they authored
+done (12) users can subscribe to an author they like
+done (13) when subscribed to an author(s), user should be able to see the latest 10 articles by an author(s) in their main feed
+cncl (14) users can see the 10 latest articles written to Large
+done (15) each article is tagged with ONE of the following topics: (a) technology, (b) money, (c) business, (d) productivity, (e) psychology, (f) mindfulness, (g) art
+done (16) users can see a filtered list of articles by topic
+cncl (17) users can direct message an author
+done (18) user should not be able to favorite their own articles
 
 Conventional requirements:
-(1) users should be able to view the most optimized layout on any device
-(2) buttons should be interactive, having a static and a hover state
+done (1) users should be able to view the most optimized layout on any device
+cncl (2) buttons should be interactive, having a static and a hover state
 
 **\*\*** Implementation **\*\***
-(1) There should be a user collection
-(2) there should be an articles collection
-(3) there should be a replies collection
+done (1) There should be a user collection
+done (2) there should be an articles collection
+done (3) there should be a replies collection
 
 **\*\*** Screens **\*\***
-(1) login screen
-(2) register screen
-(3) main feed screen
-(4) article screen
-(5) profile screen
-(6) account screen
-(7) author screen
+done (1) login screen
+done (2) register screen
+95% (3) main feed screen
+95% (4) article screen
+done (5) profile screen
+cncl (6) account screen
+cncl (7) author screen
+done (8) topic screen
+done (9) reading list
+done (10) create new article screen
+
+**\*\*** Features **\*\***
+done (1) Action Menu
+cncl (2) Direct Messanger
 
 **\*\*** Models **\*\***
 (1) User
@@ -104,6 +113,29 @@ done - (3.2.4) unlike a reply
 (4.2) Auth:
 (4.2.0) login
 
+**\*\*** client side todos **\*\***
+done (1) set up React Redux store
+done (2) add likes and replies indicator for main feed articles
+(3) main feed should be sectioned into Latest articles and subscribed articles
+done (4) personal avatars
+done (5) add hero section for Main Feed screen
+done (6) bottom replies indicator should open Replies side bar
+done (7) Reading List should only show 3 articles. If user has favorited more than 3, provide link to Bookmarks screen.
+(8) Optimization - Remember to DRY. All reusable functions should be stored in a seperate js file to be exported when needed.
+done (9) Fix Article image on Main Feed screen.
+done (10) Added new properties to user Model in backend: (a) user story, (b) user followers list
+done (11) Update the /api/users/follow api to also added user's own \_id to author's "followers" list
+(12) Too much sphagetti code in Profile screen. Need to do optimization.
+(13) drop down menu (for mobile devices) to allow users to pick a topic or go to favorites
+(14) fix cancel button in reply's editor
+
+**\*\*** components **\*\***
+(1) Replies modal
+
+**\*\*** redux states **\*\***
+(1) user
+(2) articles
+
 **\*\*** fixes **\*\***
 (1) must fix addReply api to: - create a new Reply - add new reply to designated article
 
@@ -114,9 +146,23 @@ done - (3.2.4) unlike a reply
 **\*\*** Problems **\*\***
 (1) Must remember NOT to "close" connection to MongoDB when running app.
 (2) Error: Can't set headers after they are sent to the client.
-
-**\*\*** Resources **\*\***
+(3) Dependency errors when trying to use same code for Topic screen from Main Feed screen. Simple fix by adding some logic depending on which screen user is currently in. A 'type' paramter was added to MainFeedArticleCard to help determine which: type={true} --> Main Feed, type={false} --> Topic
 
 **\*\*** Learned **\*\***
 (1) use "req.query" to get values stored in url for backend
 (2) how to set CORS headers to allow access from designated sites
+(3) how to return promise after using dispatch (useDispatch) hook
+(4) how to leverage api chaining
+(5) how to use Promise.all() to make several api calls
+(6) to have page reflect changes (like number of likes after liking an article) WITHOUT refreshing page, fetch and store data into useState var, then when change occurs with function api call, simply update the state.
+(7) how to maintain aspect ratio
+(8) implementing fade-in and fade-out functionality using IntersectionObserver
+(9) react-router-dom now uses Navigate hook instead of Redirect
+
+**\*\*** Resources **\*\***
+(3) https://stackoverflow.com/questions/56694102/how-to-return-a-promise-from-an-action-using-thunk-and-usedispatch-react-redux
+(5) https://gomakethings.com/waiting-for-multiple-all-api-responses-to-complete-with-the-vanilla-js-promise.all-method/
+(7) https://www.w3schools.com/howto/howto_css_aspect_ratio.asp
+(8) https://dev.to/selbekk/how-to-fade-in-content-as-it-scrolls-into-view-10j4
+(9) https://stackoverflow.com/questions/69864165/error-privateroute-is-not-a-route-component-all-component-children-of-rou
+(9) https://stackoverflow.com/questions/63690695/react-redirect-is-not-exported-from-react-router-dom

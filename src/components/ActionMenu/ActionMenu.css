@@ -1,0 +1,82 @@
+.actionmenu__drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0px;
+  padding: 0;
+  height: 100vh;
+  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  z-index: 1;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+.actionmenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  z-index: 1;
+  display: none;
+}
+
+.actionmenu--open {
+  display: block;
+}
+
+.actionmenu--close {
+  display: none;
+}
+
+.actionmenu__drawer--open {
+  width: 100%;
+  padding: 2rem;
+  -webkit-box-shadow: 0px 0px 15px 3px #000000;
+  box-shadow: 0px 0px 15px 3px #000000;
+}
+
+.actionmenu--box-1 {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.actionmenu--box-1 button {
+  border: none;
+}
+
+.actionmenu--box-2 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 2rem;
+}
+
+.actionmenu__signout {
+  border: none;
+  color: red;
+  padding: 0;
+}
+
+.settings {
+  margin: 2rem 0;
+}
+
+@media screen and (min-width: 414px) {
+  .actionmenu__drawer--open {
+    width: 414px;
+    padding: 2rem;
+    -webkit-box-shadow: 0px 0px 15px 3px #000000;
+    box-shadow: 0px 0px 15px 3px #000000;
+  }
+
+  .actionmenu__drawer--close {
+    width: 0px;
+    padding: 0;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  }
+}

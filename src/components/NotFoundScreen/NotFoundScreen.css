@@ -1,0 +1,56 @@
+.notfound {
+  width: 100vw;
+  height: 100vh;
+  background: url("https://i.ytimg.com/vi/gEOa793e_dU/maxresdefault.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.notfound--box-1 {
+  width: 80%;
+  text-align: center;
+}
+
+.notfound__redirect {
+  background-color: transparent;
+  border: 0.5rem solid #fff;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.notfound__title {
+  font-size: 6rem;
+  margin: 0;
+}
+
+.notfound__description {
+  font-size: 2rem;
+  font-weight: 100;
+}
+
+.notfound--spacer {
+  margin-bottom: 3rem;
+}
+
+.notfound--shadow {
+  -webkit-text-stroke: 1px #f8f8f8;
+  text-shadow: 0px 2px 4px blue;
+}
+
+@media screen and (min-width: 300px) {
+  .notfound__title {
+    font-size: 8rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .notfound--box-1 {
+    width: 500px;
+  }
+}

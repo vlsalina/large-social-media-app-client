@@ -1,0 +1,115 @@
+.articleeditor {
+  width: 100%;
+  padding-bottom: 10rem;
+}
+
+.articleeditor__title input {
+  padding: 1rem;
+  width: 100%;
+  color: #b3b3b1;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: 0;
+  font-size: 2rem;
+  border: none;
+}
+
+.articleeditor__description input,
+.articleeditor__imginput input {
+  padding: 1rem;
+  width: 100%;
+  color: #b3b3b1;
+  border: none;
+  font-size: 1rem;
+}
+
+.articleeditor__title input:focus,
+.articleeditor__description input:focus,
+.articleeditor__imginput input:focus {
+  outline: none;
+}
+
+.articleeditor--box-1 {
+  margin: 1rem 0;
+}
+
+.articleEditorClassName {
+  margin-top: 1rem;
+  padding: 0 1rem;
+  color: #b3b3b1;
+}
+
+.articleeditor--box-2 {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.articleeditor__publish {
+  width: 100%;
+}
+
+.articleeditor__publish button {
+  background-color: #000;
+  width: 100%;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.articleeditor--box-3 {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.articleeditor--box-3 ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.articleeditor--box-3 ul li {
+  margin: 0 0.5rem 0.5rem 0;
+}
+
+.articleeditor__topic {
+  padding: 1rem;
+  border-radius: 1rem;
+  text-transform: capitalize;
+}
+
+.articleeditor__topic--normal {
+  background-color: #fff;
+  color: #000;
+}
+
+.articleeditor__topic--active {
+  background-color: #000;
+  color: #fff;
+  opacity: 0.5;
+}
+
+.articleeditor--box-4 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.articleeditor__image img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.articleeditor__imginput {
+  width: 100%;
+}
+
+.articleeditor--box-4 div button {
+  border: none;
+}
+
+@media screen and (min-width: 500px) {
+  .articleeditor__publish,
+  .articleeditor__publish button {
+    width: auto;
+  }
+}

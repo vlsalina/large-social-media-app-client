@@ -1,0 +1,55 @@
+.profilecard {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgb(179, 164, 164);
+}
+
+.profilecard:not(:first-child) {
+  padding-top: 2rem;
+}
+
+.profilecard__title {
+  margin-bottom: 0.5rem;
+}
+
+.profilecard__title h2 {
+  margin-bottom: 0;
+}
+
+.profilecard__image {
+  overflow: hidden;
+  width: 100%;
+  /* padding-top: 56.25%; */
+  padding-top: 70%;
+  position: relative;
+  height: auto;
+  margin: 2rem 0;
+}
+
+.profilecard__image img {
+  width: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.profilecard__spacer {
+  margin-top: 1rem;
+}
+
+.profilecard--spacer {
+  margin-top: 1rem;
+}
+
+/* maintain number of lines */
+.profilecard__title,
+.profilecard__snippet,
+.profilecard__description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* end maintain number of lines */

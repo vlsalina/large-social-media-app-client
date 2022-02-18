@@ -1,0 +1,18 @@
+.social {
+  width: 250px;
+}
+
+.social ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social__favorite {
+  border: none;
+}
+
+.social__favorite img {
+  height: 2rem;
+  object-fit: contain;
+}

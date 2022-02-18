@@ -1,0 +1,16 @@
+.recommended--box-1 ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.recommended__topic {
+  padding: 1rem 2rem;
+}
+
+.recommended__title h2 {
+  font-size: 1rem;
+}
+
+.recommended--box-1 {
+  text-transform: capitalize;
+}

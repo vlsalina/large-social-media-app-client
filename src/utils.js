@@ -1,0 +1,18 @@
+import { format } from "date-fns";
+import { colors } from "./data/data";
+
+const formatDate = (date) => {
+  let createdAt = date.slice(0, 10).split("-");
+  let [year, month, day] = createdAt;
+
+  let formattedDate = format(new Date(year, month, day), "PP");
+
+  return formattedDate;
+};
+
+const getColor = () => {
+  let index = Math.floor(Math.random() * colors.length);
+  return colors[index];
+};
+
+export { formatDate, getColor };
