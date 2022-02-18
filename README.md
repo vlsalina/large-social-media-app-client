@@ -191,7 +191,7 @@ usersRouter.get('/getFavorite', authenticateToken, function (req, res) {
 
 #### Multiple Asynchronous Requests using Promise.all
 
-Depending on the size, quality, and number of images to be displayed on the page, it can take quite awhile to load them all. I needed multiple promises in this case, but resolving multiple promises one by one was too cumbersome. Using Promise.all was a more efficient way of handling multiple async operations by aggregating a group of promises.
+Depending on the size, quality, and number of images to be displayed on the page, it can take quite awhile to load them all. I needed multiple promises in this case, but resolving multiple promises one by one was too cumbersome. Using [Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) was a more efficient way of handling multiple async operations by aggregating a group of promises.
 
 Promise.all is actually a function that takes an array of promises as an input (an iterable) and returns a Promise. Then it gets resolved when all the promises get resolved or any one of them gets rejected.
 
