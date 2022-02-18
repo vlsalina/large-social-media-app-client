@@ -89,7 +89,7 @@ Main Feed
 ![mainfeed](https://res.cloudinary.com/do6crtyly/image/upload/v1645094530/large/demo1_wf9c2v.png)
 
 Create an article
-![create](https://res.cloudinary.com/do6crtyly/image/upload/v1645094530/large/demo3_dppj85.png)
+![create](https://res.cloudinary.com/do6crtyly/image/upload/v1645094530/large/demo2_eafgc9.png)
 
 Read, Reply, and Favorite
 ![readAndReply](https://res.cloudinary.com/do6crtyly/image/upload/v1645146414/large/reply_vkaykz.png)
