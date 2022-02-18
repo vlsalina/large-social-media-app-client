@@ -1,12 +1,12 @@
 # Large Social Media App
 
-        Large is inspired by [Medium](https://medium.com/), a very
-        popular online publishing platform and founded by Twitter co-founder,
-        Evan Williams. It's one of my favorite websites to learn and gain
-        insight from experienced developers. The goal for this project was to
-        gain experience using tools such as React, Redux, MongoDB, Express,
-        Mongoose, and JSON web tokens for an application that covered all
-        layers, frontend, backend, and database, of the web development cycle.
+Large is inspired by [Medium](https://medium.com/), a very
+popular online publishing platform and founded by Twitter co-founder,
+Evan Williams. It's one of my favorite websites to learn and gain
+insight from experienced developers. The goal for this project was to
+gain experience using tools such as React, Redux, MongoDB, Express,
+Mongoose, and JSON web tokens for an application that covered all
+layers, frontend, backend, and database, of the web development cycle.
 
 ## Table of contents
 
