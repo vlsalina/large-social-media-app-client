@@ -28,3 +28,19 @@ ul {
 button {
   cursor: pointer;
 }
+
+/* global fonts styles */
+
+.logo {
+  display: none;
+}
+
+@media screen and (min-width: 1192px) {
+  .logo {
+    font-weight: 100;
+    text-transform: uppercase;
+    display: block;
+  }
+}
+
+/* end global fonts styles */

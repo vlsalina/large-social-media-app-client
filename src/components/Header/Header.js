@@ -50,11 +50,14 @@ const Header = () => {
         <ul>
           <li className="header--box-2">
             <Link to="/">
-              <img
-                className="header__icon"
-                src={"/assets/large-logo.png"}
-                alt="logo"
-              />
+              <div className="header--box-5">
+                <img
+                  className="header__icon"
+                  src={"/assets/large-logo.png"}
+                  alt="logo"
+                />
+                <h1 className="logo logo--margin">Large</h1>
+              </div>
             </Link>
           </li>
           <li className="header--box-3">

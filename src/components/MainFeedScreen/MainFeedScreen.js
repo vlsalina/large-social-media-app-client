@@ -68,7 +68,7 @@ const MainFeedScreen = () => {
                 <div className="home--box-3">
                   <div className="home--box-4">
                     <div className="home__title">
-                      <h2> Large is a place to write, read, and connect </h2>
+                      <h2>Large is a place to read, write, and connect</h2>
                     </div>
                     <div className="home__description">
                       <p>
