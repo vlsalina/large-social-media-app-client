@@ -1,5 +1,5 @@
-import ArticleEditor from "../ArticleEditor/ArticleEditor";
-import Header from "../Header/Header";
+import ArticleEditor from "../../components/ArticleEditor/ArticleEditor";
+import Header from "../../components/Header/Header";
 import "./CreateArticleScreen.css";
 
 const CreateArticleScreen = () => {

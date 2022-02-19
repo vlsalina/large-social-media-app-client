@@ -6,7 +6,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./TextEditor.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { ArticleContext } from "../ArticleScreen/ArticleScreen";
+import { ArticleContext } from "../../screens/ArticleScreen/ArticleScreen";
 import { RepliesContext } from "../Replies/Replies";
 
 const TextEditor = () => {
