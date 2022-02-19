@@ -83,6 +83,18 @@
   }
 }
 
+/* header--box-5 */
+.header--box-5 {
+  display: flex;
+  align-items: center;
+}
+
+.logo--margin {
+  margin: 0 0 0 1.5rem;
+}
+
+/* end header--box-5 */
+
 @media screen and (min-width: 1192px) {
   .header--box-1 {
     width: 1192px;

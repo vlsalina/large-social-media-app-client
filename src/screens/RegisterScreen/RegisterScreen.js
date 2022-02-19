@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./RegisterScreen.css";
 import { networks } from "../../data/data";
-import RegistrationForm from "../RegistrationForm/RegistrationForm";
+import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
 import { Link } from "react-router-dom";
-import Loader from "../Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 
 const RegisterScreen = () => {
   const [loading, setLoading] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 import { useSelector } from "react-redux";
 import "./ArticleScreen.css";
 import { formatDate } from "../../utils";
@@ -10,12 +10,17 @@ import { AiFillLike } from "react-icons/ai";
 import { TiMessages } from "react-icons/ti";
 import { IconContext } from "react-icons";
 import { useLocation } from "react-router-dom";
-import Footer from "../Footer/Footer";
-import SocialMenu from "../SocialMenu/SocialMenu";
-import Replies from "../Replies/Replies";
+import Footer from "../../components/Footer/Footer";
+import SocialMenu from "../../components/SocialMenu/SocialMenu";
+import Replies from "../../components/Replies/Replies";
 import parse from "html-react-parser";
 import { useDispatch } from "react-redux";
-import { follow, unfollow, like, dislike } from "../actions/actions";
+import {
+  follow,
+  unfollow,
+  like,
+  dislike,
+} from "../../components/actions/actions";
 
 const styles = {
   icons: {

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 import "./TopicScreen.css";
 import axios from "axios";
-import Loader from "../Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 import { useSelector } from "react-redux";
-import MainFeedArticleCard from "../MainFeedArticleCard/MainFeedArticleCard";
-import Recommended from "../Recommended/Recommended";
-import ReadingList from "../ReadingList/ReadingList";
+import MainFeedArticleCard from "../../components/MainFeedArticleCard/MainFeedArticleCard";
+import Recommended from "../../components/Recommended/Recommended";
+import ReadingList from "../../components/ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { topics } from "../../data/data";

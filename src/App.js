@@ -1,15 +1,15 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ArticleScreen from "./components/ArticleScreen/ArticleScreen";
-import LoginScreen from "./components/LoginScreen/LoginScreen";
-import MainFeedScreen from "./components/MainFeedScreen/MainFeedScreen";
-import ProfileScreen from "./components/ProfileScreen/ProfileScreen";
-import RegisterScreen from "./components/RegisterScreen/RegisterScreen";
-import CreateArticleScreen from "./components/CreateArticleScreen/CreateArticleScreen";
-import TopicScreen from "./components/TopicScreen/TopicScreen";
+import ArticleScreen from "./screens/ArticleScreen/ArticleScreen";
+import LoginScreen from "./screens/LoginScreen/LoginScreen";
+import MainFeedScreen from "./screens/MainFeedScreen/MainFeedScreen";
+import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
+import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
+import CreateArticleScreen from "./screens/CreateArticleScreen/CreateArticleScreen";
+import TopicScreen from "./screens/TopicScreen/TopicScreen";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import NotFoundScreen from "./components/NotFoundScreen/NotFoundScreen";
+import NotFoundScreen from "./screens/NotFoundScreen/NotFoundScreen";
 
 function App() {
   return (

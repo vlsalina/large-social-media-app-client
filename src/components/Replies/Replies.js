@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import ReplyForm from "../ReplyForm/ReplyForm";
 import "./Replies.css";
 import axios from "axios";
-import { ArticleContext } from "../ArticleScreen/ArticleScreen";
+import { ArticleContext } from "../../screens/ArticleScreen/ArticleScreen";
 import { useSelector } from "react-redux";
 import parse from "html-react-parser";
 import { formatDate } from "../../utils";

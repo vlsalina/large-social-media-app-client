@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./ProfileScreen.css";
 import { useParams } from "react-router-dom";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import ProfileArticleCard from "../ProfileArticleCard.js/ProfileArticleCard";
-import Loader from "../Loader/Loader";
+import ProfileArticleCard from "../../components/ProfileArticleCard.js/ProfileArticleCard";
+import Loader from "../../components/Loader/Loader";
 import { useLocation } from "react-router-dom";
 import { breadcrumbs } from "../../data/data";
-import AuthorProfile from "../AuthorProfile/AuthorProfile";
+import AuthorProfile from "../../components/AuthorProfile/AuthorProfile";
 import { useDispatch } from "react-redux";
-import { follow, unfollow } from "../actions/actions";
-import FollowingCard from "../FollowingCard/FollowingCard";
-import NotificationsCard from "../NotificationsCard/NotificationsCard";
+import { follow, unfollow } from "../../components/actions/actions";
+import FollowingCard from "../../components/FollowingCard/FollowingCard";
+import NotificationsCard from "../../components/NotificationsCard/NotificationsCard";
 
 const FadeIn = ({ children }) => {
   const [isVisib, setIsVisib] = React.useState(false);

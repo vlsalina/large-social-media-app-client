@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./MainFeedArticleCard.css";
 import { formatDate } from "../../utils";
-import { MainFeedContext } from "../MainFeedScreen/MainFeedScreen";
-import { TopicContext } from "../TopicScreen/TopicScreen";
+import { MainFeedContext } from "../../screens/MainFeedScreen/MainFeedScreen";
+import { TopicContext } from "../../screens/TopicScreen/TopicScreen";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";

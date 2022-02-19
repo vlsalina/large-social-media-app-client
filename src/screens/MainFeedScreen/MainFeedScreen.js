@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 import "./MainFeedScreen.css";
-import { getAllArticles } from "../actions/actions";
-import Loader from "../Loader/Loader";
+import { getAllArticles } from "../../components/actions/actions";
+import Loader from "../../components/Loader/Loader";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import MainFeedArticleCard from "../MainFeedArticleCard/MainFeedArticleCard";
-import Recommended from "../Recommended/Recommended";
-import ReadingList from "../ReadingList/ReadingList";
+import MainFeedArticleCard from "../../components/MainFeedArticleCard/MainFeedArticleCard";
+import Recommended from "../../components/Recommended/Recommended";
+import ReadingList from "../../components/ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 
 export const MainFeedContext = React.createContext();
@@ -68,7 +68,7 @@ const MainFeedScreen = () => {
                 <div className="home--box-3">
                   <div className="home--box-4">
                     <div className="home__title">
-                      <h2> Large is a place to write, read, and connect </h2>
+                      <h2>Large is a place to read, write, and connect</h2>
                     </div>
                     <div className="home__description">
                       <p>
