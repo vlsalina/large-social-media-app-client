@@ -35,7 +35,12 @@ const RegisterScreen = () => {
             <ul>
               {networks.slice(0, 4).map((x) => (
                 <li key={x.network}>
-                  <a href={x.url} target="_blank" rel="noreferrer">
+                  <a
+                    href={x.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="disabled"
+                  >
                     <button type="button" className="login__button">
                       Register with {x.network}
                     </button>

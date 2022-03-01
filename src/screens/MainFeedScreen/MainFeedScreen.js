@@ -9,6 +9,7 @@ import MainFeedArticleCard from "../../components/MainFeedArticleCard/MainFeedAr
 import Recommended from "../../components/Recommended/Recommended";
 import ReadingList from "../../components/ReadingList/ReadingList";
 import { Link } from "react-router-dom";
+import IsLogged from "../../components/IsLogged/IsLogged";
 
 export const MainFeedContext = React.createContext();
 
@@ -98,18 +99,22 @@ const MainFeedScreen = () => {
                     <div className="home__recommended">
                       <Recommended />
                     </div>
-                    <div className="home__readinglist">
-                      <ReadingList type={true} />
-                    </div>
-                    {favorites && favorites.length > 3 && (
-                      <div>
-                        <Link to={`/profile/${user._id}?breadcrumb=favorites`}>
-                          <div className="home__seemore">
-                            See all {favorites.length}
-                          </div>
-                        </Link>
+                    <IsLogged>
+                      <div className="home__readinglist">
+                        <ReadingList type={true} />
                       </div>
-                    )}
+                      {favorites && favorites.length > 3 && (
+                        <div>
+                          <Link
+                            to={`/profile/${user._id}?breadcrumb=favorites`}
+                          >
+                            <div className="home__seemore">
+                              See all {favorites.length}
+                            </div>
+                          </Link>
+                        </div>
+                      )}
+                    </IsLogged>
                   </div>
                 </div>
               </div>

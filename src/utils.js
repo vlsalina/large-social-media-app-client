@@ -15,4 +15,8 @@ const getColor = () => {
   return colors[index];
 };
 
-export { formatDate, getColor };
+const redirect = () => {
+  window.location.href = "/register";
+};
+
+export { formatDate, getColor, redirect };

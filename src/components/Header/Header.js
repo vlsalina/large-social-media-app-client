@@ -6,6 +6,7 @@ import { BsPlusCircleFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import Avatar from "../Avatar/Avatar";
 import ActionMenu from "../ActionMenu/ActionMenu";
+import IsLogged from "../IsLogged/IsLogged";
 
 const styles = {
   icon: {
@@ -61,54 +62,63 @@ const Header = () => {
             </Link>
           </li>
           <li className="header--box-3">
-            <div className="header--box-4">
-              <ul>
-                <li key={"create article"}>
-                  <Link to="/create">
-                    <IconContext.Provider value={styles.icon}>
-                      <BsPlusCircleFill />
-                    </IconContext.Provider>
-                  </Link>
-                </li>
-                <li key={"search"}>
-                  <button
-                    type="button"
-                    className="header__drawer header--noborder"
-                  >
-                    <img
-                      className="header__icon"
-                      src={`/assets/icons8-search-500.png`}
-                      alt="search"
-                    />
-                  </button>
-                </li>
-                {menuItems.slice(0, 2).map((item) => (
-                  <li key={item.name}>
-                    <Link to={item.url}>
-                      <img
-                        className="header__icon"
-                        src={item.icon}
-                        alt={item.name}
-                      />
+            <IsLogged
+              text={
+                <p>
+                  Already have an account? <a href="/login">Sign in.</a> Or{" "}
+                  <a href="/register">Create One.</a>
+                </p>
+              }
+            >
+              <div className="header--box-4">
+                <ul>
+                  <li key={"create article"}>
+                    <Link to="/create">
+                      <IconContext.Provider value={styles.icon}>
+                        <BsPlusCircleFill />
+                      </IconContext.Provider>
                     </Link>
                   </li>
-                ))}
-                <li key={"action menu"}>
-                  <button
-                    className="actionmenubutton"
-                    type="button"
-                    onClick={drawerHandler}
-                  >
-                    <Avatar
-                      article={{
-                        avatar: user.avatar,
-                        author: user.firstname,
-                      }}
-                    />
-                  </button>
-                </li>
-              </ul>
-            </div>
+                  <li key={"search"}>
+                    <button
+                      type="button"
+                      className="header__drawer header--noborder"
+                    >
+                      <img
+                        className="header__icon"
+                        src={`/assets/icons8-search-500.png`}
+                        alt="search"
+                      />
+                    </button>
+                  </li>
+                  {menuItems.slice(0, 2).map((item) => (
+                    <li key={item.name}>
+                      <Link to={item.url}>
+                        <img
+                          className="header__icon"
+                          src={item.icon}
+                          alt={item.name}
+                        />
+                      </Link>
+                    </li>
+                  ))}
+                  <li key={"action menu"}>
+                    <button
+                      className="actionmenubutton"
+                      type="button"
+                      onClick={drawerHandler}
+                    >
+                      <Avatar
+                        article={{
+                          avatar: user.avatar,
+                          author: user.firstname,
+                        }}
+                      />
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </IsLogged>
           </li>
         </ul>
       </div>

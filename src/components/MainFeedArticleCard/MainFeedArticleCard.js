@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./MainFeedArticleCard.css";
-import { formatDate } from "../../utils";
+import { formatDate, redirect } from "../../utils";
 import { MainFeedContext } from "../../screens/MainFeedScreen/MainFeedScreen";
 import { TopicContext } from "../../screens/TopicScreen/TopicScreen";
 import { useSelector } from "react-redux";
@@ -14,8 +14,11 @@ import { styles } from "../../styles/styles";
 import Avatar from "../Avatar/Avatar";
 import { useDispatch } from "react-redux";
 import { favorite, like, dislike } from "../actions/actions";
+import { useNavigate } from "react-router-dom";
+import { BsFillBookmarkPlusFill } from "react-icons/bs";
 
 const MainFeedArticleCard = ({ article, type }) => {
+  const navigate = useNavigate();
   const { favorites, setFavorites } = useContext(
     type ? MainFeedContext : TopicContext
   );
@@ -109,7 +112,11 @@ const MainFeedArticleCard = ({ article, type }) => {
               {formatDate(article.createdAt)}
             </div>
             <div className="card__likes card--spacer">
-              <button type="button" className="buttonA" onClick={likeHandler}>
+              <button
+                type="button"
+                className="buttonA"
+                onClick={localStorage.getItem("user") ? likeHandler : redirect}
+              >
                 <IconContext.Provider value={styles.icons}>
                   {liked ? <AiFillLike /> : <AiOutlineLike />}
                 </IconContext.Provider>
@@ -118,26 +125,34 @@ const MainFeedArticleCard = ({ article, type }) => {
               </button>
             </div>
             <div className="card__replies card--spacer">
-              <Link to={`/article/${article._id}?open=${true}`}>
+              <button
+                type="button"
+                className="buttonA"
+                onClick={
+                  localStorage.getItem("user")
+                    ? () => navigate(`/article/${article._id}?open=${true}`)
+                    : redirect
+                }
+              >
                 <IconContext.Provider value={styles.icons}>
                   <TiMessages />
                 </IconContext.Provider>
                 &nbsp;
                 {replies && <div>{replies.length}</div>}
-              </Link>
+              </button>
             </div>
           </div>
           <div>
             <button
               className="favorite"
               type="button"
-              onClick={(e) => clickHandler(e)}
+              onClick={
+                localStorage.getItem("user") ? (e) => clickHandler(e) : redirect
+              }
             >
-              <img
-                className="favorite__icon"
-                src={"/assets/icons8-favorite-512.png"}
-                alt="favorite"
-              />
+              <IconContext.Provider value={styles.icons2}>
+                <BsFillBookmarkPlusFill />
+              </IconContext.Provider>
             </button>
           </div>
         </div>
