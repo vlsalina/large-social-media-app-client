@@ -27,4 +27,12 @@ const userIsLogged = ({ action }) => {
   }
 };
 
-export { formatDate, getColor, redirect, userIsLogged };
+const loggedIn = () => {
+  if (localStorage.getItem("user")) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export { formatDate, getColor, redirect, userIsLogged, loggedIn };

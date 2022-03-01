@@ -3,11 +3,15 @@ import "./SocialMenu.css";
 import { FaTwitterSquare } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
+import { BsBookmarkPlusFill } from "react-icons/bs";
+import { BsBookmarkDashFill } from "react-icons/bs";
+import { IconContext } from "react-icons/lib";
 import { Link } from "react-router-dom";
-import { IconContext } from "react-icons";
 import { useDispatch } from "react-redux";
 import { favorite, unfavorite } from "../actions/actions";
 import { useSelector } from "react-redux";
+import { userIsLogged, loggedIn } from "../../utils";
+import { styles } from "../../styles/styles";
 
 const links = [
   {
@@ -27,24 +31,20 @@ const links = [
   },
 ];
 
-const styles = {
-  icons: {
-    size: "2rem",
-  },
-};
-
 const SocialMenu = ({ article, favd, setFavd }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    // check if article already exists in user's favorites
-    let exists =
-      article && user.favorites.find((x) => x.articleId === article._id);
-    if (exists) {
-      setFavd(true);
-    } else {
-      setFavd(false);
+    if (loggedIn()) {
+      // check if article already exists in user's favorites
+      let exists =
+        article && user.favorites.find((x) => x.articleId === article._id);
+      if (exists) {
+        setFavd(true);
+      } else {
+        setFavd(false);
+      }
     }
   }, [article, setFavd, user.favorites]);
 
@@ -81,12 +81,16 @@ const SocialMenu = ({ article, favd, setFavd }) => {
           <button
             className="social__favorite"
             type="button"
-            onClick={favoriteHandler}
+            onClick={() => userIsLogged(favoriteHandler)}
           >
-            {favd ? (
-              <img src={"/assets/icons8-unfavorite-512.png"} alt="unfavorite" />
+            {loggedIn() && favd ? (
+              <IconContext.Provider value={styles.icons}>
+                <BsBookmarkDashFill />
+              </IconContext.Provider>
             ) : (
-              <img src={"/assets/icons8-favorite-512.png"} alt="favorite" />
+              <IconContext.Provider value={styles.icons}>
+                <BsBookmarkPlusFill />
+              </IconContext.Provider>
             )}
           </button>
         </li>

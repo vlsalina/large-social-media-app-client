@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { useSelector } from "react-redux";
 import "./ArticleScreen.css";
-import { formatDate } from "../../utils";
+import { formatDate, userIsLogged, loggedIn } from "../../utils";
 import { AiOutlineMessage } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
@@ -49,18 +49,24 @@ const ArticleScreen = () => {
     setArticle(result);
     setLikes(result.likes);
 
-    // if user is already following author, set following state to true. False otherwise.
-    let alreadyFollowing = user.following.find(
-      (x) => x.userId === result.authorId
-    );
-    if (alreadyFollowing) {
-      setFollowing(true);
-    }
+    const fn = () => {
+      // if user is already following author, set following state to true. False otherwise.
+      let alreadyFollowing = user.following.find(
+        (x) => x.userId === result.authorId
+      );
+      if (alreadyFollowing) {
+        setFollowing(true);
+      }
 
-    // if user has already liked article, set liked state to true. False otherwise.
-    let alreadyLiked = result.likes.find((x) => x.userId === user._id);
-    if (alreadyLiked) {
-      setLiked(true);
+      // if user has already liked article, set liked state to true. False otherwise.
+      let alreadyLiked = result.likes.find((x) => x.userId === user._id);
+      if (alreadyLiked) {
+        setLiked(true);
+      }
+    };
+
+    if (loggedIn()) {
+      fn();
     }
   }, [articleId, articles, user._id, user.following]);
 
@@ -143,7 +149,7 @@ const ArticleScreen = () => {
                   <button
                     className="article__button--1 article--padding-1"
                     type="button"
-                    onClick={openHandler}
+                    onClick={() => userIsLogged(openHandler)}
                   >
                     Reply
                   </button>
@@ -152,10 +158,10 @@ const ArticleScreen = () => {
                   <button
                     className="article__button--1 article--padding-1"
                     type="button"
-                    onClick={followHandler}
+                    onClick={() => userIsLogged(followHandler)}
                     disabled={article.authorId === user._id ? true : false}
                   >
-                    {following ? "Unfollow" : "Follow"}
+                    {loggedIn && following ? "Unfollow" : "Follow"}
                   </button>
                 </div>
                 <div className="article--box-8">
@@ -194,12 +200,12 @@ const ArticleScreen = () => {
                 <button
                   type="button"
                   className="article__button--2"
-                  onClick={likeHandler}
+                  onClick={() => userIsLogged(likeHandler)}
                 >
                   {likes && (
                     <>
                       <IconContext.Provider value={styles.icons}>
-                        {liked ? <AiFillLike /> : <AiOutlineLike />}
+                        {loggedIn && liked ? <AiFillLike /> : <AiOutlineLike />}
                       </IconContext.Provider>
                       &nbsp; &nbsp;{likes.length}
                     </>
@@ -212,7 +218,7 @@ const ArticleScreen = () => {
                 <button
                   type="button"
                   className="article__button--2"
-                  onClick={openHandler}
+                  onClick={() => userIsLogged(openHandler)}
                 >
                   <IconContext.Provider value={styles.icons}>
                     <TiMessages />

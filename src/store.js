@@ -8,7 +8,7 @@ const initialState = {
     ? JSON.parse(localStorage.getItem("user"))
     : {},
   articles: localStorage.getItem("articles")
-    ? JSON.parse(localStorage.getItem("artciles"))
+    ? JSON.parse(localStorage.getItem("articles"))
     : [],
 };
 
