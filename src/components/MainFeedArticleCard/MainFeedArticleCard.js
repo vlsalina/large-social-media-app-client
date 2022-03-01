@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./MainFeedArticleCard.css";
-import { formatDate, redirect } from "../../utils";
+import { formatDate, redirect, userIsLogged } from "../../utils";
 import { MainFeedContext } from "../../screens/MainFeedScreen/MainFeedScreen";
 import { TopicContext } from "../../screens/TopicScreen/TopicScreen";
 import { useSelector } from "react-redux";
@@ -115,7 +115,7 @@ const MainFeedArticleCard = ({ article, type }) => {
               <button
                 type="button"
                 className="buttonA"
-                onClick={localStorage.getItem("user") ? likeHandler : redirect}
+                onClick={() => userIsLogged(likeHandler)}
               >
                 <IconContext.Provider value={styles.icons}>
                   {liked ? <AiFillLike /> : <AiOutlineLike />}
@@ -128,10 +128,10 @@ const MainFeedArticleCard = ({ article, type }) => {
               <button
                 type="button"
                 className="buttonA"
-                onClick={
-                  localStorage.getItem("user")
-                    ? () => navigate(`/article/${article._id}?open=${true}`)
-                    : redirect
+                onClick={() =>
+                  userIsLogged(() =>
+                    navigate(`/article/${article._id}?open=${true}`)
+                  )
                 }
               >
                 <IconContext.Provider value={styles.icons}>
@@ -146,9 +146,7 @@ const MainFeedArticleCard = ({ article, type }) => {
             <button
               className="favorite"
               type="button"
-              onClick={
-                localStorage.getItem("user") ? (e) => clickHandler(e) : redirect
-              }
+              onClick={(e) => userIsLogged(() => clickHandler(e))}
             >
               <IconContext.Provider value={styles.icons2}>
                 <BsFillBookmarkPlusFill />
