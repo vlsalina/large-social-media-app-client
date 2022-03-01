@@ -19,4 +19,10 @@ const redirect = () => {
   window.location.href = "/register";
 };
 
-export { formatDate, getColor, redirect };
+const userIsLogged = ({ action }) => {
+  if (localStorage.getItem("user")) {
+    action();
+  }
+};
+
+export { formatDate, getColor, redirect, userIsLogged };

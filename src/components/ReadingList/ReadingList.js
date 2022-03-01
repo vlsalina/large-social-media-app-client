@@ -4,11 +4,14 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { MainFeedContext } from "../../screens/MainFeedScreen/MainFeedScreen";
 import { TopicContext } from "../../screens/TopicScreen/TopicScreen";
-import { formatDate } from "../../utils";
+import { formatDate, userIsLogged } from "../../utils";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
 import { useDispatch } from "react-redux";
 import { unfavorite } from "../actions/actions";
+import IsLogged from "../IsLogged/IsLogged";
+import { IconContext } from "react-icons/lib";
+import { BsFillBookmarkPlusFill } from "react-icons/bs";
 
 const Favorites = ({ favorites, setFavorites, dispatch }) => {
   const unfavHandler = (articleId) => {
@@ -95,7 +98,7 @@ const ReadingList = ({ type }) => {
         })
         .catch((error) => console.log(error));
     };
-    asyncCall();
+    userIsLogged(asyncCall());
   }, [process.env.REACT_APP_DOMAIN, setFavorites, user._id, user.accessToken]);
 
   return (
@@ -103,26 +106,28 @@ const ReadingList = ({ type }) => {
       <div className="readingList__title">
         <h2>Your Favorite Articles</h2>
       </div>
-      {favorites.length === 0 ? (
-        <div className="readingList--box-1">
-          <p>
-            Click the
-            <img
-              className="favorite__icon"
-              src={"/assets/icons8-favorite-512.png"}
-              alt="favorite"
-            />
-            on any story to easily add it to your reading list or a custom list
-            that you can share.
-          </p>
-        </div>
-      ) : (
-        <Favorites
-          favorites={favorites}
-          setFavorites={setFavorites}
-          dispatch={dispatch}
-        />
-      )}
+      <IsLogged>
+        {favorites.length === 0 ? (
+          <div className="readingList--box-1">
+            <p>
+              Click the
+              <img
+                className="favorite__icon"
+                src={"/assets/icons8-favorite-512.png"}
+                alt="favorite"
+              />
+              on any story to easily add it to your reading list or a custom
+              list that you can share.
+            </p>
+          </div>
+        ) : (
+          <Favorites
+            favorites={favorites}
+            setFavorites={setFavorites}
+            dispatch={dispatch}
+          />
+        )}
+      </IsLogged>
     </div>
   );
 };

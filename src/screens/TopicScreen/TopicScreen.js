@@ -10,6 +10,7 @@ import ReadingList from "../../components/ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { topics } from "../../data/data";
+import IsLogged from "../../components/IsLogged/IsLogged";
 
 export const TopicContext = React.createContext();
 
@@ -55,8 +56,7 @@ const TopicScreen = () => {
     const asyncCall = async () => {
       try {
         const { data } = await axios.get(
-          `${process.env.REACT_APP_DOMAIN}/api/articles/getArticlesByCategory?category=${topic}`,
-          { headers: { authorization: `Bearer ${user.accessToken}` } }
+          `${process.env.REACT_APP_DOMAIN}/api/articles/getArticlesByCategory?category=${topic}`
         );
         setLoading(false);
         setArticles(data.reverse());
@@ -109,18 +109,20 @@ const TopicScreen = () => {
                     <div className="home__recommended">
                       <Recommended />
                     </div>
-                    <div className="home__readinglist">
-                      <ReadingList type={false} />
-                    </div>
-                    {favorites && favorites.length > 3 && (
-                      <div>
-                        <Link to={`/profile/${user._id}`}>
-                          <div className="home__seemore">
-                            See all {favorites.length}
-                          </div>
-                        </Link>
+                    <IsLogged>
+                      <div className="home__readinglist">
+                        <ReadingList type={false} />
                       </div>
-                    )}
+                      {favorites && favorites.length > 3 && (
+                        <div>
+                          <Link to={`/profile/${user._id}`}>
+                            <div className="home__seemore">
+                              See all {favorites.length}
+                            </div>
+                          </Link>
+                        </div>
+                      )}
+                    </IsLogged>
                   </div>
                 </div>
               </div>
