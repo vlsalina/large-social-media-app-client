@@ -84,87 +84,137 @@ const MainFeedArticleCard = ({ article, type }) => {
 
   return (
     <article className="card">
-      <div className="card--box-1">
-        <div className="card--box-3">
-          <div className="card__avatar-wrapper card--spacer">
-            <Avatar article={article} />
-          </div>
-          <div className="card__author card--spacer">
-            <Link to={`/profile/${article.authorId}?breadcrumb=articles`}>
-              <h4>{article.author}</h4>
+      <div className="card--box-7">
+        <div className="card--box-1">
+          <div className="card--box-3">
+            <div className="card__avatar-wrapper card--spacer">
+              <Avatar article={article} />
+            </div>
+            <div className="card__author card--spacer">
+              <Link to={`/profile/${article.authorId}?breadcrumb=articles`}>
+                <h4>{article.author}</h4>
+              </Link>
+            </div>
+            <Link to={`/topic/${article.category}`}>
+              <div className="card__topic">{article.category}</div>
             </Link>
           </div>
-          <Link to={`/topic/${article.category}`}>
-            <div className="card__topic">{article.category}</div>
+          <Link to={`/article/${article._id}`}>
+            <div className="card__title">
+              <h2>{article.title}</h2>
+            </div>
+          </Link>
+          <Link to={`/article/${article._id}`}>
+            <div className="card__snippet">{article.snippet}</div>
+          </Link>
+          <div className="card--box-4">
+            <div className="card--box-5">
+              <div className="card__date card--spacer">
+                {formatDate(article.createdAt)}
+              </div>
+              <div className="card__likes card--spacer">
+                <button
+                  type="button"
+                  className="buttonA"
+                  onClick={() => userIsLogged(likeHandler)}
+                >
+                  <IconContext.Provider value={styles.icons}>
+                    {liked ? <AiFillLike /> : <AiOutlineLike />}
+                  </IconContext.Provider>
+                  &nbsp;
+                  {likes && <div>{likes.length}</div>}
+                </button>
+              </div>
+              <div className="card__replies card--spacer">
+                <button
+                  type="button"
+                  className="buttonA"
+                  onClick={() =>
+                    userIsLogged(() =>
+                      navigate(`/article/${article._id}?open=${true}`)
+                    )
+                  }
+                >
+                  <IconContext.Provider value={styles.icons}>
+                    <TiMessages />
+                  </IconContext.Provider>
+                  &nbsp;
+                  {replies && <div>{replies.length}</div>}
+                </button>
+              </div>
+            </div>
+            <div>
+              <button
+                className="favorite"
+                type="button"
+                onClick={(e) => userIsLogged(() => clickHandler(e))}
+              >
+                <IconContext.Provider value={styles.icons2}>
+                  <BsFillBookmarkPlusFill />
+                </IconContext.Provider>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="card--box-2">
+          <Link to={`/article/${article._id}`}>
+            <img
+              className={`card__image ${
+                !article.image ? "card--placeholder" : ""
+              }`}
+              src={article.image ? article.image : "/assets/large-logo.png"}
+              alt="article"
+            />
           </Link>
         </div>
-        <Link to={`/article/${article._id}`}>
-          <div className="card__title">
-            <h2>{article.title}</h2>
+      </div>
+      <div className="card--box-6">
+        <div className="card--box-5">
+          <div className="card__date card--spacer">
+            {formatDate(article.createdAt)}
           </div>
-        </Link>
-        <Link to={`/article/${article._id}`}>
-          <div className="card__snippet">{article.snippet}</div>
-        </Link>
-        <div className="card--box-4">
-          <div className="card--box-5">
-            <div className="card__date card--spacer">
-              {formatDate(article.createdAt)}
-            </div>
-            <div className="card__likes card--spacer">
-              <button
-                type="button"
-                className="buttonA"
-                onClick={() => userIsLogged(likeHandler)}
-              >
-                <IconContext.Provider value={styles.icons}>
-                  {liked ? <AiFillLike /> : <AiOutlineLike />}
-                </IconContext.Provider>
-                &nbsp;
-                {likes && <div>{likes.length}</div>}
-              </button>
-            </div>
-            <div className="card__replies card--spacer">
-              <button
-                type="button"
-                className="buttonA"
-                onClick={() =>
-                  userIsLogged(() =>
-                    navigate(`/article/${article._id}?open=${true}`)
-                  )
-                }
-              >
-                <IconContext.Provider value={styles.icons}>
-                  <TiMessages />
-                </IconContext.Provider>
-                &nbsp;
-                {replies && <div>{replies.length}</div>}
-              </button>
-            </div>
-          </div>
-          <div>
+          <div className="card__likes card--spacer">
             <button
-              className="favorite"
               type="button"
-              onClick={(e) => userIsLogged(() => clickHandler(e))}
+              className="buttonA"
+              onClick={() => userIsLogged(likeHandler)}
             >
-              <IconContext.Provider value={styles.icons2}>
-                <BsFillBookmarkPlusFill />
+              <IconContext.Provider value={styles.icons}>
+                {liked ? <AiFillLike /> : <AiOutlineLike />}
               </IconContext.Provider>
+              &nbsp;
+              {likes && <div>{likes.length}</div>}
+            </button>
+          </div>
+          <div className="card__replies card--spacer">
+            <button
+              type="button"
+              className="buttonA"
+              onClick={() =>
+                userIsLogged(() =>
+                  navigate(`/article/${article._id}?open=${true}`)
+                )
+              }
+            >
+              <IconContext.Provider value={styles.icons}>
+                <TiMessages />
+              </IconContext.Provider>
+              &nbsp;
+              {replies && <div>{replies.length}</div>}
             </button>
           </div>
         </div>
-      </div>
-      <div className="card--box-2">
-        <Link to={`/article/${article._id}`}>
-          <img
-            className={`card__image ${
-              !article.image ? "card--placeholder" : ""
-            }`}
-            src={article.image ? article.image : "/assets/large-logo.png"}
-            alt="article"
-          />
-        </Link>
+        <div>
+          <button
+            className="favorite"
+            type="button"
+            onClick={(e) => userIsLogged(() => clickHandler(e))}
+          >
+            <IconContext.Provider value={styles.icons2}>
+              <BsFillBookmarkPlusFill />
+            </IconContext.Provider>
+          </button>
+        </div>
       </div>
     </article>
   );

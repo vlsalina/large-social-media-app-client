@@ -104,6 +104,30 @@
 
 /* end header--box-5 */
 
+/* header--span-1 */
+.header--span-1 {
+  display: none;
+}
+
+@media screen and (min-width: 500px) {
+  .header--span-1 {
+    display: inline;
+  }
+}
+/* end header--span-1 */
+
+/* header--span-2 */
+.header--span-2 {
+  display: inline;
+}
+
+@media screen and (min-width: 500px) {
+  .header--span-2 {
+    display: none;
+  }
+}
+/* end header--span-2 */
+
 @media screen and (min-width: 1192px) {
   .header--box-1 {
     width: 1192px;

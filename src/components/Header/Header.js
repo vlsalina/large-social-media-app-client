@@ -66,14 +66,26 @@ const Header = () => {
             <IsLogged
               text={
                 <p>
-                  Already have an account?{" "}
-                  <a className="header__link" href="/login">
-                    Sign in.
-                  </a>{" "}
-                  Or{" "}
-                  <a className="header__link" href="/register">
-                    Create One.
-                  </a>
+                  <span className="header--span-1">
+                    Already have an account?{" "}
+                    <a className="header__link" href="/login">
+                      Sign In.
+                    </a>{" "}
+                    Or{" "}
+                    <a className="header__link" href="/register">
+                      Create One.
+                    </a>
+                  </span>
+                  <span className="header--span-2">
+                    <a className="header__link" href="/login">
+                      Sign In
+                    </a>{" "}
+                    or{" "}
+                    <a className="header__link" href="/register">
+                      Create
+                    </a>{" "}
+                    an account.
+                  </span>
                 </p>
               }
             >
