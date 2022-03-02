@@ -3,6 +3,7 @@ import "./AuthorProfile.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { follow, unfollow } from "../actions/actions";
+import { userIsLogged, loggedIn } from "../../utils";
 
 const AuthorProfile = ({ author }) => {
   const user = useSelector((state) => state.user);
@@ -10,12 +11,14 @@ const AuthorProfile = ({ author }) => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
-    // check if author is already in user's following list
-    let exists = user.following.find((x) => x.userId === author._id);
-    if (exists) {
-      setIsFollowing(true);
-    } else {
-      setIsFollowing(false);
+    if (loggedIn()) {
+      // check if author is already in user's following list
+      let exists = user.following.find((x) => x.userId === author._id);
+      if (exists) {
+        setIsFollowing(true);
+      } else {
+        setIsFollowing(false);
+      }
     }
   }, [author._id, user.following]);
 
@@ -62,9 +65,9 @@ const AuthorProfile = ({ author }) => {
           <button
             className="authorprofile__follow"
             type="button"
-            onClick={followHandler}
+            onClick={() => userIsLogged(followHandler)}
           >
-            {isFollowing ? "Unfollow" : "Follow"}
+            {loggedIn() && isFollowing ? "Unfollow" : "Follow"}
           </button>
         </div>
       )}

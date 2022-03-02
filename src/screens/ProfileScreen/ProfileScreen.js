@@ -96,10 +96,7 @@ const ProfileScreen = () => {
             process.env.REACT_APP_DOMAIN
           }/api/articles/getArticlesByAuthor?authorId=${
             userId === user._id ? user._id : userId
-          }`,
-          {
-            headers: { authorization: `Bearer ${user.accessToken}` },
-          }
+          }`
         )
         .then((response) => {
           setUsersArticles(response.data.reverse());
@@ -113,10 +110,7 @@ const ProfileScreen = () => {
         .get(
           `${process.env.REACT_APP_DOMAIN}/api/users/getUser?id=${
             userId === user._id ? user._id : userId
-          }`,
-          {
-            headers: { authorization: `Bearer ${user.accessToken}` },
-          }
+          }`
         )
         .then((response) => setAuthor(response.data))
         .catch((error) => console.log(error));
@@ -124,17 +118,13 @@ const ProfileScreen = () => {
         // get users favorite articles
         await axios
           .get(
-            `${process.env.REACT_APP_DOMAIN}/api/users/getUser?id=${user._id}`,
-            {
-              headers: { authorization: `Bearer ${user.accessToken}` },
-            }
+            `${process.env.REACT_APP_DOMAIN}/api/users/getUser?id=${user._id}`
           )
           .then((result) => {
             Promise.all(
               result.data.favorites.map((x) => {
                 return axios.get(
-                  `${process.env.REACT_APP_DOMAIN}/api/articles/getArticle?articleId=${x}`,
-                  { headers: { authorization: `Bearer ${user.accessToken}` } }
+                  `${process.env.REACT_APP_DOMAIN}/api/articles/getArticle?articleId=${x}`
                 );
               })
             )
@@ -150,12 +140,7 @@ const ProfileScreen = () => {
 
         // get other users replies from articles written by user
         await axios
-          .get(
-            `${process.env.REACT_APP_DOMAIN}/api/replies/getRepliesByAuthor`,
-            {
-              headers: { authorization: `Bearer ${user.accessToken}` },
-            }
-          )
+          .get(`${process.env.REACT_APP_DOMAIN}/api/replies/getRepliesByAuthor`)
           .then((response) => {
             setReplies(response.data.reverse());
             if (breadcrumb === "notifications") {
@@ -167,10 +152,7 @@ const ProfileScreen = () => {
         Promise.all(
           user.following.map((x) => {
             return axios.get(
-              `${process.env.REACT_APP_DOMAIN}/api/users/getUser?id=${x.userId}`,
-              {
-                headers: { authorization: `Bearer ${user.accessToken}` },
-              }
+              `${process.env.REACT_APP_DOMAIN}/api/users/getUser?id=${x.userId}`
             );
           })
         )

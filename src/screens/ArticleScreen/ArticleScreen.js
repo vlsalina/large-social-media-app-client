@@ -136,7 +136,7 @@ const ArticleScreen = () => {
                   <img src={`/assets/icons8-circled-v-100.png`} alt="avatar" />
                 </div>
                 <div className="article--box-3">
-                  <Link to={`/profile/${article.authorId}`}>
+                  <Link to={`/profile/${article.authorId}?breadcrumb=articles`}>
                     <div className="article__author">{article.author}</div>
                   </Link>
                   <div className="article__date">
