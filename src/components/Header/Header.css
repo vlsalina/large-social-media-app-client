@@ -25,6 +25,10 @@
   align-items: center;
 }
 
+.header__link {
+  color: var(--bright-red);
+}
+
 .header--box-1 ul li {
   height: 100%;
   display: flex;
@@ -53,6 +57,10 @@
 
 .header--box-4 {
   width: 100%;
+}
+
+.header--box-6 {
+  justify-content: flex-end;
 }
 
 .header__icon {

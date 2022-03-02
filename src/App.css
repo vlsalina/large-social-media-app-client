@@ -3,6 +3,8 @@
   --banner: 400px;
   --header: calc(65px + 3rem);
   --sidemodal: 414px;
+  --fontsize1: 1rem;
+  --bright-red: red;
   /* end variables */
 }
 

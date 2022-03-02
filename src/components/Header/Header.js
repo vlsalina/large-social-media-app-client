@@ -7,6 +7,7 @@ import { IconContext } from "react-icons";
 import Avatar from "../Avatar/Avatar";
 import ActionMenu from "../ActionMenu/ActionMenu";
 import IsLogged from "../IsLogged/IsLogged";
+import { loggedIn } from "../../utils";
 
 const styles = {
   icon: {
@@ -61,12 +62,18 @@ const Header = () => {
               </div>
             </Link>
           </li>
-          <li className="header--box-3">
+          <li className={loggedIn() ? "header--box-3" : "header--box-6"}>
             <IsLogged
               text={
                 <p>
-                  Already have an account? <a href="/login">Sign in.</a> Or{" "}
-                  <a href="/register">Create One.</a>
+                  Already have an account?{" "}
+                  <a className="header__link" href="/login">
+                    Sign in.
+                  </a>{" "}
+                  Or{" "}
+                  <a className="header__link" href="/register">
+                    Create One.
+                  </a>
                 </p>
               }
             >
