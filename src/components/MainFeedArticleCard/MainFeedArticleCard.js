@@ -95,11 +95,20 @@ const MainFeedArticleCard = ({ article, type }) => {
                 <h4>{article.author}</h4>
               </Link>
             </div>
-            <Link to={`/topic/${article.category}`}>
+            <Link
+              className="card__category-1"
+              to={`/topic/${article.category}`}
+            >
               <div className="card__topic">{article.category}</div>
             </Link>
           </div>
-          <Link to={`/article/${article._id}`}>
+          <Link
+            className="card__category-2 card--spacer"
+            to={`/topic/${article.category}`}
+          >
+            <div className="card__topic">{article.category}</div>
+          </Link>
+          <Link className="card--spacer" to={`/article/${article._id}`}>
             <div className="card__title">
               <h2>{article.title}</h2>
             </div>

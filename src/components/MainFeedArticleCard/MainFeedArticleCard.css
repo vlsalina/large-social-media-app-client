@@ -3,6 +3,7 @@
   width: 100%;
   height: auto;
   margin-bottom: 2rem;
+  overflow: hidden;
 }
 
 /* end card */
@@ -98,7 +99,7 @@
 .card--box-6 {
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 @media screen and (min-width: 600px) {
@@ -161,17 +162,55 @@
   text-transform: capitalize;
 }
 
-/* card__snippet--display */
-.card__snippet--display {
-  display: none;
+/* card__category-1 */
+.card__category-1 {
+  display: block;
 }
 
-@media screen and (min-width: 550px) {
-  .card__snippet--display {
+@media screen and (min-width: 375px) {
+  .card__category-1 {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 445px) {
+  .card__category-1 {
     display: block;
   }
 }
-/* end card__snippet--display */
+/* end card__category-1 */
+
+/* card__category-2 */
+
+.card__category-2 {
+  display: none;
+}
+
+@media screen and (min-width: 375px) {
+  .card__category-2 {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 445px) {
+  .card__category-2 {
+    display: none;
+  }
+}
+/* end card__category-2 */
+
+/* card--spacer */
+.card--spacer {
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (min-width: 445px) {
+  .card--spacer {
+    margin-bottom: 0;
+  }
+}
+
+/* end card--spacer */
 
 @media screen and (min-width: 550px) {
   .card__snippet {
