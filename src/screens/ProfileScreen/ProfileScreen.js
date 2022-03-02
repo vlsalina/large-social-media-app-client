@@ -140,7 +140,12 @@ const ProfileScreen = () => {
 
         // get other users replies from articles written by user
         await axios
-          .get(`${process.env.REACT_APP_DOMAIN}/api/replies/getRepliesByAuthor`)
+          .get(
+            `${process.env.REACT_APP_DOMAIN}/api/replies/getRepliesByAuthor`,
+            {
+              headers: { authorization: `Bearer ${user.accessToken}` },
+            }
+          )
           .then((response) => {
             setReplies(response.data.reverse());
             if (breadcrumb === "notifications") {

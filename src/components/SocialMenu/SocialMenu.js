@@ -84,11 +84,11 @@ const SocialMenu = ({ article, favd, setFavd }) => {
             onClick={() => userIsLogged(favoriteHandler)}
           >
             {loggedIn() && favd ? (
-              <IconContext.Provider value={styles.icons}>
+              <IconContext.Provider value={styles.icons3}>
                 <BsBookmarkDashFill />
               </IconContext.Provider>
             ) : (
-              <IconContext.Provider value={styles.icons}>
+              <IconContext.Provider value={styles.icons3}>
                 <BsBookmarkPlusFill />
               </IconContext.Provider>
             )}

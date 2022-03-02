@@ -12,6 +12,8 @@ import { unfavorite } from "../actions/actions";
 import IsLogged from "../IsLogged/IsLogged";
 import { IconContext } from "react-icons/lib";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
+import { BsFillBookmarkDashFill } from "react-icons/bs";
+import { styles } from "../../styles/styles";
 
 const Favorites = ({ favorites, setFavorites, dispatch }) => {
   const unfavHandler = (articleId) => {
@@ -54,10 +56,9 @@ const Favorites = ({ favorites, setFavorites, dispatch }) => {
                   className="cancel"
                   onClick={() => unfavHandler(fav._id)}
                 >
-                  <img
-                    src={"/assets/icons8-unfavorite-512.png"}
-                    alt="unfavorite"
-                  />
+                  <IconContext.Provider value={styles.icons2}>
+                    <BsFillBookmarkDashFill />
+                  </IconContext.Provider>
                 </button>
               </div>
             </div>
@@ -98,7 +99,7 @@ const ReadingList = ({ type }) => {
         })
         .catch((error) => console.log(error));
     };
-    userIsLogged(asyncCall());
+    userIsLogged(asyncCall);
   }, [process.env.REACT_APP_DOMAIN, setFavorites, user._id, user.accessToken]);
 
   return (

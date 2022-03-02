@@ -3,7 +3,10 @@ export const styles = {
     size: "2rem",
   },
   icons2: {
-    size: "1.5rem",
+    size: "1.25rem",
+  },
+  icons3: {
+    size: "1.75rem",
   },
 };
 

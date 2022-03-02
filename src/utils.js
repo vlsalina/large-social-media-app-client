@@ -19,7 +19,7 @@ const redirect = () => {
   window.location.href = "/register";
 };
 
-const userIsLogged = ({ action }) => {
+const userIsLogged = (action) => {
   if (localStorage.getItem("user")) {
     action();
   } else {

@@ -154,11 +154,11 @@ const ProfileArticleCard = ({ article }) => {
             onClick={(e) => userIsLogged(favoriteHandler(e))}
           >
             {loggedIn() && favd ? (
-              <IconContext.Provider value={styles.icons}>
+              <IconContext.Provider value={styles.icons3}>
                 <BsFillBookmarkDashFill />
               </IconContext.Provider>
             ) : (
-              <IconContext.Provider value={styles.icons}>
+              <IconContext.Provider value={styles.icons3}>
                 <BsFillBookmarkPlusFill />
               </IconContext.Provider>
             )}
