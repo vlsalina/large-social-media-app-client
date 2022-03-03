@@ -4,10 +4,18 @@ import "./LoginModal.css";
 const LoginModal = () => {
   return (
     <div className="login-modal">
-      <div className="login-modal__panel" />
-      <div className="login-modal__panel" />
-      <div className="login-modal__panel" />
-      <div className="login-modal__panel" />
+      <div>
+        <div className="login-modal__left" />
+        <div className="login-modal__left" />
+        <div className="login-modal__left" />
+        <div className="login-modal__left" />
+      </div>
+      <div>
+        <div className="login-modal__right" />
+        <div className="login-modal__right" />
+        <div className="login-modal__right" />
+        <div className="login-modal__right" />
+      </div>
     </div>
   );
 };

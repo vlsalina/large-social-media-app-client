@@ -10,10 +10,12 @@ import CreateArticleScreen from "./screens/CreateArticleScreen/CreateArticleScre
 import TopicScreen from "./screens/TopicScreen/TopicScreen";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import NotFoundScreen from "./screens/NotFoundScreen/NotFoundScreen";
+import LoginModal from "./components/LoginModal/LoginModal";
 
 function App() {
   return (
     <div className="App">
+      <LoginModal />
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<MainFeedScreen />} />

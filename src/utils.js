@@ -42,9 +42,14 @@ const loggedIn = () => {
 };
 
 const play = () => {
-  let panels = document.querySelectorAll(".login-modal__panel");
+  let lefties = document.querySelectorAll(".login-modal__left");
+  let righties = document.querySelectorAll(".login-modal__right");
 
-  tl.to(panels, { width: "100vw", stagger: 0.075, ease: "power4" });
+  tl.to(lefties, { width: "50vw", stagger: 0.075, ease: "power4" }).to(
+    righties,
+    { width: "50vw", stagger: 0.075, ease: "power4" },
+    "<"
+  );
 
   tl.play();
 };

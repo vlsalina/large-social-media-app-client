@@ -64,7 +64,6 @@ const MainFeedScreen = () => {
           <Loader />
         ) : (
           <main className="home--box-1">
-            <LoginModal />
             <Header />
             <div className="home--box-2">
               <div className="home__banner">

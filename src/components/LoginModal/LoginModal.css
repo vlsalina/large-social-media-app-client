@@ -1,12 +1,19 @@
 .login-modal {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 3;
+  display: flex;
 }
 
-.login-modal__panel {
-  background: var(--background-gradient);
+.login-modal__left {
+  background: var(--gradient-red-to-blue);
+  height: 25vh;
+  width: 0;
+}
+
+.login-modal__right {
+  background: var(--gradient-green-to-yellow);
   height: 25vh;
   width: 0;
 }
