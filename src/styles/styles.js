@@ -8,6 +8,9 @@ export const styles = {
   icons3: {
     size: "1.75rem",
   },
+  icons4: {
+    size: "1rem",
+  },
 };
 
 export const fontsize = 16;

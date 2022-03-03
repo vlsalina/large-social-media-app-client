@@ -1,5 +1,11 @@
 import { format } from "date-fns";
 import { colors } from "./data/data";
+import gsap from "gsap";
+
+/* gsap timeline */
+let tl = gsap.timeline();
+
+/* end gsap timeline */
 
 const formatDate = (date) => {
   let createdAt = date.slice(0, 10).split("-");
@@ -35,4 +41,12 @@ const loggedIn = () => {
   }
 };
 
-export { formatDate, getColor, redirect, userIsLogged, loggedIn };
+const play = () => {
+  let panels = document.querySelectorAll(".login-modal__panel");
+
+  tl.to(panels, { width: "100vw", stagger: 0.075, ease: "power4" });
+
+  tl.play();
+};
+
+export { formatDate, getColor, redirect, userIsLogged, loggedIn, play };

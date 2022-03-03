@@ -7,7 +7,7 @@ import { IconContext } from "react-icons";
 import Avatar from "../Avatar/Avatar";
 import ActionMenu from "../ActionMenu/ActionMenu";
 import IsLogged from "../IsLogged/IsLogged";
-import { loggedIn } from "../../utils";
+import { loggedIn, play } from "../../utils";
 
 const styles = {
   icon: {
@@ -86,6 +86,9 @@ const Header = () => {
                     </a>{" "}
                     an account.
                   </span>
+                  <button type="button" onClick={play}>
+                    Play
+                  </button>
                 </p>
               }
             >

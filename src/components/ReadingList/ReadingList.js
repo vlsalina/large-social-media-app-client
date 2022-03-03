@@ -111,12 +111,10 @@ const ReadingList = ({ type }) => {
         {favorites.length === 0 ? (
           <div className="readingList--box-1">
             <p>
-              Click the
-              <img
-                className="favorite__icon"
-                src={"/assets/icons8-favorite-512.png"}
-                alt="favorite"
-              />
+              Click the{" "}
+              <IconContext.Provider value={styles.icons4}>
+                <BsFillBookmarkPlusFill />
+              </IconContext.Provider>{" "}
               on any story to easily add it to your reading list or a custom
               list that you can share.
             </p>

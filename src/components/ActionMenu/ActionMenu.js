@@ -11,7 +11,8 @@ const ActionMenu = () => {
   const signOutHandler = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("articles");
-    navigate("/login");
+    navigate("/");
+    window.location.reload();
   };
 
   const closeHandler = () => {

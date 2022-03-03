@@ -5,6 +5,7 @@
   --sidemodal: 414px;
   --fontsize1: 1rem;
   --bright-red: red;
+  --background-gradient: linear-gradient(90deg, #e66465, #9198e5);
   /* end variables */
 }
 

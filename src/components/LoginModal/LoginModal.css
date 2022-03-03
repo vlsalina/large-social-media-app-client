@@ -1,0 +1,12 @@
+.login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.login-modal__panel {
+  background: var(--background-gradient);
+  height: 25vh;
+  width: 0;
+}

@@ -21,6 +21,7 @@ import {
   like,
   dislike,
 } from "../../components/actions/actions";
+import Avatar from "../../components/Avatar/Avatar";
 
 const styles = {
   icons: {
@@ -133,7 +134,7 @@ const ArticleScreen = () => {
             <div className="article--box-1">
               <div className="article--box-7">
                 <div className="article__avatar">
-                  <img src={`/assets/icons8-circled-v-100.png`} alt="avatar" />
+                  {article && <Avatar article={article} />}
                 </div>
                 <div className="article--box-3">
                   <Link to={`/profile/${article.authorId}?breadcrumb=articles`}>
@@ -162,16 +163,6 @@ const ArticleScreen = () => {
                     disabled={article.authorId === user._id ? true : false}
                   >
                     {loggedIn && following ? "Unfollow" : "Follow"}
-                  </button>
-                </div>
-                <div className="article--box-8">
-                  <button
-                    className="article__button--1 article--padding-2"
-                    type="button"
-                  >
-                    <IconContext.Provider value={styles.icons}>
-                      <AiOutlineMessage />
-                    </IconContext.Provider>
                   </button>
                 </div>
               </div>

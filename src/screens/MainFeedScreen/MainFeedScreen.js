@@ -10,6 +10,7 @@ import Recommended from "../../components/Recommended/Recommended";
 import ReadingList from "../../components/ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 import IsLogged from "../../components/IsLogged/IsLogged";
+import LoginModal from "../../components/LoginModal/LoginModal";
 
 export const MainFeedContext = React.createContext();
 
@@ -63,6 +64,7 @@ const MainFeedScreen = () => {
           <Loader />
         ) : (
           <main className="home--box-1">
+            <LoginModal />
             <Header />
             <div className="home--box-2">
               <div className="home__banner">
