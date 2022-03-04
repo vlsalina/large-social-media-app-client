@@ -4,7 +4,12 @@
   --header: calc(65px + 3rem);
   --sidemodal: 414px;
   --fontsize1: 1rem;
-  --bright-red: red;
+  --slightly-desaturated-cyan: #5fb4a2;
+  --dark-blue: #203a4c;
+  --grayish-dark-blue: #33323d;
+  --bright-red: #f43030;
+  --very-light-grey: #fafafa;
+  --light-grey: #eaeaeb;
   --gradient-red-to-blue: linear-gradient(90deg, #e66465, #9198e5);
   --gradient-green-to-yellow: linear-gradient(
     90deg,

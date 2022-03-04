@@ -1,20 +1,18 @@
 import React from "react";
+import LoginForm2 from "../LoginForm2/LoginForm2";
 import "./LoginModal.css";
 
 const LoginModal = () => {
   return (
     <div className="login-modal">
-      <div>
+      <div className="left-side">
         <div className="login-modal__left" />
         <div className="login-modal__left" />
         <div className="login-modal__left" />
         <div className="login-modal__left" />
-      </div>
-      <div>
-        <div className="login-modal__right" />
-        <div className="login-modal__right" />
-        <div className="login-modal__right" />
-        <div className="login-modal__right" />
+        <div className="login-modal--box-1">
+          <LoginForm2 />
+        </div>
       </div>
     </div>
   );

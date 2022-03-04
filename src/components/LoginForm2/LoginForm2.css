@@ -1,0 +1,19 @@
+.form {
+  padding: 2rem;
+  background-color: var(--very-light-grey);
+  border-radius: 10px;
+}
+
+.form-input {
+  border: none;
+  background-color: inherit;
+  color: var(--very-light-grey);
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+.form--spacer {
+  margin-bottom: 1rem;
+}

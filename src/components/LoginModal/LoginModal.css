@@ -1,15 +1,34 @@
 .login-modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 3;
-  display: flex;
+  overflow: hidden;
 }
 
 .login-modal__left {
   background: var(--gradient-red-to-blue);
   height: 25vh;
   width: 0;
+}
+
+.left-side,
+.right-side {
+  position: relative;
+}
+
+.login-modal--box-1,
+.login-modal--box-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .login-modal__right {

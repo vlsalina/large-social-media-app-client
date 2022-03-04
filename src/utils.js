@@ -3,7 +3,32 @@ import { colors } from "./data/data";
 import gsap from "gsap";
 
 /* gsap timeline */
-let tl = gsap.timeline();
+let stagger = 0.05;
+let duration = 0.2;
+let loginTL;
+let registerTL;
+let lefties;
+let righties;
+let ease = "power1.out";
+
+window.onload = () => {
+  lefties = document.querySelectorAll(".login-modal__left");
+  righties = document.querySelectorAll(".register-modal__right");
+
+  loginTL = gsap.timeline().to(lefties, {
+    width: "50vw",
+    stagger: stagger,
+    duration: duration,
+    ease: ease,
+  });
+
+  registerTL = gsap.timeline().to(righties, {
+    width: "50vw",
+    stagger: stagger,
+    duration: duration,
+    ease: ease,
+  });
+};
 
 /* end gsap timeline */
 
@@ -41,17 +66,38 @@ const loggedIn = () => {
   }
 };
 
-const play = () => {
-  let lefties = document.querySelectorAll(".login-modal__left");
-  let righties = document.querySelectorAll(".login-modal__right");
-
-  tl.to(lefties, { width: "50vw", stagger: 0.075, ease: "power4" }).to(
-    righties,
-    { width: "50vw", stagger: 0.075, ease: "power4" },
-    "<"
-  );
-
-  tl.play();
+const loginPlay = () => {
+  loginTL.play();
 };
 
-export { formatDate, getColor, redirect, userIsLogged, loggedIn, play };
+const loginReverse = () => {
+  loginTL.reverse();
+};
+
+const registerPlay = () => {
+  registerTL.play();
+};
+
+const registerReverse = () => {
+  registerTL.reverse();
+};
+
+const play = () => {
+  loginPlay();
+  registerPlay();
+};
+
+const reverse = () => {
+  loginReverse();
+  registerReverse();
+};
+
+export {
+  formatDate,
+  getColor,
+  redirect,
+  userIsLogged,
+  loggedIn,
+  play,
+  reverse,
+};
