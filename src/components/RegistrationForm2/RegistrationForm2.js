@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import "./RegistrationForm2.css";
-import { reverse } from "../../utils";
+import { registerReverse, reverse } from "../../utils";
 import ButtonA from "../buttons/ButtonB/ButtonB";
 
 // log in user
 const RegistrationForm2 = () => {
   return (
     <form className="form">
+      <div className="form--box-1">
+        <button type="button" className="form-close" onClick={registerReverse}>
+          &times;
+        </button>
+      </div>
       <div>
         <h2>Sign Up</h2>
       </div>
@@ -33,23 +38,23 @@ const RegistrationForm2 = () => {
         />
       </div>
       <div className="form--spacer">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="register-email">Email</label>
         <br />
         <input
           type="email"
-          id="email"
-          name="email"
+          id="register-email"
+          name="register-email"
           className="form-input"
           placeholder="Type your email..."
         />
       </div>
       <div className="form--spacer">
-        <label htmlFor="password">Password</label>
+        <label htmlFor="register-password">Password</label>
         <br />
         <input
           type="password"
-          id="password"
-          name="password"
+          id="register-password"
+          name="register-password"
           className="form-input"
           placeholder="Type your password..."
         />

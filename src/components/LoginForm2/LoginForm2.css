@@ -23,3 +23,22 @@
 .form--spacer {
   margin-bottom: 1rem;
 }
+
+/* form--box-1 */
+.form--box-1 {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+/* end form--box-1 */
+
+/* form-close */
+.form-close {
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+/* end form-close */
