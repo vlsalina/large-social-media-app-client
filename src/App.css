@@ -11,6 +11,11 @@
   --very-light-grey: #fafafa;
   --light-grey: #eaeaeb;
   --gradient-red-to-blue: linear-gradient(90deg, #e66465, #9198e5);
+  --gradient-white-to-blue: linear-gradient(
+    90deg,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
   --gradient-green-to-yellow: linear-gradient(
     90deg,
     rgba(34, 193, 195, 1) 0%,

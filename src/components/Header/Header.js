@@ -7,7 +7,8 @@ import { IconContext } from "react-icons";
 import Avatar from "../Avatar/Avatar";
 import ActionMenu from "../ActionMenu/ActionMenu";
 import IsLogged from "../IsLogged/IsLogged";
-import { loggedIn, play } from "../../utils";
+import { loggedIn, play, loginPlay, registerPlay } from "../../utils";
+import ButtonC from "../buttons/ButtonC/ButtonC";
 
 const styles = {
   icon: {
@@ -68,27 +69,14 @@ const Header = () => {
                 <p>
                   <span className="header--span-1">
                     Already have an account?{" "}
-                    <a className="header__link" href="/login">
-                      Sign In.
-                    </a>{" "}
-                    Or{" "}
-                    <a className="header__link" href="/register">
-                      Create One.
-                    </a>
+                    <ButtonC text={"Sign In"} action={loginPlay} />. Or{" "}
+                    <ButtonC text={"Create One"} action={registerPlay} />!
                   </span>
                   <span className="header--span-2">
-                    <a className="header__link" href="/login">
-                      Sign In
-                    </a>{" "}
-                    or{" "}
-                    <a className="header__link" href="/register">
-                      Create
-                    </a>{" "}
-                    an account.
+                    <ButtonC text={"Sign In"} action={loginPlay} /> or{" "}
+                    <ButtonC text={"Create One"} action={registerPlay} /> an
+                    account.
                   </span>
-                  <button type="button" onClick={play}>
-                    Play
-                  </button>
                 </p>
               }
             >

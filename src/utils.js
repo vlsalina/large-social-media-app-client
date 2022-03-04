@@ -16,14 +16,14 @@ window.onload = () => {
   righties = document.querySelectorAll(".register-modal__right");
 
   loginTL = gsap.timeline().to(lefties, {
-    width: "50vw",
+    width: "100vw",
     stagger: stagger,
     duration: duration,
     ease: ease,
   });
 
   registerTL = gsap.timeline().to(righties, {
-    width: "50vw",
+    width: "100vw",
     stagger: stagger,
     duration: duration,
     ease: ease,
@@ -100,4 +100,8 @@ export {
   loggedIn,
   play,
   reverse,
+  loginPlay,
+  registerPlay,
+  loginReverse,
+  registerReverse,
 };

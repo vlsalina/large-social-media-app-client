@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm2 from "../LoginForm2/LoginForm2";
+import RegistrationForm2 from "../RegistrationForm2/RegistrationForm2";
 import "./RegisterModal.css";
 
 const RegisterModal = () => {
@@ -11,7 +11,7 @@ const RegisterModal = () => {
         <div className="register-modal__right" />
         <div className="register-modal__right" />
         <div className="register-modal--box-2">
-          <LoginForm2 />
+          <RegistrationForm2 />
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./LoginForm2.css";
 import { reverse } from "../../utils";
+import ButtonB from "../buttons/ButtonB/ButtonB";
 
 // log in user
 const LoginForm2 = () => {
@@ -32,9 +33,7 @@ const LoginForm2 = () => {
         />
       </div>
       <div>
-        <button type="button" onClick={reverse}>
-          Login
-        </button>
+        <ButtonB text={"Login"} action={reverse} />
       </div>
     </form>
   );

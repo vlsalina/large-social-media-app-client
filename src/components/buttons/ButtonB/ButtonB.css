@@ -1,0 +1,9 @@
+.buttonB {
+  background: var(--gradient-white-to-blue);
+  color: var(--very-light-grey);
+  width: 100%;
+  border: none;
+  padding: 0.5rem 0;
+  border-radius: 2rem;
+  margin-top: 1rem;
+}

@@ -2,12 +2,18 @@
   padding: 2rem;
   background-color: var(--very-light-grey);
   border-radius: 10px;
+  width: 85%;
 }
 
 .form-input {
-  border: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid var(--slightly-desaturated-cyan);
   background-color: inherit;
-  color: var(--very-light-grey);
+  color: var(--grayish-dark-blue);
+  padding: 0.5rem 0;
+  width: 100%;
 }
 
 .form-input:focus {
