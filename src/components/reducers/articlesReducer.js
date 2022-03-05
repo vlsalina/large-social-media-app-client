@@ -10,7 +10,10 @@ import {
   ARTICLES_DISLIKE_FAIL,
 } from "../actionTypes/actionTypes";
 
-const articlesReducer = (state = [], action) => {
+let articles = JSON.parse(localStorage.getItem("articles"));
+const initialState = articles ? articles : [];
+
+const articlesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ARTICLES_REQUEST:
       return [];
