@@ -1,11 +1,11 @@
 import axios from "axios";
 import { authHeader } from "../_helpers/auth-header";
 
-const login = async (email, password) => {
+const login = async (userData) => {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify(userData),
   };
 
   const response = await fetch(
@@ -24,19 +24,6 @@ const logout = () => {
   localStorage.removeItem("user");
 };
 
-const getAll = async () => {
-  const requestOptions = {
-    method: "GET",
-    headers: authHeader(),
-  };
-
-  const response = await fetch(
-    `${process.env.REACT_APP_DOMAIN}/users`,
-    requestOptions
-  );
-  return handleResponse(response);
-};
-
 const getById = async (id) => {
   const requestOptions = {
     method: "GET",
@@ -50,15 +37,15 @@ const getById = async (id) => {
   return handleResponse(response);
 };
 
-const register = async (user) => {
+const register = async (userData) => {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user),
+    body: JSON.stringify(userData),
   };
 
   const response = await fetch(
-    `${process.env.REACT_APP_DOMAIN}/users/register`,
+    `${process.env.REACT_APP_DOMAIN}/api/users/register`,
     requestOptions
   );
   return handleResponse(response);

@@ -23,7 +23,6 @@ const ActionMenu = () => {
 
   const signOutHandler = () => {
     dispatch(userActions.logout());
-    localStorage.removeItem("articles");
     closeHandler();
     navigate("/");
   };

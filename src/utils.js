@@ -4,7 +4,7 @@ import gsap from "gsap";
 
 /* gsap timeline */
 let stagger = 0.05;
-let duration = 0.2;
+let duration = 0.1;
 let loginTL;
 let registerTL;
 let lefties;

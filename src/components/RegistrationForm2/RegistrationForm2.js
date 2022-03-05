@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import "./RegistrationForm2.css";
-import { registerReverse, reverse } from "../../utils";
+import { registerReverse } from "../../utils";
+import { useDispatch } from "react-redux";
+import { userActions } from "../_actions/user.actions";
 import ButtonA from "../buttons/ButtonB/ButtonB";
 
 // log in user
 const RegistrationForm2 = () => {
+  const dispatch = useDispatch();
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   return (
     <form className="form">
       <div className="form--box-1">
@@ -24,6 +33,8 @@ const RegistrationForm2 = () => {
           name="firstname"
           className="form-input"
           placeholder="Type your first name..."
+          value={firstname}
+          onChange={(e) => setFirstname(e.target.value)}
         />
       </div>
       <div className="form--spacer">
@@ -35,6 +46,8 @@ const RegistrationForm2 = () => {
           name="lastname"
           className="form-input"
           placeholder="Type your last name..."
+          value={lastname}
+          onChange={(e) => setLastname(e.target.value)}
         />
       </div>
       <div className="form--spacer">
@@ -46,6 +59,8 @@ const RegistrationForm2 = () => {
           name="register-email"
           className="form-input"
           placeholder="Type your email..."
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="form--spacer">
@@ -57,21 +72,45 @@ const RegistrationForm2 = () => {
           name="register-password"
           className="form-input"
           placeholder="Type your password..."
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div className="form--spacer">
         <label htmlFor="confirmPassword">Confirm Password</label>
         <br />
         <input
-          type="text"
+          type="password"
           id="confirmPassword"
           name="confirmPassword"
           className="form-input"
           placeholder="Confirm password..."
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
       <div>
-        <ButtonA text={"Sign Up"} action={reverse} />
+        <ButtonA
+          text={"Sign Up"}
+          action={() =>
+            dispatch(
+              userActions.register({
+                userData: {
+                  firstname,
+                  lastname,
+                  email,
+                  password,
+                  confirmPassword,
+                },
+                setFirstname,
+                setLastname,
+                setEmail,
+                setPassword,
+                setConfirmPassword,
+              })
+            )
+          }
+        />
       </div>
     </form>
   );

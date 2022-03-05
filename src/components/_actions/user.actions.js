@@ -18,11 +18,12 @@ const login = (email, password, setEmail, setPassword) => {
   return (dispatch) => {
     dispatch(request());
 
-    userService.login(email, password).then(
+    userService.login({ email, password }).then(
       (user) => {
         dispatch(success(user));
         setEmail("");
         setPassword("");
+        dispatch(alertActions.success("Login successful"));
         loginReverse();
       },
       (error) => {
@@ -42,25 +43,16 @@ const logout = () => (dispatch) => {
   dispatch(request());
 };
 
-function register(user) {
-  return (dispatch) => {
-    dispatch(request(user));
-
-    userService.register(user).then(
-      (user) => {
-        dispatch(success());
-        history.push("/login");
-        dispatch(alertActions.success("Registration successful"));
-      },
-      (error) => {
-        dispatch(failure(error.toString()));
-        dispatch(alertActions.error(error.toString()));
-      }
-    );
-  };
-
-  function request(user) {
-    return { type: userConstants.REGISTER_REQUEST, user };
+function register({
+  userData,
+  setFirstname,
+  setLastname,
+  setEmail,
+  setPassword,
+  setConfirmPassword,
+}) {
+  function request() {
+    return { type: userConstants.REGISTER_REQUEST };
   }
   function success(user) {
     return { type: userConstants.REGISTER_SUCCESS, user };
@@ -68,9 +60,31 @@ function register(user) {
   function failure(error) {
     return { type: userConstants.REGISTER_FAILURE, error };
   }
+
+  return (dispatch) => {
+    dispatch(request());
+
+    userService.register(userData).then(
+      (user) => {
+        dispatch(success());
+        dispatch(alertActions.success("Registration successful"));
+        setFirstname("");
+        setLastname("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        registerReverse();
+      },
+      (error) => {
+        //dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      }
+    );
+  };
 }
 
 export const userActions = {
   login,
   logout,
+  register,
 };
