@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import "./LoginForm2.css";
 import { loginReverse, reverse } from "../../utils";
 import ButtonB from "../buttons/ButtonB/ButtonB";
+import { userService } from "../_services/user.service";
 
 // log in user
 const LoginForm2 = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <form className="form">
       <div className="form--box-1">
@@ -24,6 +28,8 @@ const LoginForm2 = () => {
           name="login-email"
           className="form-input"
           placeholder="Type your email..."
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="form--spacer">
@@ -35,10 +41,15 @@ const LoginForm2 = () => {
           name="login-password"
           className="form-input"
           placeholder="Type your password..."
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div>
-        <ButtonB text={"Login"} action={reverse} />
+        <ButtonB
+          text={"Login"}
+          action={() => userService.login(email, password)}
+        />
       </div>
     </form>
   );
