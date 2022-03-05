@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import "./LoginForm2.css";
 import { loginReverse, reverse } from "../../utils";
 import ButtonB from "../buttons/ButtonB/ButtonB";
-import { userService } from "../_services/user.service";
+import { userActions } from "../_actions/user.actions";
+import { useDispatch } from "react-redux";
 
 // log in user
 const LoginForm2 = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -48,7 +50,7 @@ const LoginForm2 = () => {
       <div>
         <ButtonB
           text={"Login"}
-          action={() => userService.login(email, password)}
+          action={() => dispatch(userActions.login(email, password))}
         />
       </div>
     </form>
