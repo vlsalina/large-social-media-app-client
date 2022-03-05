@@ -2,8 +2,9 @@ import { userConstants } from "../_constants/user.constants";
 import { userService } from "../_services/user.service";
 import { alertActions } from "./alert.actions";
 import { history } from "../_helpers/history";
+import { loginReverse, registerReverse } from "../../utils";
 
-const login = (email, password) => {
+const login = (email, password, setEmail, setPassword) => {
   const request = () => {
     return { type: userConstants.LOGIN_REQUEST };
   };
@@ -20,7 +21,9 @@ const login = (email, password) => {
     userService.login(email, password).then(
       (user) => {
         dispatch(success(user));
-        window.location.reload();
+        setEmail("");
+        setPassword("");
+        loginReverse();
       },
       (error) => {
         dispatch(failure(error.toString()));
@@ -30,10 +33,14 @@ const login = (email, password) => {
   };
 };
 
-function logout() {
+const logout = () => (dispatch) => {
+  const request = () => {
+    return { type: userConstants.LOGOUT };
+  };
+
   userService.logout();
-  return { type: userConstants.LOGOUT };
-}
+  dispatch(request());
+};
 
 function register(user) {
   return (dispatch) => {
@@ -65,4 +72,5 @@ function register(user) {
 
 export const userActions = {
   login,
+  logout,
 };

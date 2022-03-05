@@ -50,7 +50,9 @@ const LoginForm2 = () => {
       <div>
         <ButtonB
           text={"Login"}
-          action={() => dispatch(userActions.login(email, password))}
+          action={() =>
+            dispatch(userActions.login(email, password, setEmail, setPassword))
+          }
         />
       </div>
     </form>

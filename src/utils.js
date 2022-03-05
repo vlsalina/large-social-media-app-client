@@ -28,6 +28,9 @@ window.onload = () => {
     duration: duration,
     ease: ease,
   });
+
+  loginTL.pause();
+  registerTL.pause();
 };
 
 /* end gsap timeline */

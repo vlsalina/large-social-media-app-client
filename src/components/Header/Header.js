@@ -63,7 +63,7 @@ const Header = () => {
               </div>
             </Link>
           </li>
-          <li className={loggedIn() ? "header--box-3" : "header--box-6"}>
+          <li className={user._id ? "header--box-3" : "header--box-6"}>
             <IsLogged
               text={
                 <p>
