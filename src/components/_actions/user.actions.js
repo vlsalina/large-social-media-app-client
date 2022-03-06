@@ -40,6 +40,7 @@ const logout = () => (dispatch) => {
   };
 
   userService.logout();
+  dispatch(alertActions.clear());
   dispatch(request());
 };
 
