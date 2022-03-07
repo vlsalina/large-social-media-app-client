@@ -1,6 +1,7 @@
 import axios from "axios";
 import { authHeader } from "../_helpers/auth-header";
 
+// for user login
 const login = async (userData) => {
   const requestOptions = {
     method: "POST",
@@ -19,6 +20,7 @@ const login = async (userData) => {
   return user;
 };
 
+// for user logout
 const logout = () => {
   // remove user from local storage to log user out
   localStorage.removeItem("user");
@@ -34,9 +36,12 @@ const getById = async (id) => {
     `${process.env.REACT_APP_DOMAIN}/users/${id}`,
     requestOptions
   );
-  return handleResponse(response);
+  const user = await handleResponse(response);
+
+  return user;
 };
 
+// for new user registration
 const register = async (userData) => {
   const requestOptions = {
     method: "POST",
@@ -49,6 +54,52 @@ const register = async (userData) => {
     requestOptions
   );
   return handleResponse(response);
+};
+
+// for user follow request
+const follow = async (userId) => {
+  const requestOptions = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+/* prettier-ignore */      "authorization": `Bearer ${
+        JSON.parse(localStorage.getItem("user")).accessToken
+      }`,
+    },
+    body: JSON.stringify({ userId }),
+  };
+
+  const response = await fetch(
+    `${process.env.REACT_APP_DOMAIN}/api/users/follow`,
+    requestOptions
+  );
+
+  const update = await handleResponse(response);
+
+  return update;
+};
+
+// for user unfollow request
+const unfollow = async (userId) => {
+  const requestOptions = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+/* prettier-ignore */      "authorization": `Bearer ${
+        JSON.parse(localStorage.getItem("user")).accessToken
+      }`,
+    },
+    body: JSON.stringify({ userId }),
+  };
+
+  const response = await fetch(
+    `${process.env.REACT_APP_DOMAIN}/api/users/unfollow`,
+    requestOptions
+  );
+
+  const update = await handleResponse(response);
+
+  return update;
 };
 
 const handleResponse = (response) => {
@@ -74,4 +125,6 @@ export const userService = {
   logout,
   register,
   getById,
+  follow,
+  unfollow,
 };

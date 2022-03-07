@@ -4,6 +4,7 @@ import { alertActions } from "./alert.actions";
 import { history } from "../_helpers/history";
 import { loginReverse, registerReverse } from "../../utils";
 
+// login action
 const login = (email, password, setEmail, setPassword) => {
   const request = () => {
     return { type: userConstants.LOGIN_REQUEST };
@@ -34,6 +35,7 @@ const login = (email, password, setEmail, setPassword) => {
   };
 };
 
+// logout action
 const logout = () => (dispatch) => {
   const request = () => {
     return { type: userConstants.LOGOUT };
@@ -44,14 +46,15 @@ const logout = () => (dispatch) => {
   dispatch(request());
 };
 
-function register({
+// register action
+const register = ({
   userData,
   setFirstname,
   setLastname,
   setEmail,
   setPassword,
   setConfirmPassword,
-}) {
+}) => {
   function request() {
     return { type: userConstants.REGISTER_REQUEST };
   }
@@ -82,10 +85,68 @@ function register({
       }
     );
   };
-}
+};
+
+// follow action
+const follow = (userId) => {
+  function request() {
+    return { type: userConstants.FOLLOWING_REQUEST };
+  }
+  function success(user) {
+    return { type: userConstants.FOLLOWING_SUCCESS, payload: user };
+  }
+  function failure(error) {
+    return { type: userConstants.FOLLOWING_FAIL, payload: error };
+  }
+
+  return (dispatch) => {
+    dispatch(request());
+
+    userService.follow(userId).then(
+      (user) => {
+        dispatch(success(user));
+        dispatch(alertActions.success("Follow request successful"));
+      },
+      (error) => {
+        dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      }
+    );
+  };
+};
+
+// unfollow action
+const unfollow = (userId) => {
+  function request() {
+    return { type: userConstants.UNFOLLOWING_REQUEST };
+  }
+  function success(user) {
+    return { type: userConstants.UNFOLLOWING_SUCCESS, payload: user };
+  }
+  function failure(error) {
+    return { type: userConstants.UNFOLLOWING_FAIL, payload: error };
+  }
+
+  return (dispatch) => {
+    dispatch(request());
+
+    userService.unfollow(userId).then(
+      (user) => {
+        dispatch(success(user));
+        dispatch(alertActions.success("Unfollowing request successful"));
+      },
+      (error) => {
+        dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      }
+    );
+  };
+};
 
 export const userActions = {
   login,
   logout,
   register,
+  follow,
+  unfollow,
 };

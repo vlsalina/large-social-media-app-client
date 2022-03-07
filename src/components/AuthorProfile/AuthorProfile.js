@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { follow, unfollow } from "../actions/actions";
 import { userIsLogged, loggedIn } from "../../utils";
+import { userActions } from "../_actions/user.actions";
 
 const AuthorProfile = ({ author }) => {
   const user = useSelector((state) => state.user);
@@ -29,9 +30,9 @@ const AuthorProfile = ({ author }) => {
 
     try {
       if (isFollowing) {
-        dispatch(unfollow(author._id));
+        dispatch(userActions.unfollow(author._id));
       } else {
-        dispatch(follow(author._id));
+        dispatch(userActions.follow(author._id));
       }
       setIsFollowing(!isFollowing);
     } catch (error) {

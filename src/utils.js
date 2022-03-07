@@ -57,7 +57,7 @@ const userIsLogged = (action) => {
   if (localStorage.getItem("user")) {
     action();
   } else {
-    redirect();
+    loginTL.play();
   }
 };
 

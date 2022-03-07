@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { favorite, like, dislike } from "../actions/actions";
 import { useNavigate } from "react-router-dom";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
+import { repliesHelpers } from "../_helpers/replies.helper";
 
 const MainFeedArticleCard = ({ article, type }) => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const MainFeedArticleCard = ({ article, type }) => {
     type ? MainFeedContext : TopicContext
   );
   const user = useSelector((state) => state.user);
-  const [replies, setReplies] = useState([]);
+  const [replies, setReplies] = useState(false);
   const [likes, setLikes] = useState();
   const [liked, setLiked] = useState(false);
   const dispatch = useDispatch();
@@ -44,18 +45,22 @@ const MainFeedArticleCard = ({ article, type }) => {
   }, [article.likes, user._id]);
 
   useEffect(() => {
-    axios
-      .get(
-        `${process.env.REACT_APP_DOMAIN}/api/replies/getAllReplies?articleId=${article._id}`,
-        {
-          headers: { authorization: `Bearer ${user.accessToken}` },
-        }
-      )
-      .then((response) => setReplies(response.data))
-      .catch((error) => console.log(error));
+    //axios
+    //  .get(
+    //    `${process.env.REACT_APP_DOMAIN}/api/replies/getAllReplies?articleId=${article._id}`,
+    //    {
+    //      headers: { authorization: `Bearer ${user.accessToken}` },
+    //    }
+    //  )
+    //  .then((response) => setReplies(response.data))
+    //  .catch((error) => console.log(error));
+
+    repliesHelpers
+      .getAllReplies(article._id)
+      .then((replies) => setReplies(replies));
 
     return () => setReplies([]);
-  }, [article._id, process.env.REACT_APP_DOMAIN, user.accessToken]);
+  }, [article._id, process.env.REACT_APP_DOMAIN]);
 
   const likeHandler = () => {
     let exists = article.likes.find((x) => x.userId === user._id);

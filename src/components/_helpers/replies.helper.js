@@ -1,19 +1,19 @@
-/* GET all articles */
-const getAllArticles = async () => {
+import { authHeader } from "./auth-header";
+
+const getAllReplies = async (id) => {
   const requestOptions = {
     method: "GET",
-    headers: { "Content-Type": "application/json" },
+    headers: authHeader(),
   };
 
   const response = await fetch(
-    `${process.env.REACT_APP_DOMAIN}/api/articles/getAllArticles`,
+    `${process.env.REACT_APP_DOMAIN}/api/replies/getAllReplies?articleId=${id}`,
     requestOptions
   );
-  const articles = await handleResponse(response);
-  // store article details in local storage
-  localStorage.setItem("articles", JSON.stringify(articles));
 
-  return articles;
+  const replies = await handleResponse(response);
+
+  return replies;
 };
 
 /* response handler */
@@ -29,6 +29,6 @@ const handleResponse = (response) => {
   });
 };
 
-export const articlesService = {
-  getAllArticles,
+export const repliesHelpers = {
+  getAllReplies,
 };

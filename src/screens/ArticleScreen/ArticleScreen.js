@@ -16,11 +16,12 @@ import Replies from "../../components/Replies/Replies";
 import parse from "html-react-parser";
 import { useDispatch } from "react-redux";
 import {
-  follow,
-  unfollow,
+  //follow,
+  //unfollow,
   like,
   dislike,
 } from "../../components/actions/actions";
+import { userActions } from "../../components/_actions/user.actions";
 import Avatar from "../../components/Avatar/Avatar";
 
 const styles = {
@@ -40,7 +41,8 @@ const ArticleScreen = () => {
   const [numReplies, setNumReplies] = useState(0);
   const user = useSelector((state) => state.user);
   const { articleId } = useParams();
-  const articles = useSelector((state) => state.articles);
+  const articlesData = useSelector((state) => state.articles);
+  const { loading, articles } = articlesData;
   const search = useLocation().search;
   const open = new URLSearchParams(search).get("open");
   const dispatch = useDispatch();
@@ -73,10 +75,10 @@ const ArticleScreen = () => {
 
   const followHandler = () => {
     try {
-      if (!follow) {
-        dispatch(follow(article.authorId));
+      if (!following) {
+        dispatch(userActions.follow(article.authorId));
       } else {
-        dispatch(unfollow(article.authorId));
+        dispatch(userActions.unfollow(article.authorId));
       }
       setFollowing(!following);
     } catch (error) {

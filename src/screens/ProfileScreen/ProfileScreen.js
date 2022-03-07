@@ -137,7 +137,6 @@ const ProfileScreen = () => {
               .catch((error) => console.log(error));
           })
           .catch((error) => console.log(error));
-
         // get other users replies from articles written by user
         await axios
           .get(
