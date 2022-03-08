@@ -16,6 +16,44 @@ const getAllArticles = async () => {
   return articles;
 };
 
+// for like request
+const like = async (articleId) => {
+  const requestOptions = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      /* prettier-ignore */ "authorization": `Bearer ${
+        JSON.parse(localStorage.getItem("user")).accessToken
+      }`,
+    },
+    body: JSON.stringify({ articleId }),
+  };
+
+  await fetch(
+    `${process.env.REACT_APP_DOMAIN}/api/articles/likeArticle`,
+    requestOptions
+  );
+};
+
+// for unlike request
+const unlike = async (articleId) => {
+  const requestOptions = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      /* prettier-ignore */ "authorization": `Bearer ${
+        JSON.parse(localStorage.getItem("user")).accessToken
+      }`,
+    },
+    body: JSON.stringify({ articleId }),
+  };
+
+  await fetch(
+    `${process.env.REACT_APP_DOMAIN}/api/articles/unlikeArticle`,
+    requestOptions
+  );
+};
+
 /* response handler */
 const handleResponse = (response) => {
   return response.text().then((text) => {
@@ -31,4 +69,6 @@ const handleResponse = (response) => {
 
 export const articlesService = {
   getAllArticles,
+  like,
+  unlike,
 };

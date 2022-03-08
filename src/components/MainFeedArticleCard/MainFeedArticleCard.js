@@ -13,10 +13,15 @@ import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
 import Avatar from "../Avatar/Avatar";
 import { useDispatch } from "react-redux";
-import { favorite, like, dislike } from "../actions/actions";
+import {
+  favorite,
+  //like,
+  //dislike
+} from "../actions/actions";
 import { useNavigate } from "react-router-dom";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import { repliesHelpers } from "../_helpers/replies.helper";
+import { articlesActions } from "../_actions/articles.actions";
 
 const MainFeedArticleCard = ({ article, type }) => {
   const navigate = useNavigate();
@@ -63,12 +68,11 @@ const MainFeedArticleCard = ({ article, type }) => {
   }, [article._id, process.env.REACT_APP_DOMAIN]);
 
   const likeHandler = () => {
-    let exists = article.likes.find((x) => x.userId === user._id);
-    if (!exists) {
-      dispatch(like(article._id));
+    if (!liked) {
+      dispatch(articlesActions.like(article._id));
       setLikes([...likes, { userId: user._id }]);
     } else {
-      dispatch(dislike(article._id));
+      dispatch(articlesActions.unlike(article._id));
       setLikes(likes.filter((x) => x.userId !== user._id));
     }
     setLiked(!liked);

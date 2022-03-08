@@ -143,6 +143,62 @@ const unfollow = (userId) => {
   };
 };
 
+// like action
+const like = (articleId) => {
+  function request() {
+    return { type: userConstants.LIKE_REQUEST };
+  }
+  function success(user) {
+    return { type: userConstants.LIKE_SUCCESS, payload: user };
+  }
+  function failure(error) {
+    return { type: userConstants.LIKE_FAIL, payload: error };
+  }
+
+  return (dispatch) => {
+    dispatch(request());
+
+    userService.like(articleId).then(
+      (user) => {
+        dispatch(success(user));
+        dispatch(alertActions.success("Like request successful"));
+      },
+      (error) => {
+        dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      }
+    );
+  };
+};
+
+// unlike action
+const unlike = (articleId) => {
+  function request() {
+    return { type: userConstants.UNLIKE_REQUEST };
+  }
+  function success(user) {
+    return { type: userConstants.UNLIKE_SUCCESS, payload: user };
+  }
+  function failure(error) {
+    return { type: userConstants.UNLIKE_FAIL, payload: error };
+  }
+
+  return (dispatch) => {
+    dispatch(request());
+
+    userService.unlike(articleId).then(
+      (user) => {
+        dispatch(success(user));
+        dispatch(alertActions.success("Unlike request successful"));
+      },
+      (error) => {
+        dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      }
+    );
+  };
+};
+
 export const userActions = {
   login,
   logout,

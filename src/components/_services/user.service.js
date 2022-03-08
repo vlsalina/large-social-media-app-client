@@ -62,7 +62,7 @@ const follow = async (userId) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-/* prettier-ignore */      "authorization": `Bearer ${
+      /* prettier-ignore */ "authorization": `Bearer ${
         JSON.parse(localStorage.getItem("user")).accessToken
       }`,
     },
@@ -74,9 +74,10 @@ const follow = async (userId) => {
     requestOptions
   );
 
-  const update = await handleResponse(response);
+  const user = await handleResponse(response);
+  localStorage.setItem("user", JSON.stringify(user));
 
-  return update;
+  return user;
 };
 
 // for user unfollow request
@@ -85,7 +86,7 @@ const unfollow = async (userId) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-/* prettier-ignore */      "authorization": `Bearer ${
+      /* prettier-ignore */ "authorization": `Bearer ${
         JSON.parse(localStorage.getItem("user")).accessToken
       }`,
     },
@@ -97,11 +98,13 @@ const unfollow = async (userId) => {
     requestOptions
   );
 
-  const update = await handleResponse(response);
+  const user = await handleResponse(response);
+  localStorage.setItem("user", JSON.stringify(user));
 
-  return update;
+  return user;
 };
 
+// handleResponse helper
 const handleResponse = (response) => {
   return response.text().then((text) => {
     const data = text && JSON.parse(text);

@@ -49,6 +49,22 @@ const userReducer = (state = initialState, action) => {
     case userConstants.UNFAVORITE_FAIL:
       return action.payload;
 
+    // for like request
+    case userConstants.LIKE_REQUEST:
+      return state;
+    case userConstants.LIKE_SUCCESS:
+      return action.payload;
+    case userConstants.LIKE_FAIL:
+      return action.payload;
+
+    // for unlike request
+    case userConstants.UNLIKE_REQUEST:
+      return state;
+    case userConstants.UNLIKE_SUCCESS:
+      return action.payload;
+    case userConstants.UNLIKE_FAIL:
+      return action.payload;
+
     default:
       return state;
   }
