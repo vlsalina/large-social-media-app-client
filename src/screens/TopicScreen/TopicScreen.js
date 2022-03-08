@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { topics } from "../../data/data";
 import IsLogged from "../../components/IsLogged/IsLogged";
+import { bgc } from "../../components/_helpers/general.helpers";
 
 export const TopicContext = React.createContext();
 
@@ -77,16 +78,9 @@ const TopicScreen = () => {
             <Header />
             <div className="home--box-2">
               {topic && (
-                <div
-                  className="topic__banner topic--background"
-                  style={{ backgroundImage: `url(${getbanner(topic)}` }}
-                >
-                  <div
-                    className={`topic__name ${
-                      topic === "technology" ? "topic--black" : ""
-                    }`}
-                  >
-                    <h1>{topic}</h1>
+                <div className={`topic__banner ${bgc(topic.toUpperCase())}`}>
+                  <div className="topic--box-3">
+                    <h1 className={`topic__name`}>{topic}</h1>
                   </div>
                 </div>
               )}

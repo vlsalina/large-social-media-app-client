@@ -17,10 +17,14 @@
 /* home banner */
 .home__banner {
   height: var(--banner);
+  /*
   background-image: url(../../../public/assets/banners/thumb-1920-936378.jpg);
+  */
+  background: var(--gradient-red-to-black), var(--gradient-green-to-black),
+    var(--gradient-blue-to-black);
   display: flex;
   justify-content: center;
-  color: #fff;
+  color: var(--very-light-grey);
   background-position: center;
 }
 
