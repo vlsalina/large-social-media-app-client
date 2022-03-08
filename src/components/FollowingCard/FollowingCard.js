@@ -9,6 +9,7 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { MdRemoveCircleOutline } from "react-icons/md";
 import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
+import { userActions } from "../_actions/user.actions";
 
 const FollowingCard = ({ article }) => {
   const user = useSelector((state) => state.user);
@@ -22,9 +23,9 @@ const FollowingCard = ({ article }) => {
 
     try {
       if (isFollowing) {
-        dispatch(unfollow(userId));
+        dispatch(userActions.unfollow(userId));
       } else {
-        dispatch(follow(userId));
+        dispatch(userActions.follow(userId));
       }
       setIsFollowing(!isFollowing);
     } catch (error) {

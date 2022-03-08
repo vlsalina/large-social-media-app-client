@@ -10,10 +10,10 @@ const login = (email, password, setEmail, setPassword) => {
     return { type: userConstants.LOGIN_REQUEST };
   };
   const success = (user) => {
-    return { type: userConstants.LOGIN_SUCCESS, user };
+    return { type: userConstants.LOGIN_SUCCESS, payload: user };
   };
   const failure = (error) => {
-    return { type: userConstants.LOGIN_FAILURE, error };
+    return { type: userConstants.LOGIN_FAILURE, payload: error };
   };
 
   return (dispatch) => {
@@ -143,25 +143,25 @@ const unfollow = (userId) => {
   };
 };
 
-// like action
-const like = (articleId) => {
-  function request() {
-    return { type: userConstants.LIKE_REQUEST };
-  }
-  function success(user) {
-    return { type: userConstants.LIKE_SUCCESS, payload: user };
-  }
-  function failure(error) {
-    return { type: userConstants.LIKE_FAIL, payload: error };
-  }
+// favorite action
+const favorite = (articleId) => {
+  const request = () => {
+    return { type: userConstants.FAVORITE_REQUEST };
+  };
+  const success = (user) => {
+    return { type: userConstants.FAVORITE_SUCCESS, payload: user };
+  };
+  const failure = (error) => {
+    return { type: userConstants.FAVORITE_FAIL, payload: error };
+  };
 
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(request());
 
-    userService.like(articleId).then(
+    userService.favorite(articleId).then(
       (user) => {
         dispatch(success(user));
-        dispatch(alertActions.success("Like request successful"));
+        dispatch(alertActions.success("Favorite request successful."));
       },
       (error) => {
         dispatch(failure(error.toString()));
@@ -171,25 +171,25 @@ const like = (articleId) => {
   };
 };
 
-// unlike action
-const unlike = (articleId) => {
-  function request() {
-    return { type: userConstants.UNLIKE_REQUEST };
-  }
-  function success(user) {
-    return { type: userConstants.UNLIKE_SUCCESS, payload: user };
-  }
-  function failure(error) {
-    return { type: userConstants.UNLIKE_FAIL, payload: error };
-  }
+// unfavorite action
+const unfavorite = (articleId) => {
+  const request = () => {
+    return { type: userConstants.UNFAVORITE_REQUEST };
+  };
+  const success = (user) => {
+    return { type: userConstants.UNFAVORITE_SUCCESS, payload: user };
+  };
+  const failure = (error) => {
+    return { type: userConstants.UNFAVORITE_FAIL, payload: error };
+  };
 
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(request());
 
-    userService.unlike(articleId).then(
+    userService.unfavorite(articleId).then(
       (user) => {
         dispatch(success(user));
-        dispatch(alertActions.success("Unlike request successful"));
+        dispatch(alertActions.success("Unfavorite request successful."));
       },
       (error) => {
         dispatch(failure(error.toString()));
@@ -205,4 +205,6 @@ export const userActions = {
   register,
   follow,
   unfollow,
+  favorite,
+  unfavorite,
 };

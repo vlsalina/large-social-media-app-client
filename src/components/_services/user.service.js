@@ -75,6 +75,8 @@ const follow = async (userId) => {
   );
 
   const user = await handleResponse(response);
+
+  // save updated user data to local storage
   localStorage.setItem("user", JSON.stringify(user));
 
   return user;
@@ -99,6 +101,56 @@ const unfollow = async (userId) => {
   );
 
   const user = await handleResponse(response);
+
+  // save update user data to local storage
+  localStorage.setItem("user", JSON.stringify(user));
+
+  return user;
+};
+
+// for favorite request
+const favorite = async (articleId) => {
+  const requestOptions = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      /* prettier-ignore */ "authorization": `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
+    },
+    body: JSON.stringify({ articleId }),
+  };
+
+  const response = await fetch(
+    `${process.env.REACT_APP_DOMAIN}/api/users/favorite`,
+    requestOptions
+  );
+
+  const user = await handleResponse(response);
+
+  // save updated user data to local storage
+  localStorage.setItem("user", JSON.stringify(user));
+
+  return user;
+};
+
+// for unfavorite request
+const unfavorite = async (articleId) => {
+  const requestOptions = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      /* prettier-ignore */ "authorization": `Bearer ${JSON.parse(localStorage.getItem('user')).accessToken}`,
+    },
+    body: JSON.stringify({ articleId }),
+  };
+
+  const response = await fetch(
+    `${process.env.REACT_APP_DOMAIN}/api/users/unfavorite`,
+    requestOptions
+  );
+
+  const user = await handleResponse(response);
+
+  // save updated user data to local storage
   localStorage.setItem("user", JSON.stringify(user));
 
   return user;
@@ -119,7 +171,7 @@ const handleResponse = (response) => {
       return Promise.reject(error);
     }
 
-    return data;
+    return Promise.resolve(data);
   });
 };
 
@@ -130,4 +182,6 @@ export const userService = {
   getById,
   follow,
   unfollow,
+  favorite,
+  unfavorite,
 };

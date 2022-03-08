@@ -13,6 +13,8 @@ import { useDispatch } from "react-redux";
 import { favorite, unfavorite, like, dislike } from "../actions/actions";
 import { BsFillBookmarkDashFill, BsFillBookmarkPlusFill } from "react-icons/bs";
 import { BsBookmarkDashFill } from "react-icons/bs";
+import { userActions } from "../_actions/user.actions";
+import { articlesActions } from "../_actions/articles.actions";
 
 const ProfileArticleCard = ({ article }) => {
   const [likes, setLikes] = useState();
@@ -59,10 +61,10 @@ const ProfileArticleCard = ({ article }) => {
   const likeHandler = () => {
     let exists = likes.find((x) => x.userId === user._id);
     if (!exists) {
-      dispatch(like(article._id));
+      dispatch(articlesActions.like(article._id));
       setLikes([...likes, { userId: user._id }]);
     } else {
-      dispatch(dislike(article._id));
+      dispatch(articlesActions.unlike(article._id));
       setLikes(likes.filter((x) => x.userId !== user._id));
     }
     setLiked(!liked);
@@ -71,9 +73,9 @@ const ProfileArticleCard = ({ article }) => {
   const favoriteHandler = async (e) => {
     try {
       if (favd) {
-        dispatch(unfavorite(article._id));
+        dispatch(userActions.unfavorite(article._id));
       } else {
-        dispatch(favorite(article._id));
+        dispatch(userActions.favorite(article._id));
       }
       setFavd(!favd);
     } catch (error) {

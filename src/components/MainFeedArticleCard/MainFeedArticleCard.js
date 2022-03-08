@@ -13,15 +13,12 @@ import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
 import Avatar from "../Avatar/Avatar";
 import { useDispatch } from "react-redux";
-import {
-  favorite,
-  //like,
-  //dislike
-} from "../actions/actions";
+// import { favorite, like, dislike } from "../actions/actions";
 import { useNavigate } from "react-router-dom";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import { repliesHelpers } from "../_helpers/replies.helper";
 import { articlesActions } from "../_actions/articles.actions";
+import { userActions } from "../_actions/user.actions";
 
 const MainFeedArticleCard = ({ article, type }) => {
   const navigate = useNavigate();
@@ -84,7 +81,7 @@ const MainFeedArticleCard = ({ article, type }) => {
     }
 
     try {
-      dispatch(favorite(article._id));
+      dispatch(userActions.favorite(article._id));
       setFavorites([...favorites, article]);
     } catch (error) {
       console.log(error);

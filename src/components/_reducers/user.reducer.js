@@ -7,11 +7,11 @@ const userReducer = (state = initialState, action) => {
   switch (action.type) {
     // for user login
     case userConstants.LOGIN_REQUEST:
-      return {};
+      return state;
     case userConstants.LOGIN_SUCCESS:
-      return action.user;
+      return action.payload;
     case userConstants.LOGIN_FAILURE:
-      return {};
+      return state;
 
     // for user logout
     case userConstants.LOGOUT:
@@ -47,22 +47,6 @@ const userReducer = (state = initialState, action) => {
     case userConstants.UNFAVORITE_SUCCESS:
       return action.payload;
     case userConstants.UNFAVORITE_FAIL:
-      return action.payload;
-
-    // for like request
-    case userConstants.LIKE_REQUEST:
-      return state;
-    case userConstants.LIKE_SUCCESS:
-      return action.payload;
-    case userConstants.LIKE_FAIL:
-      return action.payload;
-
-    // for unlike request
-    case userConstants.UNLIKE_REQUEST:
-      return state;
-    case userConstants.UNLIKE_SUCCESS:
-      return action.payload;
-    case userConstants.UNLIKE_FAIL:
       return action.payload;
 
     default:

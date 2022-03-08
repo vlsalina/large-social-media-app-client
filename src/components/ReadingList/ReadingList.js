@@ -8,7 +8,8 @@ import { formatDate, userIsLogged } from "../../utils";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
 import { useDispatch } from "react-redux";
-import { unfavorite } from "../actions/actions";
+//import { unfavorite } from "../actions/actions";
+import { userActions } from "../_actions/user.actions";
 import IsLogged from "../IsLogged/IsLogged";
 import { IconContext } from "react-icons/lib";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
@@ -18,7 +19,7 @@ import { styles } from "../../styles/styles";
 const Favorites = ({ favorites, setFavorites, dispatch }) => {
   const unfavHandler = (articleId) => {
     try {
-      dispatch(unfavorite(articleId));
+      dispatch(userActions.unfavorite(articleId));
       setFavorites(favorites.filter((x) => x._id !== articleId));
     } catch (error) {
       console.log(error);
@@ -28,8 +29,8 @@ const Favorites = ({ favorites, setFavorites, dispatch }) => {
   return (
     <div className="favorites">
       <ul>
-        {favorites.slice(0, 3).map((fav) => (
-          <li key={fav._id}>
+        {favorites.slice(0, 3).map((fav, index) => (
+          <li key={index}>
             <div className="favorites--box-1">
               <div className="favorites__avatar">
                 <Avatar article={fav} />
