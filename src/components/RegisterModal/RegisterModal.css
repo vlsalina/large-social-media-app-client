@@ -21,6 +21,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  opacity: 0;
 }
 
 .register-modal__right {

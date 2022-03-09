@@ -17,22 +17,28 @@ let ease = "power1.out";
 window.onload = () => {
   lefties = document.querySelectorAll(".login-modal__left");
   righties = document.querySelectorAll(".register-modal__right");
-  login = document.querySelector(".login-modal--box-1");
-  register = document.querySelector(".register-modal--box-2");
+  login = document.getElementsByClassName("login-modal--box-1");
+  register = document.getElementsByClassName("register-modal--box-2");
 
-  loginTL = gsap.timeline().to(lefties, {
-    width: window.innerWidth > 375 ? "375px" : "100vw",
-    stagger: stagger,
-    duration: duration,
-    ease: ease,
-  });
+  loginTL = gsap
+    .timeline()
+    .to(lefties, {
+      width: window.innerWidth > 375 ? "375px" : "100vw",
+      stagger: stagger,
+      duration: duration,
+      ease: ease,
+    })
+    .to(login, { opacity: 1, duration: duration2 });
 
-  registerTL = gsap.timeline().to(righties, {
-    width: window.innerWidth > 375 ? "375px" : "100vw",
-    stagger: stagger,
-    duration: duration,
-    ease: ease,
-  });
+  registerTL = gsap
+    .timeline()
+    .to(righties, {
+      width: window.innerWidth > 375 ? "375px" : "100vw",
+      stagger: stagger,
+      duration: duration,
+      ease: ease,
+    })
+    .to(register, { opacity: 1, duration: duration2 });
 
   loginTL.pause();
   registerTL.pause();
@@ -45,19 +51,25 @@ window.addEventListener("resize", () => {
       registerTL.kill();
     }
 
-    loginTL = gsap.timeline().to(lefties, {
-      width: "375px",
-      stagger: stagger,
-      duration: duration,
-      ease: ease,
-    });
+    loginTL = gsap
+      .timeline()
+      .to(lefties, {
+        width: "375px",
+        stagger: stagger,
+        duration: duration,
+        ease: ease,
+      })
+      .to(login, { opacity: 1, duration: duration2 });
 
-    registerTL = gsap.timeline().to(righties, {
-      width: "375px",
-      stagger: stagger,
-      duration: duration,
-      ease: ease,
-    });
+    registerTL = gsap
+      .timeline()
+      .to(righties, {
+        width: "375px",
+        stagger: stagger,
+        duration: duration,
+        ease: ease,
+      })
+      .to(register, { opacity: 1, duration: duration2 });
 
     loginTL.pause();
     registerTL.pause();
@@ -67,19 +79,25 @@ window.addEventListener("resize", () => {
       registerTL.kill();
     }
 
-    loginTL = gsap.timeline().to(lefties, {
-      width: "100vw",
-      stagger: stagger,
-      duration: duration,
-      ease: ease,
-    });
+    loginTL = gsap
+      .timeline()
+      .to(lefties, {
+        width: "100vw",
+        stagger: stagger,
+        duration: duration,
+        ease: ease,
+      })
+      .to(login, { opacity: 1, duration: duration2 });
 
-    registerTL = gsap.timeline().to(righties, {
-      width: "100vw",
-      stagger: stagger,
-      duration: duration,
-      ease: ease,
-    });
+    registerTL = gsap
+      .timeline()
+      .to(righties, {
+        width: "100vw",
+        stagger: stagger,
+        duration: duration,
+        ease: ease,
+      })
+      .to(register, { opacity: 1, duration: duration2 });
 
     loginTL.pause();
     registerTL.pause();
