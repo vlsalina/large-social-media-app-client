@@ -116,8 +116,7 @@ const ReadingList = ({ type }) => {
               <IconContext.Provider value={styles.icons4}>
                 <BsFillBookmarkPlusFill />
               </IconContext.Provider>{" "}
-              on any story to easily add it to your reading list or a custom
-              list that you can share.
+              on any story to easily add it to your reading list.
             </p>
           </div>
         ) : (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./RegistrationForm2.css";
-import { registerReverse } from "../../utils";
+import { registerReverse, reverse } from "../../utils";
 import { useDispatch } from "react-redux";
 import { userActions } from "../_actions/user.actions";
 import ButtonA from "../buttons/ButtonB/ButtonB";
@@ -17,7 +17,7 @@ const RegistrationForm2 = () => {
   return (
     <form className="form">
       <div className="form--box-1">
-        <button type="button" className="form-close" onClick={registerReverse}>
+        <button type="button" className="form-close" onClick={reverse}>
           &times;
         </button>
       </div>

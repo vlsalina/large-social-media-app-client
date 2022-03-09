@@ -8,6 +8,7 @@ import Avatar from "../Avatar/Avatar";
 import ActionMenu from "../ActionMenu/ActionMenu";
 import IsLogged from "../IsLogged/IsLogged";
 import { loggedIn, play, loginPlay, registerPlay } from "../../utils";
+import { animations } from "../_animations/drawer.animations";
 import ButtonC from "../buttons/ButtonC/ButtonC";
 
 const styles = {

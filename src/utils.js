@@ -5,8 +5,11 @@ import gsap from "gsap";
 /* gsap timeline */
 let stagger = 0.05;
 let duration = 0.1;
+let duration2 = 0.2;
 let loginTL;
 let registerTL;
+let login;
+let register;
 let lefties;
 let righties;
 let ease = "power1.out";
@@ -14,16 +17,18 @@ let ease = "power1.out";
 window.onload = () => {
   lefties = document.querySelectorAll(".login-modal__left");
   righties = document.querySelectorAll(".register-modal__right");
+  login = document.querySelector(".login-modal--box-1");
+  register = document.querySelector(".register-modal--box-2");
 
   loginTL = gsap.timeline().to(lefties, {
-    width: "100vw",
+    width: window.innerWidth > 375 ? "375px" : "100vw",
     stagger: stagger,
     duration: duration,
     ease: ease,
   });
 
   registerTL = gsap.timeline().to(righties, {
-    width: "100vw",
+    width: window.innerWidth > 375 ? "375px" : "100vw",
     stagger: stagger,
     duration: duration,
     ease: ease,
@@ -32,6 +37,54 @@ window.onload = () => {
   loginTL.pause();
   registerTL.pause();
 };
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 375) {
+    if (loginTL && registerTL) {
+      loginTL.kill();
+      registerTL.kill();
+    }
+
+    loginTL = gsap.timeline().to(lefties, {
+      width: "375px",
+      stagger: stagger,
+      duration: duration,
+      ease: ease,
+    });
+
+    registerTL = gsap.timeline().to(righties, {
+      width: "375px",
+      stagger: stagger,
+      duration: duration,
+      ease: ease,
+    });
+
+    loginTL.pause();
+    registerTL.pause();
+  } else {
+    if (loginTL && registerTL) {
+      loginTL.kill();
+      registerTL.kill();
+    }
+
+    loginTL = gsap.timeline().to(lefties, {
+      width: "100vw",
+      stagger: stagger,
+      duration: duration,
+      ease: ease,
+    });
+
+    registerTL = gsap.timeline().to(righties, {
+      width: "100vw",
+      stagger: stagger,
+      duration: duration,
+      ease: ease,
+    });
+
+    loginTL.pause();
+    registerTL.pause();
+  }
+});
 
 /* end gsap timeline */
 
@@ -91,8 +144,8 @@ const play = () => {
 };
 
 const reverse = () => {
-  loginReverse();
-  registerReverse();
+  loginTL.reverse();
+  registerTL.reverse();
 };
 
 export {

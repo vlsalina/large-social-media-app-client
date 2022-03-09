@@ -14,7 +14,7 @@ const LoginForm2 = () => {
   return (
     <form className="form">
       <div className="form--box-1">
-        <button type="button" className="form-close" onClick={loginReverse}>
+        <button type="button" className="form-close" onClick={reverse}>
           &times;
         </button>
       </div>
