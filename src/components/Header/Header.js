@@ -7,8 +7,8 @@ import { IconContext } from "react-icons";
 import Avatar from "../Avatar/Avatar";
 import ActionMenu from "../ActionMenu/ActionMenu";
 import IsLogged from "../IsLogged/IsLogged";
-import { loggedIn, play, loginPlay, registerPlay } from "../../utils";
-import { animations } from "../_animations/drawer.animations";
+import { loggedIn } from "../../utils";
+import { drawerAnimations } from "../../components/_animations/drawer.animations";
 import ButtonC from "../buttons/ButtonC/ButtonC";
 
 const styles = {
@@ -70,13 +70,28 @@ const Header = () => {
                 <p>
                   <span className="header--span-1">
                     Already have an account?{" "}
-                    <ButtonC text={"Sign In"} action={loginPlay} />. Or{" "}
-                    <ButtonC text={"Create One"} action={registerPlay} />!
+                    <ButtonC
+                      text={"Sign In"}
+                      action={drawerAnimations.loginPlay}
+                    />
+                    . Or{" "}
+                    <ButtonC
+                      text={"Create One"}
+                      action={drawerAnimations.registerPlay}
+                    />
+                    !
                   </span>
                   <span className="header--span-2">
-                    <ButtonC text={"Sign In"} action={loginPlay} /> or{" "}
-                    <ButtonC text={"Create One"} action={registerPlay} /> an
-                    account.
+                    <ButtonC
+                      text={"Sign In"}
+                      action={drawerAnimations.loginPlay}
+                    />{" "}
+                    or{" "}
+                    <ButtonC
+                      text={"Create One"}
+                      action={drawerAnimations.registerPlay}
+                    />{" "}
+                    an account.
                   </span>
                 </p>
               }

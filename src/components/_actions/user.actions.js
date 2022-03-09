@@ -2,7 +2,7 @@ import { userConstants } from "../_constants/user.constants";
 import { userService } from "../_services/user.service";
 import { alertActions } from "./alert.actions";
 import { history } from "../_helpers/history";
-import { loginReverse, registerReverse } from "../../utils";
+import { drawerAnimations } from "../_animations/drawer.animations";
 
 // login action
 const login = (email, password, setEmail, setPassword) => {
@@ -25,7 +25,7 @@ const login = (email, password, setEmail, setPassword) => {
         setEmail("");
         setPassword("");
         dispatch(alertActions.success("Login successful"));
-        loginReverse();
+        drawerAnimations.loginReverse();
       },
       (error) => {
         dispatch(failure(error.toString()));
@@ -77,7 +77,7 @@ const register = ({
         setEmail("");
         setPassword("");
         setConfirmPassword("");
-        registerReverse();
+        drawerAnimations.registerReverse();
       },
       (error) => {
         //dispatch(failure(error.toString()));

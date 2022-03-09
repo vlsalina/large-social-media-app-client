@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./LoginForm2.css";
-import { loginReverse, reverse } from "../../utils";
+import { drawerAnimations } from "../_animations/drawer.animations";
 import ButtonB from "../buttons/ButtonB/ButtonB";
 import { userActions } from "../_actions/user.actions";
 import { useDispatch } from "react-redux";
@@ -14,7 +14,11 @@ const LoginForm2 = () => {
   return (
     <form className="form">
       <div className="form--box-1">
-        <button type="button" className="form-close" onClick={reverse}>
+        <button
+          type="button"
+          className="form-close"
+          onClick={drawerAnimations.loginReverse}
+        >
           &times;
         </button>
       </div>
