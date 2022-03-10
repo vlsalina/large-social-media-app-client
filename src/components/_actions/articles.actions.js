@@ -93,8 +93,40 @@ const unlike = (articleId) => {
   };
 };
 
+// create article action
+const create = (newArticle) => {
+  function request() {
+    return { type: articlesConstants.CREATE_REQUEST };
+  }
+  function success(update) {
+    return { type: articlesConstants.CREATE_SUCCESS };
+  }
+  function failure(error) {
+    return { type: articlesConstants.CREATE_FAIL, payload: error };
+  }
+
+  return (dispatch, getState) => {
+    dispatch(request());
+
+    articlesService.create(newArticle).then(
+      () => {
+        dispatch(success());
+        dispatch(
+          alertActions.success("Create new article request successful!")
+        );
+        window.location.href = "/";
+      },
+      (error) => {
+        dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      }
+    );
+  };
+};
+
 export const articlesActions = {
   getAllArticles,
   like,
   unlike,
+  create,
 };

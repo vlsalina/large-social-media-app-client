@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { MdAddCircleOutline } from "react-icons/md";
 import { MdRemoveCircleOutline } from "react-icons/md";
 import { IconContext } from "react-icons";
+import { useDispatch } from "react-redux";
+import { articlesActions } from "../_actions/articles.actions";
 
 const styles = {
   icon: {
@@ -29,6 +31,7 @@ const ArticleEditor = () => {
   const [error, setError] = useState();
   const title = useRef();
   const description = useRef();
+  const dispatch = useDispatch();
 
   const onEditorStateChange = (value) => {
     setEditorState(value);
@@ -68,18 +71,20 @@ const ArticleEditor = () => {
       content: html,
     };
 
-    try {
-      await axios.post(
-        `${process.env.REACT_APP_DOMAIN}/api/articles/createArticle`,
-        newArticle,
-        {
-          headers: { authorization: `Bearer ${user.accessToken}` },
-        }
-      );
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
+    //try {
+    //  await axios.post(
+    //    `${process.env.REACT_APP_DOMAIN}/api/articles/createArticle`,
+    //    newArticle,
+    //    {
+    //      headers: { authorization: `Bearer ${user.accessToken}` },
+    //    }
+    //  );
+    //  navigate("/");
+    //} catch (error) {
+    //  console.log(error);
+    //}
+
+    dispatch(articlesActions.create(newArticle));
   };
 
   const categoryHandler = (x, index) => {

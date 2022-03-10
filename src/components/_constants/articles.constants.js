@@ -18,4 +18,9 @@ export const articlesConstants = {
   UNLIKE_REQUEST: "UNLIKE_REQUEST",
   UNLIKE_SUCCESS: "UNLIKE_SUCCESS",
   UNLIKE_FAIL: "UNLIKE_FAIL",
+
+  /* for creating new article */
+  CREATE_REQUEST: "CREATE_REQUEST",
+  CREATE_SUCCESS: "CREATE_SUCCESS",
+  CREATE_FAIL: "CREATE_FAIL",
 };

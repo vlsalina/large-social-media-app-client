@@ -54,6 +54,25 @@ const unlike = async (articleId) => {
   );
 };
 
+// for create article request
+const create = async (newArticle) => {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      /* prettier-ignore */ "authorization": `Bearer ${
+        JSON.parse(localStorage.getItem("user")).accessToken
+      }`,
+    },
+    body: JSON.stringify(newArticle),
+  };
+
+  await fetch(
+    `${process.env.REACT_APP_DOMAIN}/api/articles/createArticle`,
+    requestOptions
+  );
+};
+
 /* response handler */
 const handleResponse = (response) => {
   return response.text().then((text) => {
@@ -71,4 +90,5 @@ export const articlesService = {
   getAllArticles,
   like,
   unlike,
+  create,
 };

@@ -1,0 +1,48 @@
+/* buttonD */
+.buttonD {
+  text-transform: capitalize;
+  padding: 0.2rem 0.4rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid transparent;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 350px) {
+  .buttonD {
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+  }
+}
+/* end buttonD */
+
+/* buttonD effects */
+.buttonD:hover {
+  background-color: #000;
+  color: var(--very-light-grey);
+  border-bottom: 2px solid transparent;
+}
+
+.buttonD--active {
+  background-color: #000;
+  color: var(--very-light-grey);
+  border-bottom: 2px solid transparent;
+}
+
+@media screen and (min-width: 350px) {
+  .buttonD:hover {
+    background-color: var(--very-light-grey);
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+
+  .buttonD--active {
+    background-color: var(--very-light-grey);
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+}
+
+/* buttonD effects */

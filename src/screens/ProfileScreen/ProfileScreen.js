@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { follow, unfollow } from "../../components/actions/actions";
 import FollowingCard from "../../components/FollowingCard/FollowingCard";
 import NotificationsCard from "../../components/NotificationsCard/NotificationsCard";
+import ButtonD from "../../components/buttons/ButtonD/ButtonD";
 
 const FadeIn = ({ children }) => {
   const [isVisib, setIsVisib] = React.useState(false);
@@ -26,19 +27,13 @@ const FadeIn = ({ children }) => {
   return <div className={`fadein ${isVisib ? "isVisib" : ""}`}>{children}</div>;
 };
 
-const Breadcrumbs = ({ getData }) => {
+const Nav = ({ getData, flag }) => {
   return (
-    <div className="breadcrumbs">
-      <ul>
+    <div className="profilescreen--box-4">
+      <ul className="breadcrumbs">
         {breadcrumbs.map((crumb) => (
           <li key={crumb}>
-            <button
-              className={`breadcrumbs__crumb`}
-              type="button"
-              onClick={() => getData(crumb)}
-            >
-              {crumb}
-            </button>
+            <ButtonD crumb={crumb} action={() => getData(crumb)} flag={flag} />
           </li>
         ))}
       </ul>
@@ -46,7 +41,7 @@ const Breadcrumbs = ({ getData }) => {
   );
 };
 
-const Wrapper = ({ children, author, userId, user, getData }) => {
+const Wrapper = ({ children, author, userId, user, getData, flag }) => {
   return (
     <>
       <div className="profilescreen__heading">
@@ -56,7 +51,7 @@ const Wrapper = ({ children, author, userId, user, getData }) => {
           </h1>
         )}
       </div>
-      {userId === user._id && <Breadcrumbs getData={getData} />}
+      {userId === user._id && <Nav getData={getData} flag={flag} />}
       {children}
     </>
   );
@@ -179,20 +174,17 @@ const ProfileScreen = () => {
 
   const getData = (crumb) => {
     if (crumb === "articles") {
-      setArticles(usersArticles);
       setFlag("articles");
-    }
-    if (crumb === "favorites") {
-      setArticles(favorites);
+      setArticles(usersArticles);
+    } else if (crumb === "favorites") {
       setFlag("favorites");
-    }
-    if (crumb === "notifications") {
-      setArticles(replies);
+      setArticles(favorites);
+    } else if (crumb === "notifications") {
       setFlag("notifications");
-    }
-    if (crumb === "following") {
-      setArticles(following);
+      setArticles(replies);
+    } else {
       setFlag("following");
+      setArticles(following);
     }
   };
 
@@ -241,16 +233,29 @@ const ProfileScreen = () => {
                 userId={userId}
                 user={user}
                 getData={getData}
+                flag={flag}
               >
                 <div className="profilescreen--box-2">
                   <div>
-                    {flag === "articles" && <h2>No articles written.</h2>}
-                    {flag === "favorites" && <h2>No articles bookmarked.</h2>}
+                    {flag === "articles" && (
+                      <h2 className="profilescreen--text-align">
+                        No articles written.
+                      </h2>
+                    )}
+                    {flag === "favorites" && (
+                      <h2 className="profilescreen--text-align">
+                        No articles bookmarked.
+                      </h2>
+                    )}
                     {flag === "notifications" && (
-                      <h2>No replies to any of your articles.</h2>
+                      <h2 className="profilescreen--text-align">
+                        No replies to any of your articles.
+                      </h2>
                     )}
                     {flag === "following" && (
-                      <h2>No authors being followed.</h2>
+                      <h2 className="profilescreen--text-align">
+                        No authors being followed.
+                      </h2>
                     )}
                   </div>
                 </div>
@@ -262,6 +267,7 @@ const ProfileScreen = () => {
                 userId={userId}
                 user={user}
                 getData={getData}
+                flag={flag}
               >
                 <ul>
                   {articles &&
@@ -279,6 +285,7 @@ const ProfileScreen = () => {
                 userId={userId}
                 user={user}
                 getData={getData}
+                flag={flag}
               >
                 <ul>
                   {articles &&
@@ -296,6 +303,7 @@ const ProfileScreen = () => {
                 userId={userId}
                 user={user}
                 getData={getData}
+                flag={flag}
               >
                 <ul className="profilescreen--list-1">
                   {articles &&
@@ -313,6 +321,7 @@ const ProfileScreen = () => {
                 userId={userId}
                 user={user}
                 getData={getData}
+                flag={flag}
               >
                 <ul>
                   {articles &&

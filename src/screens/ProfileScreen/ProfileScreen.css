@@ -41,6 +41,25 @@
   transform: translate(calc(-50% - 300%), 0);
 }
 
+/* profilescreen--text-align */
+.profilescreen--text-align {
+  text-align: center;
+}
+/* end profilescreen--text-align */
+
+/* profilescreen--box-4 */
+.profilescreen--box-4 {
+  margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 350px) {
+  .profilescreen--box-4 {
+    margin-bottom: 0;
+  }
+}
+
+/* end profilescreen--box-4 */
+
 /* following */
 .profilescreen--box-7 {
   margin-bottom: 2rem;
@@ -117,55 +136,14 @@
 /* Breadcrumbs */
 
 .breadcrumbs {
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.breadcrumbs ul {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.breadcrumbs ul li {
-  margin-right: 2rem;
-}
-
-.breadcrumbs__crumb {
-  border: none;
-  text-transform: capitalize;
-  border: 1px solid #000;
-  width: 8rem;
-  border-radius: 2rem;
-}
-
-.breadcrumbs--active {
-  background-color: rgb(143, 140, 150);
-  border-color: rgb(143, 140, 150);
-  color: #fff;
-}
-
-.breadcrumbs__crumb:hover {
-  background-color: rgb(143, 140, 150);
-  border-color: rgb(143, 140, 150);
-  color: #fff;
-}
-
-@media screen and (max-width: 475px) {
-  .breadcrumbs ul {
-    flex-direction: column;
-  }
-
-  .breadcrumbs ul li,
-  .breadcrumbs__crumb {
-    width: 100%;
-  }
-
-  .breadcrumbs ul li {
-    margin-bottom: 1rem;
-  }
-
-  .breadcrumbs__crumb {
-    padding: 1rem;
+@media screen and (min-width: 350px) {
+  .breadcrumbs {
+    flex-wrap: nowrap;
   }
 }
 
@@ -174,7 +152,6 @@
 /* replies container */
 .profilescreen--list-1 {
   width: 100%;
-  margin-top: 2rem;
   overflow: hidden;
 }
 

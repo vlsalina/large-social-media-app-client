@@ -19,6 +19,13 @@ const articlesReducer = (state = initialState, action) => {
     case articlesConstants.ARTICLES_UPDATE_FAIL:
       return { loading: false, error: action.payload };
 
+    case articlesConstants.CREATE_REQUEST:
+      return { loading: true, articles: state.articles };
+    case articlesConstants.CREATE_SUCCESS:
+      return { loading: false, articles: state.articles };
+    case articlesConstants.CREATE_FAIL:
+      return { loading: false, error: action.payload };
+
     default:
       return state;
   }

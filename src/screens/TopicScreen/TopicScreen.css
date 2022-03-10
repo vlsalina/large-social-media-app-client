@@ -70,11 +70,17 @@
 .topic__banner {
   width: 100%;
   height: 0;
-  padding-top: 60%;
+  padding-top: 30%;
   position: relative;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 623px) {
+  .topic__banner {
+    padding-top: 25%;
+  }
+}
+
+@media screen and (min-width: 1192px) {
   .topic__banner {
     height: 300px;
     padding: 0;
