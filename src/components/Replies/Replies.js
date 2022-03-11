@@ -5,7 +5,7 @@ import axios from "axios";
 import { ArticleContext } from "../../screens/ArticleScreen/ArticleScreen";
 import { useSelector } from "react-redux";
 import parse from "html-react-parser";
-import { formatDate } from "../../utils";
+import { formatDate } from "../_helpers/general.helpers";
 import { GrClose } from "react-icons/gr";
 import { IconContext } from "react-icons";
 import Avatar from "../Avatar/Avatar";

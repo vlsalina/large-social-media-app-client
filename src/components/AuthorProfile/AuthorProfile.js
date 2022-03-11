@@ -3,7 +3,7 @@ import "./AuthorProfile.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { follow, unfollow } from "../actions/actions";
-import { userIsLogged, loggedIn } from "../../utils";
+import { userIsLogged, loggedIn } from "../_helpers/general.helpers";
 import { userActions } from "../_actions/user.actions";
 
 const AuthorProfile = ({ author }) => {

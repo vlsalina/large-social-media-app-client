@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { favorite, unfavorite } from "../actions/actions";
 import { useSelector } from "react-redux";
-import { userIsLogged, loggedIn } from "../../utils";
+import { userIsLogged, loggedIn } from "../_helpers/general.helpers";
 import { styles } from "../../styles/styles";
 
 const links = [

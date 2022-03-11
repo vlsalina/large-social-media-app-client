@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { MainFeedContext } from "../../screens/MainFeedScreen/MainFeedScreen";
 import { TopicContext } from "../../screens/TopicScreen/TopicScreen";
-import { formatDate, userIsLogged } from "../../utils";
+import { userIsLogged, formatDate } from "../_helpers/general.helpers";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
 import { useDispatch } from "react-redux";

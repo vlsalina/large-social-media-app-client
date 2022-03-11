@@ -5,7 +5,11 @@ import { TiMessages } from "react-icons/ti";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
-import { formatDate, userIsLogged, loggedIn } from "../../utils";
+import {
+  userIsLogged,
+  loggedIn,
+  formatDate,
+} from "../_helpers/general.helpers";
 import { useSelector } from "react-redux";
 import Avatar from "../Avatar/Avatar";
 import axios from "axios";

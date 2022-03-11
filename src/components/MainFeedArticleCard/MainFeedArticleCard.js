@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./MainFeedArticleCard.css";
-import { formatDate, redirect, userIsLogged } from "../../utils";
+import { formatDate, userIsLogged } from "../_helpers/general.helpers";
 import { MainFeedContext } from "../../screens/MainFeedScreen/MainFeedScreen";
 import { TopicContext } from "../../screens/TopicScreen/TopicScreen";
 import { useSelector } from "react-redux";

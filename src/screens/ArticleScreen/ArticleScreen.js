@@ -3,7 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { useSelector } from "react-redux";
 import "./ArticleScreen.css";
-import { formatDate, userIsLogged, loggedIn } from "../../utils";
+import {
+  userIsLogged,
+  loggedIn,
+  formatDate,
+} from "../../components/_helpers/general.helpers";
 import { AiOutlineMessage } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
@@ -15,20 +19,10 @@ import SocialMenu from "../../components/SocialMenu/SocialMenu";
 import Replies from "../../components/Replies/Replies";
 import parse from "html-react-parser";
 import { useDispatch } from "react-redux";
-import {
-  //follow,
-  //unfollow,
-  like,
-  dislike,
-} from "../../components/actions/actions";
 import { userActions } from "../../components/_actions/user.actions";
+import { articlesActions } from "../../components/_actions/articles.actions";
 import Avatar from "../../components/Avatar/Avatar";
-
-const styles = {
-  icons: {
-    size: "2rem",
-  },
-};
+import { styles } from "../../styles/styles";
 
 export const ArticleContext = React.createContext();
 
@@ -89,10 +83,10 @@ const ArticleScreen = () => {
   const likeHandler = async () => {
     let exists = article.likes.find((x) => x.userId === user._id);
     if (!exists) {
-      dispatch(like(article._id));
+      dispatch(articlesActions.like(article._id));
       setLikes([...likes, { userId: user._id }]);
     } else {
-      dispatch(dislike(article._id));
+      dispatch(articlesActions.unlike(article._id));
       setLikes(likes.filter((x) => x.userId !== user._id));
     }
     setLiked(!liked);

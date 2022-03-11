@@ -6,7 +6,7 @@ const formatDate = (date) => {
   let createdAt = date.slice(0, 10).split("-");
   let [year, month, day] = createdAt;
 
-  let formattedDate = format(new Date(year, month, day), "PP");
+  let formattedDate = format(new Date(year, month - 1, day), "PP");
 
   return formattedDate;
 };
@@ -36,4 +36,4 @@ const loggedIn = () => {
   }
 };
 
-export { formatDate, getColor, redirect, userIsLogged, loggedIn };
+//export { formatDate, getColor, redirect, userIsLogged, loggedIn };
