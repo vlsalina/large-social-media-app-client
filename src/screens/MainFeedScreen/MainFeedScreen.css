@@ -16,24 +16,53 @@
 
 /* home banner */
 .home__banner {
-  height: var(--banner);
-  /*
-  background-image: url(../../../public/assets/banners/thumb-1920-936378.jpg);
-  */
+  width: 100%;
+  padding-top: 50%;
+  height: 0;
   background: var(--gradient-red-to-black), var(--gradient-green-to-black),
     var(--gradient-blue-to-black);
+  color: var(--very-light-grey);
   display: flex;
   justify-content: center;
-  color: var(--very-light-grey);
   background-position: center;
+  position: relative;
 }
 
+@media screen and (min-width: 743px) {
+  .home__banner {
+    height: var(--banner);
+    padding-top: 0;
+  }
+}
+
+/* end home banner */
+
+/* home--box-3 */
 .home--box-3 {
   display: flex;
   width: 100%;
   justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
+@media screen and (min-width: 743px) {
+  .home--box-3 {
+    justify-content: flex-start;
+    width: 743px;
+  }
+}
+
+@media screen and (min-width: 1192px) {
+  .home--box-3 {
+    width: 1192px;
+  }
+}
+
+/* end home--box-3 */
+
+/* home--box-4 */
 .home--box-4 {
   width: 75%;
   padding-top: 1rem;
@@ -44,14 +73,24 @@
   text-align: center;
 }
 
+@media screen and (min-width: 743px) {
+  .home--box-4 {
+    width: 75%;
+    text-align: left;
+  }
+}
+
+@media screen and (min-width: 1192px) {
+  .home--box-4 {
+    width: 60%;
+  }
+}
+
+/* home--box-4 */
+
 .home__hero {
   height: 100%;
   object-fit: contain;
-}
-
-.home__title h2 {
-  font-size: 2rem;
-  margin: 0;
 }
 
 .home--box-9 {
@@ -71,28 +110,34 @@
   }
 }
 
+/* home__title */
+
+.home__title {
+  font-size: 6vw;
+  margin: 0 0 3vw 0;
+}
+
 @media screen and (min-width: 743px) {
-  .home--box-3 {
-    width: 743px;
-    justify-content: flex-start;
-  }
-
-  .home--box-4 {
-    text-align: left;
-  }
-
-  .home__title h2 {
+  .home__title {
     font-size: 3rem;
+    margin: 0 0 2rem 0;
+  }
+}
+/* end home__title */
+
+/* home__description */
+.home__description {
+  font-size: 2.5vw;
+  margin: 0;
+}
+
+@media screen and (min-width: 743px) {
+  .home__description {
+    font-size: 1rem;
   }
 }
 
-@media screen and (min-width: 1192px) {
-  .home--box-3 {
-    width: 1192px;
-  }
-}
-
-/* end home banner */
+/* home__description */
 
 /* home__content */
 .home__content {

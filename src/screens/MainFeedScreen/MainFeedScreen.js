@@ -60,11 +60,13 @@ const MainFeedScreen = () => {
               <div className="home__banner">
                 <div className="home--box-3">
                   <div className="home--box-4">
-                    <div className="home__title">
-                      <h2>Large is a place to read, write, and connect</h2>
+                    <div>
+                      <h2 className="home__title">
+                        Large is a place to read, write, and connect
+                      </h2>
                     </div>
-                    <div className="home__description">
-                      <p>
+                    <div>
+                      <p className="home__description">
                         It's easy and free to post your thinking on any topic
                         and connect with millions of readers.
                       </p>
