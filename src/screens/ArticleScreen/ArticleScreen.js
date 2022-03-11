@@ -43,6 +43,7 @@ const ArticleScreen = () => {
 
   useEffect(() => {
     let result = articles && articles.find((x) => x._id === articleId);
+
     setArticle(result);
     setLikes(result.likes);
 

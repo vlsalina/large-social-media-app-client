@@ -1,7 +1,7 @@
 import { articlesConstants } from "../_constants/articles.constants";
 
 let articles = JSON.parse(localStorage.getItem("articles"));
-const initialState = articles ? articles : {};
+const initialState = articles ? { loading: false, articles: articles } : {};
 
 const articlesReducer = (state = initialState, action) => {
   switch (action.type) {
