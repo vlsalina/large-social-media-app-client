@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../_actions/user.actions";
 import { drawerAnimations } from "../_animations/drawer.animations";
 import ButtonA from "../buttons/ButtonB/ButtonB";
+import { useSelector } from "react-redux";
+import MessageBox from "../MessageBox/MessageBox";
 
 // log in user
 const RegistrationForm2 = () => {
@@ -13,6 +15,8 @@ const RegistrationForm2 = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const alert = useSelector((state) => state.alert);
 
   return (
     <form className="form">
@@ -25,6 +29,7 @@ const RegistrationForm2 = () => {
           &times;
         </button>
       </div>
+      {alert.message && <MessageBox message={alert.message} />}
       <div>
         <h2>Sign Up</h2>
       </div>

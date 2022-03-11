@@ -3,6 +3,7 @@ import { userService } from "../_services/user.service";
 import { alertActions } from "./alert.actions";
 import { history } from "../_helpers/history";
 import { drawerAnimations } from "../_animations/drawer.animations";
+import { usersHelpers } from "../_helpers/users.helper";
 
 // login action
 const login = (email, password, setEmail, setPassword) => {
@@ -17,6 +18,11 @@ const login = (email, password, setEmail, setPassword) => {
   };
 
   return (dispatch) => {
+    // valdiate user input
+    if (usersHelpers.validateLoginData({ email, password }, dispatch)) {
+      return;
+    }
+
     dispatch(request());
 
     userService.login({ email, password }).then(
@@ -66,6 +72,11 @@ const register = ({
   }
 
   return (dispatch) => {
+    // validate user input
+    if (usersHelpers.validateRegisterData(userData, dispatch)) {
+      return;
+    }
+
     dispatch(request());
 
     userService.register(userData).then(

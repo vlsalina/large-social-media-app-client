@@ -11,7 +11,7 @@ const userReducer = (state = initialState, action) => {
     case userConstants.LOGIN_SUCCESS:
       return action.payload;
     case userConstants.LOGIN_FAILURE:
-      return state;
+      return { error: action.payload };
 
     // for user logout
     case userConstants.LOGOUT:

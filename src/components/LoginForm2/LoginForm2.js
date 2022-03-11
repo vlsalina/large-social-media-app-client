@@ -4,12 +4,15 @@ import { drawerAnimations } from "../_animations/drawer.animations";
 import ButtonB from "../buttons/ButtonB/ButtonB";
 import { userActions } from "../_actions/user.actions";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import MessageBox from "../MessageBox/MessageBox";
 
 // log in user
 const LoginForm2 = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const alert = useSelector((state) => state.alert);
 
   return (
     <form className="form">
@@ -22,6 +25,7 @@ const LoginForm2 = () => {
           &times;
         </button>
       </div>
+      {alert.message && <MessageBox message={alert.message} />}
       <div>
         <h2>Login</h2>
       </div>
