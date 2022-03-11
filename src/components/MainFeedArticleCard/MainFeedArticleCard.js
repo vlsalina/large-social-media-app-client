@@ -47,16 +47,6 @@ const MainFeedArticleCard = ({ article, type }) => {
   }, [article.likes, user._id]);
 
   useEffect(() => {
-    //axios
-    //  .get(
-    //    `${process.env.REACT_APP_DOMAIN}/api/replies/getAllReplies?articleId=${article._id}`,
-    //    {
-    //      headers: { authorization: `Bearer ${user.accessToken}` },
-    //    }
-    //  )
-    //  .then((response) => setReplies(response.data))
-    //  .catch((error) => console.log(error));
-
     repliesHelpers
       .getAllReplies(article._id)
       .then((replies) => setReplies(replies));

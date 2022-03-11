@@ -81,16 +81,10 @@
 
 /* card--box-4 */
 .card--box-4 {
-  display: none;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-}
-
-@media screen and (min-width: 600px) {
-  .card--box-4 {
-    display: flex;
-  }
+  display: flex;
 }
 
 /* end card--box-4 */

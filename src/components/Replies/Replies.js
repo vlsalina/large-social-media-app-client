@@ -9,14 +9,10 @@ import { formatDate } from "../../utils";
 import { GrClose } from "react-icons/gr";
 import { IconContext } from "react-icons";
 import Avatar from "../Avatar/Avatar";
+import { repliesHelpers } from "../_helpers/replies.helper";
+import { styles } from "../../styles/styles";
 
 export const RepliesContext = React.createContext();
-
-const styles = {
-  icon: {
-    size: "2rem",
-  },
-};
 
 const Replies = () => {
   const user = useSelector((state) => state.user);
@@ -25,16 +21,11 @@ const Replies = () => {
   const [replies, setReplies] = useState();
 
   useEffect(() => {
-    axios
-      .get(
-        `${process.env.REACT_APP_DOMAIN}/api/replies/getAllReplies?articleId=${articleId}`,
-        {
-          headers: { authorization: `Bearer ${user.accessToken}` },
-        }
-      )
+    repliesHelpers
+      .getAllReplies(articleId)
       .then((response) => {
-        setReplies(response.data);
-        setNumReplies(response.data.length);
+        setReplies(response);
+        setNumReplies(response.length);
       })
       .catch((error) => console.log(error));
   }, [
@@ -65,7 +56,7 @@ const Replies = () => {
           )}
           <div className="replies__close">
             <button type="button" onClick={closeHandler}>
-              <IconContext.Provider value={styles.icon}>
+              <IconContext.Provider value={styles.icons}>
                 <GrClose />
               </IconContext.Provider>
             </button>

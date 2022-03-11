@@ -8,6 +8,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { ArticleContext } from "../../screens/ArticleScreen/ArticleScreen";
 import { RepliesContext } from "../Replies/Replies";
+import { repliesHelpers } from "../_helpers/replies.helper";
 
 const TextEditor = () => {
   const { articleId, numReplies, setNumReplies, article } =
@@ -29,37 +30,36 @@ const TextEditor = () => {
   //    />
 
   const submitHandler = async () => {
-    try {
-      await axios.post(
-        `${process.env.REACT_APP_DOMAIN}/api/replies/addReply`,
-        {
-          articleId: articleId,
-          articleAuthorId: article.authorId,
-          content: draftToHtml(convertToRaw(editorState.getCurrentContent())),
-        },
-        { headers: { authorization: `Bearer ${user.accessToken}` } }
-      );
+    repliesHelpers
+      .addReply({
+        articleId: articleId,
+        articleAuthorId: article.authorId,
+        content: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+      })
+      .then(() => {
+        let date = new Date();
 
-      let date = new Date();
+        setReplies(
+          replies.concat({
+            articleId: articleId,
+            articleAuthorId: article.authorId,
+            author: `${user.firstname} ${user.lastname}`,
+            userId: user._id,
+            avatar: user.avatar ? user.avatar : "",
+            content: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+            likes: [],
+            createdAt: date.toISOString(),
+          })
+        );
 
-      setReplies(
-        replies.concat({
-          articleId: articleId,
-          articleAuthorId: article.authorId,
-          author: `${user.firstname} ${user.lastname}`,
-          userId: user._id,
-          avatar: user.avatar ? user.avatar : "",
-          content: draftToHtml(convertToRaw(editorState.getCurrentContent())),
-          likes: [],
-          createdAt: date.toISOString(),
-        })
-      );
+        setEditorState("");
+        setNumReplies(numReplies + 1);
+      })
+      .catch((error) => console.log(error));
+  };
 
-      setEditorState("");
-      setNumReplies(numReplies + 1);
-    } catch (error) {
-      console.log(error);
-    }
+  const cancelHandler = () => {
+    setEditorState("");
   };
 
   return (
@@ -73,7 +73,9 @@ const TextEditor = () => {
       />
       <div className="editor--box-1">
         <div className="editor--box-2">
-          <button type="button">Cancel</button>
+          <button type="button" onClick={cancelHandler}>
+            Cancel
+          </button>
         </div>
         <div className="editor--box-2">
           <button type="button" onClick={submitHandler}>

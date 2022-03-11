@@ -71,19 +71,6 @@ const ArticleEditor = () => {
       content: html,
     };
 
-    //try {
-    //  await axios.post(
-    //    `${process.env.REACT_APP_DOMAIN}/api/articles/createArticle`,
-    //    newArticle,
-    //    {
-    //      headers: { authorization: `Bearer ${user.accessToken}` },
-    //    }
-    //  );
-    //  navigate("/");
-    //} catch (error) {
-    //  console.log(error);
-    //}
-
     dispatch(articlesActions.create(newArticle));
   };
 
