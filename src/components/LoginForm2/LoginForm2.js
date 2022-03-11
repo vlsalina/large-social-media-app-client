@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./LoginForm2.css";
-import { drawerAnimations } from "../_animations/drawer.animations";
 import ButtonB from "../buttons/ButtonB/ButtonB";
 import { userActions } from "../_actions/user.actions";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import MessageBox from "../MessageBox/MessageBox";
+import { closeDrawer } from "../_helpers/general.helpers";
 
 // log in user
 const LoginForm2 = () => {
@@ -20,7 +20,7 @@ const LoginForm2 = () => {
         <button
           type="button"
           className="form-close"
-          onClick={drawerAnimations.loginReverse}
+          onClick={() => closeDrawer(dispatch)}
         >
           &times;
         </button>

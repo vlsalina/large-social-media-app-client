@@ -1,4 +1,6 @@
 import { general } from "../_constants/general.constants";
+import { drawerAnimations } from "../_animations/drawer.animations";
+import { alertActions } from "../_actions/alert.actions";
 
 export const bgc = (topic) => {
   switch (topic) {
@@ -19,4 +21,10 @@ export const bgc = (topic) => {
     default:
       return "";
   }
+};
+
+export const closeDrawer = (dispatch) => {
+  dispatch(alertActions.clear());
+  drawerAnimations.loginReverse();
+  drawerAnimations.registerReverse();
 };
