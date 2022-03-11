@@ -33,5 +33,7 @@ details.txt
 /RegistrationForm
 /MiniLoader
 /PrivateRoute
+/actionTypes
+/reducers
 
 utils.js

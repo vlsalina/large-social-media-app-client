@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import MessageBox from "../MessageBox/MessageBox";
 import { closeDrawer } from "../_helpers/general.helpers";
+import ButtonC from "../buttons/ButtonC/ButtonC";
+import { toRegister } from "../_helpers/general.helpers";
 
 // log in user
 const LoginForm2 = () => {
@@ -62,6 +64,12 @@ const LoginForm2 = () => {
             dispatch(userActions.login(email, password, setEmail, setPassword))
           }
         />
+      </div>
+      <div className="form--box-2">
+        <p>
+          Don't have an account?{" "}
+          <ButtonC text={"Create One"} action={toRegister} />
+        </p>
       </div>
     </form>
   );

@@ -6,6 +6,8 @@ import ButtonA from "../buttons/ButtonB/ButtonB";
 import { useSelector } from "react-redux";
 import MessageBox from "../MessageBox/MessageBox";
 import { closeDrawer } from "../_helpers/general.helpers";
+import ButtonC from "../buttons/ButtonC/ButtonC";
+import { toLogin } from "../_helpers/general.helpers";
 
 // log in user
 const RegistrationForm2 = () => {
@@ -120,6 +122,11 @@ const RegistrationForm2 = () => {
             )
           }
         />
+      </div>
+      <div className="form--box-2">
+        <p>
+          Already have an account? <ButtonC text={"Sign In"} action={toLogin} />
+        </p>
       </div>
     </form>
   );

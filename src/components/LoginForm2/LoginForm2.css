@@ -32,6 +32,16 @@
 }
 /* end form--box-1 */
 
+/* form--box-2 */
+.form--box-2 {
+  margin-top: 1rem;
+}
+
+.form--box-2 p {
+  margin: 0;
+}
+/* end form--box-2 */
+
 /* form-close */
 .form-close {
   border: none;

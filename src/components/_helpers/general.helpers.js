@@ -60,3 +60,13 @@ export const loggedIn = () => {
     return false;
   }
 };
+
+export const toLogin = () => {
+  drawerAnimations.registerReverse();
+  drawerAnimations.loginPlay();
+};
+
+export const toRegister = () => {
+  drawerAnimations.loginReverse();
+  drawerAnimations.registerPlay();
+};
