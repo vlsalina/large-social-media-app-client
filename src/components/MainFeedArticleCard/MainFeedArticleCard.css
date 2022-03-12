@@ -70,7 +70,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
-  line-height: 1rem;
+  line-height: 1.25rem;
   max-height: 2rem;
 }
 

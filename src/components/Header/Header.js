@@ -105,18 +105,6 @@ const Header = () => {
                       </IconContext.Provider>
                     </Link>
                   </li>
-                  <li key={"search"}>
-                    <button
-                      type="button"
-                      className="header__drawer header--noborder"
-                    >
-                      <img
-                        className="header__icon"
-                        src={`/assets/icons8-search-500.png`}
-                        alt="search"
-                      />
-                    </button>
-                  </li>
                   {menuItems.slice(0, 2).map((item) => (
                     <li key={item.name}>
                       <Link to={item.url}>
