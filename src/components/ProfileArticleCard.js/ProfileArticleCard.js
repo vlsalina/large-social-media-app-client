@@ -5,12 +5,20 @@ import { TiMessages } from "react-icons/ti";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
-import { formatDate } from "../../utils";
+import {
+  userIsLogged,
+  loggedIn,
+  formatDate,
+} from "../_helpers/general.helpers";
 import { useSelector } from "react-redux";
 import Avatar from "../Avatar/Avatar";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { favorite, unfavorite, like, dislike } from "../actions/actions";
+import { BsFillBookmarkDashFill, BsFillBookmarkPlusFill } from "react-icons/bs";
+import { BsBookmarkDashFill } from "react-icons/bs";
+import { userActions } from "../_actions/user.actions";
+import { articlesActions } from "../_actions/articles.actions";
 
 const ProfileArticleCard = ({ article }) => {
   const [likes, setLikes] = useState();
@@ -23,31 +31,32 @@ const ProfileArticleCard = ({ article }) => {
   useEffect(() => {
     setLikes(article.likes);
 
-    // if user has already liked article, set liked state to true. false otherwise.
-    let exists = article.likes.find((x) => x.userId === user._id);
-    if (exists) {
-      setLiked(true);
+    if (loggedIn()) {
+      // if user has already liked article, set liked state to true. false otherwise.
+      let exists = article.likes.find((x) => x.userId === user._id);
+      if (exists) {
+        setLiked(true);
+      }
     }
   }, [article.likes, user._id]);
 
   useEffect(() => {
-    // check if article already exists in user's favorites
-    let exists =
-      article && user.favorites.find((x) => x.articleId === article._id);
-    if (exists) {
-      setFavd(true);
-    } else {
-      setFavd(false);
+    if (loggedIn()) {
+      // check if article already exists in user's favorites
+      let exists =
+        article && user.favorites.find((x) => x.articleId === article._id);
+      if (exists) {
+        setFavd(true);
+      } else {
+        setFavd(false);
+      }
     }
   }, [article, user.favorites]);
 
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_DOMAIN}/api/replies/getAllReplies?articleId=${article._id}`,
-        {
-          headers: { authorization: `Bearer ${user.accessToken}` },
-        }
+        `${process.env.REACT_APP_DOMAIN}/api/replies/getAllReplies?articleId=${article._id}`
       )
       .then((response) => setReplies(response.data))
       .catch((error) => console.log(error));
@@ -56,10 +65,10 @@ const ProfileArticleCard = ({ article }) => {
   const likeHandler = () => {
     let exists = likes.find((x) => x.userId === user._id);
     if (!exists) {
-      dispatch(like(article._id));
+      dispatch(articlesActions.like(article._id));
       setLikes([...likes, { userId: user._id }]);
     } else {
-      dispatch(dislike(article._id));
+      dispatch(articlesActions.unlike(article._id));
       setLikes(likes.filter((x) => x.userId !== user._id));
     }
     setLiked(!liked);
@@ -68,9 +77,9 @@ const ProfileArticleCard = ({ article }) => {
   const favoriteHandler = async (e) => {
     try {
       if (favd) {
-        dispatch(unfavorite(article._id));
+        dispatch(userActions.unfavorite(article._id));
       } else {
-        dispatch(favorite(article._id));
+        dispatch(userActions.favorite(article._id));
       }
       setFavd(!favd);
     } catch (error) {
@@ -122,9 +131,13 @@ const ProfileArticleCard = ({ article }) => {
             </div>
           )}
           <div className="card__likes card--spacer">
-            <button type="button" className="buttonA" onClick={likeHandler}>
+            <button
+              type="button"
+              className="buttonA"
+              onClick={() => userIsLogged(likeHandler)}
+            >
               <IconContext.Provider value={styles.icons}>
-                {liked ? <AiFillLike /> : <AiOutlineLike />}
+                {loggedIn() && liked ? <AiFillLike /> : <AiOutlineLike />}
               </IconContext.Provider>
               &nbsp;
               {likes && <div>{likes.length}</div>}
@@ -144,20 +157,16 @@ const ProfileArticleCard = ({ article }) => {
           <button
             className="favorite"
             type="button"
-            onClick={(e) => favoriteHandler(e)}
+            onClick={(e) => userIsLogged(favoriteHandler(e))}
           >
-            {favd ? (
-              <img
-                className="favorite__icon"
-                src={"/assets/icons8-unfavorite-512.png"}
-                alt="unfavorite"
-              />
+            {loggedIn() && favd ? (
+              <IconContext.Provider value={styles.icons3}>
+                <BsFillBookmarkDashFill />
+              </IconContext.Provider>
             ) : (
-              <img
-                className="favorite__icon"
-                src={"/assets/icons8-favorite-512.png"}
-                alt="favorite"
-              />
+              <IconContext.Provider value={styles.icons3}>
+                <BsFillBookmarkPlusFill />
+              </IconContext.Provider>
             )}
           </button>
         </div>

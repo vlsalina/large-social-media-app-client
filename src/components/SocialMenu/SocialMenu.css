@@ -1,11 +1,20 @@
+/* social */
 .social {
-  width: 250px;
+  width: 100%;
 }
+
+@media screen and (min-width: 266px) {
+  .social {
+    width: 250px;
+  }
+}
+/* end social */
 
 .social ul {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .social__favorite {

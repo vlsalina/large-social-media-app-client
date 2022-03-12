@@ -10,6 +10,8 @@ import ReadingList from "../../components/ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { topics } from "../../data/data";
+import IsLogged from "../../components/IsLogged/IsLogged";
+import { bgc } from "../../components/_helpers/general.helpers";
 
 export const TopicContext = React.createContext();
 
@@ -55,8 +57,7 @@ const TopicScreen = () => {
     const asyncCall = async () => {
       try {
         const { data } = await axios.get(
-          `${process.env.REACT_APP_DOMAIN}/api/articles/getArticlesByCategory?category=${topic}`,
-          { headers: { authorization: `Bearer ${user.accessToken}` } }
+          `${process.env.REACT_APP_DOMAIN}/api/articles/getArticlesByCategory?category=${topic}`
         );
         setLoading(false);
         setArticles(data.reverse());
@@ -77,16 +78,9 @@ const TopicScreen = () => {
             <Header />
             <div className="home--box-2">
               {topic && (
-                <div
-                  className="topic__banner topic--background"
-                  style={{ backgroundImage: `url(${getbanner(topic)}` }}
-                >
-                  <div
-                    className={`topic__name ${
-                      topic === "technology" ? "topic--black" : ""
-                    }`}
-                  >
-                    <h1>{topic}</h1>
+                <div className={`topic__banner ${bgc(topic.toUpperCase())}`}>
+                  <div className="topic--box-3">
+                    <h1 className={`topic__name`}>{topic}</h1>
                   </div>
                 </div>
               )}
@@ -109,18 +103,20 @@ const TopicScreen = () => {
                     <div className="home__recommended">
                       <Recommended />
                     </div>
-                    <div className="home__readinglist">
-                      <ReadingList type={false} />
-                    </div>
-                    {favorites && favorites.length > 3 && (
-                      <div>
-                        <Link to={`/profile/${user._id}`}>
-                          <div className="home__seemore">
-                            See all {favorites.length}
-                          </div>
-                        </Link>
+                    <IsLogged>
+                      <div className="home__readinglist">
+                        <ReadingList type={false} />
                       </div>
-                    )}
+                      {favorites && favorites.length > 3 && (
+                        <div>
+                          <Link to={`/profile/${user._id}`}>
+                            <div className="home__seemore">
+                              See all {favorites.length}
+                            </div>
+                          </Link>
+                        </div>
+                      )}
+                    </IsLogged>
                   </div>
                 </div>
               </div>

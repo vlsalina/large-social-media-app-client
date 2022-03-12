@@ -4,16 +4,22 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { MainFeedContext } from "../../screens/MainFeedScreen/MainFeedScreen";
 import { TopicContext } from "../../screens/TopicScreen/TopicScreen";
-import { formatDate } from "../../utils";
+import { userIsLogged, formatDate } from "../_helpers/general.helpers";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
 import { useDispatch } from "react-redux";
-import { unfavorite } from "../actions/actions";
+//import { unfavorite } from "../actions/actions";
+import { userActions } from "../_actions/user.actions";
+import IsLogged from "../IsLogged/IsLogged";
+import { IconContext } from "react-icons/lib";
+import { BsFillBookmarkPlusFill } from "react-icons/bs";
+import { BsFillBookmarkDashFill } from "react-icons/bs";
+import { styles } from "../../styles/styles";
 
 const Favorites = ({ favorites, setFavorites, dispatch }) => {
   const unfavHandler = (articleId) => {
     try {
-      dispatch(unfavorite(articleId));
+      dispatch(userActions.unfavorite(articleId));
       setFavorites(favorites.filter((x) => x._id !== articleId));
     } catch (error) {
       console.log(error);
@@ -23,8 +29,8 @@ const Favorites = ({ favorites, setFavorites, dispatch }) => {
   return (
     <div className="favorites">
       <ul>
-        {favorites.slice(0, 3).map((fav) => (
-          <li key={fav._id}>
+        {favorites.slice(0, 3).map((fav, index) => (
+          <li key={index}>
             <div className="favorites--box-1">
               <div className="favorites__avatar">
                 <Avatar article={fav} />
@@ -51,10 +57,9 @@ const Favorites = ({ favorites, setFavorites, dispatch }) => {
                   className="cancel"
                   onClick={() => unfavHandler(fav._id)}
                 >
-                  <img
-                    src={"/assets/icons8-unfavorite-512.png"}
-                    alt="unfavorite"
-                  />
+                  <IconContext.Provider value={styles.icons2}>
+                    <BsFillBookmarkDashFill />
+                  </IconContext.Provider>
                 </button>
               </div>
             </div>
@@ -95,7 +100,7 @@ const ReadingList = ({ type }) => {
         })
         .catch((error) => console.log(error));
     };
-    asyncCall();
+    userIsLogged(asyncCall);
   }, [process.env.REACT_APP_DOMAIN, setFavorites, user._id, user.accessToken]);
 
   return (
@@ -103,26 +108,25 @@ const ReadingList = ({ type }) => {
       <div className="readingList__title">
         <h2>Your Favorite Articles</h2>
       </div>
-      {favorites.length === 0 ? (
-        <div className="readingList--box-1">
-          <p>
-            Click the
-            <img
-              className="favorite__icon"
-              src={"/assets/icons8-favorite-512.png"}
-              alt="favorite"
-            />
-            on any story to easily add it to your reading list or a custom list
-            that you can share.
-          </p>
-        </div>
-      ) : (
-        <Favorites
-          favorites={favorites}
-          setFavorites={setFavorites}
-          dispatch={dispatch}
-        />
-      )}
+      <IsLogged>
+        {favorites.length === 0 ? (
+          <div className="readingList--box-1">
+            <p>
+              Click the{" "}
+              <IconContext.Provider value={styles.icons4}>
+                <BsFillBookmarkPlusFill />
+              </IconContext.Provider>{" "}
+              on any story to easily add it to your reading list.
+            </p>
+          </div>
+        ) : (
+          <Favorites
+            favorites={favorites}
+            setFavorites={setFavorites}
+            dispatch={dispatch}
+          />
+        )}
+      </IsLogged>
     </div>
   );
 };

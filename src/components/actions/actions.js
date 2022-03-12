@@ -62,8 +62,7 @@ export const getAllArticles = () => {
     dispatch({ type: ARTICLES_REQUEST });
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_DOMAIN}/api/articles/getAllArticles`,
-        { headers: { authorization: `Bearer ${getState().user.accessToken}` } }
+        `${process.env.REACT_APP_DOMAIN}/api/articles/getAllArticles`
       );
       result = data;
       dispatch({ type: ARTICLES_SUCCESS, payload: data });

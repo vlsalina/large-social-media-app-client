@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import "./MainFeedScreen.css";
-import { getAllArticles } from "../../components/actions/actions";
+//import { getAllArticles } from "../../components/actions/actions";
+import { articlesActions } from "../../components/_actions/articles.actions";
 import Loader from "../../components/Loader/Loader";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -9,15 +10,17 @@ import MainFeedArticleCard from "../../components/MainFeedArticleCard/MainFeedAr
 import Recommended from "../../components/Recommended/Recommended";
 import ReadingList from "../../components/ReadingList/ReadingList";
 import { Link } from "react-router-dom";
+import IsLogged from "../../components/IsLogged/IsLogged";
+import LoginModal from "../../components/LoginModal/LoginModal";
 
 export const MainFeedContext = React.createContext();
 
 const MainFeedScreen = () => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const user = useSelector((state) => state.user);
-  const articles = useSelector((state) => state.articles);
+  const articlesData = useSelector((state) => state.articles);
+  const { loading, articles } = articlesData;
 
   window.addEventListener("scroll", () => {
     let aside = document.getElementsByClassName("home--box-8")[0];
@@ -42,17 +45,7 @@ const MainFeedScreen = () => {
   });
 
   useEffect(() => {
-    setLoading(true);
-
-    let promise = dispatch(getAllArticles());
-
-    promise
-      .then((result) => {
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    dispatch(articlesActions.getAllArticles());
   }, [dispatch]);
 
   return (
@@ -67,11 +60,13 @@ const MainFeedScreen = () => {
               <div className="home__banner">
                 <div className="home--box-3">
                   <div className="home--box-4">
-                    <div className="home__title">
-                      <h2>Large is a place to read, write, and connect</h2>
+                    <div>
+                      <h2 className="home__title">
+                        Large is a place to read, write, and connect
+                      </h2>
                     </div>
-                    <div className="home__description">
-                      <p>
+                    <div>
+                      <p className="home__description">
                         It's easy and free to post your thinking on any topic
                         and connect with millions of readers.
                       </p>
@@ -98,18 +93,22 @@ const MainFeedScreen = () => {
                     <div className="home__recommended">
                       <Recommended />
                     </div>
-                    <div className="home__readinglist">
-                      <ReadingList type={true} />
-                    </div>
-                    {favorites && favorites.length > 3 && (
-                      <div>
-                        <Link to={`/profile/${user._id}?breadcrumb=favorites`}>
-                          <div className="home__seemore">
-                            See all {favorites.length}
-                          </div>
-                        </Link>
+                    <IsLogged>
+                      <div className="home__readinglist">
+                        <ReadingList type={true} />
                       </div>
-                    )}
+                      {favorites && favorites.length > 3 && (
+                        <div>
+                          <Link
+                            to={`/profile/${user._id}?breadcrumb=favorites`}
+                          >
+                            <div className="home__seemore">
+                              See all {favorites.length}
+                            </div>
+                          </Link>
+                        </div>
+                      )}
+                    </IsLogged>
                   </div>
                 </div>
               </div>

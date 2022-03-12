@@ -3,6 +3,55 @@
   --banner: 400px;
   --header: calc(65px + 3rem);
   --sidemodal: 414px;
+  --fontsize1: 1rem;
+  --slightly-desaturated-cyan: #5fb4a2;
+  --dark-blue: #203a4c;
+  --grayish-dark-blue: #33323d;
+  --bright-red: #f43030;
+  --very-light-grey: #fafafa;
+  --light-grey: #eaeaeb;
+  --gradient-red-to-blue: linear-gradient(90deg, #e66465, #9198e5);
+  --gradient-white-to-blue: linear-gradient(
+    90deg,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  --gradient-green-to-yellow: linear-gradient(
+    90deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
+  --gradient-red-to-black: linear-gradient(
+    217deg,
+    rgba(204, 84, 84, 0.8),
+    rgba(255, 0, 0, 0) 70.71%
+  );
+  --gradient-green-to-black: linear-gradient(
+    127deg,
+    rgba(48, 184, 48, 0.8),
+    rgba(0, 255, 0, 0) 70.71%
+  );
+  --gradient-blue-to-black: linear-gradient(
+    336deg,
+    rgba(91, 91, 194, 0.8),
+    rgba(0, 0, 255, 0) 70.71%
+  );
+  --technology: linear-gradient(45deg, #fbda61 0%, #ff5acd 100%);
+  --money: linear-gradient(132deg, #f4d03f 0%, #16a085 100%);
+  --business: linear-gradient(43deg, #636da2 0%, #c850c0 46%, #ffcc70 100%);
+  --productivity: linear-gradient(19deg, #3eecac 0%, #ee74e1 100%);
+  --psychology: linear-gradient(225deg, #fbda61 0%, #ff5acd 100%);
+  --mindfulness: linear-gradient(
+    45deg,
+    rgba(219, 167, 111, 1) 0%,
+    rgba(132, 143, 163, 1) 50%,
+    rgba(102, 212, 127, 1) 100%
+  );
+  --art: linear-gradient(
+    135deg,
+    rgba(63, 251, 91, 1) 0%,
+    rgba(252, 70, 217, 1) 100%
+  );
   /* end variables */
 }
 

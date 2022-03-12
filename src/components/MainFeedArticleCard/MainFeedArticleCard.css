@@ -1,13 +1,24 @@
+/* card */
 .card {
   width: 100%;
-  min-height: 148px;
-  display: flex;
-  justify-content: space-between;
+  height: auto;
   margin-bottom: 2rem;
+  overflow: hidden;
 }
 
+/* end card */
+
+/* card--box-7 */
+.card--box-7 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+/* end card */
+
+/* card--box-1 */
 .card--box-1 {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,12 +26,32 @@
   overflow: hidden;
 }
 
+@media screen and (min-width: 375px) {
+  .card--box-1 {
+    width: 70%;
+  }
+}
+
+/* end card--box-1 */
+
+/* card--box-2 */
 .card--box-2 {
   width: 30%;
-  display: flex;
+  padding-top: 20%;
+  height: 0;
+  display: none;
   justify-content: flex-end;
   overflow: hidden;
+  position: relative;
 }
+
+@media screen and (min-width: 375px) {
+  .card--box-2 {
+    display: flex;
+  }
+}
+
+/* end card--box-2 */
 
 .card--box-3 {
   display: flex;
@@ -38,7 +69,7 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   line-height: 1rem;
   max-height: 2rem;
 }
@@ -48,27 +79,49 @@
   margin: 0;
 }
 
-.card__snippet {
-  display: none;
-}
-
+/* card--box-4 */
 .card--box-4 {
-  display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  display: none;
 }
+
+@media screen and (min-width: 600px) {
+  .card--box-4 {
+    display: flex;
+  }
+}
+
+/* end card--box-4 */
+
+/* card--box-6 */
+.card--box-6 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+@media screen and (min-width: 600px) {
+  .card--box-6 {
+    display: none;
+  }
+}
+/* end card--box-6 */
 
 .card__image {
   width: 100%;
   object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .card--placeholder {
   height: 100% !important;
 }
 
-.card__author a h4 {
+.card__author a {
   margin: 0;
 }
 
@@ -109,11 +162,57 @@
   text-transform: capitalize;
 }
 
-@media screen and (min-width: 550px) {
-  .card {
-    height: 183px;
-  }
+/* card__category-1 */
+.card__category-1 {
+  display: block;
+}
 
+@media screen and (min-width: 375px) {
+  .card__category-1 {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 445px) {
+  .card__category-1 {
+    display: block;
+  }
+}
+/* end card__category-1 */
+
+/* card__category-2 */
+
+.card__category-2 {
+  display: none;
+}
+
+@media screen and (min-width: 375px) {
+  .card__category-2 {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 445px) {
+  .card__category-2 {
+    display: none;
+  }
+}
+/* end card__category-2 */
+
+/* card--spacer */
+.card--spacer {
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (min-width: 445px) {
+  .card--spacer {
+    margin-bottom: 0;
+  }
+}
+
+/* end card--spacer */
+
+@media screen and (min-width: 550px) {
   .card__snippet {
     display: block;
     overflow: hidden;

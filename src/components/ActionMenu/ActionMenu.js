@@ -4,15 +4,12 @@ import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
 import Recommended from "../Recommended/Recommended";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userActions } from "../_actions/user.actions";
 
 const ActionMenu = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const signOutHandler = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("articles");
-    navigate("/login");
-  };
 
   const closeHandler = () => {
     let backdrop = document.getElementsByClassName("actionmenu")[0];
@@ -22,6 +19,12 @@ const ActionMenu = () => {
     drawer.classList.add("actionmenu__drawer--close");
     backdrop.classList.remove("actionmenu--open");
     backdrop.classList.add("actionmenu--close");
+  };
+
+  const signOutHandler = () => {
+    dispatch(userActions.logout());
+    closeHandler();
+    navigate("/");
   };
 
   return (

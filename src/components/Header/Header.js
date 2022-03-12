@@ -6,6 +6,10 @@ import { BsPlusCircleFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import Avatar from "../Avatar/Avatar";
 import ActionMenu from "../ActionMenu/ActionMenu";
+import IsLogged from "../IsLogged/IsLogged";
+import { loggedIn } from "../../utils";
+import { drawerAnimations } from "../../components/_animations/drawer.animations";
+import ButtonC from "../buttons/ButtonC/ButtonC";
 
 const styles = {
   icon: {
@@ -60,55 +64,87 @@ const Header = () => {
               </div>
             </Link>
           </li>
-          <li className="header--box-3">
-            <div className="header--box-4">
-              <ul>
-                <li key={"create article"}>
-                  <Link to="/create">
-                    <IconContext.Provider value={styles.icon}>
-                      <BsPlusCircleFill />
-                    </IconContext.Provider>
-                  </Link>
-                </li>
-                <li key={"search"}>
-                  <button
-                    type="button"
-                    className="header__drawer header--noborder"
-                  >
-                    <img
-                      className="header__icon"
-                      src={`/assets/icons8-search-500.png`}
-                      alt="search"
+          <li className={user._id ? "header--box-3" : "header--box-6"}>
+            <IsLogged
+              text={
+                <p>
+                  <span className="header--span-1">
+                    Already have an account?{" "}
+                    <ButtonC
+                      text={"Sign In"}
+                      action={drawerAnimations.loginPlay}
                     />
-                  </button>
-                </li>
-                {menuItems.slice(0, 2).map((item) => (
-                  <li key={item.name}>
-                    <Link to={item.url}>
-                      <img
-                        className="header__icon"
-                        src={item.icon}
-                        alt={item.name}
-                      />
+                    . Or{" "}
+                    <ButtonC
+                      text={"Create One"}
+                      action={drawerAnimations.registerPlay}
+                    />
+                    !
+                  </span>
+                  <span className="header--span-2">
+                    <ButtonC
+                      text={"Sign In"}
+                      action={drawerAnimations.loginPlay}
+                    />{" "}
+                    or{" "}
+                    <ButtonC
+                      text={"Create One"}
+                      action={drawerAnimations.registerPlay}
+                    />{" "}
+                    an account.
+                  </span>
+                </p>
+              }
+            >
+              <div className="header--box-4">
+                <ul>
+                  <li key={"create article"}>
+                    <Link to="/create">
+                      <IconContext.Provider value={styles.icon}>
+                        <BsPlusCircleFill />
+                      </IconContext.Provider>
                     </Link>
                   </li>
-                ))}
-                <li key={"action menu"}>
-                  <button
-                    className="actionmenubutton"
-                    type="button"
-                    onClick={drawerHandler}
-                  >
-                    <Avatar
-                      article={{
-                        avatar: user.avatar,
-                        author: user.firstname,
-                      }}
-                    />
-                  </button>
-                </li>
-              </ul>
-            </div>
+                  <li key={"search"}>
+                    <button
+                      type="button"
+                      className="header__drawer header--noborder"
+                    >
+                      <img
+                        className="header__icon"
+                        src={`/assets/icons8-search-500.png`}
+                        alt="search"
+                      />
+                    </button>
+                  </li>
+                  {menuItems.slice(0, 2).map((item) => (
+                    <li key={item.name}>
+                      <Link to={item.url}>
+                        <img
+                          className="header__icon"
+                          src={item.icon}
+                          alt={item.name}
+                        />
+                      </Link>
+                    </li>
+                  ))}
+                  <li key={"action menu"}>
+                    <button
+                      className="actionmenubutton"
+                      type="button"
+                      onClick={drawerHandler}
+                    >
+                      <Avatar
+                        article={{
+                          avatar: user.avatar,
+                          author: user.firstname,
+                        }}
+                      />
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </IsLogged>
           </li>
         </ul>
       </div>

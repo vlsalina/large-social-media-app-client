@@ -1,0 +1,7 @@
+.buttonC {
+  background-color: inherit;
+  color: var(--bright-red);
+  border: none;
+  padding: 0;
+  margin: 0;
+}

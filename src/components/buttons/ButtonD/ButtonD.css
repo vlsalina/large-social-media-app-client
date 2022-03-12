@@ -1,0 +1,26 @@
+/* buttonD */
+.buttonD {
+  text-transform: capitalize;
+  padding: 0.4rem 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  border: 1px solid var(--grayish-dark-blue);
+  color: var(--grayish-dark-blue);
+  letter-spacing: 1px;
+}
+
+/* end buttonD */
+
+/* buttonD effects */
+
+.buttonD:hover {
+  color: var(--very-light-grey);
+  background-color: var(--grayish-dark-blue);
+}
+
+.buttonD--active {
+  color: var(--very-light-grey);
+  background-color: var(--grayish-dark-blue);
+}
+
+/* buttonD effects */

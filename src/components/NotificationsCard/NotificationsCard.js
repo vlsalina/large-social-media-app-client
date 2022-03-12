@@ -1,6 +1,6 @@
 import "./NotificationsCard.css";
 import Avatar from "../Avatar/Avatar";
-import { formatDate } from "../../utils";
+import { formatDate } from "../_helpers/general.helpers";
 import parse from "html-react-parser";
 import { Link } from "react-router-dom";
 

@@ -2,6 +2,15 @@ export const styles = {
   icons: {
     size: "2rem",
   },
+  icons2: {
+    size: "1.25rem",
+  },
+  icons3: {
+    size: "1.75rem",
+  },
+  icons4: {
+    size: "1rem",
+  },
 };
 
 export const fontsize = 16;
