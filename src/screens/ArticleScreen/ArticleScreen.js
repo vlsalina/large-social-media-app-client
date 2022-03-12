@@ -171,11 +171,11 @@ const ArticleScreen = () => {
                     disabled={article.authorId === user._id ? true : false}
                   >
                     {loggedIn() && favd ? (
-                      <IconContext.Provider value={styles.icons4}>
+                      <IconContext.Provider value={styles.icons5}>
                         <BsBookmarkDashFill />
                       </IconContext.Provider>
                     ) : (
-                      <IconContext.Provider value={styles.icons4}>
+                      <IconContext.Provider value={styles.icons5}>
                         <BsBookmarkPlusFill />
                       </IconContext.Provider>
                     )}
