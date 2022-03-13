@@ -9,18 +9,23 @@ export const articlesConstants = {
   ARTICLES_UPDATE_SUCCESS: "ARTICLES_UPDATE_SUCCESS",
   ARTICLES_UPDATE_FAIL: "ARTICLES_UPDATE_FAIL",
 
-  /* for like article action */
+  // for like article action
   LIKE_REQUEST: "LIKE_REQUEST",
   LIKE_SUCCESS: "LIKE_SUCCESS",
   LIKE_FAIL: "LIKE_FAIL",
 
-  /* for dislike article action */
+  // for dislike article action
   UNLIKE_REQUEST: "UNLIKE_REQUEST",
   UNLIKE_SUCCESS: "UNLIKE_SUCCESS",
   UNLIKE_FAIL: "UNLIKE_FAIL",
 
-  /* for creating new article */
+  // for creating new article
   CREATE_REQUEST: "CREATE_REQUEST",
   CREATE_SUCCESS: "CREATE_SUCCESS",
   CREATE_FAIL: "CREATE_FAIL",
+
+  // for loading articles
+  LOAD_REQUEST: "LOAD_REQUEST",
+  LOAD_SUCCESS: "LOAD_SUCCESS",
+  LOAD_FAIL: "LOAD_FAIL",
 };

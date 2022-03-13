@@ -73,6 +73,23 @@ const create = async (newArticle) => {
   );
 };
 
+// for loading articles request
+const load = async (start) => {
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+
+  const response = await fetch(
+    `${process.env.REACT_APP_DOMAIN}/api/articles/loadArticles?start=${start}`,
+    requestOptions
+  );
+
+  let articles = await handleResponse(response);
+
+  return articles;
+};
+
 /* response handler */
 const handleResponse = (response) => {
   return response.text().then((text) => {
@@ -91,4 +108,5 @@ export const articlesService = {
   like,
   unlike,
   create,
+  load,
 };

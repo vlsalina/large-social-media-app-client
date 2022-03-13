@@ -124,9 +124,38 @@ const create = (newArticle) => {
   };
 };
 
+// create article action
+const load = () => {
+  function request() {
+    return { type: articlesConstants.LOAD_REQUEST };
+  }
+  function success(articles) {
+    return { type: articlesConstants.LOAD_SUCCESS, payload: articles };
+  }
+  function failure(error) {
+    return { type: articlesConstants.LOAD_FAIL, payload: error };
+  }
+
+  return (dispatch, getState) => {
+    dispatch(request());
+
+    articlesService.load(getState().articles.start).then(
+      (articles) => {
+        dispatch(success(articles));
+        dispatch(alertActions.success("Load request successful!"));
+      },
+      (error) => {
+        dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      }
+    );
+  };
+};
+
 export const articlesActions = {
   getAllArticles,
   like,
   unlike,
   create,
+  load,
 };
