@@ -12,6 +12,7 @@ import ReadingList from "../../components/ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 import IsLogged from "../../components/IsLogged/IsLogged";
 import LoginModal from "../../components/LoginModal/LoginModal";
+import "../../components/_helpers/scroll-load-more.helpers";
 
 export const MainFeedContext = React.createContext();
 

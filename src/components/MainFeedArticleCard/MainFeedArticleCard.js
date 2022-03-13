@@ -44,7 +44,8 @@ const MainFeedArticleCard = ({ article, type }) => {
   }, [article.likes]);
 
   useEffect(() => {
-    let alreadyFavd = user.favorites.find((x) => x.articleId === article._id);
+    let alreadyFavd =
+      user.firstname && user.favorites.find((x) => x.articleId === article._id);
     if (alreadyFavd) {
       setFavd(true);
     }
