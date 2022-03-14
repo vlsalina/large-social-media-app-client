@@ -15,6 +15,7 @@ const LoadMore = () => {
         document.getElementsByClassName("App")[0].scrollHeight -
           window.innerHeight
       ) {
+        console.log("Hello World!");
         dispatch(articlesActions.load());
       }
     });
