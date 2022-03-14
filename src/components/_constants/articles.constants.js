@@ -29,3 +29,5 @@ export const articlesConstants = {
   LOAD_SUCCESS: "LOAD_SUCCESS",
   LOAD_FAIL: "LOAD_FAIL",
 };
+
+export const limit = 3;

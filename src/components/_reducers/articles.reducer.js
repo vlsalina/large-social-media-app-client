@@ -1,4 +1,4 @@
-import { articlesConstants } from "../_constants/articles.constants";
+import { articlesConstants, limit } from "../_constants/articles.constants";
 
 let articles = JSON.parse(localStorage.getItem("articles"));
 const initialState = articles
@@ -29,11 +29,11 @@ const articlesReducer = (state = initialState, action) => {
       return { loading: false, start: state.start, error: action.payload };
 
     case articlesConstants.LOAD_REQUEST:
-      return { loading: true, start: state.start, articles: state.articles };
+      return { loading: false, start: state.start, articles: state.articles };
     case articlesConstants.LOAD_SUCCESS:
       return {
         loading: false,
-        start: state.start + 3,
+        start: state.start + limit,
         articles: state.articles.concat(action.payload),
       };
     case articlesConstants.LOAD_FAIL:

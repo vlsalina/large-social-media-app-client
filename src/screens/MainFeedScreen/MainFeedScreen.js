@@ -89,6 +89,7 @@ const MainFeedScreen = () => {
                           </li>
                         ))}
                     </ul>
+                    <LoadMore />
                   </div>
                   <div className="home--box-8">
                     <div className="home__recommended">
@@ -114,7 +115,6 @@ const MainFeedScreen = () => {
                 </div>
               </div>
             </div>
-            <LoadMore />
           </main>
         )}
       </MainFeedContext.Provider>
