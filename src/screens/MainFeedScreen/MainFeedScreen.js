@@ -52,71 +52,62 @@ const MainFeedScreen = () => {
   return (
     <div className="home">
       <MainFeedContext.Provider value={{ favorites, setFavorites }}>
-        {loading ? (
-          <Loader />
-        ) : (
-          <main className="home--box-1">
-            <Header />
-            <div className="home--box-2">
-              <div className="home__banner">
-                <div className="home--box-3">
-                  <div className="home--box-4">
-                    <div>
-                      <h2 className="home__title">
-                        Large is a place to read, write, and connect
-                      </h2>
-                    </div>
-                    <div>
-                      <p className="home__description">
-                        It's easy and free to post your thinking on any topic
-                        and connect with millions of readers.
-                      </p>
-                    </div>
+        <main className="home--box-1">
+          <Header />
+          <div className="home--box-2">
+            <div className="home__banner">
+              <div className="home--box-3">
+                <div className="home--box-4">
+                  <div>
+                    <h2 className="home__title">
+                      Large is a place to read, write, and connect
+                    </h2>
                   </div>
-                </div>
-              </div>
-              <div className="home__content">
-                <div className="home--box-6">
-                  <div className="home--box-7">
-                    <ul>
-                      {articles &&
-                        articles.map((article, index) => (
-                          <li key={index}>
-                            <MainFeedArticleCard
-                              article={article}
-                              type={true}
-                            />
-                          </li>
-                        ))}
-                    </ul>
-                    <LoadMore />
-                  </div>
-                  <div className="home--box-8">
-                    <div className="home__recommended">
-                      <Recommended />
-                    </div>
-                    <IsLogged>
-                      <div className="home__readinglist">
-                        <ReadingList type={true} />
-                      </div>
-                      {favorites && favorites.length > 3 && (
-                        <div>
-                          <Link
-                            to={`/profile/${user._id}?breadcrumb=favorites`}
-                          >
-                            <div className="home__seemore">
-                              See all {favorites.length}
-                            </div>
-                          </Link>
-                        </div>
-                      )}
-                    </IsLogged>
+                  <div>
+                    <p className="home__description">
+                      It's easy and free to post your thinking on any topic and
+                      connect with millions of readers.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-          </main>
-        )}
+            <div className="home__content">
+              <div className="home--box-6">
+                <div className="home--box-7">
+                  <ul>
+                    {articles &&
+                      articles.map((article, index) => (
+                        <li key={index}>
+                          <MainFeedArticleCard article={article} type={true} />
+                        </li>
+                      ))}
+                  </ul>
+                  <LoadMore />
+                </div>
+                <div className="home--box-8">
+                  <div className="home__recommended">
+                    <Recommended />
+                  </div>
+                  <IsLogged>
+                    <div className="home__readinglist">
+                      <ReadingList type={true} />
+                    </div>
+                    {favorites && favorites.length > 3 && (
+                      <div>
+                        <Link to={`/profile/${user._id}?breadcrumb=favorites`}>
+                          <div className="home__seemore">
+                            See all {favorites.length}
+                          </div>
+                        </Link>
+                      </div>
+                    )}
+                  </IsLogged>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
       </MainFeedContext.Provider>
     </div>
   );

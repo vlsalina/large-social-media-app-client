@@ -29,7 +29,11 @@ const articlesReducer = (state = initialState, action) => {
       return { loading: false, start: state.start, error: action.payload };
 
     case articlesConstants.LOAD_REQUEST:
-      return { loading: false, start: state.start, articles: state.articles };
+      return {
+        loading: true,
+        start: state.start,
+        articles: state.articles,
+      };
     case articlesConstants.LOAD_SUCCESS:
       return {
         loading: false,
@@ -37,7 +41,11 @@ const articlesReducer = (state = initialState, action) => {
         articles: state.articles.concat(action.payload),
       };
     case articlesConstants.LOAD_FAIL:
-      return { loading: false, start: state.start, error: action.payload };
+      return {
+        loading: false,
+        start: state.start,
+        error: action.payload,
+      };
 
     default:
       return state;

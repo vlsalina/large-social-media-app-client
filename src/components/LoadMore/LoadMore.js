@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { articlesActions } from "../_actions/articles.actions";
 import { useSelector } from "react-redux";
+import ContentLoader from "../ContentLoader/ContentLoader";
 
 const LoadMore = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,11 @@ const LoadMore = () => {
     });
   }, []);
 
-  return <div>{loading ? <div>Loading...</div> : <div />}</div>;
+  return (
+    <div className="content-loader">
+      {loading ? <ContentLoader /> : <div />}
+    </div>
+  );
 };
 
 export default LoadMore;
