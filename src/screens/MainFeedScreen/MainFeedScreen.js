@@ -20,8 +20,8 @@ const MainFeedScreen = () => {
   const dispatch = useDispatch();
   const [favorites, setFavorites] = useState([]);
   const user = useSelector((state) => state.user);
-  const articlesData = useSelector((state) => state.articles);
-  const { loading, articles } = articlesData;
+  const data = useSelector((state) => state.data);
+  const { articles } = data;
 
   window.addEventListener("scroll", () => {
     let aside = document.getElementsByClassName("home--box-8")[0];
@@ -46,7 +46,8 @@ const MainFeedScreen = () => {
   });
 
   useEffect(() => {
-    dispatch(articlesActions.load());
+    dispatch(articlesActions.clear());
+    dispatch(articlesActions.load(""));
   }, [dispatch]);
 
   return (
@@ -75,7 +76,7 @@ const MainFeedScreen = () => {
             <div className="home__content">
               <div className="home--box-6">
                 <div className="home--box-7">
-                  <ul>
+                  <ul className="home__articles">
                     {articles &&
                       articles.map((article, index) => (
                         <li key={index}>
@@ -83,7 +84,7 @@ const MainFeedScreen = () => {
                         </li>
                       ))}
                   </ul>
-                  <LoadMore />
+                  <LoadMore category={""} />
                 </div>
                 <div className="home--box-8">
                   <div className="home__recommended">

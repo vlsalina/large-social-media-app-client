@@ -4,10 +4,10 @@ import { articlesActions } from "../_actions/articles.actions";
 import { useSelector } from "react-redux";
 import ContentLoader from "../ContentLoader/ContentLoader";
 
-const LoadMore = () => {
+const LoadMore = ({ category }) => {
   const dispatch = useDispatch();
-  const articles = useSelector((state) => state.articles);
-  const { loading } = articles;
+  const data = useSelector((state) => state.data);
+  const { loading } = data;
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -16,8 +16,7 @@ const LoadMore = () => {
         document.getElementsByClassName("App")[0].scrollHeight -
           window.innerHeight
       ) {
-        console.log("Hello World!");
-        dispatch(articlesActions.load());
+        dispatch(articlesActions.load(category));
       }
     });
   }, []);

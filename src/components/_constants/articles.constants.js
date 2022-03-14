@@ -28,6 +28,9 @@ export const articlesConstants = {
   LOAD_REQUEST: "LOAD_REQUEST",
   LOAD_SUCCESS: "LOAD_SUCCESS",
   LOAD_FAIL: "LOAD_FAIL",
+
+  // for clearing articles state
+  CLEAR_REQUEST: "CLEAR_REQUEST",
 };
 
 export const limit = 3;

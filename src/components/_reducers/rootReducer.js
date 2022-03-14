@@ -6,7 +6,7 @@ import { articlesReducer } from "./articles.reducer";
 const rootReducer = combineReducers({
   alert: alert,
   user: userReducer,
-  articles: articlesReducer,
+  data: articlesReducer,
 });
 
 export default rootReducer;

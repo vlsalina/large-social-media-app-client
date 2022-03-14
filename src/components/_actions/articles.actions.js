@@ -125,7 +125,7 @@ const create = (newArticle) => {
 };
 
 // create article action
-const load = () => {
+const load = (category) => {
   function request() {
     return { type: articlesConstants.LOAD_REQUEST };
   }
@@ -139,17 +139,24 @@ const load = () => {
   return (dispatch, getState) => {
     dispatch(request());
 
-    articlesService.load(getState().articles.start).then(
-      (articles) => {
-        dispatch(success(articles));
-        dispatch(alertActions.success("Load request successful!"));
-      },
-      (error) => {
-        dispatch(failure(error.toString()));
-        dispatch(alertActions.error(error.toString()));
-      }
-    );
+    articlesService
+      .load({ start: getState().data.start, category: category })
+      .then(
+        (articles) => {
+          dispatch(success(articles));
+          dispatch(alertActions.success("Load request successful!"));
+        },
+        (error) => {
+          dispatch(failure(error.toString()));
+          dispatch(alertActions.error(error.toString()));
+        }
+      );
   };
+};
+
+// clear articles state
+const clear = () => (dispatch) => {
+  dispatch({ type: articlesConstants.CLEAR_REQUEST });
 };
 
 export const articlesActions = {
@@ -158,4 +165,5 @@ export const articlesActions = {
   unlike,
   create,
   load,
+  clear,
 };

@@ -47,6 +47,13 @@ const articlesReducer = (state = initialState, action) => {
         error: action.payload,
       };
 
+    case articlesConstants.CLEAR_REQUEST:
+      return {
+        loading: false,
+        start: 0,
+        articles: [],
+      };
+
     default:
       return state;
   }

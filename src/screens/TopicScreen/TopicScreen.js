@@ -12,6 +12,9 @@ import { useParams } from "react-router-dom";
 import { topics } from "../../data/data";
 import IsLogged from "../../components/IsLogged/IsLogged";
 import { bgc } from "../../components/_helpers/general.helpers";
+import { articlesActions } from "../../components/_actions/articles.actions";
+import { useDispatch } from "react-redux";
+import LoadMore from "../../components/LoadMore/LoadMore";
 
 export const TopicContext = React.createContext();
 
@@ -38,11 +41,14 @@ const getbanner = (topic) => {
 
 const TopicScreen = () => {
   const { topic } = useParams();
+  const dispatch = useDispatch();
   const [save, setSave] = useState(topic);
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const user = useSelector((state) => state.user);
-  const [articles, setArticles] = useState();
+  const data = useSelector((state) => state.data);
+  const { articles } = data;
+  //const [articles, setArticles] = useState();
 
   useEffect(() => {
     if (topic !== save) {
@@ -51,78 +57,77 @@ const TopicScreen = () => {
     }
   }, [topic, save]);
 
-  useEffect(() => {
-    setLoading(true);
+  //useEffect(() => {
+  //  setLoading(true);
 
-    const asyncCall = async () => {
-      try {
-        const { data } = await axios.get(
-          `${process.env.REACT_APP_DOMAIN}/api/articles/getArticlesByCategory?category=${topic}`
-        );
-        setLoading(false);
-        setArticles(data.reverse());
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    asyncCall();
-  }, [process.env.REACT_APP_DOMAIN, topic, user.accessToken]);
+  //  const asyncCall = async () => {
+  //    try {
+  //      const { data } = await axios.get(
+  //        `${process.env.REACT_APP_DOMAIN}/api/articles/getArticlesByCategory?category=${topic}`
+  //      );
+  //      setLoading(false);
+  //      setArticles(data.reverse());
+  //    } catch (error) {
+  //      console.log(error);
+  //    }
+  //  };
+  //  asyncCall();
+  //}, [process.env.REACT_APP_DOMAIN, topic, user.accessToken]);
+
+  useEffect(() => {
+    dispatch(articlesActions.clear());
+    dispatch(articlesActions.load(topic));
+  }, [topic]);
 
   return (
     <div className="home">
       <TopicContext.Provider value={{ favorites, setFavorites }}>
-        {loading ? (
-          <Loader />
-        ) : (
-          <main className="home--box-1">
-            <Header />
-            <div className="home--box-2">
-              {topic && (
-                <div className={`topic__banner ${bgc(topic.toUpperCase())}`}>
-                  <div className="topic--box-3">
-                    <h1 className={`topic__name`}>{topic}</h1>
-                  </div>
+        <main className="home--box-1">
+          <Header />
+          <div className="home--box-2">
+            {topic && (
+              <div className={`topic__banner ${bgc(topic.toUpperCase())}`}>
+                <div className="topic--box-3">
+                  <h1 className={`topic__name`}>{topic}</h1>
                 </div>
-              )}
-              <div className="home__content">
-                <div className="home--box-6">
-                  <div className="home--box-7">
-                    <ul>
-                      {articles &&
-                        articles.map((article) => (
-                          <li key={article._id}>
-                            <MainFeedArticleCard
-                              article={article}
-                              type={false}
-                            />
-                          </li>
-                        ))}
-                    </ul>
+              </div>
+            )}
+            <div className="home__content">
+              <div className="home--box-6">
+                <div className="home--box-7">
+                  <ul className="home__articles">
+                    {articles &&
+                      articles.map((article) => (
+                        <li key={article._id}>
+                          <MainFeedArticleCard article={article} type={false} />
+                        </li>
+                      ))}
+                  </ul>
+                  <LoadMore category={topic} />
+                </div>
+                <div className="home--box-8">
+                  <div className="home__recommended">
+                    <Recommended />
                   </div>
-                  <div className="home--box-8">
-                    <div className="home__recommended">
-                      <Recommended />
+                  <IsLogged>
+                    <div className="home__readinglist">
+                      <ReadingList type={false} />
                     </div>
-                    <IsLogged>
-                      <div className="home__readinglist">
-                        <ReadingList type={false} />
+                    {favorites && favorites.length > 3 && (
+                      <div>
+                        <Link to={`/profile/${user._id}`}>
+                          <div className="home__seemore">
+                            See all {favorites.length}
+                          </div>
+                        </Link>
                       </div>
-                      {favorites && favorites.length > 3 && (
-                        <div>
-                          <Link to={`/profile/${user._id}`}>
-                            <div className="home__seemore">
-                              See all {favorites.length}
-                            </div>
-                          </Link>
-                        </div>
-                      )}
-                    </IsLogged>
-                  </div>
+                    )}
+                  </IsLogged>
                 </div>
               </div>
             </div>
-          </main>
-        )}
+          </div>
+        </main>
       </TopicContext.Provider>
     </div>
   );

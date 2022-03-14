@@ -74,14 +74,14 @@ const create = async (newArticle) => {
 };
 
 // for loading articles request
-const load = async (start) => {
+const load = async (data) => {
   const requestOptions = {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   };
 
   const response = await fetch(
-    `${process.env.REACT_APP_DOMAIN}/api/articles/loadArticles?start=${start}`,
+    `${process.env.REACT_APP_DOMAIN}/api/articles/loadArticles?start=${data.start}&category=${data.category}`,
     requestOptions
   );
 
