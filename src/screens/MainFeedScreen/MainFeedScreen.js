@@ -12,7 +12,7 @@ import ReadingList from "../../components/ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 import IsLogged from "../../components/IsLogged/IsLogged";
 import LoginModal from "../../components/LoginModal/LoginModal";
-import LoadMore from "../../components/LoadMore/LoadMore";
+import ContentLoader from "../../components/ContentLoader/ContentLoader";
 
 export const MainFeedContext = React.createContext();
 
@@ -21,7 +21,7 @@ const MainFeedScreen = () => {
   const [favorites, setFavorites] = useState([]);
   const user = useSelector((state) => state.user);
   const data = useSelector((state) => state.data);
-  const { articles } = data;
+  const { loading, articles } = data;
 
   window.addEventListener("scroll", () => {
     let aside = document.getElementsByClassName("home--box-8")[0];
@@ -33,6 +33,30 @@ const MainFeedScreen = () => {
       }
     }
   });
+
+  useEffect(() => {
+    const fn = () => {
+      if (
+        window.scrollY ===
+        document.getElementsByClassName("App")[0].scrollHeight -
+          window.innerHeight
+      ) {
+        dispatch(articlesActions.load({ category: "" }));
+      }
+    };
+
+    window.addEventListener("scroll", fn);
+
+    return () => {
+      window.removeEventListener("scroll", fn);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (window.innerWidth < 1192) {
+      dispatch(articlesActions.load({ category: "" }));
+    }
+  }, []);
 
   window.addEventListener("click", (e) => {
     let backdrop = document.getElementsByClassName("actionmenu")[0];
@@ -47,8 +71,7 @@ const MainFeedScreen = () => {
 
   useEffect(() => {
     dispatch(articlesActions.clear());
-    dispatch(articlesActions.load(""));
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="home">
@@ -78,13 +101,13 @@ const MainFeedScreen = () => {
                 <div className="home--box-7">
                   <ul className="home__articles">
                     {articles &&
-                      articles.map((article, index) => (
-                        <li key={index}>
+                      articles.map((article) => (
+                        <li key={`home-${article._id}`}>
                           <MainFeedArticleCard article={article} type={true} />
                         </li>
                       ))}
                   </ul>
-                  <LoadMore category={""} />
+                  {loading && <ContentLoader />}
                 </div>
                 <div className="home--box-8">
                   <div className="home__recommended">

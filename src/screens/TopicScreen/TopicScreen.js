@@ -76,8 +76,25 @@ const TopicScreen = () => {
 
   useEffect(() => {
     dispatch(articlesActions.clear());
-    dispatch(articlesActions.load(topic));
   }, [topic]);
+
+  React.useEffect(() => {
+    const fn = () => {
+      if (
+        window.scrollY ===
+        document.getElementsByClassName("App")[0].scrollHeight -
+          window.innerHeight
+      ) {
+        dispatch(articlesActions.load({ category: topic }));
+      }
+    };
+
+    window.addEventListener("scroll", fn);
+
+    return () => {
+      window.removeEventListener("scroll", fn);
+    };
+  }, []);
 
   return (
     <div className="home">
@@ -98,12 +115,11 @@ const TopicScreen = () => {
                   <ul className="home__articles">
                     {articles &&
                       articles.map((article) => (
-                        <li key={article._id}>
+                        <li key={`topic-${article._id}`}>
                           <MainFeedArticleCard article={article} type={false} />
                         </li>
                       ))}
                   </ul>
-                  <LoadMore category={topic} />
                 </div>
                 <div className="home--box-8">
                   <div className="home__recommended">

@@ -125,7 +125,7 @@ const create = (newArticle) => {
 };
 
 // create article action
-const load = (category) => {
+const load = ({ category }) => {
   function request() {
     return { type: articlesConstants.LOAD_REQUEST };
   }

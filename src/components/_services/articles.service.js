@@ -80,6 +80,9 @@ const load = async (data) => {
     headers: { "Content-Type": "application/json" },
   };
 
+  console.log(data.start);
+  console.log(data.category);
+
   const response = await fetch(
     `${process.env.REACT_APP_DOMAIN}/api/articles/loadArticles?start=${data.start}&category=${data.category}`,
     requestOptions

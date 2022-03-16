@@ -53,7 +53,7 @@ const Header = () => {
       <div className="header--box-1">
         <ul>
           <li className="header--box-2">
-            <Link to="/">
+            <a href="/">
               <div className="header--box-5">
                 <img
                   className="header__icon"
@@ -62,7 +62,7 @@ const Header = () => {
                 />
                 <h1 className="logo logo--margin">Large</h1>
               </div>
-            </Link>
+            </a>
           </li>
           <li className={user._id ? "header--box-3" : "header--box-6"}>
             <IsLogged
