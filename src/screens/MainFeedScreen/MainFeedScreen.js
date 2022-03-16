@@ -34,30 +34,6 @@ const MainFeedScreen = () => {
     }
   });
 
-  useEffect(() => {
-    const fn = () => {
-      if (
-        window.scrollY ===
-        document.getElementsByClassName("App")[0].scrollHeight -
-          window.innerHeight
-      ) {
-        dispatch(articlesActions.load({ category: "" }));
-      }
-    };
-
-    window.addEventListener("scroll", fn);
-
-    return () => {
-      window.removeEventListener("scroll", fn);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (window.innerWidth < 1192) {
-      dispatch(articlesActions.load({ category: "" }));
-    }
-  }, []);
-
   window.addEventListener("click", (e) => {
     let backdrop = document.getElementsByClassName("actionmenu")[0];
     let drawer = document.getElementsByClassName("actionmenu")[0];
@@ -70,7 +46,7 @@ const MainFeedScreen = () => {
   });
 
   useEffect(() => {
-    dispatch(articlesActions.clear());
+    dispatch(articlesActions.load({ category: "" }));
   }, []);
 
   return (

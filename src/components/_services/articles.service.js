@@ -1,3 +1,5 @@
+import { limit } from "../_constants/articles.constants";
+
 /* GET all articles */
 const getAllArticles = async () => {
   const requestOptions = {
@@ -80,17 +82,14 @@ const load = async (data) => {
     headers: { "Content-Type": "application/json" },
   };
 
-  console.log(data.start);
-  console.log(data.category);
-
   const response = await fetch(
-    `${process.env.REACT_APP_DOMAIN}/api/articles/loadArticles?start=${data.start}&category=${data.category}`,
+    `${process.env.REACT_APP_DOMAIN}/api/articles/loadArticles?start=${data.start}&category=${data.category}&limit=${limit}`,
     requestOptions
   );
 
-  let articles = await handleResponse(response);
+  let result = await handleResponse(response);
 
-  return articles;
+  return result;
 };
 
 /* response handler */
