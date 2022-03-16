@@ -28,6 +28,25 @@ const MainFeedScreen = () => {
     dispatch(articlesActions.load({ category: "" }));
   }, []);
 
+  let options = {
+    rootMargin: "0px",
+    threshold: 1.0,
+  };
+  const observer = React.useRef();
+  const lastBookElementRef = React.useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          dispatch(articlesActions.load({ category: "" }));
+        }
+      }, options);
+      if (node) observer.current.observe(node);
+    },
+    [loading]
+  );
+
   return (
     <div className="home">
       <MainFeedContext.Provider value={{ favorites, setFavorites }}>
@@ -56,11 +75,30 @@ const MainFeedScreen = () => {
                 <div className="home--box-7">
                   <ul className="home__articles">
                     {articles &&
-                      articles.map((article) => (
-                        <li key={`home-${article._id}`}>
-                          <MainFeedArticleCard article={article} type={true} />
-                        </li>
-                      ))}
+                      articles.map((article, index) => {
+                        if (articles.length === index + 1) {
+                          return (
+                            <li
+                              key={`home-${article._id}`}
+                              ref={lastBookElementRef}
+                            >
+                              <MainFeedArticleCard
+                                article={article}
+                                type={true}
+                              />
+                            </li>
+                          );
+                        } else {
+                          return (
+                            <li key={`home-${article._id}`}>
+                              <MainFeedArticleCard
+                                article={article}
+                                type={true}
+                              />
+                            </li>
+                          );
+                        }
+                      })}
                   </ul>
                   {loading && <ContentLoader />}
                 </div>
