@@ -22,7 +22,7 @@ const MainFeedScreen = () => {
   const [favorites, setFavorites] = useState([]);
   const user = useSelector((state) => state.user);
   const data = useSelector((state) => state.data);
-  const { loading, articles } = data;
+  const { loading, articles, hasMore } = data;
 
   useEffect(() => {
     dispatch(articlesActions.load({ category: "" }));
@@ -38,7 +38,7 @@ const MainFeedScreen = () => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && hasMore) {
           dispatch(articlesActions.load({ category: "" }));
         }
       }, options);
@@ -75,32 +75,13 @@ const MainFeedScreen = () => {
                 <div className="home--box-7">
                   <ul className="home__articles">
                     {articles &&
-                      articles.map((article, index) => {
-                        if (articles.length === index + 1) {
-                          return (
-                            <li
-                              key={`home-${article._id}`}
-                              ref={lastBookElementRef}
-                            >
-                              <MainFeedArticleCard
-                                article={article}
-                                type={true}
-                              />
-                            </li>
-                          );
-                        } else {
-                          return (
-                            <li key={`home-${article._id}`}>
-                              <MainFeedArticleCard
-                                article={article}
-                                type={true}
-                              />
-                            </li>
-                          );
-                        }
-                      })}
+                      articles.map((article, index) => (
+                        <li key={`home-${article._id}`}>
+                          <MainFeedArticleCard article={article} type={true} />
+                        </li>
+                      ))}
                   </ul>
-                  {loading && <ContentLoader />}
+                  <ContentLoader target={lastBookElementRef} />
                 </div>
                 <div className="home--box-8">
                   <div className="home__recommended">

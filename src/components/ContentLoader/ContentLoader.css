@@ -4,6 +4,15 @@
   width: 100%;
 }
 
+.content-loader--box-1 {
+  border: 1px solid var(--grayish-dark-blue);
+  padding: 1rem 0;
+  width: 100%;
+  text-align: center;
+  color: var(--grayish-dark-blue);
+  margin: 2rem 0 0 0;
+}
+
 .lds-facebook {
   display: inline-block;
   position: relative;
