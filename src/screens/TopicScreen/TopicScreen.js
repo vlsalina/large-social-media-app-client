@@ -9,33 +9,34 @@ import Recommended from "../../components/Recommended/Recommended";
 import ReadingList from "../../components/ReadingList/ReadingList";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { topics } from "../../data/data";
+import { topics } from "../../components/_constants/general.constants";
 import IsLogged from "../../components/IsLogged/IsLogged";
 import { bgc } from "../../components/_helpers/general.helpers";
 import { articlesActions } from "../../components/_actions/articles.actions";
 import { useDispatch } from "react-redux";
 import LoadMore from "../../components/LoadMore/LoadMore";
+import ContentLoader from "../../components/ContentLoader/ContentLoader";
 
 export const TopicContext = React.createContext();
 
 const getbanner = (topic) => {
   switch (topic) {
-    case "technology":
-      return topics[0].url;
-    case "money":
-      return topics[1].url;
-    case "business":
-      return topics[2].url;
-    case "productivity":
-      return topics[3].url;
-    case "psychology":
-      return topics[4].url;
-    case "mindfulness":
-      return topics[5].url;
-    case "art":
-      return topics[6].url;
+    case topics.TECH:
+      return topics.TECH;
+    case topics.MON:
+      return topics.MON;
+    case topics.BUS:
+      return topics.BUS;
+    case topics.PROD:
+      return topics.PROD;
+    case topics.PSYC:
+      return topics.PSYC;
+    case topics.MIND:
+      return topics.MIND;
+    case topics.ART:
+      return topics.ART;
     default:
-      return "technology";
+      return topics.NON;
   }
 };
 
@@ -47,7 +48,7 @@ const TopicScreen = () => {
   const [favorites, setFavorites] = useState([]);
   const user = useSelector((state) => state.user);
   const data = useSelector((state) => state.data);
-  const { articles } = data;
+  const { articles, loading, hasMore } = data;
   //const [articles, setArticles] = useState();
 
   useEffect(() => {
@@ -56,6 +57,32 @@ const TopicScreen = () => {
       window.location.reload();
     }
   }, [topic, save]);
+
+  useEffect(() => {
+    dispatch(articlesActions.clear());
+    dispatch(articlesActions.load({ category: topic }));
+  }, []);
+
+  // Load more content on scroll
+  let options = {
+    rootMargin: "0px",
+    threshold: 1.0,
+  };
+  const observer = React.useRef();
+  const lastBookElementRef = React.useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          dispatch(articlesActions.load({ category: topic }));
+        }
+      }, options);
+      if (node) observer.current.observe(node);
+    },
+    [loading]
+  );
+  // end Load more content on scroll
 
   //useEffect(() => {
   //  setLoading(true);
@@ -73,28 +100,6 @@ const TopicScreen = () => {
   //  };
   //  asyncCall();
   //}, [process.env.REACT_APP_DOMAIN, topic, user.accessToken]);
-
-  useEffect(() => {
-    dispatch(articlesActions.clear());
-  }, [topic]);
-
-  React.useEffect(() => {
-    const fn = () => {
-      if (
-        window.scrollY ===
-        document.getElementsByClassName("App")[0].scrollHeight -
-          window.innerHeight
-      ) {
-        dispatch(articlesActions.load({ category: topic }));
-      }
-    };
-
-    window.addEventListener("scroll", fn);
-
-    return () => {
-      window.removeEventListener("scroll", fn);
-    };
-  }, []);
 
   return (
     <div className="home">
@@ -120,6 +125,7 @@ const TopicScreen = () => {
                         </li>
                       ))}
                   </ul>
+                  <ContentLoader target={lastBookElementRef} />
                 </div>
                 <div className="home--box-8">
                   <div className="home__recommended">

@@ -28,6 +28,7 @@ const MainFeedScreen = () => {
     dispatch(articlesActions.load({ category: "" }));
   }, []);
 
+  // Load more content on scroll
   let options = {
     rootMargin: "0px",
     threshold: 1.0,
@@ -46,6 +47,7 @@ const MainFeedScreen = () => {
     },
     [loading]
   );
+  // end Load more content on scroll
 
   return (
     <div className="home">
