@@ -3,6 +3,7 @@ import { drawerAnimations } from "../_animations/drawer.animations";
 import { alertActions } from "../_actions/alert.actions";
 import { format } from "date-fns";
 import { colors } from "../../data/data";
+import store from "../../store";
 
 export const bgc = (topic) => {
   switch (topic) {
@@ -25,8 +26,8 @@ export const bgc = (topic) => {
   }
 };
 
-export const closeDrawer = (dispatch) => {
-  dispatch(alertActions.clear());
+export const closeDrawer = () => {
+  store.dispatch(alertActions.clear());
   drawerAnimations.loginReverse();
   drawerAnimations.registerReverse();
 };
@@ -49,7 +50,17 @@ export const userIsLogged = (action) => {
   if (localStorage.getItem("user")) {
     action();
   } else {
+    store.dispatch(alertActions.clear());
     drawerAnimations.loginPlay();
+  }
+};
+
+export const userIsRegistered = (action) => {
+  if (localStorage.getItem("user")) {
+    action();
+  } else {
+    store.dispatch(alertActions.clear());
+    drawerAnimations.registerPlay();
   }
 };
 

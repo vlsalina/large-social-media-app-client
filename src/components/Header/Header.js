@@ -7,7 +7,11 @@ import { IconContext } from "react-icons";
 import Avatar from "../Avatar/Avatar";
 import ActionMenu from "../ActionMenu/ActionMenu";
 import IsLogged from "../IsLogged/IsLogged";
-import { loggedIn } from "../../utils";
+import {
+  userIsLogged,
+  loggedIn,
+  userIsRegistered,
+} from "../_helpers/general.helpers";
 import { drawerAnimations } from "../../components/_animations/drawer.animations";
 import ButtonC from "../buttons/ButtonC/ButtonC";
 
@@ -53,7 +57,7 @@ const Header = () => {
       <div className="header--box-1">
         <ul>
           <li className="header--box-2">
-            <a href="/">
+            <Link to="/">
               <div className="header--box-5">
                 <img
                   className="header__icon"
@@ -62,7 +66,7 @@ const Header = () => {
                 />
                 <h1 className="logo logo--margin">Large</h1>
               </div>
-            </a>
+            </Link>
           </li>
           <li className={user._id ? "header--box-3" : "header--box-6"}>
             <IsLogged
@@ -72,24 +76,28 @@ const Header = () => {
                     Already have an account?{" "}
                     <ButtonC
                       text={"Sign In"}
-                      action={drawerAnimations.loginPlay}
+                      action={() => userIsLogged(drawerAnimations.loginPlay)}
                     />
                     . Or{" "}
                     <ButtonC
                       text={"Create One"}
-                      action={drawerAnimations.registerPlay}
+                      action={() =>
+                        userIsRegistered(drawerAnimations.registerPlay)
+                      }
                     />
                     !
                   </span>
                   <span className="header--span-2">
                     <ButtonC
                       text={"Sign In"}
-                      action={drawerAnimations.loginPlay}
+                      action={() => userIsLogged(drawerAnimations.loginPlay)}
                     />{" "}
                     or{" "}
                     <ButtonC
                       text={"Create One"}
-                      action={drawerAnimations.registerPlay}
+                      action={() =>
+                        userIsRegistered(drawerAnimations.registerPlay)
+                      }
                     />{" "}
                     an account.
                   </span>

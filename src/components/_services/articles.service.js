@@ -94,7 +94,7 @@ const load = async (data) => {
   if (getStore) {
     let setStore = {
       loading: false,
-      start: data.state.start + limit - (limit - result.articles.length),
+      start: data.state.start + result.articles.length,
       articles: [...new Set(data.state.articles.concat(result.articles))],
       hasMore: result.articles.length < limit ? false : true,
     };
@@ -104,7 +104,7 @@ const load = async (data) => {
       "data",
       JSON.stringify({
         loading: false,
-        start: limit - (limit - result.articles.length),
+        start: result.articles.length,
         articles: [...new Set(result.articles)],
         hasMore: result.articles.length < limit ? false : true,
       })
