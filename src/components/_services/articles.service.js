@@ -83,11 +83,33 @@ const load = async (data) => {
   };
 
   const response = await fetch(
-    `${process.env.REACT_APP_DOMAIN}/api/articles/loadArticles?start=${data.start}&category=${data.category}&limit=${limit}`,
+    `${process.env.REACT_APP_DOMAIN}/api/articles/loadArticles?start=${data.state.start}&category=${data.category}&limit=${limit}`,
     requestOptions
   );
 
   let result = await handleResponse(response);
+
+  // save to local storage
+  let getStore = localStorage.getItem("data");
+  if (getStore) {
+    let setStore = {
+      loading: false,
+      start: data.state.start + limit - (limit - result.articles.length),
+      articles: [...new Set(data.state.articles.concat(result.articles))],
+      hasMore: result.articles.length < limit ? false : true,
+    };
+    localStorage.setItem("data", JSON.stringify(setStore));
+  } else {
+    localStorage.setItem(
+      "data",
+      JSON.stringify({
+        loading: false,
+        start: limit - (limit - result.articles.length),
+        articles: [...new Set(result.articles)],
+        hasMore: result.articles.length < limit ? false : true,
+      })
+    );
+  }
 
   return result;
 };

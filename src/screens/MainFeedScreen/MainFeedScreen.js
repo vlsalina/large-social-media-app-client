@@ -25,6 +25,7 @@ const MainFeedScreen = () => {
   const { loading, articles, hasMore } = data;
 
   useEffect(() => {
+    dispatch(articlesActions.clear());
     dispatch(articlesActions.load({ category: "" }));
   }, []);
 

@@ -37,8 +37,8 @@ const ArticleScreen = () => {
   const [numReplies, setNumReplies] = useState(0);
   const user = useSelector((state) => state.user);
   const { articleId } = useParams();
-  const articlesData = useSelector((state) => state.articles);
-  const { loading, articles } = articlesData;
+  const data = useSelector((state) => state.data);
+  const { loading, articles } = data;
   const search = useLocation().search;
   const open = new URLSearchParams(search).get("open");
   const dispatch = useDispatch();

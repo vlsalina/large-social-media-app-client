@@ -129,10 +129,10 @@ const load = ({ category }) => {
   function request() {
     return { type: articlesConstants.LOAD_REQUEST };
   }
-  function success(result) {
+  function success(articles) {
     return {
       type: articlesConstants.LOAD_SUCCESS,
-      payload: { articles: result.articles, len: result.len },
+      payload: articles,
     };
   }
   function failure(error) {
@@ -142,23 +142,22 @@ const load = ({ category }) => {
   return (dispatch, getState) => {
     dispatch(request());
 
-    articlesService
-      .load({ start: getState().data.start, category: category })
-      .then(
-        (result) => {
-          dispatch(success(result));
-          dispatch(alertActions.success("Load request successful!"));
-        },
-        (error) => {
-          dispatch(failure(error.toString()));
-          dispatch(alertActions.error(error.toString()));
-        }
-      );
+    articlesService.load({ state: getState().data, category: category }).then(
+      (result) => {
+        dispatch(success(result.articles));
+        dispatch(alertActions.success("Load request successful!"));
+      },
+      (error) => {
+        dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      }
+    );
   };
 };
 
 // clear articles state
 const clear = () => (dispatch) => {
+  localStorage.removeItem("data");
   dispatch({ type: articlesConstants.CLEAR_REQUEST });
 };
 
