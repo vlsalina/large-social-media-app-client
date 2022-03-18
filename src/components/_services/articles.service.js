@@ -97,6 +97,7 @@ const load = async (data) => {
       start: data.state.start + result.articles.length,
       articles: [...new Set(data.state.articles.concat(result.articles))],
       hasMore: result.articles.length < limit ? false : true,
+      total: result.total,
     };
     localStorage.setItem("data", JSON.stringify(setStore));
   } else {
@@ -107,6 +108,7 @@ const load = async (data) => {
         start: result.articles.length,
         articles: [...new Set(result.articles)],
         hasMore: result.articles.length < limit ? false : true,
+        total: result.total,
       })
     );
   }

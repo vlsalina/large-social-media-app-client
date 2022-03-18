@@ -129,10 +129,10 @@ const load = ({ category }) => {
   function request() {
     return { type: articlesConstants.LOAD_REQUEST };
   }
-  function success(articles) {
+  function success(result) {
     return {
       type: articlesConstants.LOAD_SUCCESS,
-      payload: articles,
+      payload: result,
     };
   }
   function failure(error) {
@@ -144,7 +144,7 @@ const load = ({ category }) => {
 
     articlesService.load({ state: getState().data, category: category }).then(
       (result) => {
-        dispatch(success(result.articles));
+        dispatch(success(result));
         dispatch(alertActions.success("Load request successful!"));
       },
       (error) => {
