@@ -7,7 +7,11 @@ import { IconContext } from "react-icons";
 import Avatar from "../Avatar/Avatar";
 import ActionMenu from "../ActionMenu/ActionMenu";
 import IsLogged from "../IsLogged/IsLogged";
-import { loggedIn } from "../../utils";
+import {
+  userIsLogged,
+  loggedIn,
+  userIsRegistered,
+} from "../_helpers/general.helpers";
 import { drawerAnimations } from "../../components/_animations/drawer.animations";
 import ButtonC from "../buttons/ButtonC/ButtonC";
 
@@ -72,24 +76,28 @@ const Header = () => {
                     Already have an account?{" "}
                     <ButtonC
                       text={"Sign In"}
-                      action={drawerAnimations.loginPlay}
+                      action={() => userIsLogged(drawerAnimations.loginPlay)}
                     />
                     . Or{" "}
                     <ButtonC
                       text={"Create One"}
-                      action={drawerAnimations.registerPlay}
+                      action={() =>
+                        userIsRegistered(drawerAnimations.registerPlay)
+                      }
                     />
                     !
                   </span>
                   <span className="header--span-2">
                     <ButtonC
                       text={"Sign In"}
-                      action={drawerAnimations.loginPlay}
+                      action={() => userIsLogged(drawerAnimations.loginPlay)}
                     />{" "}
                     or{" "}
                     <ButtonC
                       text={"Create One"}
-                      action={drawerAnimations.registerPlay}
+                      action={() =>
+                        userIsRegistered(drawerAnimations.registerPlay)
+                      }
                     />{" "}
                     an account.
                   </span>
@@ -104,18 +112,6 @@ const Header = () => {
                         <BsPlusCircleFill />
                       </IconContext.Provider>
                     </Link>
-                  </li>
-                  <li key={"search"}>
-                    <button
-                      type="button"
-                      className="header__drawer header--noborder"
-                    >
-                      <img
-                        className="header__icon"
-                        src={`/assets/icons8-search-500.png`}
-                        alt="search"
-                      />
-                    </button>
                   </li>
                   {menuItems.slice(0, 2).map((item) => (
                     <li key={item.name}>

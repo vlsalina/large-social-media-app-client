@@ -11,6 +11,8 @@ import {
 import { AiOutlineMessage } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
+import { BsBookmarkPlusFill } from "react-icons/bs";
+import { BsBookmarkDashFill } from "react-icons/bs";
 import { TiMessages } from "react-icons/ti";
 import { IconContext } from "react-icons";
 import { useLocation } from "react-router-dom";
@@ -35,8 +37,8 @@ const ArticleScreen = () => {
   const [numReplies, setNumReplies] = useState(0);
   const user = useSelector((state) => state.user);
   const { articleId } = useParams();
-  const articlesData = useSelector((state) => state.articles);
-  const { loading, articles } = articlesData;
+  const data = useSelector((state) => state.data);
+  const { loading, articles } = data;
   const search = useLocation().search;
   const open = new URLSearchParams(search).get("open");
   const dispatch = useDispatch();
@@ -61,6 +63,12 @@ const ArticleScreen = () => {
       if (alreadyLiked) {
         setLiked(true);
       }
+
+      // if user has already favorited article, set favd state to true. False otherwise.
+      let alreadyFavd = user.favorites.find((x) => x.articleId === result._id);
+      if (alreadyFavd) {
+        setFavd(true);
+      }
     };
 
     if (loggedIn()) {
@@ -76,6 +84,23 @@ const ArticleScreen = () => {
         dispatch(userActions.unfollow(article.authorId));
       }
       setFollowing(!following);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const favoriteHandler = (e) => {
+    if (user._id === article.authorId) {
+      return;
+    }
+
+    try {
+      if (!favd) {
+        dispatch(userActions.favorite(article._id));
+      } else {
+        dispatch(userActions.unfavorite(article._id));
+      }
+      setFavd(!favd);
     } catch (error) {
       console.log(error);
     }
@@ -122,11 +147,6 @@ const ArticleScreen = () => {
               <h1>{article.title}</h1>
             </div>
           )}
-          <div className="article--box-4">
-            {article && (
-              <SocialMenu article={article} favd={favd} setFavd={setFavd} />
-            )}
-          </div>
           {article && (
             <div className="article--box-1">
               <div className="article--box-7">
@@ -143,6 +163,24 @@ const ArticleScreen = () => {
                 </div>
               </div>
               <div className="article--box-6">
+                <div className="article--box-8">
+                  <button
+                    className="article__button-2"
+                    type="button"
+                    onClick={() => userIsLogged(favoriteHandler)}
+                    disabled={article.authorId === user._id ? true : false}
+                  >
+                    {loggedIn() && favd ? (
+                      <IconContext.Provider value={styles.icons5}>
+                        <BsBookmarkDashFill />
+                      </IconContext.Provider>
+                    ) : (
+                      <IconContext.Provider value={styles.icons5}>
+                        <BsBookmarkPlusFill />
+                      </IconContext.Provider>
+                    )}
+                  </button>
+                </div>
                 <div className="article--box-8">
                   <button
                     className="article__button--1 article--padding-1"
@@ -216,9 +254,6 @@ const ArticleScreen = () => {
               </div>
             )}
           </div>
-          {article && (
-            <SocialMenu article={article} favd={favd} setFavd={setFavd} />
-          )}
         </div>
         <Footer />
       </ArticleContext.Provider>

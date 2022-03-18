@@ -23,31 +23,24 @@ const networks = [
 const topics = [
   {
     name: "technology",
-    url: "/assets/banners/15-Social-Media-Trends.png",
   },
   {
     name: "money",
-    url: "/assets/banners/money.jpg",
   },
   {
     name: "business",
-    url: "/assets/banners/business.jpeg",
   },
   {
     name: "productivity",
-    url: "/assets/banners/productivity.jpg",
   },
   {
     name: "psychology",
-    url: "/assets/banners/psychology.jpg",
   },
   {
     name: "mindfulness",
-    url: "/assets/banners/mindfulness.jpg",
   },
   {
     name: "art",
-    url: "/assets/banners/art.jpg",
   },
 ];
 

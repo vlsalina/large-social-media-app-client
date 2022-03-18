@@ -19,3 +19,14 @@ export const general = {
   MINDFULNESS,
   ART,
 };
+
+export const topics = {
+  TECH: "technology",
+  MON: "money",
+  BUS: "business",
+  PROD: "productivity",
+  PSYC: "psychology",
+  MIND: "mindfulness",
+  ART: "art",
+  NON: "",
+};

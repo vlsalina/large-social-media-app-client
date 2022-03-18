@@ -1,3 +1,5 @@
+import { limit } from "../_constants/articles.constants";
+
 /* GET all articles */
 const getAllArticles = async () => {
   const requestOptions = {
@@ -73,6 +75,47 @@ const create = async (newArticle) => {
   );
 };
 
+// for loading articles request
+const load = async (data) => {
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+
+  const response = await fetch(
+    `${process.env.REACT_APP_DOMAIN}/api/articles/loadArticles?start=${data.state.start}&category=${data.category}&limit=${limit}`,
+    requestOptions
+  );
+
+  let result = await handleResponse(response);
+
+  // save to local storage
+  let getStore = localStorage.getItem("data");
+  if (getStore) {
+    let setStore = {
+      loading: false,
+      start: data.state.start + result.articles.length,
+      articles: [...new Set(data.state.articles.concat(result.articles))],
+      hasMore: result.articles.length < limit ? false : true,
+      total: result.total,
+    };
+    localStorage.setItem("data", JSON.stringify(setStore));
+  } else {
+    localStorage.setItem(
+      "data",
+      JSON.stringify({
+        loading: false,
+        start: result.articles.length,
+        articles: [...new Set(result.articles)],
+        hasMore: result.articles.length < limit ? false : true,
+        total: result.total,
+      })
+    );
+  }
+
+  return result;
+};
+
 /* response handler */
 const handleResponse = (response) => {
   return response.text().then((text) => {
@@ -91,4 +134,5 @@ export const articlesService = {
   like,
   unlike,
   create,
+  load,
 };

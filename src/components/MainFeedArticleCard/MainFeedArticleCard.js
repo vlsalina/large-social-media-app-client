@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./MainFeedArticleCard.css";
-import { formatDate, userIsLogged } from "../_helpers/general.helpers";
+import {
+  formatDate,
+  userIsLogged,
+  loggedIn,
+} from "../_helpers/general.helpers";
 import { MainFeedContext } from "../../screens/MainFeedScreen/MainFeedScreen";
 import { TopicContext } from "../../screens/TopicScreen/TopicScreen";
 import { useSelector } from "react-redux";
@@ -9,13 +13,14 @@ import { Link } from "react-router-dom";
 import { TiMessages } from "react-icons/ti";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
+import { BsBookmarkDashFill } from "react-icons/bs";
+import { BsBookmarkPlusFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import { styles } from "../../styles/styles";
 import Avatar from "../Avatar/Avatar";
 import { useDispatch } from "react-redux";
 // import { favorite, like, dislike } from "../actions/actions";
 import { useNavigate } from "react-router-dom";
-import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import { repliesHelpers } from "../_helpers/replies.helper";
 import { articlesActions } from "../_actions/articles.actions";
 import { userActions } from "../_actions/user.actions";
@@ -29,6 +34,7 @@ const MainFeedArticleCard = ({ article, type }) => {
   const [replies, setReplies] = useState(false);
   const [likes, setLikes] = useState();
   const [liked, setLiked] = useState(false);
+  const [favd, setFavd] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,6 +42,16 @@ const MainFeedArticleCard = ({ article, type }) => {
 
     return () => setLikes([]);
   }, [article.likes]);
+
+  useEffect(() => {
+    let alreadyFavd =
+      user.firstname && user.favorites.find((x) => x.articleId === article._id);
+    if (alreadyFavd) {
+      setFavd(true);
+    }
+
+    return () => setFavd(null);
+  }, []);
 
   useEffect(() => {
     let exists = article.likes.find((x) => x.userId === user._id);
@@ -63,6 +79,23 @@ const MainFeedArticleCard = ({ article, type }) => {
       setLikes(likes.filter((x) => x.userId !== user._id));
     }
     setLiked(!liked);
+  };
+
+  const favoriteHandler = (e) => {
+    if (user._id === article.authorId) {
+      return;
+    }
+
+    try {
+      if (!favd) {
+        dispatch(userActions.favorite(article._id));
+      } else {
+        dispatch(userActions.unfavorite(article._id));
+      }
+      setFavd(!favd);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const clickHandler = (e) => {
@@ -152,11 +185,17 @@ const MainFeedArticleCard = ({ article, type }) => {
               <button
                 className="favorite"
                 type="button"
-                onClick={(e) => userIsLogged(() => clickHandler(e))}
+                onClick={(e) => userIsLogged(favoriteHandler)}
               >
-                <IconContext.Provider value={styles.icons2}>
-                  <BsFillBookmarkPlusFill />
-                </IconContext.Provider>
+                {loggedIn() && favd ? (
+                  <IconContext.Provider value={styles.icons6}>
+                    <BsBookmarkDashFill />
+                  </IconContext.Provider>
+                ) : (
+                  <IconContext.Provider value={styles.icons6}>
+                    <BsBookmarkPlusFill />
+                  </IconContext.Provider>
+                )}
               </button>
             </div>
           </div>
@@ -216,7 +255,7 @@ const MainFeedArticleCard = ({ article, type }) => {
             onClick={(e) => userIsLogged(() => clickHandler(e))}
           >
             <IconContext.Provider value={styles.icons2}>
-              <BsFillBookmarkPlusFill />
+              <BsBookmarkPlusFill />
             </IconContext.Provider>
           </button>
         </div>

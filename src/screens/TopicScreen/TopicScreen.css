@@ -36,12 +36,6 @@
   padding-bottom: 20rem;
 }
 
-@media screen and (min-width: 1192px) {
-  .home--box-6 {
-    margin-bottom: 4rem;
-  }
-}
-
 /* topic--box-3 */
 .topic--box-3 {
   position: absolute;

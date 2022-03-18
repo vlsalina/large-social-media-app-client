@@ -22,7 +22,7 @@ const LoginForm2 = () => {
         <button
           type="button"
           className="form-close"
-          onClick={() => closeDrawer(dispatch)}
+          onClick={() => closeDrawer()}
         >
           &times;
         </button>
