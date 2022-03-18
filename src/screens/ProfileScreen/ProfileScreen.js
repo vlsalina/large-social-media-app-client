@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProfileScreen.css";
 import Header from "../../components/Header/Header";
-import ProfileArticleCard from "../../components/ProfileArticleCard.js/ProfileArticleCard";
+import ProfileArticleCard from "../../components/ProfileArticleCard/ProfileArticleCard";
 import Loader from "../../components/Loader/Loader";
 import { breadcrumbs } from "../../data/data";
 import AuthorProfile from "../../components/AuthorProfile/AuthorProfile";

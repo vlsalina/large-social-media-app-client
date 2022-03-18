@@ -123,7 +123,7 @@ const ProfileArticleCard = ({ article }) => {
       <Link to={`/article/${article._id}`}>
         <div className="profilecard__description">{article.description}</div>
       </Link>
-      <div className="card--box-4 profilecard__spacer">
+      <div className="profilecard--box-4 profilecard__spacer">
         <div className="card--box-5">
           {article && (
             <div className="card__date card--spacer">

@@ -41,6 +41,13 @@
   margin-top: 1rem;
 }
 
+.profilecard--box-4 {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
 /* maintain number of lines */
 .profilecard__title,
 .profilecard__snippet,
