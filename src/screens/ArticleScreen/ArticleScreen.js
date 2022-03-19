@@ -137,7 +137,9 @@ const ArticleScreen = () => {
 
   return (
     <main className="article">
-      <Metadata title={article.title} description={article.description} />
+      {article && (
+        <Metadata title={article.title} description={article.description} />
+      )}
       <ArticleContext.Provider
         value={{ articleId, numReplies, setNumReplies, article }}
       >

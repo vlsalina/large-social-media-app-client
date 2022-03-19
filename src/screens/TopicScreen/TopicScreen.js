@@ -87,12 +87,14 @@ const TopicScreen = () => {
 
   return (
     <div className="home">
-      <Metadata
-        title={topic[0].toUpperCase() + topic.slice(1)}
-        description={`Large Social Media - ${
-          topic[0].toUpperCase() + topic.slice(1)
-        }`}
-      />
+      {topic && (
+        <Metadata
+          title={topic[0].toUpperCase() + topic.slice(1)}
+          description={`Large Social Media - ${
+            topic[0].toUpperCase() + topic.slice(1)
+          }`}
+        />
+      )}
       <TopicContext.Provider value={{ favorites, setFavorites }}>
         <main className="home--box-1">
           <Header />
