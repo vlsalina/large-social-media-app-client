@@ -11,6 +11,7 @@ import FollowingCard from "../../components/FollowingCard/FollowingCard";
 import NotificationsCard from "../../components/NotificationsCard/NotificationsCard";
 import ButtonD from "../../components/buttons/ButtonD/ButtonD";
 import useGetProfileData from "../../components/_hooks/useGetProfileData";
+import Metadata from "../../components/Metadata/Metadata";
 
 const FadeIn = ({ children }) => {
   const [isVisib, setIsVisib] = React.useState(false);
@@ -113,6 +114,12 @@ const ProfileScreen = () => {
         <Loader />
       ) : (
         <>
+          {author && (
+            <Metadata
+              title={`${author.firstname} ${author.lastname}\'s Profile Page`}
+              description={`${author.firstname} ${author.lastname}\'s Profile Page`}
+            />
+          )}
           <Header />
           <div className="profilescreen__placeholder">
             {author && (

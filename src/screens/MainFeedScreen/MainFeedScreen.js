@@ -14,6 +14,7 @@ import IsLogged from "../../components/IsLogged/IsLogged";
 import LoginModal from "../../components/LoginModal/LoginModal";
 import ContentLoader from "../../components/ContentLoader/ContentLoader";
 import "../../components/_helpers/scroll-load-more.helpers";
+import Metadata from "../../components/Metadata/Metadata";
 
 export const MainFeedContext = React.createContext();
 
@@ -53,6 +54,10 @@ const MainFeedScreen = () => {
   return (
     <div className="home">
       <MainFeedContext.Provider value={{ favorites, setFavorites }}>
+        <Metadata
+          title={`Large Social Media - Mainfeed`}
+          description={`Read, Write, and Connect with Others`}
+        />
         <main className="home--box-1">
           <Header />
           <div className="home--box-2">

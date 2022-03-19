@@ -16,6 +16,7 @@ import { articlesActions } from "../../components/_actions/articles.actions";
 import { useDispatch } from "react-redux";
 import LoadMore from "../../components/LoadMore/LoadMore";
 import ContentLoader from "../../components/ContentLoader/ContentLoader";
+import Metadata from "../../components/Metadata/Metadata";
 
 export const TopicContext = React.createContext();
 
@@ -84,25 +85,14 @@ const TopicScreen = () => {
   );
   // end Load more content on scroll
 
-  //useEffect(() => {
-  //  setLoading(true);
-
-  //  const asyncCall = async () => {
-  //    try {
-  //      const { data } = await axios.get(
-  //        `${process.env.REACT_APP_DOMAIN}/api/articles/getArticlesByCategory?category=${topic}`
-  //      );
-  //      setLoading(false);
-  //      setArticles(data.reverse());
-  //    } catch (error) {
-  //      console.log(error);
-  //    }
-  //  };
-  //  asyncCall();
-  //}, [process.env.REACT_APP_DOMAIN, topic, user.accessToken]);
-
   return (
     <div className="home">
+      <Metadata
+        title={topic[0].toUpperCase() + topic.slice(1)}
+        description={`Large Social Media - ${
+          topic[0].toUpperCase() + topic.slice(1)
+        }`}
+      />
       <TopicContext.Provider value={{ favorites, setFavorites }}>
         <main className="home--box-1">
           <Header />

@@ -25,6 +25,7 @@ import { userActions } from "../../components/_actions/user.actions";
 import { articlesActions } from "../../components/_actions/articles.actions";
 import Avatar from "../../components/Avatar/Avatar";
 import { styles } from "../../styles/styles";
+import Metadata from "../../components/Metadata/Metadata";
 
 export const ArticleContext = React.createContext();
 
@@ -136,6 +137,7 @@ const ArticleScreen = () => {
 
   return (
     <main className="article">
+      <Metadata title={article.title} description={article.description} />
       <ArticleContext.Provider
         value={{ articleId, numReplies, setNumReplies, article }}
       >
